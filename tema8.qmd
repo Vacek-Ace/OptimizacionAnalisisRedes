@@ -1,6 +1,6 @@
 # El Problema del Camino Mínimo
 
-El problema del **camino mínimo** (Shortest Path Problem) es una de las piedras angulares de la optimización de redes. Su propósito es determinar la ruta de menor coste o distancia acumulada entre un nodo origen $s$ y un nodo destino $t$, o desde un origen único hacia todos los demás nodos de la red. Este problema no solo cuenta con aplicaciones directas en sistemas de navegación vial y enrutamiento de paquetes de datos en telecomunicaciones, sino que sirve como subproblema crítico en algoritmos de mayor envergadura (como los algoritmos de generación de columnas o los problemas de flujo de coste mínimo).
+El problema del **camino mínimo** (Shortest Path Problem) es una de las piedras angulares de la optimización de redes. Su propósito es determinar la ruta de menor coste o distancia acumulada entre un nodo origen $s$ y un nodo destino $t$, o desde un origen único hacia todos los demás nodos de la red. Este problema no solo cuenta con aplicaciones directas en sistemas de navegación vial y enrutamiento de paquetes de datos en telecomunicaciones, sino que sirve como subproblema crítico en algoritmos de mayor envergadura (como los algoritmos de generación de columnas o los problemas de flujo de coste mínimo), constituyendo un campo fundamental de estudio en la optimización combinatoria [@ahuja1993network; @bertsekas1998network; @cormen2009introduction].
 
 En este capítulo, estudiaremos el Principio de Optimalidad y las ecuaciones de Bellman, los algoritmos especializados según la naturaleza de los pesos (ordenación topológica para DAGs, Dijkstra para pesos positivos, y Bellman-Ford para pesos negativos), el algoritmo de Floyd-Warshall para caminos entre todos los pares de nodos, y el modelado matemático mediante programación lineal primal-dual destacando la propiedad de total unimodularidad.
 
@@ -46,10 +46,10 @@ Donde $\text{Pred}(j) = \{ i \in V \mid (i, j) \in A \}$ representa el conjunto 
 
 Si el digrafo no contiene ciclos (Directed Acyclic Graph, DAG), podemos explotar su estructura geométrica ordenando sus nodos para resolver las ecuaciones de Bellman en un único paso secuencial.
 
-### 1. Ordenación Topológica
+### Ordenación Topológica
 Consiste en etiquetar los nodos con números $t(i) \in \{1, \dots, n\}$ tales que para todo arco dirigido $(i, j) \in A$ se cumpla la relación de orden $t(i) < t(j)$. El algoritmo localiza repetidamente nodos con grado de entrada cero ($d^-(i) = 0$), les asigna la etiqueta correspondiente y los elimina de la red junto con sus arcos salientes.
 
-### 2. Algoritmo de Resolución
+### Algoritmo de Resolución
 Una vez reordenados los nodos como $1, 2, \dots, n$ (con el origen $s$ como nodo 1), calculamos las distancias de forma directa:
 $$ d(1) = 0 $$
 $$ d(j) = \min_{i < j, (i,j) \in A} \{ d(i) + c_{ij} \}, \quad j = 2, \dots, n $$
@@ -97,7 +97,7 @@ Entonces existe al menos un **ciclo de coste negativo** accesible desde el orige
 
 El problema del camino mínimo puede formularse y resolverse como un programa lineal continuo.
 
-### 1. Modelo Primal (Flujo de Coste Mínimo de Una Unidad)
+### Modelo Primal (Flujo de Coste Mínimo de Una Unidad)
 Asumiendo que queremos enviar una unidad de flujo desde el origen $s$ al destino $t$:
 
 $$
@@ -112,7 +112,7 @@ La variable continua $x_{ij}$ representa la cantidad de flujo que pasa por el ar
 -   **Total Unimodularidad (TUM)**:
     La matriz de coeficientes de este sistema es la matriz de incidencia nodo-arco de la red. Al ser esta matriz totalmente unimodular, cualquier base factible del problema de programación lineal es entera. Por tanto, resolver el problema lineal continuo garantiza obtener una solución binaria óptima ($x_{ij}^* \in \{0, 1\}$) que define de forma exacta el camino mínimo.
 
-### 2. Modelo Dual (Potenciales Nodales)
+### Modelo Dual (Potenciales Nodales)
 Asociando una variable dual no restringida $u_i \in \mathbb{R}$ a la ecuación de balance de cada nodo $i \in V$, el problema dual es:
 
 $$

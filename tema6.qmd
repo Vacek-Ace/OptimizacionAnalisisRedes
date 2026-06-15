@@ -16,7 +16,7 @@ Al finalizar este capítulo, serás capaz de:
 
 ## Introducción a la Optimización en Aprendizaje Automático
 
-El proceso de entrenamiento de un modelo de aprendizaje automático consiste en ajustar los parámetros de una función hipótesis $f(x; w)$ para modelar un patrón en un conjunto de datos. Las principales aplicaciones de la optimización en este ámbito son:
+El proceso de entrenamiento de un modelo de aprendizaje automático consiste en ajustar los parámetros de una función hipótesis $f(x; w)$ para modelar un patrón en un conjunto de datos, siguiendo los principios y metodologías analíticas del aprendizaje estadístico clásico [@hastie2009elements]. Las principales aplicaciones de la optimización en este ámbito son:
 -   **Estimación puntual**:
     Maximizar la función de verosimilitud (MLE) o minimizar el error cuadrático medio.
 -   **Regularización**:
@@ -35,13 +35,13 @@ Consideremos una muestra de $n = 19$ observaciones:
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | $y$ | 1.0 | 0.9 | 0.7 | 1.5 | 2.0 | 2.4 | 3.2 | 2.0 | 2.7 | 3.5 | 1.0 | 4.0 | 3.6 | 2.7 | 5.7 | 4.6 | 6.0 | 6.8 | 7.3 |
 
-### 1. Regresión Lineal Clásica (Norma $\ell_2$)
+### Regresión Lineal Clásica (Norma $\ell_2$)
 La regresión lineal clásica asume que la relación toma la forma de una recta $y = a + b x + \epsilon$. Los parámetros $a$ (intersección) y $b$ (pendiente) se obtienen minimizando el error cuadrático medio:
 $$ \min_{a, b} \sum_{i=1}^n (a + b x_i - y_i)^2 $$
 Las ecuaciones normales obtenidas al anular el gradiente nos proporcionan la conocida recta por mínimos cuadrados ordinarios (MCO):
 $$ Y = 0.4261 + 0.6108 x $$
 
-### 2. Ajustes en Normas Robustas ($\ell_1$ y $\ell_\infty$)
+### Ajustes en Normas Robustas ($\ell_1$ y $\ell_\infty$)
 Cuando los datos contienen valores atípicos (*outliers*) o errores de medición severos (como el punto $(5.0, 1.0)$ en nuestra muestra), la norma cuadrática $\ell_2$ se ve fuertemente distorsionada. Proponemos alternativas más robustas:
 -   **Norma $\ell_1$ (Desviaciones Absolutas)**:
     Minimiza la suma de los valores absolutos de los residuos:

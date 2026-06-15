@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -271,8 +291,8 @@ window.Quarto = {
   <li><a href="#el-principio-de-optimalidad-de-bellman" id="toc-el-principio-de-optimalidad-de-bellman" class="nav-link" data-scroll-target="#el-principio-de-optimalidad-de-bellman"><span class="header-section-number">8.2</span> El Principio de Optimalidad de Bellman</a></li>
   <li><a href="#redes-sin-circuitos-dags-y-ordenación-topológica" id="toc-redes-sin-circuitos-dags-y-ordenación-topológica" class="nav-link" data-scroll-target="#redes-sin-circuitos-dags-y-ordenación-topológica"><span class="header-section-number">8.3</span> Redes Sin Circuitos (DAGs) y Ordenación Topológica</a>
   <ul class="collapse">
-  <li><a href="#ordenación-topológica" id="toc-ordenación-topológica" class="nav-link" data-scroll-target="#ordenación-topológica"><span class="header-section-number">8.3.1</span> 1. Ordenación Topológica</a></li>
-  <li><a href="#algoritmo-de-resolución" id="toc-algoritmo-de-resolución" class="nav-link" data-scroll-target="#algoritmo-de-resolución"><span class="header-section-number">8.3.2</span> 2. Algoritmo de Resolución</a></li>
+  <li><a href="#ordenación-topológica" id="toc-ordenación-topológica" class="nav-link" data-scroll-target="#ordenación-topológica"><span class="header-section-number">8.3.1</span> Ordenación Topológica</a></li>
+  <li><a href="#algoritmo-de-resolución" id="toc-algoritmo-de-resolución" class="nav-link" data-scroll-target="#algoritmo-de-resolución"><span class="header-section-number">8.3.2</span> Algoritmo de Resolución</a></li>
   </ul></li>
   <li><a href="#redes-con-pesos-no-negativos-algoritmo-de-dijkstra" id="toc-redes-con-pesos-no-negativos-algoritmo-de-dijkstra" class="nav-link" data-scroll-target="#redes-con-pesos-no-negativos-algoritmo-de-dijkstra"><span class="header-section-number">8.4</span> Redes con Pesos No Negativos: Algoritmo de Dijkstra</a></li>
   <li><a href="#redes-con-pesos-negativos-algoritmo-de-bellman-ford" id="toc-redes-con-pesos-negativos-algoritmo-de-bellman-ford" class="nav-link" data-scroll-target="#redes-con-pesos-negativos-algoritmo-de-bellman-ford"><span class="header-section-number">8.5</span> Redes con Pesos Negativos: Algoritmo de Bellman-Ford</a>
@@ -281,8 +301,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#formulación-en-programación-lineal-primal-dual" id="toc-formulación-en-programación-lineal-primal-dual" class="nav-link" data-scroll-target="#formulación-en-programación-lineal-primal-dual"><span class="header-section-number">8.6</span> Formulación en Programación Lineal Primal-Dual</a>
   <ul class="collapse">
-  <li><a href="#modelo-primal-flujo-de-coste-mínimo-de-una-unidad" id="toc-modelo-primal-flujo-de-coste-mínimo-de-una-unidad" class="nav-link" data-scroll-target="#modelo-primal-flujo-de-coste-mínimo-de-una-unidad"><span class="header-section-number">8.6.1</span> 1. Modelo Primal (Flujo de Coste Mínimo de Una Unidad)</a></li>
-  <li><a href="#modelo-dual-potenciales-nodales" id="toc-modelo-dual-potenciales-nodales" class="nav-link" data-scroll-target="#modelo-dual-potenciales-nodales"><span class="header-section-number">8.6.2</span> 2. Modelo Dual (Potenciales Nodales)</a></li>
+  <li><a href="#modelo-primal-flujo-de-coste-mínimo-de-una-unidad" id="toc-modelo-primal-flujo-de-coste-mínimo-de-una-unidad" class="nav-link" data-scroll-target="#modelo-primal-flujo-de-coste-mínimo-de-una-unidad"><span class="header-section-number">8.6.1</span> Modelo Primal (Flujo de Coste Mínimo de Una Unidad)</a></li>
+  <li><a href="#modelo-dual-potenciales-nodales" id="toc-modelo-dual-potenciales-nodales" class="nav-link" data-scroll-target="#modelo-dual-potenciales-nodales"><span class="header-section-number">8.6.2</span> Modelo Dual (Potenciales Nodales)</a></li>
   </ul></li>
   <li><a href="#camino-mínimo-entre-todos-los-pares-de-nodos-floyd-warshall" id="toc-camino-mínimo-entre-todos-los-pares-de-nodos-floyd-warshall" class="nav-link" data-scroll-target="#camino-mínimo-entre-todos-los-pares-de-nodos-floyd-warshall"><span class="header-section-number">8.7</span> Camino Mínimo Entre Todos los Pares de Nodos: Floyd-Warshall</a></li>
   <li><a href="#implementación-en-python-con-networkx" id="toc-implementación-en-python-con-networkx" class="nav-link" data-scroll-target="#implementación-en-python-con-networkx"><span class="header-section-number">8.8</span> Implementación en Python con NetworkX</a></li>
@@ -311,7 +331,7 @@ window.Quarto = {
 </header>
 
 
-<p>El problema del <strong>camino mínimo</strong> (Shortest Path Problem) es una de las piedras angulares de la optimización de redes. Su propósito es determinar la ruta de menor coste o distancia acumulada entre un nodo origen <span class="math inline">\(s\)</span> y un nodo destino <span class="math inline">\(t\)</span>, o desde un origen único hacia todos los demás nodos de la red. Este problema no solo cuenta con aplicaciones directas en sistemas de navegación vial y enrutamiento de paquetes de datos en telecomunicaciones, sino que sirve como subproblema crítico en algoritmos de mayor envergadura (como los algoritmos de generación de columnas o los problemas de flujo de coste mínimo).</p>
+<p>El problema del <strong>camino mínimo</strong> (Shortest Path Problem) es una de las piedras angulares de la optimización de redes. Su propósito es determinar la ruta de menor coste o distancia acumulada entre un nodo origen <span class="math inline">\(s\)</span> y un nodo destino <span class="math inline">\(t\)</span>, o desde un origen único hacia todos los demás nodos de la red. Este problema no solo cuenta con aplicaciones directas en sistemas de navegación vial y enrutamiento de paquetes de datos en telecomunicaciones, sino que sirve como subproblema crítico en algoritmos de mayor envergadura (como los algoritmos de generación de columnas o los problemas de flujo de coste mínimo), constituyendo un campo fundamental de estudio en la optimización combinatoria <span class="citation" data-cites="ahuja1993network bertsekas1998network cormen2009introduction">(<a href="references.html#ref-ahuja1993network" role="doc-biblioref">Ahuja, Magnanti, y Orlin 1993</a>; <a href="references.html#ref-bertsekas1998network" role="doc-biblioref">Bertsekas 1998</a>; <a href="references.html#ref-cormen2009introduction" role="doc-biblioref">Cormen et&nbsp;al. 2009</a>)</span>.</p>
 <p>En este capítulo, estudiaremos el Principio de Optimalidad y las ecuaciones de Bellman, los algoritmos especializados según la naturaleza de los pesos (ordenación topológica para DAGs, Dijkstra para pesos positivos, y Bellman-Ford para pesos negativos), el algoritmo de Floyd-Warshall para caminos entre todos los pares de nodos, y el modelado matemático mediante programación lineal primal-dual destacando la propiedad de total unimodularidad.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Objetivos de aprendizaje">
 <div class="callout-header d-flex align-content-center">
@@ -360,11 +380,11 @@ window.Quarto = {
 <h2 data-number="8.3" class="anchored" data-anchor-id="redes-sin-circuitos-dags-y-ordenación-topológica"><span class="header-section-number">8.3</span> Redes Sin Circuitos (DAGs) y Ordenación Topológica</h2>
 <p>Si el digrafo no contiene ciclos (Directed Acyclic Graph, DAG), podemos explotar su estructura geométrica ordenando sus nodos para resolver las ecuaciones de Bellman en un único paso secuencial.</p>
 <section id="ordenación-topológica" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="ordenación-topológica"><span class="header-section-number">8.3.1</span> 1. Ordenación Topológica</h3>
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="ordenación-topológica"><span class="header-section-number">8.3.1</span> Ordenación Topológica</h3>
 <p>Consiste en etiquetar los nodos con números <span class="math inline">\(t(i) \in \{1, \dots, n\}\)</span> tales que para todo arco dirigido <span class="math inline">\((i, j) \in A\)</span> se cumpla la relación de orden <span class="math inline">\(t(i) &lt; t(j)\)</span>. El algoritmo localiza repetidamente nodos con grado de entrada cero (<span class="math inline">\(d^-(i) = 0\)</span>), les asigna la etiqueta correspondiente y los elimina de la red junto con sus arcos salientes.</p>
 </section>
 <section id="algoritmo-de-resolución" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="algoritmo-de-resolución"><span class="header-section-number">8.3.2</span> 2. Algoritmo de Resolución</h3>
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="algoritmo-de-resolución"><span class="header-section-number">8.3.2</span> Algoritmo de Resolución</h3>
 <p>Una vez reordenados los nodos como <span class="math inline">\(1, 2, \dots, n\)</span> (con el origen <span class="math inline">\(s\)</span> como nodo 1), calculamos las distancias de forma directa: <span class="math display">\[ d(1) = 0 \]</span> <span class="math display">\[ d(j) = \min_{i &lt; j, (i,j) \in A} \{ d(i) + c_{ij} \}, \quad j = 2, \dots, n \]</span> - <em>Complejidad</em>: <span class="math inline">\(O(|V| + |A|)\)</span>, que es lineal y óptima.</p>
 </section>
 </section>
@@ -409,7 +429,7 @@ window.Quarto = {
 <h2 data-number="8.6" class="anchored" data-anchor-id="formulación-en-programación-lineal-primal-dual"><span class="header-section-number">8.6</span> Formulación en Programación Lineal Primal-Dual</h2>
 <p>El problema del camino mínimo puede formularse y resolverse como un programa lineal continuo.</p>
 <section id="modelo-primal-flujo-de-coste-mínimo-de-una-unidad" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="modelo-primal-flujo-de-coste-mínimo-de-una-unidad"><span class="header-section-number">8.6.1</span> 1. Modelo Primal (Flujo de Coste Mínimo de Una Unidad)</h3>
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="modelo-primal-flujo-de-coste-mínimo-de-una-unidad"><span class="header-section-number">8.6.1</span> Modelo Primal (Flujo de Coste Mínimo de Una Unidad)</h3>
 <p>Asumiendo que queremos enviar una unidad de flujo desde el origen <span class="math inline">\(s\)</span> al destino <span class="math inline">\(t\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -421,7 +441,7 @@ window.Quarto = {
 <p>La variable continua <span class="math inline">\(x_{ij}\)</span> representa la cantidad de flujo que pasa por el arco <span class="math inline">\((i,j)\)</span>. - <strong>Total Unimodularidad (TUM)</strong>: La matriz de coeficientes de este sistema es la matriz de incidencia nodo-arco de la red. Al ser esta matriz totalmente unimodular, cualquier base factible del problema de programación lineal es entera. Por tanto, resolver el problema lineal continuo garantiza obtener una solución binaria óptima (<span class="math inline">\(x_{ij}^* \in \{0, 1\}\)</span>) que define de forma exacta el camino mínimo.</p>
 </section>
 <section id="modelo-dual-potenciales-nodales" class="level3" data-number="8.6.2">
-<h3 data-number="8.6.2" class="anchored" data-anchor-id="modelo-dual-potenciales-nodales"><span class="header-section-number">8.6.2</span> 2. Modelo Dual (Potenciales Nodales)</h3>
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="modelo-dual-potenciales-nodales"><span class="header-section-number">8.6.2</span> Modelo Dual (Potenciales Nodales)</h3>
 <p>Asociando una variable dual no restringida <span class="math inline">\(u_i \in \mathbb{R}\)</span> a la ecuación de balance de cada nodo <span class="math inline">\(i \in V\)</span>, el problema dual es:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -516,6 +536,17 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ahuja1993network" class="csl-entry" role="listitem">
+Ahuja, Ravindra K, Thomas L Magnanti, y James B Orlin. 1993. <em>Network Flows: Theory, Algorithms, and Applications</em>. Prentice Hall.
+</div>
+<div id="ref-bertsekas1998network" class="csl-entry" role="listitem">
+Bertsekas, Dimitri P. 1998. <em>Network Optimization: Continuous and Discrete Models</em>. Athena Scientific.
+</div>
+<div id="ref-cormen2009introduction" class="csl-entry" role="listitem">
+Cormen, Thomas H, Charles E Leiserson, Ronald L Rivest, y Clifford Stein. 2009. <em>Introduction to Algorithms</em>. 3rd ed. MIT Press.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

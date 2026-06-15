@@ -1,6 +1,6 @@
 # Análisis Convexo
 
-El **análisis convexo** constituye la columna vertebral de la optimización matemática moderna. Históricamente, la optimización estuvo dominada por el paradigma de la linealidad frente a la no linealidad. Sin embargo, a finales del siglo XX se produjo un cambio de paradigma fundamental, resumido por el matemático R. Tyrrell Rockafellar: *"la divisoria fundamental en optimización no es entre linealidad y no linealidad, sino entre convexidad y no convexidad"*. Bajo la hipótesis de convexidad, cualquier óptimo local se convierte de manera natural en un óptimo global. Esta propiedad crucial no solo simplifica la búsqueda teórica de soluciones, sino que garantiza la convergencia fiable y veloz de los algoritmos numéricos, evitando que queden atrapados en mínimos locales subóptimos.
+El **análisis convexo** constituye la columna vertebral de la optimización matemática moderna. Históricamente, la optimización estuvo dominada por el paradigma de la linealidad frente a la no linealidad. Sin embargo, a finales del siglo XX se produjo un cambio de paradigma fundamental, resumido por el matemático R. Tyrrell Rockafellar: *"la divisoria fundamental en optimización no es entre linealidad y no linealidad, sino entre convexidad y no convexidad"* [@rockafellar1970convex]. Bajo la hipótesis de convexidad, cualquier óptimo local se convierte de manera natural en un óptimo global [@boyd2004convex]. Esta propiedad crucial no solo simplifica la búsqueda teórica de soluciones, sino que garantiza la convergencia fiable y veloz de los algoritmos numéricos, evitando que queden atrapados en mínimos locales subóptimos.
 
 En este capítulo, estudiaremos los conjuntos convexos y las operaciones que preservan esta propiedad, las caracterizaciones de primer y segundo orden para funciones convexas diferenciables y no diferenciables (subgradientes), las propiedades fundamentales de sus extremos y las generalizaciones teóricas de la convexidad (cuasi-convexidad y pseudo-convexidad).
 
@@ -19,7 +19,7 @@ Al finalizar este capítulo, serás capaz de:
 
 ## Conjuntos Convexos
 
-### 1. Definición y Conceptos Básicos
+### Definición y Conceptos Básicos
 
 Un conjunto es convexo si no presenta "entrantes" o cavidades, de modo que la conexión recta entre cualquier pareja de sus puntos está totalmente contenida en él.
 
@@ -36,7 +36,7 @@ Un conjunto es convexo si no presenta "entrantes" o cavidades, de modo que la co
 -   **Combinación Lineal**:
     Se define eliminando ambas condiciones ($\lambda_i \in \mathbb{R}$ sin restricciones). Genera subespacios vectoriales.
 
-### 2. Ejemplos de Conjuntos Convexos Básicos
+### Ejemplos de Conjuntos Convexos Básicos
 
 -   **Hiperplano**:
     Dado un vector normal no nulo $p \in \mathbb{R}^n$ y un escalar $\alpha \in \mathbb{R}$, el hiperplano es:
@@ -53,7 +53,7 @@ Un conjunto es convexo si no presenta "entrantes" o cavidades, de modo que la co
     Una bola cerrada en $\mathbb{R}^n$ con centro en $x_0$ y radio $r \ge 0$ definida bajo cualquier norma $\|\cdot\|$:
     $$ \mathcal{B}_r(x_0) = \{ x \in \mathbb{R}^n \mid \|x - x_0\| \le r \} $$
 
-### 3. Operaciones que Conservan la Convexidad
+### Operaciones que Conservan la Convexidad
 
 ::: {.callout-note title="Lema: Conservación de la Convexidad"}
 Sean $\mathcal{S}_1$ y $\mathcal{S}_2$ dos conjuntos convexos en $\mathbb{R}^n$. Las siguientes estructuras también son conjuntos convexos:
@@ -67,7 +67,7 @@ Sean $\mathcal{S}_1$ y $\mathcal{S}_2$ dos conjuntos convexos en $\mathbb{R}^n$.
     $$ \mathcal{S}_1 \ominus \mathcal{S}_2 = \{ x_1 - x_2 \mid x_1 \in \mathcal{S}_1, \ x_2 \in \mathcal{S}_2 \} $$
 :::
 
-### 4. Envoltura Convexa y Símplices
+### Envoltura Convexa y Símplices
 
 -   **Envoltura Convexa ($\mathcal{H}(\mathcal{S})$)**:
     El conjunto de todas las combinaciones lineales convexas posibles de puntos pertenecientes al conjunto $\mathcal{S}$:
@@ -89,7 +89,7 @@ Sea $\mathcal{C}$ cualquier conjunto convexo que contiene a $\mathcal{S}$ (es de
 
 La geometría convexa descansa sobre dos teoremas fundamentales que fundamentan la teoría de la dualidad y los multiplicadores de Lagrange.
 
-### 1. Teoremas de Separación de Hiperplanos
+### Teoremas de Separación de Hiperplanos
 
 Estos teoremas establecen las condiciones bajo las cuales es posible "trazar una frontera plana" (un hiperplano) que separe dos conjuntos convexos disjuntos.
 
@@ -103,7 +103,7 @@ Sean $\mathcal{C}$ y $\mathcal{D}$ dos conjuntos convexos disjuntos no vacíos e
 $$ p^T x < \alpha, \quad \forall x \in \mathcal{C} \qquad \text{y} \qquad p^T y > \alpha, \quad \forall y \in \mathcal{D} $$
 :::
 
-### 2. Teorema del Hiperplano de Soporte
+### Teorema del Hiperplano de Soporte
 
 Un hiperplano de soporte para un conjunto $\mathcal{S}$ en un punto de su frontera $x_0 \in \partial \mathcal{S}$ es un hiperplano que pasa por $x_0$ y deja a todo el conjunto $\mathcal{S}$ contenido en uno de sus semiespacios cerrados.
 
@@ -117,7 +117,7 @@ Este teorema garantiza que para cualquier conjunto convexo siempre podemos "apoy
 
 ## Funciones Convexas
 
-### 1. Definición y Significado Geométrico
+### Definición y Significado Geométrico
 
 -   **Función Convexa**:
     Sea $\mathcal{S} \subseteq \mathbb{R}^n$ un conjunto convexo no vacío. Una función $f: \mathcal{S} \to \mathbb{R}$ es **convexa** si para todo par de puntos $x_1, x_2 \in \mathcal{S}$ y cualquier parámetro $\lambda \in (0, 1)$ se cumple que:
@@ -129,7 +129,7 @@ Este teorema garantiza que para cualquier conjunto convexo siempre podemos "apoy
 
 Geométricamente, una función es convexa si el segmento de cuerda que une los puntos de la gráfica $(x_1, f(x_1))$ y $(x_2, f(x_2))$ queda por encima o sobre la gráfica de la función en dicho intervalo.
 
-### 2. Operaciones que Preservan la Convexidad de Funciones
+### Operaciones que Preservan la Convexidad de Funciones
 
 -   **Suma ponderada positiva**:
     Si $f_1, \dots, f_k$ son convexas y $\alpha_1, \dots, \alpha_k \ge 0$, entonces la combinación $\sum_j \alpha_j f_j$ es convexa.
@@ -152,7 +152,7 @@ Por tanto, $\lambda x_1 + (1 - \lambda) x_2 \in \mathcal{S}_\alpha$, lo que demu
 
 *Nota*: El recíproco no es cierto en general (una función con conjuntos de nivel convexos no tiene por qué ser convexa; esta propiedad define a las funciones cuasi-convexas).
 
-### 3. Epígrafe y Subgradientes
+### Epígrafe y Subgradientes
 
 -   **Epígrafe ($\text{epi } f$)**:
     El conjunto de puntos en $\mathbb{R}^{n+1}$ situados sobre o por encima de la gráfica de la función:
@@ -177,7 +177,7 @@ Lo que implica directamente que $\lambda f(x_1) + (1 - \lambda) f(x_2) \ge f(\la
     $$ f(x) \ge f(x_0) + \xi^T(x - x_0), \quad \forall x \in \mathcal{S} $$
     Geométricamente, define un hiperplano que apoya a la función desde abajo en $x_0$. El conjunto de todos los subgradientes en $x_0$ se denomina **subdiferencial** y se denota por $\partial f(x_0)$.
     
-    El subdiferencial $\partial f(x_0)$ es siempre un conjunto convexo y cerrado. Si la función es diferenciable en $x_0$, el subdiferencial contiene un único elemento que es el gradiente: $\partial f(x_0) = \{\nabla f(x_0)\}$.
+    El subdiferencial $\partial f(x_0)$ es siempre un conjunto convexo y cerrado, cuyo análisis detallado e implicaciones en optimización no diferenciable se estudian extensamente en el análisis convexo clásico [@rockafellar1970convex; @boyd2004convex]. Si la función es diferenciable en $x_0$, el subdiferencial contiene un único elemento que es el gradiente: $\partial f(x_0) = \{\nabla f(x_0)\}$.
 
 
 ::: {.callout-note title="Propiedades y Cálculo del Subdiferencial"}
@@ -216,7 +216,7 @@ Analicemos su subdiferencial $\partial f(x_0)$ en diferentes regiones de la rect
 
 ## Caracterización de Funciones Convexas Diferenciables
 
-### 1. Caracterización de Primer Orden
+### Caracterización de Primer Orden
 
 Cuando una función es diferenciable, podemos caracterizar su convexidad analizando su plano tangente.
 
@@ -248,7 +248,7 @@ $$ 0 \ge (\nabla f(x_1) - \nabla f(x_2))^T (x_2 - x_1) \implies (\nabla f(x_2) -
 $(\Longleftarrow)$ Se demuestra de manera análoga aplicando el teorema del valor medio. $\blacksquare$
 :::
 
-### 2. Caracterización de Segundo Orden (Hessiana)
+### Caracterización de Segundo Orden (Hessiana)
 
 La convexidad puede verificarse localmente analizando la concavidad o curvatura de segundo orden dada por la matriz hessiana en todo el dominio.
 
@@ -291,7 +291,7 @@ Analicemos la convexidad de tres funciones de prueba:
 
 ## Óptimos de una Función Convexa
 
-### 1. El Teorema Fundamental de la Optimización Convexa
+### El Teorema Fundamental de la Optimización Convexa
 
 La convexidad simplifica drásticamente la búsqueda de óptimos al eliminar la distinción entre mínimos locales y globales.
 
@@ -313,7 +313,7 @@ Sea $f: \mathcal{S} \to \mathbb{R}$ una función convexa sobre un conjunto conve
     Resulta que $f(z) < \alpha$, lo que contradice que $\alpha$ sea el valor mínimo de la función. Por tanto, el mínimo global debe ser único. $\blacksquare$
 :::
 
-### 2. Condición Variacional de Optimalidad
+### Condición Variacional de Optimalidad
 
 -   **Caracterización con subgradientes**:
     Un punto $x^*$ es mínimo global de la función convexa $f$ en $\mathcal{S}$ si y solo si el vector nulo $0$ es un subgradiente de $f$ en $x^*$:
@@ -337,7 +337,7 @@ La maximización de una función convexa es un problema no convexo y, por tanto,
 
 Para mantener las ventajas de la optimalidad global sobre una familia de problemas más amplia, relajamos las exigencias de la convexidad pura:
 
-### 1. Funciones Cuasi-convexas
+### Funciones Cuasi-convexas
 
 Una función es cuasi-convexa si todos sus conjuntos de nivel inferior $\mathcal{S}_\alpha$ son convexos. De manera formal:
 $$ f(\lambda x_1 + (1 - \lambda) x_2) \le \max \{ f(x_1), f(x_2) \}, \quad \forall x_1, x_2 \in \mathcal{S}, \ \forall \lambda \in [0, 1] $$
@@ -356,7 +356,7 @@ $$ f(x(\lambda)) < \max \{ f(y), f(x^*) \} = f(x^*) $$
 Obtenemos que $f(x(\lambda)) < f(x^*)$, contradiciendo de forma directa que $x^*$ sea un mínimo local. $\blacksquare$
 :::
 
-### 2. Funciones Pseudo-convexas
+### Funciones Pseudo-convexas
 
 Para funciones diferenciables, la pseudo-convexidad exige que si la función presenta una dirección de subida local, la función crece globalmente en esa dirección:
 $$ \nabla f(x_1)^T (x_2 - x_1) \ge 0 \implies f(x_2) \ge f(x_1) $$

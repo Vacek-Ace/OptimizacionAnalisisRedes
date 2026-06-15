@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -213,7 +233,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -234,13 +254,13 @@ window.Quarto = {
   <ul>
   <li><a href="#optimización-sin-restricciones" id="toc-optimización-sin-restricciones" class="nav-link active" data-scroll-target="#optimización-sin-restricciones"><span class="header-section-number">4.1</span> Optimización Sin Restricciones</a>
   <ul class="collapse">
-  <li><a href="#direcciones-de-descenso" id="toc-direcciones-de-descenso" class="nav-link" data-scroll-target="#direcciones-de-descenso"><span class="header-section-number">4.1.1</span> 1. Direcciones de Descenso</a></li>
-  <li><a href="#condiciones-necesarias-y-suficientes-de-segundo-orden" id="toc-condiciones-necesarias-y-suficientes-de-segundo-orden" class="nav-link" data-scroll-target="#condiciones-necesarias-y-suficientes-de-segundo-orden"><span class="header-section-number">4.1.2</span> 2. Condiciones Necesarias y Suficientes de Segundo Orden</a></li>
+  <li><a href="#direcciones-de-descenso" id="toc-direcciones-de-descenso" class="nav-link" data-scroll-target="#direcciones-de-descenso"><span class="header-section-number">4.1.1</span> Direcciones de Descenso</a></li>
+  <li><a href="#condiciones-necesarias-y-suficientes-de-segundo-orden" id="toc-condiciones-necesarias-y-suficientes-de-segundo-orden" class="nav-link" data-scroll-target="#condiciones-necesarias-y-suficientes-de-segundo-orden"><span class="header-section-number">4.1.2</span> Condiciones Necesarias y Suficientes de Segundo Orden</a></li>
   </ul></li>
   <li><a href="#optimización-con-restricciones-conceptos-de-conos" id="toc-optimización-con-restricciones-conceptos-de-conos" class="nav-link" data-scroll-target="#optimización-con-restricciones-conceptos-de-conos"><span class="header-section-number">4.2</span> Optimización Con Restricciones: Conceptos de Conos</a>
   <ul class="collapse">
-  <li><a href="#definiciones-geométricas-de-conos" id="toc-definiciones-geométricas-de-conos" class="nav-link" data-scroll-target="#definiciones-geométricas-de-conos"><span class="header-section-number">4.2.1</span> 1. Definiciones Geométricas de Conos</a></li>
-  <li><a href="#caracterización-diferenciable-mediante-semiespacios" id="toc-caracterización-diferenciable-mediante-semiespacios" class="nav-link" data-scroll-target="#caracterización-diferenciable-mediante-semiespacios"><span class="header-section-number">4.2.2</span> 2. Caracterización Diferenciable mediante Semiespacios</a></li>
+  <li><a href="#definiciones-geométricas-de-conos" id="toc-definiciones-geométricas-de-conos" class="nav-link" data-scroll-target="#definiciones-geométricas-de-conos"><span class="header-section-number">4.2.1</span> Definiciones Geométricas de Conos</a></li>
+  <li><a href="#caracterización-diferenciable-mediante-semiespacios" id="toc-caracterización-diferenciable-mediante-semiespacios" class="nav-link" data-scroll-target="#caracterización-diferenciable-mediante-semiespacios"><span class="header-section-number">4.2.2</span> Caracterización Diferenciable mediante Semiespacios</a></li>
   </ul></li>
   <li><a href="#restricciones-de-desigualdad-y-cono-de-restricciones-activas" id="toc-restricciones-de-desigualdad-y-cono-de-restricciones-activas" class="nav-link" data-scroll-target="#restricciones-de-desigualdad-y-cono-de-restricciones-activas"><span class="header-section-number">4.3</span> Restricciones de Desigualdad y Cono de Restricciones Activas</a></li>
   <li><a href="#condiciones-de-fritz-john-fj" id="toc-condiciones-de-fritz-john-fj" class="nav-link" data-scroll-target="#condiciones-de-fritz-john-fj"><span class="header-section-number">4.4</span> Condiciones de Fritz-John (FJ)</a>
@@ -251,8 +271,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#historia-de-kkt" id="toc-historia-de-kkt" class="nav-link" data-scroll-target="#historia-de-kkt"><span class="header-section-number">4.5.1</span> Historia de KKT</a></li>
   <li><a href="#cualificación-de-restricciones-licq-y-otras" id="toc-cualificación-de-restricciones-licq-y-otras" class="nav-link" data-scroll-target="#cualificación-de-restricciones-licq-y-otras"><span class="header-section-number">4.5.2</span> Cualificación de Restricciones (LICQ y otras)</a></li>
-  <li><a href="#condiciones-necesarias-de-kkt" id="toc-condiciones-necesarias-de-kkt" class="nav-link" data-scroll-target="#condiciones-necesarias-de-kkt"><span class="header-section-number">4.5.3</span> 1. Condiciones Necesarias de KKT</a></li>
-  <li><a href="#condiciones-suficientes-de-kkt-bajo-convexidad" id="toc-condiciones-suficientes-de-kkt-bajo-convexidad" class="nav-link" data-scroll-target="#condiciones-suficientes-de-kkt-bajo-convexidad"><span class="header-section-number">4.5.4</span> 2. Condiciones Suficientes de KKT bajo Convexidad</a></li>
+  <li><a href="#condiciones-necesarias-de-kkt" id="toc-condiciones-necesarias-de-kkt" class="nav-link" data-scroll-target="#condiciones-necesarias-de-kkt"><span class="header-section-number">4.5.3</span> Condiciones Necesarias de KKT</a></li>
+  <li><a href="#condiciones-suficientes-de-kkt-bajo-convexidad" id="toc-condiciones-suficientes-de-kkt-bajo-convexidad" class="nav-link" data-scroll-target="#condiciones-suficientes-de-kkt-bajo-convexidad"><span class="header-section-number">4.5.4</span> Condiciones Suficientes de KKT bajo Convexidad</a></li>
   </ul></li>
   <li><a href="#esquema-general-de-resolución-kkt" id="toc-esquema-general-de-resolución-kkt" class="nav-link" data-scroll-target="#esquema-general-de-resolución-kkt"><span class="header-section-number">4.6</span> Esquema General de Resolución KKT</a></li>
   <li><a href="#restricciones-de-igualdad-y-desigualdad" id="toc-restricciones-de-igualdad-y-desigualdad" class="nav-link" data-scroll-target="#restricciones-de-igualdad-y-desigualdad"><span class="header-section-number">4.7</span> Restricciones de Igualdad y Desigualdad</a></li>
@@ -286,7 +306,7 @@ window.Quarto = {
 <h2 data-number="4.1" class="anchored" data-anchor-id="optimización-sin-restricciones"><span class="header-section-number">4.1</span> Optimización Sin Restricciones</h2>
 <p>El estudio de problemas de optimización sin restricciones (<span class="math inline">\(\min f(x)\)</span> para <span class="math inline">\(x \in \mathbb{R}^n\)</span>) nos permite comprender cómo se comporta localmente una función basándonos en la información de sus derivadas.</p>
 <section id="direcciones-de-descenso" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="direcciones-de-descenso"><span class="header-section-number">4.1.1</span> 1. Direcciones de Descenso</h3>
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="direcciones-de-descenso"><span class="header-section-number">4.1.1</span> Direcciones de Descenso</h3>
 <p>Una dirección de descenso es un vector que apunta hacia regiones del espacio donde el valor de la función disminuye localmente.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema: Condición de Dirección de Descenso">
 <div class="callout-header d-flex align-content-center">
@@ -304,7 +324,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="condiciones-necesarias-y-suficientes-de-segundo-orden" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="condiciones-necesarias-y-suficientes-de-segundo-orden"><span class="header-section-number">4.1.2</span> 2. Condiciones Necesarias y Suficientes de Segundo Orden</h3>
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="condiciones-necesarias-y-suficientes-de-segundo-orden"><span class="header-section-number">4.1.2</span> Condiciones Necesarias y Suficientes de Segundo Orden</h3>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema: Condiciones de Optimalidad de Segundo Orden (Sin Restricciones)">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -362,7 +382,7 @@ window.Quarto = {
 <h2 data-number="4.2" class="anchored" data-anchor-id="optimización-con-restricciones-conceptos-de-conos"><span class="header-section-number">4.2</span> Optimización Con Restricciones: Conceptos de Conos</h2>
 <p>Cuando el movimiento está limitado a una región factible <span class="math inline">\(\mathcal{S} \subseteq \mathbb{R}^n\)</span>, la caracterización de los extremos exige analizar la interacción entre las direcciones que reducen la función y las que permanecen dentro del conjunto.</p>
 <section id="definiciones-geométricas-de-conos" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="definiciones-geométricas-de-conos"><span class="header-section-number">4.2.1</span> 1. Definiciones Geométricas de Conos</h3>
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="definiciones-geométricas-de-conos"><span class="header-section-number">4.2.1</span> Definiciones Geométricas de Conos</h3>
 <ul>
 <li><strong>Cono de Direcciones Factibles (<span class="math inline">\(\mathcal{F}(\bar{x})\)</span>)</strong>: El conjunto de direcciones a lo largo de las cuales un paso infinitesimal no abandona la región factible <span class="math inline">\(\mathcal{S}\)</span>: <span class="math display">\[ \mathcal{F}(\bar{x}) = \{ d \in \mathbb{R}^n \mid d \neq 0, \ \exists \delta_d &gt; 0 \text{ tal que } \bar{x} + \lambda d \in \mathcal{S}, \ \forall \lambda \in (0, \delta_d) \} \]</span></li>
 <li><strong>Cono de Direcciones de Mejora/Descenso (<span class="math inline">\(\mathcal{D}(\bar{x})\)</span>)</strong>: El conjunto de direcciones a lo largo de las cuales el valor de la función objetivo disminuye localmente: <span class="math display">\[ \mathcal{D}(\bar{x}) = \{ d \in \mathbb{R}^n \mid d \neq 0, \ \exists \delta_d &gt; 0 \text{ tal que } f(\bar{x} + \lambda d) &lt; f(\bar{x}), \ \forall \lambda \in (0, \delta_d) \} \]</span></li>
@@ -371,7 +391,7 @@ window.Quarto = {
 <p><span class="math display">\[ \bar{x} \text{ es mínimo local} \implies \mathcal{F}(\bar{x}) \cap \mathcal{D}(\bar{x}) = \emptyset \]</span></p>
 </section>
 <section id="caracterización-diferenciable-mediante-semiespacios" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="caracterización-diferenciable-mediante-semiespacios"><span class="header-section-number">4.2.2</span> 2. Caracterización Diferenciable mediante Semiespacios</h3>
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="caracterización-diferenciable-mediante-semiespacios"><span class="header-section-number">4.2.2</span> Caracterización Diferenciable mediante Semiespacios</h3>
 <p>Si la función <span class="math inline">\(f\)</span> es diferenciable en <span class="math inline">\(\bar{x}\)</span>, definimos el semiespacio abierto de direcciones que forman un ángulo obtuso con el gradiente (direcciones de descenso analítico) como: <span class="math display">\[ \mathcal{D}_0(\bar{x}) = \{ d \in \mathbb{R}^n \mid \nabla f(\bar{x})^T d &lt; 0 \} \]</span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema: Exclusión de Direcciones de Descenso y Factibilidad">
 <div class="callout-header d-flex align-content-center">
@@ -468,7 +488,7 @@ window.Quarto = {
 <p>Para garantizar que la función objetivo participe activamente en la caracterización de optimalidad (<span class="math inline">\(u_0 &gt; 0\)</span>), debemos imponer una condición de regularidad sobre la geometría de las restricciones en el óptimo, denominada <strong>cualificación de restricciones</strong> (Constraint Qualification).</p>
 <section id="historia-de-kkt" class="level3" data-number="4.5.1">
 <h3 data-number="4.5.1" class="anchored" data-anchor-id="historia-de-kkt"><span class="header-section-number">4.5.1</span> Historia de KKT</h3>
-<p>Las condiciones KKT tienen una historia singular de redescubrimiento. Fueron formuladas por primera vez en 1939 por <strong>William Karush</strong> en su tesis de maestría inédita en la Universidad de Chicago. Doce años después, en 1951, los matemáticos <strong>Harold W. Kuhn</strong> y <strong>Albert W. Tucker</strong> las redescubrieron de manera independiente, publicándolas en un célebre artículo de congreso. La comunidad científica finalmente reconoció la contribución primordial de Karush renombrando las condiciones como Karush-Kuhn-Tucker.</p>
+<p>Las condiciones KKT tienen una historia singular de redescubrimiento. Fueron formuladas por primera vez en 1939 por <strong>William Karush</strong> en su tesis de maestría inédita en la Universidad de Chicago. Doce años después, en 1951, los matemáticos <strong>Harold W. Kuhn</strong> y <strong>Albert W. Tucker</strong> las redescubrieron de manera independiente, publicándolas en un célebre artículo de congreso. La comunidad científica finalmente reconoció la contribución primordial de Karush renombrando las condiciones como Karush-Kuhn-Tucker, constituyendo una de las bases analíticas de la optimización matemática moderna <span class="citation" data-cites="bazaraa2013nonlinear boyd2004convex nocedal2006numerical">(<a href="references.html#ref-bazaraa2013nonlinear" role="doc-biblioref">Bazaraa, Sherali, y Shetty 2013</a>; <a href="references.html#ref-boyd2004convex" role="doc-biblioref">Boyd y Vandenberghe 2004</a>; <a href="references.html#ref-nocedal2006numerical" role="doc-biblioref">Nocedal y Wright 2006</a>)</span>.</p>
 </section>
 <section id="cualificación-de-restricciones-licq-y-otras" class="level3" data-number="4.5.2">
 <h3 data-number="4.5.2" class="anchored" data-anchor-id="cualificación-de-restricciones-licq-y-otras"><span class="header-section-number">4.5.2</span> Cualificación de Restricciones (LICQ y otras)</h3>
@@ -481,7 +501,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="condiciones-necesarias-de-kkt" class="level3" data-number="4.5.3">
-<h3 data-number="4.5.3" class="anchored" data-anchor-id="condiciones-necesarias-de-kkt"><span class="header-section-number">4.5.3</span> 1. Condiciones Necesarias de KKT</h3>
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="condiciones-necesarias-de-kkt"><span class="header-section-number">4.5.3</span> Condiciones Necesarias de KKT</h3>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema: Condiciones Necesarias de KKT">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -503,7 +523,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="condiciones-suficientes-de-kkt-bajo-convexidad" class="level3" data-number="4.5.4">
-<h3 data-number="4.5.4" class="anchored" data-anchor-id="condiciones-suficientes-de-kkt-bajo-convexidad"><span class="header-section-number">4.5.4</span> 2. Condiciones Suficientes de KKT bajo Convexidad</h3>
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="condiciones-suficientes-de-kkt-bajo-convexidad"><span class="header-section-number">4.5.4</span> Condiciones Suficientes de KKT bajo Convexidad</h3>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema: Condiciones Suficientes de KKT bajo Convexidad">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -606,6 +626,17 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-bazaraa2013nonlinear" class="csl-entry" role="listitem">
+Bazaraa, Mokhtar S, Hanif D Sherali, y Chitharanjan M Shetty. 2013. <em>Nonlinear Programming: Theory and Algorithms</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-boyd2004convex" class="csl-entry" role="listitem">
+Boyd, Stephen, y Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Cambridge University Press.
+</div>
+<div id="ref-nocedal2006numerical" class="csl-entry" role="listitem">
+Nocedal, Jorge, y Stephen Wright. 2006. <em>Numerical Optimization</em>. Springer Science &amp; Business Media.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

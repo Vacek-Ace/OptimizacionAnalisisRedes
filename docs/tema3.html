@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -213,7 +233,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -234,37 +254,37 @@ window.Quarto = {
   <ul>
   <li><a href="#conjuntos-convexos" id="toc-conjuntos-convexos" class="nav-link active" data-scroll-target="#conjuntos-convexos"><span class="header-section-number">3.1</span> Conjuntos Convexos</a>
   <ul class="collapse">
-  <li><a href="#definición-y-conceptos-básicos" id="toc-definición-y-conceptos-básicos" class="nav-link" data-scroll-target="#definición-y-conceptos-básicos"><span class="header-section-number">3.1.1</span> 1. Definición y Conceptos Básicos</a></li>
-  <li><a href="#ejemplos-de-conjuntos-convexos-básicos" id="toc-ejemplos-de-conjuntos-convexos-básicos" class="nav-link" data-scroll-target="#ejemplos-de-conjuntos-convexos-básicos"><span class="header-section-number">3.1.2</span> 2. Ejemplos de Conjuntos Convexos Básicos</a></li>
-  <li><a href="#operaciones-que-conservan-la-convexidad" id="toc-operaciones-que-conservan-la-convexidad" class="nav-link" data-scroll-target="#operaciones-que-conservan-la-convexidad"><span class="header-section-number">3.1.3</span> 3. Operaciones que Conservan la Convexidad</a></li>
-  <li><a href="#envoltura-convexa-y-símplices" id="toc-envoltura-convexa-y-símplices" class="nav-link" data-scroll-target="#envoltura-convexa-y-símplices"><span class="header-section-number">3.1.4</span> 4. Envoltura Convexa y Símplices</a></li>
+  <li><a href="#definición-y-conceptos-básicos" id="toc-definición-y-conceptos-básicos" class="nav-link" data-scroll-target="#definición-y-conceptos-básicos"><span class="header-section-number">3.1.1</span> Definición y Conceptos Básicos</a></li>
+  <li><a href="#ejemplos-de-conjuntos-convexos-básicos" id="toc-ejemplos-de-conjuntos-convexos-básicos" class="nav-link" data-scroll-target="#ejemplos-de-conjuntos-convexos-básicos"><span class="header-section-number">3.1.2</span> Ejemplos de Conjuntos Convexos Básicos</a></li>
+  <li><a href="#operaciones-que-conservan-la-convexidad" id="toc-operaciones-que-conservan-la-convexidad" class="nav-link" data-scroll-target="#operaciones-que-conservan-la-convexidad"><span class="header-section-number">3.1.3</span> Operaciones que Conservan la Convexidad</a></li>
+  <li><a href="#envoltura-convexa-y-símplices" id="toc-envoltura-convexa-y-símplices" class="nav-link" data-scroll-target="#envoltura-convexa-y-símplices"><span class="header-section-number">3.1.4</span> Envoltura Convexa y Símplices</a></li>
   </ul></li>
   <li><a href="#teoremas-de-separación-e-hiperplano-de-soporte" id="toc-teoremas-de-separación-e-hiperplano-de-soporte" class="nav-link" data-scroll-target="#teoremas-de-separación-e-hiperplano-de-soporte"><span class="header-section-number">3.2</span> Teoremas de Separación e Hiperplano de Soporte</a>
   <ul class="collapse">
-  <li><a href="#teoremas-de-separación-de-hiperplanos" id="toc-teoremas-de-separación-de-hiperplanos" class="nav-link" data-scroll-target="#teoremas-de-separación-de-hiperplanos"><span class="header-section-number">3.2.1</span> 1. Teoremas de Separación de Hiperplanos</a></li>
-  <li><a href="#teorema-del-hiperplano-de-soporte" id="toc-teorema-del-hiperplano-de-soporte" class="nav-link" data-scroll-target="#teorema-del-hiperplano-de-soporte"><span class="header-section-number">3.2.2</span> 2. Teorema del Hiperplano de Soporte</a></li>
+  <li><a href="#teoremas-de-separación-de-hiperplanos" id="toc-teoremas-de-separación-de-hiperplanos" class="nav-link" data-scroll-target="#teoremas-de-separación-de-hiperplanos"><span class="header-section-number">3.2.1</span> Teoremas de Separación de Hiperplanos</a></li>
+  <li><a href="#teorema-del-hiperplano-de-soporte" id="toc-teorema-del-hiperplano-de-soporte" class="nav-link" data-scroll-target="#teorema-del-hiperplano-de-soporte"><span class="header-section-number">3.2.2</span> Teorema del Hiperplano de Soporte</a></li>
   </ul></li>
   <li><a href="#funciones-convexas" id="toc-funciones-convexas" class="nav-link" data-scroll-target="#funciones-convexas"><span class="header-section-number">3.3</span> Funciones Convexas</a>
   <ul class="collapse">
-  <li><a href="#definición-y-significado-geométrico" id="toc-definición-y-significado-geométrico" class="nav-link" data-scroll-target="#definición-y-significado-geométrico"><span class="header-section-number">3.3.1</span> 1. Definición y Significado Geométrico</a></li>
-  <li><a href="#operaciones-que-preservan-la-convexidad-de-funciones" id="toc-operaciones-que-preservan-la-convexidad-de-funciones" class="nav-link" data-scroll-target="#operaciones-que-preservan-la-convexidad-de-funciones"><span class="header-section-number">3.3.2</span> 2. Operaciones que Preservan la Convexidad de Funciones</a></li>
-  <li><a href="#epígrafe-y-subgradientes" id="toc-epígrafe-y-subgradientes" class="nav-link" data-scroll-target="#epígrafe-y-subgradientes"><span class="header-section-number">3.3.3</span> 3. Epígrafe y Subgradientes</a></li>
+  <li><a href="#definición-y-significado-geométrico" id="toc-definición-y-significado-geométrico" class="nav-link" data-scroll-target="#definición-y-significado-geométrico"><span class="header-section-number">3.3.1</span> Definición y Significado Geométrico</a></li>
+  <li><a href="#operaciones-que-preservan-la-convexidad-de-funciones" id="toc-operaciones-que-preservan-la-convexidad-de-funciones" class="nav-link" data-scroll-target="#operaciones-que-preservan-la-convexidad-de-funciones"><span class="header-section-number">3.3.2</span> Operaciones que Preservan la Convexidad de Funciones</a></li>
+  <li><a href="#epígrafe-y-subgradientes" id="toc-epígrafe-y-subgradientes" class="nav-link" data-scroll-target="#epígrafe-y-subgradientes"><span class="header-section-number">3.3.3</span> Epígrafe y Subgradientes</a></li>
   </ul></li>
   <li><a href="#caracterización-de-funciones-convexas-diferenciables" id="toc-caracterización-de-funciones-convexas-diferenciables" class="nav-link" data-scroll-target="#caracterización-de-funciones-convexas-diferenciables"><span class="header-section-number">3.4</span> Caracterización de Funciones Convexas Diferenciables</a>
   <ul class="collapse">
-  <li><a href="#caracterización-de-primer-orden" id="toc-caracterización-de-primer-orden" class="nav-link" data-scroll-target="#caracterización-de-primer-orden"><span class="header-section-number">3.4.1</span> 1. Caracterización de Primer Orden</a></li>
-  <li><a href="#caracterización-de-segundo-orden-hessiana" id="toc-caracterización-de-segundo-orden-hessiana" class="nav-link" data-scroll-target="#caracterización-de-segundo-orden-hessiana"><span class="header-section-number">3.4.2</span> 2. Caracterización de Segundo Orden (Hessiana)</a></li>
+  <li><a href="#caracterización-de-primer-orden" id="toc-caracterización-de-primer-orden" class="nav-link" data-scroll-target="#caracterización-de-primer-orden"><span class="header-section-number">3.4.1</span> Caracterización de Primer Orden</a></li>
+  <li><a href="#caracterización-de-segundo-orden-hessiana" id="toc-caracterización-de-segundo-orden-hessiana" class="nav-link" data-scroll-target="#caracterización-de-segundo-orden-hessiana"><span class="header-section-number">3.4.2</span> Caracterización de Segundo Orden (Hessiana)</a></li>
   </ul></li>
   <li><a href="#óptimos-de-una-función-convexa" id="toc-óptimos-de-una-función-convexa" class="nav-link" data-scroll-target="#óptimos-de-una-función-convexa"><span class="header-section-number">3.5</span> Óptimos de una Función Convexa</a>
   <ul class="collapse">
-  <li><a href="#el-teorema-fundamental-de-la-optimización-convexa" id="toc-el-teorema-fundamental-de-la-optimización-convexa" class="nav-link" data-scroll-target="#el-teorema-fundamental-de-la-optimización-convexa"><span class="header-section-number">3.5.1</span> 1. El Teorema Fundamental de la Optimización Convexa</a></li>
-  <li><a href="#condición-variacional-de-optimalidad" id="toc-condición-variacional-de-optimalidad" class="nav-link" data-scroll-target="#condición-variacional-de-optimalidad"><span class="header-section-number">3.5.2</span> 2. Condición Variacional de Optimalidad</a></li>
+  <li><a href="#el-teorema-fundamental-de-la-optimización-convexa" id="toc-el-teorema-fundamental-de-la-optimización-convexa" class="nav-link" data-scroll-target="#el-teorema-fundamental-de-la-optimización-convexa"><span class="header-section-number">3.5.1</span> El Teorema Fundamental de la Optimización Convexa</a></li>
+  <li><a href="#condición-variacional-de-optimalidad" id="toc-condición-variacional-de-optimalidad" class="nav-link" data-scroll-target="#condición-variacional-de-optimalidad"><span class="header-section-number">3.5.2</span> Condición Variacional de Optimalidad</a></li>
   </ul></li>
   <li><a href="#maximización-de-funciones-convexas" id="toc-maximización-de-funciones-convexas" class="nav-link" data-scroll-target="#maximización-de-funciones-convexas"><span class="header-section-number">3.6</span> Maximización de Funciones Convexas</a></li>
   <li><a href="#generalizaciones-de-la-convexidad" id="toc-generalizaciones-de-la-convexidad" class="nav-link" data-scroll-target="#generalizaciones-de-la-convexidad"><span class="header-section-number">3.7</span> Generalizaciones de la Convexidad</a>
   <ul class="collapse">
-  <li><a href="#funciones-cuasi-convexas" id="toc-funciones-cuasi-convexas" class="nav-link" data-scroll-target="#funciones-cuasi-convexas"><span class="header-section-number">3.7.1</span> 1. Funciones Cuasi-convexas</a></li>
-  <li><a href="#funciones-pseudo-convexas" id="toc-funciones-pseudo-convexas" class="nav-link" data-scroll-target="#funciones-pseudo-convexas"><span class="header-section-number">3.7.2</span> 2. Funciones Pseudo-convexas</a></li>
+  <li><a href="#funciones-cuasi-convexas" id="toc-funciones-cuasi-convexas" class="nav-link" data-scroll-target="#funciones-cuasi-convexas"><span class="header-section-number">3.7.1</span> Funciones Cuasi-convexas</a></li>
+  <li><a href="#funciones-pseudo-convexas" id="toc-funciones-pseudo-convexas" class="nav-link" data-scroll-target="#funciones-pseudo-convexas"><span class="header-section-number">3.7.2</span> Funciones Pseudo-convexas</a></li>
   <li><a href="#relaciones-entre-categorías-de-convexidad" id="toc-relaciones-entre-categorías-de-convexidad" class="nav-link" data-scroll-target="#relaciones-entre-categorías-de-convexidad"><span class="header-section-number">3.7.3</span> Relaciones entre Categorías de Convexidad</a></li>
   </ul></li>
   </ul>
@@ -292,7 +312,7 @@ window.Quarto = {
 </header>
 
 
-<p>El <strong>análisis convexo</strong> constituye la columna vertebral de la optimización matemática moderna. Históricamente, la optimización estuvo dominada por el paradigma de la linealidad frente a la no linealidad. Sin embargo, a finales del siglo XX se produjo un cambio de paradigma fundamental, resumido por el matemático R. Tyrrell Rockafellar: <em>“la divisoria fundamental en optimización no es entre linealidad y no linealidad, sino entre convexidad y no convexidad”</em>. Bajo la hipótesis de convexidad, cualquier óptimo local se convierte de manera natural en un óptimo global. Esta propiedad crucial no solo simplifica la búsqueda teórica de soluciones, sino que garantiza la convergencia fiable y veloz de los algoritmos numéricos, evitando que queden atrapados en mínimos locales subóptimos.</p>
+<p>El <strong>análisis convexo</strong> constituye la columna vertebral de la optimización matemática moderna. Históricamente, la optimización estuvo dominada por el paradigma de la linealidad frente a la no linealidad. Sin embargo, a finales del siglo XX se produjo un cambio de paradigma fundamental, resumido por el matemático R. Tyrrell Rockafellar: <em>“la divisoria fundamental en optimización no es entre linealidad y no linealidad, sino entre convexidad y no convexidad”</em> <span class="citation" data-cites="rockafellar1970convex">(<a href="references.html#ref-rockafellar1970convex" role="doc-biblioref">Rockafellar 1970</a>)</span>. Bajo la hipótesis de convexidad, cualquier óptimo local se convierte de manera natural en un óptimo global <span class="citation" data-cites="boyd2004convex">(<a href="references.html#ref-boyd2004convex" role="doc-biblioref">Boyd y Vandenberghe 2004</a>)</span>. Esta propiedad crucial no solo simplifica la búsqueda teórica de soluciones, sino que garantiza la convergencia fiable y veloz de los algoritmos numéricos, evitando que queden atrapados en mínimos locales subóptimos.</p>
 <p>En este capítulo, estudiaremos los conjuntos convexos y las operaciones que preservan esta propiedad, las caracterizaciones de primer y segundo orden para funciones convexas diferenciables y no diferenciables (subgradientes), las propiedades fundamentales de sus extremos y las generalizaciones teóricas de la convexidad (cuasi-convexidad y pseudo-convexidad).</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Objetivos de aprendizaje">
 <div class="callout-header d-flex align-content-center">
@@ -319,7 +339,7 @@ window.Quarto = {
 <section id="conjuntos-convexos" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="conjuntos-convexos"><span class="header-section-number">3.1</span> Conjuntos Convexos</h2>
 <section id="definición-y-conceptos-básicos" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="definición-y-conceptos-básicos"><span class="header-section-number">3.1.1</span> 1. Definición y Conceptos Básicos</h3>
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="definición-y-conceptos-básicos"><span class="header-section-number">3.1.1</span> Definición y Conceptos Básicos</h3>
 <p>Un conjunto es convexo si no presenta “entrantes” o cavidades, de modo que la conexión recta entre cualquier pareja de sus puntos está totalmente contenida en él.</p>
 <ul>
 <li><strong>Conjunto Convexo</strong>: Un conjunto <span class="math inline">\(\mathcal{S} \subseteq \mathbb{R}^n\)</span> es <strong>convexo</strong> si: <span class="math display">\[ \forall x_1, x_2 \in \mathcal{S}, \quad \forall \lambda \in (0, 1) \implies \lambda x_1 + (1 - \lambda) x_2 \in \mathcal{S} \]</span></li>
@@ -330,7 +350,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="ejemplos-de-conjuntos-convexos-básicos" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="ejemplos-de-conjuntos-convexos-básicos"><span class="header-section-number">3.1.2</span> 2. Ejemplos de Conjuntos Convexos Básicos</h3>
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="ejemplos-de-conjuntos-convexos-básicos"><span class="header-section-number">3.1.2</span> Ejemplos de Conjuntos Convexos Básicos</h3>
 <ul>
 <li><strong>Hiperplano</strong>: Dado un vector normal no nulo <span class="math inline">\(p \in \mathbb{R}^n\)</span> y un escalar <span class="math inline">\(\alpha \in \mathbb{R}\)</span>, el hiperplano es: <span class="math display">\[ \mathcal{H} = \{ x \in \mathbb{R}^n \mid p^T x = \alpha \} \]</span> Representa una superficie plana de dimensión <span class="math inline">\(n-1\)</span>.</li>
 <li><strong>Semiespacio Cerrado</strong>: La región del espacio situada en uno de los lados de un hiperplano: <span class="math display">\[ \mathcal{H}^- = \{ x \in \mathbb{R}^n \mid p^T x \le \alpha \} \]</span></li>
@@ -339,7 +359,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="operaciones-que-conservan-la-convexidad" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="operaciones-que-conservan-la-convexidad"><span class="header-section-number">3.1.3</span> 3. Operaciones que Conservan la Convexidad</h3>
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="operaciones-que-conservan-la-convexidad"><span class="header-section-number">3.1.3</span> Operaciones que Conservan la Convexidad</h3>
 <div class="callout callout-style-default callout-note callout-titled" title="Lema: Conservación de la Convexidad">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -360,7 +380,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="envoltura-convexa-y-símplices" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="envoltura-convexa-y-símplices"><span class="header-section-number">3.1.4</span> 4. Envoltura Convexa y Símplices</h3>
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="envoltura-convexa-y-símplices"><span class="header-section-number">3.1.4</span> Envoltura Convexa y Símplices</h3>
 <ul>
 <li><strong>Envoltura Convexa (<span class="math inline">\(\mathcal{H}(\mathcal{S})\)</span>)</strong>: El conjunto de todas las combinaciones lineales convexas posibles de puntos pertenecientes al conjunto <span class="math inline">\(\mathcal{S}\)</span>: <span class="math display">\[ \mathcal{H}(\mathcal{S}) = \left\{ x = \sum_{j=1}^k \lambda_j x_j \;\middle|\; x_j \in \mathcal{S}, \ \lambda_j \ge 0, \ \sum_{j=1}^k \lambda_j = 1 \right\} \]</span></li>
 </ul>
@@ -387,7 +407,7 @@ window.Quarto = {
 <h2 data-number="3.2" class="anchored" data-anchor-id="teoremas-de-separación-e-hiperplano-de-soporte"><span class="header-section-number">3.2</span> Teoremas de Separación e Hiperplano de Soporte</h2>
 <p>La geometría convexa descansa sobre dos teoremas fundamentales que fundamentan la teoría de la dualidad y los multiplicadores de Lagrange.</p>
 <section id="teoremas-de-separación-de-hiperplanos" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="teoremas-de-separación-de-hiperplanos"><span class="header-section-number">3.2.1</span> 1. Teoremas de Separación de Hiperplanos</h3>
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="teoremas-de-separación-de-hiperplanos"><span class="header-section-number">3.2.1</span> Teoremas de Separación de Hiperplanos</h3>
 <p>Estos teoremas establecen las condiciones bajo las cuales es posible “trazar una frontera plana” (un hiperplano) que separe dos conjuntos convexos disjuntos.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema de Separación Débil">
 <div class="callout-header d-flex align-content-center">
@@ -417,7 +437,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="teorema-del-hiperplano-de-soporte" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="teorema-del-hiperplano-de-soporte"><span class="header-section-number">3.2.2</span> 2. Teorema del Hiperplano de Soporte</h3>
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="teorema-del-hiperplano-de-soporte"><span class="header-section-number">3.2.2</span> Teorema del Hiperplano de Soporte</h3>
 <p>Un hiperplano de soporte para un conjunto <span class="math inline">\(\mathcal{S}\)</span> en un punto de su frontera <span class="math inline">\(x_0 \in \partial \mathcal{S}\)</span> es un hiperplano que pasa por <span class="math inline">\(x_0\)</span> y deja a todo el conjunto <span class="math inline">\(\mathcal{S}\)</span> contenido en uno de sus semiespacios cerrados.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema del Hiperplano de Soporte">
 <div class="callout-header d-flex align-content-center">
@@ -438,7 +458,7 @@ window.Quarto = {
 <section id="funciones-convexas" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="funciones-convexas"><span class="header-section-number">3.3</span> Funciones Convexas</h2>
 <section id="definición-y-significado-geométrico" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="definición-y-significado-geométrico"><span class="header-section-number">3.3.1</span> 1. Definición y Significado Geométrico</h3>
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="definición-y-significado-geométrico"><span class="header-section-number">3.3.1</span> Definición y Significado Geométrico</h3>
 <ul>
 <li><strong>Función Convexa</strong>: Sea <span class="math inline">\(\mathcal{S} \subseteq \mathbb{R}^n\)</span> un conjunto convexo no vacío. Una función <span class="math inline">\(f: \mathcal{S} \to \mathbb{R}\)</span> es <strong>convexa</strong> si para todo par de puntos <span class="math inline">\(x_1, x_2 \in \mathcal{S}\)</span> y cualquier parámetro <span class="math inline">\(\lambda \in (0, 1)\)</span> se cumple que: <span class="math display">\[ f(\lambda x_1 + (1 - \lambda) x_2) \le \lambda f(x_1) + (1 - \lambda) f(x_2) \]</span></li>
 <li><strong>Función Estrictamente Convexa</strong>: Si la desigualdad anterior es estricta (<span class="math inline">\(&lt;\)</span>) para todo <span class="math inline">\(x_1 \neq x_2\)</span>.</li>
@@ -447,7 +467,7 @@ window.Quarto = {
 <p>Geométricamente, una función es convexa si el segmento de cuerda que une los puntos de la gráfica <span class="math inline">\((x_1, f(x_1))\)</span> y <span class="math inline">\((x_2, f(x_2))\)</span> queda por encima o sobre la gráfica de la función en dicho intervalo.</p>
 </section>
 <section id="operaciones-que-preservan-la-convexidad-de-funciones" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="operaciones-que-preservan-la-convexidad-de-funciones"><span class="header-section-number">3.3.2</span> 2. Operaciones que Preservan la Convexidad de Funciones</h3>
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="operaciones-que-preservan-la-convexidad-de-funciones"><span class="header-section-number">3.3.2</span> Operaciones que Preservan la Convexidad de Funciones</h3>
 <ul>
 <li><strong>Suma ponderada positiva</strong>: Si <span class="math inline">\(f_1, \dots, f_k\)</span> son convexas y <span class="math inline">\(\alpha_1, \dots, \alpha_k \ge 0\)</span>, entonces la combinación <span class="math inline">\(\sum_j \alpha_j f_j\)</span> es convexa.</li>
 <li><strong>Supremo puntual (Máximo)</strong>: Si <span class="math inline">\(f_1, \dots, f_k\)</span> son convexas, la función envoltura superior <span class="math inline">\(f(x) = \max_{j} \{f_j(x)\}\)</span> es convexa.</li>
@@ -470,7 +490,7 @@ window.Quarto = {
 <p><em>Nota</em>: El recíproco no es cierto en general (una función con conjuntos de nivel convexos no tiene por qué ser convexa; esta propiedad define a las funciones cuasi-convexas).</p>
 </section>
 <section id="epígrafe-y-subgradientes" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="epígrafe-y-subgradientes"><span class="header-section-number">3.3.3</span> 3. Epígrafe y Subgradientes</h3>
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="epígrafe-y-subgradientes"><span class="header-section-number">3.3.3</span> Epígrafe y Subgradientes</h3>
 <ul>
 <li><strong>Epígrafe (<span class="math inline">\(\text{epi } f\)</span>)</strong>: El conjunto de puntos en <span class="math inline">\(\mathbb{R}^{n+1}\)</span> situados sobre o por encima de la gráfica de la función: <span class="math display">\[ \text{epi } f = \{ (x, y) \in \mathcal{S} \times \mathbb{R} \mid y \ge f(x) \} \]</span></li>
 </ul>
@@ -491,7 +511,7 @@ window.Quarto = {
 </div>
 <ul>
 <li><p><strong>Subgradiente y Subdiferencial</strong>: Para funciones no diferenciables (que presentan picos o codos), el gradiente no existe en ciertos puntos. Generalizamos este concepto mediante el <strong>subgradiente</strong>. Un vector <span class="math inline">\(\xi \in \mathbb{R}^n\)</span> es un subgradiente de la función convexa <span class="math inline">\(f\)</span> en el punto <span class="math inline">\(x_0 \in \mathcal{S}\)</span> si: <span class="math display">\[ f(x) \ge f(x_0) + \xi^T(x - x_0), \quad \forall x \in \mathcal{S} \]</span> Geométricamente, define un hiperplano que apoya a la función desde abajo en <span class="math inline">\(x_0\)</span>. El conjunto de todos los subgradientes en <span class="math inline">\(x_0\)</span> se denomina <strong>subdiferencial</strong> y se denota por <span class="math inline">\(\partial f(x_0)\)</span>.</p>
-<p>El subdiferencial <span class="math inline">\(\partial f(x_0)\)</span> es siempre un conjunto convexo y cerrado. Si la función es diferenciable en <span class="math inline">\(x_0\)</span>, el subdiferencial contiene un único elemento que es el gradiente: <span class="math inline">\(\partial f(x_0) = \{\nabla f(x_0)\}\)</span>.</p></li>
+<p>El subdiferencial <span class="math inline">\(\partial f(x_0)\)</span> es siempre un conjunto convexo y cerrado, cuyo análisis detallado e implicaciones en optimización no diferenciable se estudian extensamente en el análisis convexo clásico <span class="citation" data-cites="rockafellar1970convex boyd2004convex">(<a href="references.html#ref-rockafellar1970convex" role="doc-biblioref">Rockafellar 1970</a>; <a href="references.html#ref-boyd2004convex" role="doc-biblioref">Boyd y Vandenberghe 2004</a>)</span>. Si la función es diferenciable en <span class="math inline">\(x_0\)</span>, el subdiferencial contiene un único elemento que es el gradiente: <span class="math inline">\(\partial f(x_0) = \{\nabla f(x_0)\}\)</span>.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled" title="Propiedades y Cálculo del Subdiferencial">
 <div class="callout-header d-flex align-content-center">
@@ -538,7 +558,7 @@ window.Quarto = {
 <section id="caracterización-de-funciones-convexas-diferenciables" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="caracterización-de-funciones-convexas-diferenciables"><span class="header-section-number">3.4</span> Caracterización de Funciones Convexas Diferenciables</h2>
 <section id="caracterización-de-primer-orden" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="caracterización-de-primer-orden"><span class="header-section-number">3.4.1</span> 1. Caracterización de Primer Orden</h3>
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="caracterización-de-primer-orden"><span class="header-section-number">3.4.1</span> Caracterización de Primer Orden</h3>
 <p>Cuando una función es diferenciable, podemos caracterizar su convexidad analizando su plano tangente.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema: Caracterización de Primer Orden para Funciones Diferenciables">
 <div class="callout-header d-flex align-content-center">
@@ -574,7 +594,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="caracterización-de-segundo-orden-hessiana" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="caracterización-de-segundo-orden-hessiana"><span class="header-section-number">3.4.2</span> 2. Caracterización de Segundo Orden (Hessiana)</h3>
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="caracterización-de-segundo-orden-hessiana"><span class="header-section-number">3.4.2</span> Caracterización de Segundo Orden (Hessiana)</h3>
 <p>La convexidad puede verificarse localmente analizando la concavidad o curvatura de segundo orden dada por la matriz hessiana en todo el dominio.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema: Caracterización de Segundo Orden">
 <div class="callout-header d-flex align-content-center">
@@ -624,7 +644,7 @@ window.Quarto = {
 <section id="óptimos-de-una-función-convexa" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="óptimos-de-una-función-convexa"><span class="header-section-number">3.5</span> Óptimos de una Función Convexa</h2>
 <section id="el-teorema-fundamental-de-la-optimización-convexa" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="el-teorema-fundamental-de-la-optimización-convexa"><span class="header-section-number">3.5.1</span> 1. El Teorema Fundamental de la Optimización Convexa</h3>
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="el-teorema-fundamental-de-la-optimización-convexa"><span class="header-section-number">3.5.1</span> El Teorema Fundamental de la Optimización Convexa</h3>
 <p>La convexidad simplifica drásticamente la búsqueda de óptimos al eliminar la distinción entre mínimos locales y globales.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema Fundamental de la Optimización Convexa">
 <div class="callout-header d-flex align-content-center">
@@ -646,7 +666,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="condición-variacional-de-optimalidad" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="condición-variacional-de-optimalidad"><span class="header-section-number">3.5.2</span> 2. Condición Variacional de Optimalidad</h3>
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="condición-variacional-de-optimalidad"><span class="header-section-number">3.5.2</span> Condición Variacional de Optimalidad</h3>
 <ul>
 <li><strong>Caracterización con subgradientes</strong>: Un punto <span class="math inline">\(x^*\)</span> es mínimo global de la función convexa <span class="math inline">\(f\)</span> en <span class="math inline">\(\mathcal{S}\)</span> si y solo si el vector nulo <span class="math inline">\(0\)</span> es un subgradiente de <span class="math inline">\(f\)</span> en <span class="math inline">\(x^*\)</span>: <span class="math display">\[ 0 \in \partial f(x^*) \]</span></li>
 <li><strong>Caracterización variacional diferenciable</strong>: Si <span class="math inline">\(f\)</span> es diferenciable, un punto <span class="math inline">\(x^*\)</span> es mínimo global si y solo si: <span class="math display">\[ \nabla f(x^*)^T (x - x^*) \ge 0, \quad \forall x \in \mathcal{S} \]</span> <em>Interpretación geométrica</em>: El gradiente <span class="math inline">\(\nabla f(x^*)\)</span> forma un ángulo agudo u obtuso con cualquier dirección que apunte hacia el interior del conjunto factible desde <span class="math inline">\(x^*\)</span>, lo que impide la existencia de direcciones de descenso admisibles.</li>
@@ -665,7 +685,7 @@ window.Quarto = {
 <h2 data-number="3.7" class="anchored" data-anchor-id="generalizaciones-de-la-convexidad"><span class="header-section-number">3.7</span> Generalizaciones de la Convexidad</h2>
 <p>Para mantener las ventajas de la optimalidad global sobre una familia de problemas más amplia, relajamos las exigencias de la convexidad pura:</p>
 <section id="funciones-cuasi-convexas" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="funciones-cuasi-convexas"><span class="header-section-number">3.7.1</span> 1. Funciones Cuasi-convexas</h3>
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="funciones-cuasi-convexas"><span class="header-section-number">3.7.1</span> Funciones Cuasi-convexas</h3>
 <p>Una función es cuasi-convexa si todos sus conjuntos de nivel inferior <span class="math inline">\(\mathcal{S}_\alpha\)</span> son convexos. De manera formal: <span class="math display">\[ f(\lambda x_1 + (1 - \lambda) x_2) \le \max \{ f(x_1), f(x_2) \}, \quad \forall x_1, x_2 \in \mathcal{S}, \ \forall \lambda \in [0, 1] \]</span></p>
 <ul>
 <li><strong>Cuasi-convexidad Estricta</strong>: <span class="math display">\[ f(\lambda x_1 + (1 - \lambda) x_2) &lt; \max \{ f(x_1), f(x_2) \}, \quad \forall x_1, x_2 \in \mathcal{S} \text{ con } f(x_1) \neq f(x_2) \]</span></li>
@@ -686,7 +706,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="funciones-pseudo-convexas" class="level3" data-number="3.7.2">
-<h3 data-number="3.7.2" class="anchored" data-anchor-id="funciones-pseudo-convexas"><span class="header-section-number">3.7.2</span> 2. Funciones Pseudo-convexas</h3>
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="funciones-pseudo-convexas"><span class="header-section-number">3.7.2</span> Funciones Pseudo-convexas</h3>
 <p>Para funciones diferenciables, la pseudo-convexidad exige que si la función presenta una dirección de subida local, la función crece globalmente en esa dirección: <span class="math display">\[ \nabla f(x_1)^T (x_2 - x_1) \ge 0 \implies f(x_2) \ge f(x_1) \]</span></p>
 <p>Esta propiedad es de gran valor práctico: <strong>cualquier punto estacionario (<span class="math inline">\(\nabla f(x^*) = 0\)</span>) en una función pseudo-convexa es de forma garantizada un mínimo global</strong>.</p>
 <ul>
@@ -704,6 +724,14 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-boyd2004convex" class="csl-entry" role="listitem">
+Boyd, Stephen, y Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Cambridge University Press.
+</div>
+<div id="ref-rockafellar1970convex" class="csl-entry" role="listitem">
+Rockafellar, R Tyrrell. 1970. <em>Convex Analysis</em>. Princeton University Press.
+</div>
+</div>
 </section>
 </section>
 

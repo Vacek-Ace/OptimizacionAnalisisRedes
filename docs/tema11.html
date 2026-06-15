@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -278,9 +298,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#el-problema-del-viajante-tsp" id="toc-el-problema-del-viajante-tsp" class="nav-link" data-scroll-target="#el-problema-del-viajante-tsp"><span class="header-section-number">11.4</span> El Problema del Viajante (TSP)</a>
   <ul class="collapse">
-  <li><a href="#formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954" id="toc-formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954" class="nav-link" data-scroll-target="#formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954"><span class="header-section-number">11.4.1</span> 1. Formulación Lineal Entera DFJ (Dantzig-Fulkerson-Johnson, 1954)</a></li>
-  <li><a href="#formulación-lineal-entera-mtz-miller-tucker-zemlin-1960" id="toc-formulación-lineal-entera-mtz-miller-tucker-zemlin-1960" class="nav-link" data-scroll-target="#formulación-lineal-entera-mtz-miller-tucker-zemlin-1960"><span class="header-section-number">11.4.2</span> 2. Formulación Lineal Entera MTZ (Miller-Tucker-Zemlin, 1960)</a></li>
-  <li><a href="#heurísticas-y-algoritmos-de-aproximación" id="toc-heurísticas-y-algoritmos-de-aproximación" class="nav-link" data-scroll-target="#heurísticas-y-algoritmos-de-aproximación"><span class="header-section-number">11.4.3</span> 3. Heurísticas y Algoritmos de Aproximación</a></li>
+  <li><a href="#formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954" id="toc-formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954" class="nav-link" data-scroll-target="#formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954"><span class="header-section-number">11.4.1</span> Formulación Lineal Entera DFJ (Dantzig-Fulkerson-Johnson, 1954)</a></li>
+  <li><a href="#formulación-lineal-entera-mtz-miller-tucker-zemlin-1960" id="toc-formulación-lineal-entera-mtz-miller-tucker-zemlin-1960" class="nav-link" data-scroll-target="#formulación-lineal-entera-mtz-miller-tucker-zemlin-1960"><span class="header-section-number">11.4.2</span> Formulación Lineal Entera MTZ (Miller-Tucker-Zemlin, 1960)</a></li>
+  <li><a href="#heurísticas-y-algoritmos-de-aproximación" id="toc-heurísticas-y-algoritmos-de-aproximación" class="nav-link" data-scroll-target="#heurísticas-y-algoritmos-de-aproximación"><span class="header-section-number">11.4.3</span> Heurísticas y Algoritmos de Aproximación</a></li>
   </ul></li>
   <li><a href="#implementación-en-python-con-networkx" id="toc-implementación-en-python-con-networkx" class="nav-link" data-scroll-target="#implementación-en-python-con-networkx"><span class="header-section-number">11.5</span> Implementación en Python con NetworkX</a></li>
   </ul>
@@ -308,7 +328,7 @@ window.Quarto = {
 </header>
 
 
-<p>El diseño de rutas óptimas es uno de los campos más estudiados de la optimización combinatoria y la logística de distribución. Abarca desde problemas solubles en tiempo polinomial, como la determinación de rutas que recorren todas las calles (aristas) de una ciudad al menor coste (el Problema del Cartero Chino), hasta problemas altamente complejos y NP-duros, como la secuenciación de visitas a clientes (vértices) minimizando el kilometraje total sin repetir visitas (el Problema del Viajante o TSP).</p>
+<p>El diseño de rutas óptimas es uno de los campos más estudiados de la optimización combinatoria y la logística de distribución. Abarca desde problemas solubles en tiempo polinomial, como la determinación de rutas que recorren todas las calles (aristas) de una ciudad al menor coste (el Problema del Cartero Chino), hasta problemas altamente complejos y NP-duros, como la secuenciación de visitas a clientes (vértices) minimizando el kilometraje total sin repetir visitas (el Problema del Viajante o TSP), constituyendo uno de los desafíos más célebres y estudiados de la optimización entera y combinatoria <span class="citation" data-cites="papadimitriou1998combinatorial wolsey1998integer">(<a href="references.html#ref-papadimitriou1998combinatorial" role="doc-biblioref">Papadimitriou y Steiglitz 1998</a>; <a href="references.html#ref-wolsey1998integer" role="doc-biblioref">Wolsey 1998</a>)</span>.</p>
 <p>En este capítulo, analizaremos la caracterización matemática de las rutas eulerianas y hamiltonianas, la resolución del Problema del Cartero Chino mediante emparejamientos de coste mínimo, la formulación matemática del TSP con restricciones de eliminación de subtours (DFJ y MTZ), las principales heurísticas constructivas y de mejora local (2-opt), y el algoritmo de aproximación de Christofides.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Objetivos de aprendizaje">
 <div class="callout-header d-flex align-content-center">
@@ -418,7 +438,7 @@ window.Quarto = {
 <h2 data-number="11.4" class="anchored" data-anchor-id="el-problema-del-viajante-tsp"><span class="header-section-number">11.4</span> El Problema del Viajante (TSP)</h2>
 <p>El Problema del Viajante (Traveling Salesperson Problem, TSP) busca encontrar el ciclo hamiltoniano de menor longitud o coste total en un grafo completo valorado.</p>
 <section id="formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954"><span class="header-section-number">11.4.1</span> 1. Formulación Lineal Entera DFJ (Dantzig-Fulkerson-Johnson, 1954)</h3>
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="formulación-lineal-entera-dfj-dantzig-fulkerson-johnson-1954"><span class="header-section-number">11.4.1</span> Formulación Lineal Entera DFJ (Dantzig-Fulkerson-Johnson, 1954)</h3>
 <p>Sean variables binarias <span class="math inline">\(x_{ij} = 1\)</span> si la ruta óptima incluye ir directamente del nodo <span class="math inline">\(i\)</span> al nodo <span class="math inline">\(j\)</span>, y 0 en caso contrario.</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -432,7 +452,7 @@ window.Quarto = {
 <p>Las <strong>restricciones de eliminación de subtours</strong> (tercera inecuación) evitan que el modelo genere soluciones compuestas por ciclos independientes inconexos que no recorren la totalidad de los nodos en una sola traza. Como el número de subconjuntos <span class="math inline">\(S\)</span> crece de forma exponencial (<span class="math inline">\(2^n - 2\)</span>), en la práctica estas restricciones se añaden dinámicamente mediante algoritmos de corte (<em>Branch-and-Cut</em>).</p>
 </section>
 <section id="formulación-lineal-entera-mtz-miller-tucker-zemlin-1960" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="formulación-lineal-entera-mtz-miller-tucker-zemlin-1960"><span class="header-section-number">11.4.2</span> 2. Formulación Lineal Entera MTZ (Miller-Tucker-Zemlin, 1960)</h3>
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="formulación-lineal-entera-mtz-miller-tucker-zemlin-1960"><span class="header-section-number">11.4.2</span> Formulación Lineal Entera MTZ (Miller-Tucker-Zemlin, 1960)</h3>
 <p>Una alternativa para evitar la formulación exponencial es introducir variables auxiliares continuas <span class="math inline">\(u_i \in \mathbb{R}\)</span> que representan el “orden de visita” de cada nodo <span class="math inline">\(i\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -445,7 +465,7 @@ u_i - u_j + n x_{ij} \le n - 1, \quad \forall i, j \in \{2, \dots, n\} \text{ co
 </ul>
 </section>
 <section id="heurísticas-y-algoritmos-de-aproximación" class="level3" data-number="11.4.3">
-<h3 data-number="11.4.3" class="anchored" data-anchor-id="heurísticas-y-algoritmos-de-aproximación"><span class="header-section-number">11.4.3</span> 3. Heurísticas y Algoritmos de Aproximación</h3>
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="heurísticas-y-algoritmos-de-aproximación"><span class="header-section-number">11.4.3</span> Heurísticas y Algoritmos de Aproximación</h3>
 <ul>
 <li><strong>Heurística del Vecino más Cercano</strong>: Algoritmo constructivo ávido (<em>greedy</em>) que parte de un nodo aleatorio y salta en cada paso al nodo no visitado más cercano. Es extremadamente rápido (<span class="math inline">\(O(n^2)\)</span>), pero presenta el riesgo de dejar nodos aislados muy lejanos para el final, generando un último paso de retorno al origen de coste desorbitado.</li>
 <li><strong>Heurística de Mejora Local 2-Opt</strong>: Dada una ruta hamiltoniana válida, busca parejas de aristas que se crucen o cuya reconexión reduzca la longitud de la ruta. En cada paso, reemplaza el par de aristas <span class="math inline">\(\{ (A, B), (C, D) \}\)</span> por el par <span class="math inline">\(\{ (A, C), (B, D) \}\)</span>, lo que invierte el sentido del recorrido del segmento intermedio. Se aplica iterativamente hasta alcanzar un óptimo local (donde ningún intercambio 2-opt consiga reducir el coste).</li>
@@ -558,6 +578,14 @@ u_i - u_j + n x_{ij} \le n - 1, \quad \forall i, j \in \{2, \dots, n\} \text{ co
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-papadimitriou1998combinatorial" class="csl-entry" role="listitem">
+Papadimitriou, Christos H, y Kenneth Steiglitz. 1998. <em>Combinatorial Optimization: Algorithms and Complexity</em>. Courier Corporation.
+</div>
+<div id="ref-wolsey1998integer" class="csl-entry" role="listitem">
+Wolsey, Laurence A. 1998. <em>Integer Programming</em>. John Wiley &amp; Sons.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -969,7 +997,7 @@ u_i - u_j + n x_{ij} \le n - 1, \quad \forall i, j \in \{2, \dots, n\} \text{ co
   </div>
   <div class="nav-page nav-page-next">
       <a href="./conclusiones.html" class="pagination-link" aria-label="Conclusiones">
-        <span class="nav-page-text">Conclusiones</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

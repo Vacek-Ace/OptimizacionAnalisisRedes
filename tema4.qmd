@@ -7,7 +7,7 @@ En las aplicaciones prácticas de la optimización, la inmensa mayoría de los p
 
 El estudio de problemas de optimización sin restricciones ($\min f(x)$ para $x \in \mathbb{R}^n$) nos permite comprender cómo se comporta localmente una función basándonos en la información de sus derivadas.
 
-### 1. Direcciones de Descenso
+### Direcciones de Descenso
 
 Una dirección de descenso es un vector que apunta hacia regiones del espacio donde el valor de la función disminuye localmente.
 
@@ -26,7 +26,7 @@ $$ \frac{f(\bar{x} + \lambda d) - f(\bar{x})}{\lambda} = \nabla f(\bar{x})^T d +
 Puesto que $\nabla f(\bar{x})^T d < 0$ por hipótesis, y dado que el término residual $\alpha(\bar{x}, \lambda d)$ tiende a cero conforme $\lambda$ se desvanece, existe un radio de entorno $\delta > 0$ tal que para todo $\lambda \in (0, \delta)$ el lado derecho de la igualdad permanece estrictamente negativo. Esto implica que $f(\bar{x} + \lambda d) - f(\bar{x}) < 0$, lo que demuestra la tesis. $\blacksquare$
 :::
 
-### 2. Condiciones Necesarias y Suficientes de Segundo Orden
+### Condiciones Necesarias y Suficientes de Segundo Orden
 
 
 ::: {.callout-important title="Teorema: Condiciones de Optimalidad de Segundo Orden (Sin Restricciones)"}
@@ -69,7 +69,7 @@ $$ \nabla f(\bar{x}) = 0 $$
 
 Cuando el movimiento está limitado a una región factible $\mathcal{S} \subseteq \mathbb{R}^n$, la caracterización de los extremos exige analizar la interacción entre las direcciones que reducen la función y las que permanecen dentro del conjunto.
 
-### 1. Definiciones Geométricas de Conos
+### Definiciones Geométricas de Conos
 
 -   **Cono de Direcciones Factibles ($\mathcal{F}(\bar{x})$)**:
     El conjunto de direcciones a lo largo de las cuales un paso infinitesimal no abandona la región factible $\mathcal{S}$:
@@ -82,7 +82,7 @@ Una condición fundamental de optimalidad geométrica establece que si un punto 
 
 $$ \bar{x} \text{ es mínimo local} \implies \mathcal{F}(\bar{x}) \cap \mathcal{D}(\bar{x}) = \emptyset $$
 
-### 2. Caracterización Diferenciable mediante Semiespacios
+### Caracterización Diferenciable mediante Semiespacios
 
 Si la función $f$ es diferenciable en $\bar{x}$, definimos el semiespacio abierto de direcciones que forman un ángulo obtuso con el gradiente (direcciones de descenso analítico) como:
 $$ \mathcal{D}_0(\bar{x}) = \{ d \in \mathbb{R}^n \mid \nabla f(\bar{x})^T d < 0 \} $$
@@ -172,7 +172,7 @@ Para garantizar que la función objetivo participe activamente en la caracteriza
 
 ### Historia de KKT
 
-Las condiciones KKT tienen una historia singular de redescubrimiento. Fueron formuladas por primera vez en 1939 por **William Karush** en su tesis de maestría inédita en la Universidad de Chicago. Doce años después, en 1951, los matemáticos **Harold W. Kuhn** y **Albert W. Tucker** las redescubrieron de manera independiente, publicándolas en un célebre artículo de congreso. La comunidad científica finalmente reconoció la contribución primordial de Karush renombrando las condiciones como Karush-Kuhn-Tucker.
+Las condiciones KKT tienen una historia singular de redescubrimiento. Fueron formuladas por primera vez en 1939 por **William Karush** en su tesis de maestría inédita en la Universidad de Chicago. Doce años después, en 1951, los matemáticos **Harold W. Kuhn** y **Albert W. Tucker** las redescubrieron de manera independiente, publicándolas en un célebre artículo de congreso. La comunidad científica finalmente reconoció la contribución primordial de Karush renombrando las condiciones como Karush-Kuhn-Tucker, constituyendo una de las bases analíticas de la optimización matemática moderna [@bazaraa2013nonlinear; @boyd2004convex; @nocedal2006numerical].
 
 ### Cualificación de Restricciones (LICQ y otras)
 
@@ -187,7 +187,7 @@ Existen otras cualificaciones de restricciones importantes en la literatura:
 -   **Condición de Slater**:
     Para problemas convexos, existe al menos un punto $x$ estrictamente factible ($g_i(x) < 0$ para toda $i$).
 
-### 1. Condiciones Necesarias de KKT
+### Condiciones Necesarias de KKT
 
 
 ::: {.callout-important title="Teorema: Condiciones Necesarias de KKT"}
@@ -203,7 +203,7 @@ Sea $\bar{x}$ un mínimo local del problema. Si se verifica la cualificación de
     $$ u_i \ge 0, \quad \forall i = 1, \dots, m $$
 :::
 
-### 2. Condiciones Suficientes de KKT bajo Convexidad
+### Condiciones Suficientes de KKT bajo Convexidad
 
 
 ::: {.callout-important title="Teorema: Condiciones Suficientes de KKT bajo Convexidad"}

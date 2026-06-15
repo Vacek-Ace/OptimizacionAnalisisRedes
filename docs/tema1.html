@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -213,7 +233,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -277,7 +297,7 @@ window.Quarto = {
 </header>
 
 
-<p>La <strong>Investigación Operativa</strong> (conocida internacionalmente como <em>Operations Research</em> o <em>Management Science</em>) es la disciplina científica que aplica métodos analíticos avanzados para dar soporte a la toma de decisiones complejas en sistemas reales. Lejos de constituir un mero conjunto de herramientas analíticas o algoritmos aislados, representa una metodología sistemática y estructurada. Combina la modelización matemática, el análisis estadístico y la optimización para diseñar, gestionar y mejorar sistemas complejos bajo condiciones de recursos limitados.</p>
+<p>La <strong>Investigación Operativa</strong> (conocida internacionalmente como <em>Operations Research</em> o <em>Management Science</em>) es la disciplina científica que aplica métodos analíticos avanzados para dar soporte a la toma de decisiones complejas en sistemas reales. Lejos de constituir un mero conjunto de herramientas analíticas o algoritmos aislados, representa una metodología sistemática y estructurada. Combina la modelización matemática, el análisis estadístico y la optimización para diseñar, gestionar y mejorar sistemas complejos bajo condiciones de recursos limitados <span class="citation" data-cites="hillier2010investigacion">(<a href="references.html#ref-hillier2010investigacion" role="doc-biblioref">Hillier y Lieberman 2010</a>)</span>.</p>
 <p>En este capítulo de apertura, estableceremos las bases conceptuales y epistemológicas de la disciplina. Exploraremos el origen histórico de la Investigación Operativa, formalizaremos el concepto de modelo matemático, detallaremos las fases fundamentales del ciclo de modelización y describiremos los elementos estructurales de un problema de optimización. Finalmente, introduciremos las dos grandes vertientes que estructuran este volumen: la optimización no lineal y la optimización en redes.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Objetivos de aprendizaje">
 <div class="callout-header d-flex align-content-center">
@@ -306,7 +326,7 @@ window.Quarto = {
 <p>La Investigación Operativa no nació en laboratorios académicos aislados, sino en el fragor de la necesidad estratégica y militar durante la Segunda Guerra Mundial. A finales de la década de 1930, el mando militar británico se enfrentaba a la inminente amenaza aérea del régimen nazi. Para contrarrestarla, desarrollaron el sistema de radares costeros, pero se percataron rápidamente de que disponer de la tecnología no bastaba: era imperativo aprender a utilizarla de manera integrada y eficiente.</p>
 <p>Fue entonces cuando el físico británico Patrick Blackett organizó un grupo multidisciplinar de científicos (que incluía matemáticos, físicos, astrofísicos y militares) conocido históricamente como el <strong>“Blackett’s Circus”</strong> (el Circo de Blackett). Este equipo analizó científicamente las operaciones militares reales, logrando hitos memorables como la determinación del tamaño óptimo de los convoyes navales de suministro para minimizar las pérdidas causadas por los submarinos alemanes, o la calibración de la profundidad de detonación de las cargas antisubmarinas en los bombarderos.</p>
 <p>Paralelamente, en la Unión Soviética, el matemático y economista <strong>Leonid Kantorovich</strong> desarrolló de forma independiente técnicas de planificación matemática para la industria del carbón y del acero en 1939. Kantorovich sentó las bases de lo que hoy conocemos como Programación Lineal, trabajo que le valdría el Premio Nobel de Economía en 1975 por su teoría sobre la asignación óptima de recursos.</p>
-<p>Tras la finalización del conflicto mundial, en 1947, el matemático estadounidense <strong>George Dantzig</strong> revolucionó la disciplina al proponer el <strong>método del Símplex</strong>, un algoritmo sistemático y extremadamente eficiente para resolver problemas de programación lineal. Este descubrimiento coincidió con la invención y el rápido desarrollo de las primeras computadoras electrónicas, lo que permitió aplicar las metodologías de la Investigación Operativa a la planificación industrial, la logística comercial, el sector financiero y la administración pública. La rápida expansión económica de la posguerra demandaba una gestión científica y optimizada de las grandes corporaciones, consolidando el éxito de esta disciplina.</p>
+<p>Tras la finalización del conflicto mundial, en 1947, el matemático estadounidense <strong>George Dantzig</strong> revolucionó la disciplina al proponer el <strong>método del Símplex</strong>, un algoritmo sistemático y extremadamente eficiente para resolver problemas de programación lineal. Este descubrimiento coincidió con la invención y el rápido desarrollo de las primeras computadoras electrónicas, lo que permitió aplicar las metodologías de la Investigación Operativa a la planificación industrial, la logística comercial, el sector financiero y la administración pública. La rápida expansión económica de la posguerra demandaba una gestión científica y optimizada de las grandes corporaciones, consolidando el éxito de esta disciplina <span class="citation" data-cites="bazaraa2011linear">(<a href="references.html#ref-bazaraa2011linear" role="doc-biblioref">Bazaraa, Jarvis, y Sherali 2011</a>)</span>.</p>
 </section>
 <section id="definiciones-formales" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="definiciones-formales"><span class="header-section-number">1.1.2</span> Definiciones Formales</h3>
@@ -457,6 +477,14 @@ window.Quarto = {
 </ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-bazaraa2011linear" class="csl-entry" role="listitem">
+Bazaraa, Mokhtar S, John J Jarvis, y Hanif D Sherali. 2011. <em>Linear Programming and Network Flows</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-hillier2010investigacion" class="csl-entry" role="listitem">
+Hillier, Frederick S, y Gerald J Lieberman. 2010. <em>Introducción a la Investigación de Operaciones</em>. 9na ed. McGraw-Hill.
+</div>
+</div>
 </section>
 </section>
 

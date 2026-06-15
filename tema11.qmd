@@ -1,6 +1,6 @@
 # Rutas Eulerianas, Hamiltonianas y TSP
 
-El diseño de rutas óptimas es uno de los campos más estudiados de la optimización combinatoria y la logística de distribución. Abarca desde problemas solubles en tiempo polinomial, como la determinación de rutas que recorren todas las calles (aristas) de una ciudad al menor coste (el Problema del Cartero Chino), hasta problemas altamente complejos y NP-duros, como la secuenciación de visitas a clientes (vértices) minimizando el kilometraje total sin repetir visitas (el Problema del Viajante o TSP).
+El diseño de rutas óptimas es uno de los campos más estudiados de la optimización combinatoria y la logística de distribución. Abarca desde problemas solubles en tiempo polinomial, como la determinación de rutas que recorren todas las calles (aristas) de una ciudad al menor coste (el Problema del Cartero Chino), hasta problemas altamente complejos y NP-duros, como la secuenciación de visitas a clientes (vértices) minimizando el kilometraje total sin repetir visitas (el Problema del Viajante o TSP), constituyendo uno de los desafíos más célebres y estudiados de la optimización entera y combinatoria [@papadimitriou1998combinatorial; @wolsey1998integer].
 
 En este capítulo, analizaremos la caracterización matemática de las rutas eulerianas y hamiltonianas, la resolución del Problema del Cartero Chino mediante emparejamientos de coste mínimo, la formulación matemática del TSP con restricciones de eliminación de subtours (DFJ y MTZ), las principales heurísticas constructivas y de mejora local (2-opt), y el algoritmo de aproximación de Christofides.
 
@@ -78,7 +78,7 @@ Entonces $G$ contiene al menos un ciclo hamiltoniano.
 
 El Problema del Viajante (Traveling Salesperson Problem, TSP) busca encontrar el ciclo hamiltoniano de menor longitud o coste total en un grafo completo valorado.
 
-### 1. Formulación Lineal Entera DFJ (Dantzig-Fulkerson-Johnson, 1954)
+### Formulación Lineal Entera DFJ (Dantzig-Fulkerson-Johnson, 1954)
 
 Sean variables binarias $x_{ij} = 1$ si la ruta óptima incluye ir directamente del nodo $i$ al nodo $j$, y 0 en caso contrario.
 
@@ -94,7 +94,7 @@ $$
 
 Las **restricciones de eliminación de subtours** (tercera inecuación) evitan que el modelo genere soluciones compuestas por ciclos independientes inconexos que no recorren la totalidad de los nodos en una sola traza. Como el número de subconjuntos $S$ crece de forma exponencial ($2^n - 2$), en la práctica estas restricciones se añaden dinámicamente mediante algoritmos de corte (*Branch-and-Cut*).
 
-### 2. Formulación Lineal Entera MTZ (Miller-Tucker-Zemlin, 1960)
+### Formulación Lineal Entera MTZ (Miller-Tucker-Zemlin, 1960)
 
 Una alternativa para evitar la formulación exponencial es introducir variables auxiliares continuas $u_i \in \mathbb{R}$ que representan el "orden de visita" de cada nodo $i$:
 
@@ -107,7 +107,7 @@ $$
 -   *Ventaja*: El número de restricciones de eliminación de subtours es polinomial ($O(n^2)$), lo que permite escribir el modelo completo directamente en solvers convencionales.
 -   *Desventaja*: La relajación lineal del modelo MTZ es significativamente más débil que la del modelo DFJ. Esto provoca que los solvers tarden mucho más tiempo en resolver problemas medianos mediante ramificación y acotación (*Branch-and-Bound*) al no poder acotar el espacio de búsqueda con eficacia.
 
-### 3. Heurísticas y Algoritmos de Aproximación
+### Heurísticas y Algoritmos de Aproximación
 
 -   **Heurística del Vecino más Cercano**:
     Algoritmo constructivo ávido (*greedy*) que parte de un nodo aleatorio y salta en cada paso al nodo no visitado más cercano. Es extremadamente rápido ($O(n^2)$), pero presenta el riesgo de dejar nodos aislados muy lejanos para el final, generando un último paso de retorno al origen de coste desorbitado.

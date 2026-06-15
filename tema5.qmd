@@ -19,9 +19,9 @@ Al finalizar este capítulo, serás capaz de:
 
 ## Programación Lineal (LP)
 
-La Programación Lineal consiste en optimizar una función lineal sujeta a restricciones lineales de igualdad y desigualdad. Su simplicidad estructural permite deducir propiedades de dualidad muy potentes.
+La Programación Lineal consiste en optimizar una función lineal sujeta a restricciones lineales de igualdad y desigualdad. Su simplicidad estructural permite deducir propiedades de dualidad muy potentes, cuyas bases matemáticas e históricas se detallan exhaustivamente en los textos de programación matemática [@bazaraa2011linear; @luenberger2015linear].
 
-### 1. Dualidad en Programación Lineal
+### Dualidad en Programación Lineal
 
 Consideremos el par de problemas primal (P) y dual (D) en su forma canónica estándar:
 
@@ -58,7 +58,7 @@ Combinando ambas desigualdades encadenadas, obtenemos:
 $$ b^T w \le w^T A x \le c^T x \implies b^T w \le c^T x. \quad \blacksquare $$
 :::
 
-### 2. Condiciones KKT en Programación Lineal
+### Condiciones KKT en Programación Lineal
 
 Para aplicar el teorema de KKT, reescribimos el problema primal (P) en formato estándar de minimización con restricciones de tipo $\le 0$:
 $$
@@ -92,7 +92,7 @@ $$ c^T x = u^T b = b^T u $$
 
 Esto demuestra que el vector de multiplicadores KKT $u$ es factible en el problema dual (D) y proporciona exactamente el mismo valor objetivo que la solución primal $x$. Por el teorema de dualidad fuerte, **los multiplicadores KKT $u$ del problema primal son idénticos a las variables óptimas $w^*$ del problema dual**.
 
-### 3. Interpretación Económica: Precios Sombra
+### Interpretación Económica: Precios Sombra
 
 En el ámbito de la economía y la gestión de operaciones, los problemas de optimización lineal suelen representar la asignación de recursos limitados (como horas de mano de obra, materias primas o presupuesto) para maximizar un beneficio o minimizar un coste de producción. En este marco:
 
@@ -107,7 +107,7 @@ La condición de holgura complementaria $u_i (b_i - a_i^T x^*) = 0$ posee entonc
 1.  Si al alcanzar el plan de producción óptimo sobra parte del recurso $i$ ($b_i - a_i^T x^* > 0$), dicho recurso no es un factor limitante (es abundante). Por tanto, añadir más cantidad del mismo no aumentará el beneficio, lo que obliga a que su precio sombra sea cero ($u_i^* = 0$).
 2.  Si un recurso posee un precio sombra estrictamente positivo ($u_i^* > 0$), significa que dicho recurso es valioso y está limitando la producción. En consecuencia, se consumirá por completo en el óptimo, dejando la holgura en cero ($b_i - a_i^T x^* = 0$).
 
-### 4. Clasificación de Óptimos y Relaciones de Dualidad
+### Clasificación de Óptimos y Relaciones de Dualidad
 
 Atendiendo a la geometría del espacio y la unicidad de las soluciones, se clasifican los siguientes escenarios recíprocos entre primal y dual (analizados sobre un espacio en $\mathbb{R}^2$):
 
@@ -145,7 +145,7 @@ $$
 
 Para garantizar que el problema sea convexo (y que las condiciones KKT sean necesarias y suficientes para alcanzar el óptimo global), la matriz simétrica $Q \in \mathbb{R}^{n \times n}$ debe ser **semidefinida positiva** ($Q \succeq 0$).
 
-### 1. El Sistema KKT para QP en Forma Matricial
+### El Sistema KKT para QP en Forma Matricial
 
 Asociando multiplicadores $u \ge 0$ para las restricciones de recursos y $v \ge 0$ para las de no negatividad, la Lagrangiana es:
 $$ L(x, u, v) = c^T x + \frac{1}{2} x^T Q x + u^T (b - A x) - v^T x $$
@@ -180,7 +180,7 @@ b
 $$
 donde recordamos que además deben satisfacerse las restricciones de no negatividad para todas las variables y las condiciones lógicas de complementariedad ($u^T y + v^T x = 0$).
 
-### 2. Linealización y Algoritmo del Símplex de Wolfe
+### Linealización y Algoritmo del Símplex de Wolfe
 
 El sistema KKT es lineal en todas sus partes excepto por la condición de complementariedad $u^T y + v^T x = 0$. Philip Wolfe propuso en 1959 adaptar el algoritmo del Símplex lineal para resolver este sistema utilizando una técnica de **entrada restringida** (restricted entry rule):
 

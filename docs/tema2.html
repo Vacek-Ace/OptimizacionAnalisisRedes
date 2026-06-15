@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -279,14 +299,14 @@ window.Quarto = {
   </ul></li>
   <li><a href="#métodos-numéricos-de-búsqueda-lineal-1d" id="toc-métodos-numéricos-de-búsqueda-lineal-1d" class="nav-link" data-scroll-target="#métodos-numéricos-de-búsqueda-lineal-1d"><span class="header-section-number">2.4</span> Métodos Numéricos de Búsqueda Lineal (1D)</a>
   <ul class="collapse">
-  <li><a href="#métodos-sin-derivadas" id="toc-métodos-sin-derivadas" class="nav-link" data-scroll-target="#métodos-sin-derivadas"><span class="header-section-number">2.4.1</span> 1. Métodos sin Derivadas</a></li>
-  <li><a href="#métodos-con-derivadas" id="toc-métodos-con-derivadas" class="nav-link" data-scroll-target="#métodos-con-derivadas"><span class="header-section-number">2.4.2</span> 2. Métodos con Derivadas</a></li>
+  <li><a href="#métodos-sin-derivadas" id="toc-métodos-sin-derivadas" class="nav-link" data-scroll-target="#métodos-sin-derivadas"><span class="header-section-number">2.4.1</span> Métodos sin Derivadas</a></li>
+  <li><a href="#métodos-con-derivadas" id="toc-métodos-con-derivadas" class="nav-link" data-scroll-target="#métodos-con-derivadas"><span class="header-section-number">2.4.2</span> Métodos con Derivadas</a></li>
   </ul></li>
   <li><a href="#métodos-multivariables-de-optimización-sin-restricciones" id="toc-métodos-multivariables-de-optimización-sin-restricciones" class="nav-link" data-scroll-target="#métodos-multivariables-de-optimización-sin-restricciones"><span class="header-section-number">2.5</span> Métodos Multivariables de Optimización Sin Restricciones</a>
   <ul class="collapse">
-  <li><a href="#máximo-descenso-steepest-descent" id="toc-máximo-descenso-steepest-descent" class="nav-link" data-scroll-target="#máximo-descenso-steepest-descent"><span class="header-section-number">2.5.1</span> 1. Máximo Descenso (Steepest Descent)</a></li>
-  <li><a href="#método-de-newton-multivariable" id="toc-método-de-newton-multivariable" class="nav-link" data-scroll-target="#método-de-newton-multivariable"><span class="header-section-number">2.5.2</span> 2. Método de Newton Multivariable</a></li>
-  <li><a href="#métodos-cuasi-newton-bfgs" id="toc-métodos-cuasi-newton-bfgs" class="nav-link" data-scroll-target="#métodos-cuasi-newton-bfgs"><span class="header-section-number">2.5.3</span> 3. Métodos Cuasi-Newton (BFGS)</a></li>
+  <li><a href="#máximo-descenso-steepest-descent" id="toc-máximo-descenso-steepest-descent" class="nav-link" data-scroll-target="#máximo-descenso-steepest-descent"><span class="header-section-number">2.5.1</span> Máximo Descenso (Steepest Descent)</a></li>
+  <li><a href="#método-de-newton-multivariable" id="toc-método-de-newton-multivariable" class="nav-link" data-scroll-target="#método-de-newton-multivariable"><span class="header-section-number">2.5.2</span> Método de Newton Multivariable</a></li>
+  <li><a href="#métodos-cuasi-newton-bfgs" id="toc-métodos-cuasi-newton-bfgs" class="nav-link" data-scroll-target="#métodos-cuasi-newton-bfgs"><span class="header-section-number">2.5.3</span> Métodos Cuasi-Newton (BFGS)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -382,7 +402,7 @@ window.Quarto = {
 \text{sujeto a} \quad &amp; \sum_{i=1}^n x_i \le C \\
 &amp; x_i \ge 0, \quad i = 1, \dots, n
 \end{aligned}
-\]</span> Este problema posee una función objetivo cuadrática no lineal y restricciones lineales, lo que constituye un problema de <strong>Programación Cuadrática (QP)</strong>. Su naturaleza convexa (cuando la matriz de covarianzas es semidefinida positiva) garantiza que cualquier solución óptima local sea también global.</p>
+\]</span> Este problema posee una función objetivo cuadrática no lineal y restricciones lineales, lo que constituye un problema de <strong>Programación Cuadrática (QP)</strong>. Su naturaleza convexa (cuando la matriz de covarianzas es semidefinida positiva) garantiza que cualquier solución óptima local sea también global <span class="citation" data-cites="boyd2004convex hillier2010investigacion">(<a href="references.html#ref-boyd2004convex" role="doc-biblioref">Boyd y Vandenberghe 2004</a>; <a href="references.html#ref-hillier2010investigacion" role="doc-biblioref">Hillier y Lieberman 2010</a>)</span>.</p>
 </div>
 </div>
 </section>
@@ -444,7 +464,7 @@ window.Quarto = {
 <h2 data-number="2.4" class="anchored" data-anchor-id="métodos-numéricos-de-búsqueda-lineal-1d"><span class="header-section-number">2.4</span> Métodos Numéricos de Búsqueda Lineal (1D)</h2>
 <p>Los métodos unidimensionales buscan el mínimo de una función <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> en un intervalo cerrado <span class="math inline">\([a, b]\)</span>. Son fundamentales porque resolver problemas multidimensionales suele requerir resolver una sucesión de problemas unidimensionales a lo largo de direcciones de descenso (búsqueda lineal o <em>line search</em>): <span class="math display">\[ \min_{\alpha &gt; 0} \phi(\alpha) = f(x_k + \alpha d_k) \]</span></p>
 <section id="métodos-sin-derivadas" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="métodos-sin-derivadas"><span class="header-section-number">2.4.1</span> 1. Métodos sin Derivadas</h3>
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="métodos-sin-derivadas"><span class="header-section-number">2.4.1</span> Métodos sin Derivadas</h3>
 <p>Estos métodos solo evalúan la función objetivo y requieren que la función sea <strong>unimodal</strong> en el intervalo <span class="math inline">\([a, b]\)</span>, es decir, que posea un único mínimo local en dicho intervalo.</p>
 <ul>
 <li><strong>Búsqueda Dicotómica</strong>: Evalúa la función en dos puntos simétricos <span class="math inline">\(\lambda_k\)</span> y <span class="math inline">\(\mu_k\)</span> muy próximos al punto medio del intervalo actual para descartar una porción del intervalo en cada iteración basándose en el signo del cambio.</li>
@@ -486,7 +506,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="métodos-con-derivadas" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="métodos-con-derivadas"><span class="header-section-number">2.4.2</span> 2. Métodos con Derivadas</h3>
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="métodos-con-derivadas"><span class="header-section-number">2.4.2</span> Métodos con Derivadas</h3>
 <ul>
 <li><strong>Método de Bisección (Bolzano)</strong>: Busca el cero de la derivada <span class="math inline">\(f'(x) = 0\)</span>. Requiere que los signos de la derivada en los extremos del intervalo sean opuestos (<span class="math inline">\(f'(a) &lt; 0\)</span> y <span class="math inline">\(f'(b) &gt; 0\)</span>). En cada paso, evalúa la derivada en el punto medio del intervalo y reduce el intervalo exactamente a la mitad.</li>
 <li><strong>Método de Newton 1D</strong>: Aproxima la función en cada paso por un polinomio cuadrático de Taylor de segundo orden en el punto actual <span class="math inline">\(x_k\)</span> y salta directamente al vértice de la parábola: <span class="math display">\[ x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)} \]</span> Posee convergencia cuadrática local (orden 2), lo que significa que el número de dígitos significativos se duplica en cada paso cerca del óptimo. Sin embargo, requiere calcular la segunda derivada y exige que esta sea estrictamente positiva (<span class="math inline">\(f''(x_k) &gt; 0\)</span>) para evitar diverger o saltar a un máximo local.</li>
@@ -499,14 +519,14 @@ window.Quarto = {
 <p><span class="math display">\[ x_{k+1} = x_k + \alpha_k d_k \]</span></p>
 <p>Donde <span class="math inline">\(d_k\)</span> es la <strong>dirección de descenso</strong> (debe cumplir que <span class="math inline">\(\nabla f(x_k)^T d_k &lt; 0\)</span>) y <span class="math inline">\(\alpha_k &gt; 0\)</span> es el <strong>tamaño de paso</strong> obtenido mediante búsqueda unidimensional lineal.</p>
 <section id="máximo-descenso-steepest-descent" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="máximo-descenso-steepest-descent"><span class="header-section-number">2.5.1</span> 1. Máximo Descenso (Steepest Descent)</h3>
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="máximo-descenso-steepest-descent"><span class="header-section-number">2.5.1</span> Máximo Descenso (Steepest Descent)</h3>
 <p>La dirección de búsqueda se toma como el opuesto del gradiente, que es la dirección que minimiza localmente la derivada direccional: <span class="math display">\[ d_k = -\nabla f(x_k) \]</span> El tamaño de paso <span class="math inline">\(\alpha_k\)</span> se obtiene resolviendo el problema univariable de búsqueda lineal exacta: <span class="math display">\[ \alpha_k = \arg\min_{\alpha &gt; 0} f(x_k - \alpha \nabla f(x_k)) \]</span></p>
 <ul>
 <li><strong>El Fenómeno del Zigzag</strong>: En búsqueda exacta, se puede demostrar analíticamente que las direcciones de descenso en dos iteraciones consecutivas son ortogonales: <span class="math display">\[ d_k^T d_{k+1} = 0 \]</span> Si la función presenta curvas de nivel muy estiradas (problemas mal acondicionados, donde la relación entre el mayor y el menor autovalor de la hessiana es muy grande), el algoritmo zigzaguea con pasos ortogonales consecutivos, ralentizando drásticamente el avance hacia el óptimo.</li>
 </ul>
 </section>
 <section id="método-de-newton-multivariable" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="método-de-newton-multivariable"><span class="header-section-number">2.5.2</span> 2. Método de Newton Multivariable</h3>
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="método-de-newton-multivariable"><span class="header-section-number">2.5.2</span> Método de Newton Multivariable</h3>
 <p>El método de Newton incorpora la curvatura local dada por la matriz hessiana para corregir la dirección de búsqueda, apuntando directamente al mínimo de la aproximación cuadrática: <span class="math display">\[ d_k = - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) \]</span> Si el punto inicial está cerca del mínimo y la hessiana es definida positiva, el método converge en muy pocas iteraciones con tamaño de paso <span class="math inline">\(\alpha_k = 1\)</span> (convergencia cuadrática).</p>
 <ul>
 <li><strong>Inconvenientes</strong>:
@@ -518,10 +538,10 @@ window.Quarto = {
 </ul>
 </section>
 <section id="métodos-cuasi-newton-bfgs" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="métodos-cuasi-newton-bfgs"><span class="header-section-number">2.5.3</span> 3. Métodos Cuasi-Newton (BFGS)</h3>
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="métodos-cuasi-newton-bfgs"><span class="header-section-number">2.5.3</span> Métodos Cuasi-Newton (BFGS)</h3>
 <p>Los métodos Cuasi-Newton evitan el cálculo explícito y la inversión de la hessiana. En su lugar, construyen una aproximación simétrica y definida positiva de la inversa de la hessiana <span class="math inline">\(H_k \approx [\nabla^2 f(x_k)]^{-1}\)</span> basándose únicamente en los cambios observados en los vectores de gradiente entre pasos consecutivos, satisfaciendo la <strong>ecuación de la secante</strong>: <span class="math display">\[ H_{k+1} y_k = s_k \]</span> Donde <span class="math inline">\(s_k = x_{k+1} - x_k\)</span> y <span class="math inline">\(y_k = \nabla f(x_{k+1}) - \nabla f(x_k)\)</span>.</p>
 <p>La dirección de descenso se calcula con coste <span class="math inline">\(O(n^2)\)</span> como: <span class="math display">\[ d_k = - H_k \nabla f(x_k) \]</span></p>
-<p>El método más popular y de mayor eficiencia es el algoritmo <strong>BFGS</strong> (Broyden-Fletcher-Goldfarb-Shanno), que actualiza <span class="math inline">\(H_k\)</span> de forma iterativa conservando la simetría y definición positiva de la aproximación.</p>
+<p>El método más popular y de mayor eficiencia es el algoritmo <strong>BFGS</strong> (Broyden-Fletcher-Goldfarb-Shanno), que actualiza <span class="math inline">\(H_k\)</span> de forma iterativa conservando la simetría y definición positiva de la aproximación, siendo una referencia estándar para la optimización multivariable continua <span class="citation" data-cites="nocedal2006numerical luenberger2015linear">(<a href="references.html#ref-nocedal2006numerical" role="doc-biblioref">Nocedal y Wright 2006</a>; <a href="references.html#ref-luenberger2015linear" role="doc-biblioref">Luenberger y Ye 2015</a>)</span>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Código Python: Algoritmo de Descenso de Gradiente con Búsqueda Lineal Exacta">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -561,6 +581,20 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-boyd2004convex" class="csl-entry" role="listitem">
+Boyd, Stephen, y Lieven Vandenberghe. 2004. <em>Convex Optimization</em>. Cambridge University Press.
+</div>
+<div id="ref-hillier2010investigacion" class="csl-entry" role="listitem">
+Hillier, Frederick S, y Gerald J Lieberman. 2010. <em>Introducción a la Investigación de Operaciones</em>. 9na ed. McGraw-Hill.
+</div>
+<div id="ref-luenberger2015linear" class="csl-entry" role="listitem">
+Luenberger, David G, y Yinyu Ye. 2015. <em>Linear and Nonlinear Programming</em>. 4th ed. Springer.
+</div>
+<div id="ref-nocedal2006numerical" class="csl-entry" role="listitem">
+Nocedal, Jorge, y Stephen Wright. 2006. <em>Numerical Optimization</em>. Springer Science &amp; Business Media.
+</div>
+</div>
 </section>
 </section>
 

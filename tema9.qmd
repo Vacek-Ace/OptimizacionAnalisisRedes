@@ -1,6 +1,6 @@
 # Problemas de Flujo en Redes
 
-La optimización de **flujos en redes** representa una de las ramas más maduras y de mayor impacto práctico de la investigación operativa. Permite modelar y resolver de forma exacta el envío de entidades físicas o lógicas (tales como toneladas de mercancía, litros de crudo, vatios de potencia eléctrica o gigabytes de datos) a través de canales con capacidades limitadas. En este capítulo, estudiaremos el concepto algebraico de flujo y cociclo, el célebre Lema de Coloración de Arcos de Minty (herramienta teórica cardinal para demostrar optimalidades), el teorema de flujo máximo y corte mínimo, el algoritmo de Ford-Fulkerson y el problema general del flujo de coste mínimo y transbordo.
+La optimización de **flujos en redes** representa una de las ramas más maduras y de mayor impacto práctico de la investigación operativa. Permite modelar y resolver de forma exacta el envío de entidades físicas o lógicas (tales como toneladas de mercancía, litros de crudo, vatios de potencia eléctrica o gigabytes de datos) a través de canales con capacidades limitadas, cuya teoría y aplicaciones algorítmicas se estudian detalladamente en los textos clásicos de flujos y optimización en redes [@ahuja1993network; @bertsekas1998network]. En este capítulo, estudiaremos el concepto algebraico de flujo y cociclo, el célebre Lema de Coloración de Arcos de Minty (herramienta teórica cardinal para demostrar optimalidades), el teorema de flujo máximo y corte mínimo, el algoritmo de Ford-Fulkerson y el problema general del flujo de coste mínimo y transbordo.
 
 ::: {.callout-important title="Objetivos de aprendizaje"}
 Al finalizar este capítulo, serás capaz de:
@@ -18,7 +18,7 @@ Al finalizar este capítulo, serás capaz de:
 
 Sea un digrafo conexo $G = (V, A)$.
 
-### 1. Definición de Flujo y Circulación
+### Definición de Flujo y Circulación
 Un **flujo** en la red $G$ es un vector $x \in \mathbb{R}^{|A|}$ que asigna a cada arco dirigido $(i, j) \in A$ un caudal o cantidad $x_{ij}$. El flujo debe cumplir con las ecuaciones de conservación en los nodos:
 $$ \sum_{j \mid (i, j) \in A} x_{ij} - \sum_{j \mid (j, i) \in A} x_{ji} = b_i, \quad \forall i \in V $$
 Donde el vector $b \in \mathbb{R}^{|V|}$ representa los balances externos:
@@ -81,7 +81,7 @@ $$
 \end{aligned}
 $$
 
-### 1. Cortes y Capacidad de un Corte
+### Cortes y Capacidad de un Corte
 Un corte $(S, T)$ es una partición del conjunto de nodos $V$ tal que el origen $s \in S$ y el destino $t \in T$ (donde $T = V \setminus S$). La **capacidad del corte** es la suma de las capacidades de los arcos que cruzan de $S$ a $T$:
 $$ C(S, T) = \sum_{i \in S, j \in T} u_{ij} $$
 
@@ -94,7 +94,7 @@ $$ C(S, T) = \sum_{i \in S, j \in T} u_{ij} $$
     $$ v^* = \min_{(S,T)} C(S, T) $$
 :::
 
-### 2. Algoritmo de Ford-Fulkerson (Camino Aumentante)
+### Algoritmo de Ford-Fulkerson (Camino Aumentante)
 El algoritmo busca repetidamente rutas donde sea posible añadir flujo de $s$ a $t$ en la **red residual** $G_f$:
 -   **Red Residual $G_f$**:
     Para cada arco original $(i, j) \in A$ con capacidad $u_{ij}$ y flujo actual $x_{ij}$, se definen en $G_f$:

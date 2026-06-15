@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -269,15 +289,15 @@ window.Quarto = {
   <ul>
   <li><a href="#programación-lineal-lp" id="toc-programación-lineal-lp" class="nav-link active" data-scroll-target="#programación-lineal-lp"><span class="header-section-number">5.1</span> Programación Lineal (LP)</a>
   <ul class="collapse">
-  <li><a href="#dualidad-en-programación-lineal" id="toc-dualidad-en-programación-lineal" class="nav-link" data-scroll-target="#dualidad-en-programación-lineal"><span class="header-section-number">5.1.1</span> 1. Dualidad en Programación Lineal</a></li>
-  <li><a href="#condiciones-kkt-en-programación-lineal" id="toc-condiciones-kkt-en-programación-lineal" class="nav-link" data-scroll-target="#condiciones-kkt-en-programación-lineal"><span class="header-section-number">5.1.2</span> 2. Condiciones KKT en Programación Lineal</a></li>
-  <li><a href="#interpretación-económica-precios-sombra" id="toc-interpretación-económica-precios-sombra" class="nav-link" data-scroll-target="#interpretación-económica-precios-sombra"><span class="header-section-number">5.1.3</span> 3. Interpretación Económica: Precios Sombra</a></li>
-  <li><a href="#clasificación-de-óptimos-y-relaciones-de-dualidad" id="toc-clasificación-de-óptimos-y-relaciones-de-dualidad" class="nav-link" data-scroll-target="#clasificación-de-óptimos-y-relaciones-de-dualidad"><span class="header-section-number">5.1.4</span> 4. Clasificación de Óptimos y Relaciones de Dualidad</a></li>
+  <li><a href="#dualidad-en-programación-lineal" id="toc-dualidad-en-programación-lineal" class="nav-link" data-scroll-target="#dualidad-en-programación-lineal"><span class="header-section-number">5.1.1</span> Dualidad en Programación Lineal</a></li>
+  <li><a href="#condiciones-kkt-en-programación-lineal" id="toc-condiciones-kkt-en-programación-lineal" class="nav-link" data-scroll-target="#condiciones-kkt-en-programación-lineal"><span class="header-section-number">5.1.2</span> Condiciones KKT en Programación Lineal</a></li>
+  <li><a href="#interpretación-económica-precios-sombra" id="toc-interpretación-económica-precios-sombra" class="nav-link" data-scroll-target="#interpretación-económica-precios-sombra"><span class="header-section-number">5.1.3</span> Interpretación Económica: Precios Sombra</a></li>
+  <li><a href="#clasificación-de-óptimos-y-relaciones-de-dualidad" id="toc-clasificación-de-óptimos-y-relaciones-de-dualidad" class="nav-link" data-scroll-target="#clasificación-de-óptimos-y-relaciones-de-dualidad"><span class="header-section-number">5.1.4</span> Clasificación de Óptimos y Relaciones de Dualidad</a></li>
   </ul></li>
   <li><a href="#programación-cuadrática-qp" id="toc-programación-cuadrática-qp" class="nav-link" data-scroll-target="#programación-cuadrática-qp"><span class="header-section-number">5.2</span> Programación Cuadrática (QP)</a>
   <ul class="collapse">
-  <li><a href="#el-sistema-kkt-para-qp-en-forma-matricial" id="toc-el-sistema-kkt-para-qp-en-forma-matricial" class="nav-link" data-scroll-target="#el-sistema-kkt-para-qp-en-forma-matricial"><span class="header-section-number">5.2.1</span> 1. El Sistema KKT para QP en Forma Matricial</a></li>
-  <li><a href="#linealización-y-algoritmo-del-símplex-de-wolfe" id="toc-linealización-y-algoritmo-del-símplex-de-wolfe" class="nav-link" data-scroll-target="#linealización-y-algoritmo-del-símplex-de-wolfe"><span class="header-section-number">5.2.2</span> 2. Linealización y Algoritmo del Símplex de Wolfe</a></li>
+  <li><a href="#el-sistema-kkt-para-qp-en-forma-matricial" id="toc-el-sistema-kkt-para-qp-en-forma-matricial" class="nav-link" data-scroll-target="#el-sistema-kkt-para-qp-en-forma-matricial"><span class="header-section-number">5.2.1</span> El Sistema KKT para QP en Forma Matricial</a></li>
+  <li><a href="#linealización-y-algoritmo-del-símplex-de-wolfe" id="toc-linealización-y-algoritmo-del-símplex-de-wolfe" class="nav-link" data-scroll-target="#linealización-y-algoritmo-del-símplex-de-wolfe"><span class="header-section-number">5.2.2</span> Linealización y Algoritmo del Símplex de Wolfe</a></li>
   </ul></li>
   <li><a href="#caso-práctico-detallado-algoritmo-de-wolfe" id="toc-caso-práctico-detallado-algoritmo-de-wolfe" class="nav-link" data-scroll-target="#caso-práctico-detallado-algoritmo-de-wolfe"><span class="header-section-number">5.3</span> Caso Práctico Detallado: Algoritmo de Wolfe</a>
   <ul class="collapse">
@@ -335,9 +355,9 @@ window.Quarto = {
 </div>
 <section id="programación-lineal-lp" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="programación-lineal-lp"><span class="header-section-number">5.1</span> Programación Lineal (LP)</h2>
-<p>La Programación Lineal consiste en optimizar una función lineal sujeta a restricciones lineales de igualdad y desigualdad. Su simplicidad estructural permite deducir propiedades de dualidad muy potentes.</p>
+<p>La Programación Lineal consiste en optimizar una función lineal sujeta a restricciones lineales de igualdad y desigualdad. Su simplicidad estructural permite deducir propiedades de dualidad muy potentes, cuyas bases matemáticas e históricas se detallan exhaustivamente en los textos de programación matemática <span class="citation" data-cites="bazaraa2011linear luenberger2015linear">(<a href="references.html#ref-bazaraa2011linear" role="doc-biblioref">Bazaraa, Jarvis, y Sherali 2011</a>; <a href="references.html#ref-luenberger2015linear" role="doc-biblioref">Luenberger y Ye 2015</a>)</span>.</p>
 <section id="dualidad-en-programación-lineal" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="dualidad-en-programación-lineal"><span class="header-section-number">5.1.1</span> 1. Dualidad en Programación Lineal</h3>
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="dualidad-en-programación-lineal"><span class="header-section-number">5.1.1</span> Dualidad en Programación Lineal</h3>
 <p>Consideremos el par de problemas primal (P) y dual (D) en su forma canónica estándar:</p>
 <ul>
 <li><strong>Problema Primal (P)</strong>: <span class="math display">\[
@@ -373,7 +393,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="condiciones-kkt-en-programación-lineal" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="condiciones-kkt-en-programación-lineal"><span class="header-section-number">5.1.2</span> 2. Condiciones KKT en Programación Lineal</h3>
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="condiciones-kkt-en-programación-lineal"><span class="header-section-number">5.1.2</span> Condiciones KKT en Programación Lineal</h3>
 <p>Para aplicar el teorema de KKT, reescribimos el problema primal (P) en formato estándar de minimización con restricciones de tipo <span class="math inline">\(\le 0\)</span>: <span class="math display">\[
 \begin{aligned}
 \min_{x} \quad &amp; c^T x \\
@@ -394,7 +414,7 @@ window.Quarto = {
 <p>Esto demuestra que el vector de multiplicadores KKT <span class="math inline">\(u\)</span> es factible en el problema dual (D) y proporciona exactamente el mismo valor objetivo que la solución primal <span class="math inline">\(x\)</span>. Por el teorema de dualidad fuerte, <strong>los multiplicadores KKT <span class="math inline">\(u\)</span> del problema primal son idénticos a las variables óptimas <span class="math inline">\(w^*\)</span> del problema dual</strong>.</p>
 </section>
 <section id="interpretación-económica-precios-sombra" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="interpretación-económica-precios-sombra"><span class="header-section-number">5.1.3</span> 3. Interpretación Económica: Precios Sombra</h3>
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="interpretación-económica-precios-sombra"><span class="header-section-number">5.1.3</span> Interpretación Económica: Precios Sombra</h3>
 <p>En el ámbito de la economía y la gestión de operaciones, los problemas de optimización lineal suelen representar la asignación de recursos limitados (como horas de mano de obra, materias primas o presupuesto) para maximizar un beneficio o minimizar un coste de producción. En este marco:</p>
 <ul>
 <li>Las variables primales <span class="math inline">\(x_j\)</span> representan los <strong>niveles de actividad</strong> (las cantidades de cada producto a fabricar).</li>
@@ -405,7 +425,7 @@ window.Quarto = {
 <p>La condición de holgura complementaria <span class="math inline">\(u_i (b_i - a_i^T x^*) = 0\)</span> posee entonces una interpretación económica intuitiva y elegante: 1. Si al alcanzar el plan de producción óptimo sobra parte del recurso <span class="math inline">\(i\)</span> (<span class="math inline">\(b_i - a_i^T x^* &gt; 0\)</span>), dicho recurso no es un factor limitante (es abundante). Por tanto, añadir más cantidad del mismo no aumentará el beneficio, lo que obliga a que su precio sombra sea cero (<span class="math inline">\(u_i^* = 0\)</span>). 2. Si un recurso posee un precio sombra estrictamente positivo (<span class="math inline">\(u_i^* &gt; 0\)</span>), significa que dicho recurso es valioso y está limitando la producción. En consecuencia, se consumirá por completo en el óptimo, dejando la holgura en cero (<span class="math inline">\(b_i - a_i^T x^* = 0\)</span>).</p>
 </section>
 <section id="clasificación-de-óptimos-y-relaciones-de-dualidad" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="clasificación-de-óptimos-y-relaciones-de-dualidad"><span class="header-section-number">5.1.4</span> 4. Clasificación de Óptimos y Relaciones de Dualidad</h3>
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="clasificación-de-óptimos-y-relaciones-de-dualidad"><span class="header-section-number">5.1.4</span> Clasificación de Óptimos y Relaciones de Dualidad</h3>
 <p>Atendiendo a la geometría del espacio y la unicidad de las soluciones, se clasifican los siguientes escenarios recíprocos entre primal y dual (analizados sobre un espacio en <span class="math inline">\(\mathbb{R}^2\)</span>):</p>
 <ul>
 <li><strong>Caso 1: Solución Única y No Degenerada</strong>:
@@ -453,7 +473,7 @@ window.Quarto = {
 \]</span></p>
 <p>Para garantizar que el problema sea convexo (y que las condiciones KKT sean necesarias y suficientes para alcanzar el óptimo global), la matriz simétrica <span class="math inline">\(Q \in \mathbb{R}^{n \times n}\)</span> debe ser <strong>semidefinida positiva</strong> (<span class="math inline">\(Q \succeq 0\)</span>).</p>
 <section id="el-sistema-kkt-para-qp-en-forma-matricial" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="el-sistema-kkt-para-qp-en-forma-matricial"><span class="header-section-number">5.2.1</span> 1. El Sistema KKT para QP en Forma Matricial</h3>
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="el-sistema-kkt-para-qp-en-forma-matricial"><span class="header-section-number">5.2.1</span> El Sistema KKT para QP en Forma Matricial</h3>
 <p>Asociando multiplicadores <span class="math inline">\(u \ge 0\)</span> para las restricciones de recursos y <span class="math inline">\(v \ge 0\)</span> para las de no negatividad, la Lagrangiana es: <span class="math display">\[ L(x, u, v) = c^T x + \frac{1}{2} x^T Q x + u^T (b - A x) - v^T x \]</span></p>
 <p>Derivando con respecto a <span class="math inline">\(x\)</span> y planteando KKT, obtenemos: <span class="math display">\[
 \begin{aligned}
@@ -481,7 +501,7 @@ b
 \]</span> donde recordamos que además deben satisfacerse las restricciones de no negatividad para todas las variables y las condiciones lógicas de complementariedad (<span class="math inline">\(u^T y + v^T x = 0\)</span>).</p>
 </section>
 <section id="linealización-y-algoritmo-del-símplex-de-wolfe" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="linealización-y-algoritmo-del-símplex-de-wolfe"><span class="header-section-number">5.2.2</span> 2. Linealización y Algoritmo del Símplex de Wolfe</h3>
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="linealización-y-algoritmo-del-símplex-de-wolfe"><span class="header-section-number">5.2.2</span> Linealización y Algoritmo del Símplex de Wolfe</h3>
 <p>El sistema KKT es lineal en todas sus partes excepto por la condición de complementariedad <span class="math inline">\(u^T y + v^T x = 0\)</span>. Philip Wolfe propuso en 1959 adaptar el algoritmo del Símplex lineal para resolver este sistema utilizando una técnica de <strong>entrada restringida</strong> (restricted entry rule):</p>
 <ol type="1">
 <li>Se relaja temporalmente la complementariedad <span class="math inline">\(u^T y + v^T x = 0\)</span>.</li>
@@ -1345,6 +1365,14 @@ b
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-bazaraa2011linear" class="csl-entry" role="listitem">
+Bazaraa, Mokhtar S, John J Jarvis, y Hanif D Sherali. 2011. <em>Linear Programming and Network Flows</em>. John Wiley &amp; Sons.
+</div>
+<div id="ref-luenberger2015linear" class="csl-entry" role="listitem">
+Luenberger, David G, y Yinyu Ye. 2015. <em>Linear and Nonlinear Programming</em>. 4th ed. Springer.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

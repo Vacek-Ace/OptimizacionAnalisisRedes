@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -270,8 +290,8 @@ window.Quarto = {
   <li><a href="#introducción-a-la-optimización-en-aprendizaje-automático" id="toc-introducción-a-la-optimización-en-aprendizaje-automático" class="nav-link active" data-scroll-target="#introducción-a-la-optimización-en-aprendizaje-automático"><span class="header-section-number">6.1</span> Introducción a la Optimización en Aprendizaje Automático</a></li>
   <li><a href="#el-problema-de-ajuste-de-datos-en-diferentes-normas" id="toc-el-problema-de-ajuste-de-datos-en-diferentes-normas" class="nav-link" data-scroll-target="#el-problema-de-ajuste-de-datos-en-diferentes-normas"><span class="header-section-number">6.2</span> El Problema de Ajuste de Datos en Diferentes Normas</a>
   <ul class="collapse">
-  <li><a href="#regresión-lineal-clásica-norma-ell_2" id="toc-regresión-lineal-clásica-norma-ell_2" class="nav-link" data-scroll-target="#regresión-lineal-clásica-norma-ell_2"><span class="header-section-number">6.2.1</span> 1. Regresión Lineal Clásica (Norma <span class="math inline">\(\ell_2\)</span>)</a></li>
-  <li><a href="#ajustes-en-normas-robustas-ell_1-y-ell_infty" id="toc-ajustes-en-normas-robustas-ell_1-y-ell_infty" class="nav-link" data-scroll-target="#ajustes-en-normas-robustas-ell_1-y-ell_infty"><span class="header-section-number">6.2.2</span> 2. Ajustes en Normas Robustas (<span class="math inline">\(\ell_1\)</span> y <span class="math inline">\(\ell_\infty\)</span>)</a></li>
+  <li><a href="#regresión-lineal-clásica-norma-ell_2" id="toc-regresión-lineal-clásica-norma-ell_2" class="nav-link" data-scroll-target="#regresión-lineal-clásica-norma-ell_2"><span class="header-section-number">6.2.1</span> Regresión Lineal Clásica (Norma <span class="math inline">\(\ell_2\)</span>)</a></li>
+  <li><a href="#ajustes-en-normas-robustas-ell_1-y-ell_infty" id="toc-ajustes-en-normas-robustas-ell_1-y-ell_infty" class="nav-link" data-scroll-target="#ajustes-en-normas-robustas-ell_1-y-ell_infty"><span class="header-section-number">6.2.2</span> Ajustes en Normas Robustas (<span class="math inline">\(\ell_1\)</span> y <span class="math inline">\(\ell_\infty\)</span>)</a></li>
   </ul></li>
   <li><a href="#regresión-lineal-múltiple-y-selección-de-características" id="toc-regresión-lineal-múltiple-y-selección-de-características" class="nav-link" data-scroll-target="#regresión-lineal-múltiple-y-selección-de-características"><span class="header-section-number">6.3</span> Regresión Lineal Múltiple y Selección de Características</a>
   <ul class="collapse">
@@ -333,7 +353,7 @@ window.Quarto = {
 </div>
 <section id="introducción-a-la-optimización-en-aprendizaje-automático" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="introducción-a-la-optimización-en-aprendizaje-automático"><span class="header-section-number">6.1</span> Introducción a la Optimización en Aprendizaje Automático</h2>
-<p>El proceso de entrenamiento de un modelo de aprendizaje automático consiste en ajustar los parámetros de una función hipótesis <span class="math inline">\(f(x; w)\)</span> para modelar un patrón en un conjunto de datos. Las principales aplicaciones de la optimización en este ámbito son: - <strong>Estimación puntual</strong>: Maximizar la función de verosimilitud (MLE) o minimizar el error cuadrático medio. - <strong>Regularización</strong>: Añadir términos de penalización en la función objetivo (normas <span class="math inline">\(\ell_1\)</span> o <span class="math inline">\(\ell_2\)</span>) para controlar la complejidad del modelo y evitar el sobreajuste (<em>overfitting</em>). - <strong>Clasificación</strong>: Maximizar el margen de separación entre clases o minimizar la pérdida de bisagra (<em>hinge loss</em>).</p>
+<p>El proceso de entrenamiento de un modelo de aprendizaje automático consiste en ajustar los parámetros de una función hipótesis <span class="math inline">\(f(x; w)\)</span> para modelar un patrón en un conjunto de datos, siguiendo los principios y metodologías analíticas del aprendizaje estadístico clásico <span class="citation" data-cites="hastie2009elements">(<a href="references.html#ref-hastie2009elements" role="doc-biblioref">Hastie, Tibshirani, y Friedman 2009</a>)</span>. Las principales aplicaciones de la optimización en este ámbito son: - <strong>Estimación puntual</strong>: Maximizar la función de verosimilitud (MLE) o minimizar el error cuadrático medio. - <strong>Regularización</strong>: Añadir términos de penalización en la función objetivo (normas <span class="math inline">\(\ell_1\)</span> o <span class="math inline">\(\ell_2\)</span>) para controlar la complejidad del modelo y evitar el sobreajuste (<em>overfitting</em>). - <strong>Clasificación</strong>: Maximizar el margen de separación entre clases o minimizar la pérdida de bisagra (<em>hinge loss</em>).</p>
 </section>
 <section id="el-problema-de-ajuste-de-datos-en-diferentes-normas" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="el-problema-de-ajuste-de-datos-en-diferentes-normas"><span class="header-section-number">6.2</span> El Problema de Ajuste de Datos en Diferentes Normas</h2>
@@ -412,11 +432,11 @@ window.Quarto = {
 </tbody>
 </table>
 <section id="regresión-lineal-clásica-norma-ell_2" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="regresión-lineal-clásica-norma-ell_2"><span class="header-section-number">6.2.1</span> 1. Regresión Lineal Clásica (Norma <span class="math inline">\(\ell_2\)</span>)</h3>
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="regresión-lineal-clásica-norma-ell_2"><span class="header-section-number">6.2.1</span> Regresión Lineal Clásica (Norma <span class="math inline">\(\ell_2\)</span>)</h3>
 <p>La regresión lineal clásica asume que la relación toma la forma de una recta <span class="math inline">\(y = a + b x + \epsilon\)</span>. Los parámetros <span class="math inline">\(a\)</span> (intersección) y <span class="math inline">\(b\)</span> (pendiente) se obtienen minimizando el error cuadrático medio: <span class="math display">\[ \min_{a, b} \sum_{i=1}^n (a + b x_i - y_i)^2 \]</span> Las ecuaciones normales obtenidas al anular el gradiente nos proporcionan la conocida recta por mínimos cuadrados ordinarios (MCO): <span class="math display">\[ Y = 0.4261 + 0.6108 x \]</span></p>
 </section>
 <section id="ajustes-en-normas-robustas-ell_1-y-ell_infty" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="ajustes-en-normas-robustas-ell_1-y-ell_infty"><span class="header-section-number">6.2.2</span> 2. Ajustes en Normas Robustas (<span class="math inline">\(\ell_1\)</span> y <span class="math inline">\(\ell_\infty\)</span>)</h3>
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="ajustes-en-normas-robustas-ell_1-y-ell_infty"><span class="header-section-number">6.2.2</span> Ajustes en Normas Robustas (<span class="math inline">\(\ell_1\)</span> y <span class="math inline">\(\ell_\infty\)</span>)</h3>
 <p>Cuando los datos contienen valores atípicos (<em>outliers</em>) o errores de medición severos (como el punto <span class="math inline">\((5.0, 1.0)\)</span> en nuestra muestra), la norma cuadrática <span class="math inline">\(\ell_2\)</span> se ve fuertemente distorsionada. Proponemos alternativas más robustas: - <strong>Norma <span class="math inline">\(\ell_1\)</span> (Desviaciones Absolutas)</strong>: Minimiza la suma de los valores absolutos de los residuos: <span class="math display">\[ \min_{a, b} \sum_{i=1}^n |a + b x_i - y_i| \]</span> - <strong>Norma <span class="math inline">\(\ell_\infty\)</span> (Minimax)</strong>: Minimiza el máximo error cometido: <span class="math display">\[ \min_{a, b} \max_{i=1, \dots, n} |a + b x_i - y_i| \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Formulación en Programación Lineal para Ajustes Robustos">
 <div class="callout-header d-flex align-content-center">
@@ -616,6 +636,11 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-hastie2009elements" class="csl-entry" role="listitem">
+Hastie, Trevor, Robert Tibshirani, y Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. 2nd ed. Springer Science &amp; Business Media.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

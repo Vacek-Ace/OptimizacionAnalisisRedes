@@ -1,6 +1,6 @@
 # Introducción a Grafos y Árboles Soporte
 
-El **análisis de redes** es una de las disciplinas más transversales y aplicadas de las matemáticas discretas y la optimización. Muchas de las infraestructuras de la sociedad moderna (las redes de transporte eléctrico, el tráfico vial, la fibra óptica, Internet o los mapas metabólicos celulares) se modelan matemáticamente mediante **grafos**. La abstracción espacial que proporciona un grafo permite obviar la geometría física de los sistemas para centrarse en sus propiedades topológicas, conectividad y flujos.
+El **análisis de redes** es una de las disciplinas más transversales y aplicadas de las matemáticas discretas y la optimización. Muchas de las infraestructuras de la sociedad moderna (las redes de transporte eléctrico, el tráfico vial, la fibra óptica, Internet o los mapas metabólicos celulares) se modelan matemáticamente mediante **grafos**. La abstracción espacial que proporciona un grafo permite obviar la geometría física de los sistemas para centrarse en sus propiedades topológicas, conectividad y flujos, siguiendo los enfoques fundamentales de la optimización y algoritmos de redes [@ahuja1993network; @bertsekas1998network; @cormen2009introduction].
 
 En este capítulo, estudiaremos los conceptos elementales de la teoría de grafos, las formas estándar de representar redes en ordenador, las propiedades analíticas de los grafos planares y bipartitos, las caracterizaciones algebraicas de los árboles y los algoritmos clásicos de Kruskal y Prim para construir el árbol soporte de mínimo peso (MST) con sus aplicaciones en el aprendizaje no supervisado.
 
@@ -18,11 +18,11 @@ Al finalizar este capítulo, serás capaz de:
 
 ## Origen Histórico y Definiciones Básicas
 
-### 1. El Problema de Königsberg (Euler, 1736)
+### El Problema de Königsberg (Euler, 1736)
 La teoría de grafos nació formalmente en 1736 cuando Leonhard Euler resolvió el problema de los puentes de Königsberg. La ciudad estaba dividida por el río Pregel en cuatro porciones de tierra conectadas por siete puentes. El reto consistía en encontrar una ruta que cruzara cada puente exactamente una vez y regresara al origen.
 Euler demostró que tal recorrido (denominado hoy ciclo euleriano) era imposible. Lo fundamental de su análisis fue que obvió los detalles de las distancias o la forma de las riberas, modelando el problema como una red de nodos (tierra) y líneas (puentes). Dujo que un nodo solo puede cruzarse de forma completa si cada entrada tiene una salida, lo que exige que todos los nodos tengan un grado par. En Königsberg, los nodos tenían grado impar, cerrando toda posibilidad.
 
-### 2. Definición Formal de un Grafo
+### Definición Formal de un Grafo
 -   **Grafo No Dirigido**:
     Un par ordenado $G = (V, E)$ donde $V$ es un conjunto no vacío de **vértices** o **nodos** y $E$ es un conjunto de **aristas** formadas por pares no ordenados de vértices distintos $\{u, v\}$.
 -   **Grafo Dirigido (Digrafo)**:
@@ -32,7 +32,7 @@ Euler demostró que tal recorrido (denominado hoy ciclo euleriano) era imposible
 -   **Red o Grafo Valorado**:
     Un grafo asociado a una función de coste $w: E \to \mathbb{R}$ que asigna un peso o longitud a cada conexión.
 
-### 3. Subgrafos, Conectividad y Grados
+### Subgrafos, Conectividad y Grados
 -   **Subgrafo**:
     Un grafo $G' = (V', E')$ es subgrafo de $G = (V, E)$ si $V' \subseteq V$ y $E' \subseteq E \cap (V' \times V')$.
 -   **Grafo Parcial (Spanning Subgraph)**:
@@ -49,7 +49,7 @@ Euler demostró que tal recorrido (denominado hoy ciclo euleriano) era imposible
 
 ## Representación de Grafos
 
-### 1. Representación Geométrica y Grafos Planares
+### Representación Geométrica y Grafos Planares
 Un grafo es **planar** si puede ser dibujado en el plano bidimensional de manera que sus aristas solo se corten en sus vértices.
 
 -   **Regiones**:
@@ -94,7 +94,7 @@ Un grafo es planar si y solo si no contiene ningún subgrafo que sea homeomorfo 
 Un grafo es bipartito (sus vértices se dividen en dos conjuntos disjuntos $V_1$ y $V_2$ sin conexiones internas) si y solo si **no contiene ningún ciclo de longitud impar**.
 :::
 
-### 2. Representación en Ordenador
+### Representación en Ordenador
 -   **Matriz de Adyacencia ($A \in \mathbb{R}^{n \times n}$)**:
     Matriz donde la posición $a_{ij}$ indica la existencia (1) o el coste de la arista que une los nodos $i$ y $j$.
 -   **Matriz de Incidencia ($M \in \mathbb{R}^{n \times m}$)**:
@@ -125,7 +125,7 @@ Dado un grafo conexo no dirigido valorado $G = (V, E, w)$, un **árbol soporte d
 
 $$ \min \sum_{e \in E_T} w(e) $$
 
-### 1. Algoritmo de Kruskal (1956)
+### Algoritmo de Kruskal (1956)
 Es de naturaleza codiciosa (greedy) y procesa las aristas de forma aislada:
 1.  Ordenar todas las aristas del grafo de menor a mayor peso.
 2.  Inicializar cada nodo en su propia componente conexa disjunta.
@@ -133,7 +133,7 @@ Es de naturaleza codiciosa (greedy) y procesa las aristas de forma aislada:
 4.  Terminar al seleccionar $n-1$ aristas.
 -   *Complejidad*: $O(|E| \log |E|)$ debido al coste de la ordenación inicial.
 
-### 2. Algoritmo de Prim
+### Algoritmo de Prim
 Hace crecer una única componente conectada desde un nodo raíz arbitrario $s$:
 1.  Inicializar los nodos cubiertos $V_T = \{s\}$ y el árbol de aristas $E_T = \emptyset$.
 2.  Identificar la arista de coste mínimo $\{u, v\}$ tal que $u \in V_T$ y $v \notin V_T$.

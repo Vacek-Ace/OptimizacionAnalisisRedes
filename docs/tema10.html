@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -269,13 +289,13 @@ window.Quarto = {
   <ul>
   <li><a href="#conceptos-fundamentales-de-emparejamiento" id="toc-conceptos-fundamentales-de-emparejamiento" class="nav-link active" data-scroll-target="#conceptos-fundamentales-de-emparejamiento"><span class="header-section-number">10.1</span> Conceptos Fundamentales de Emparejamiento</a>
   <ul class="collapse">
-  <li><a href="#definición-de-emparejamiento" id="toc-definición-de-emparejamiento" class="nav-link" data-scroll-target="#definición-de-emparejamiento"><span class="header-section-number">10.1.1</span> 1. Definición de Emparejamiento</a></li>
-  <li><a href="#cadenas-alternantes-e-incrementales" id="toc-cadenas-alternantes-e-incrementales" class="nav-link" data-scroll-target="#cadenas-alternantes-e-incrementales"><span class="header-section-number">10.1.2</span> 2. Cadenas Alternantes e Incrementales</a></li>
+  <li><a href="#definición-de-emparejamiento" id="toc-definición-de-emparejamiento" class="nav-link" data-scroll-target="#definición-de-emparejamiento"><span class="header-section-number">10.1.1</span> Definición de Emparejamiento</a></li>
+  <li><a href="#cadenas-alternantes-e-incrementales" id="toc-cadenas-alternantes-e-incrementales" class="nav-link" data-scroll-target="#cadenas-alternantes-e-incrementales"><span class="header-section-number">10.1.2</span> Cadenas Alternantes e Incrementales</a></li>
   </ul></li>
   <li><a href="#búsqueda-mediante-árboles-alternantes" id="toc-búsqueda-mediante-árboles-alternantes" class="nav-link" data-scroll-target="#búsqueda-mediante-árboles-alternantes"><span class="header-section-number">10.2</span> Búsqueda mediante Árboles Alternantes</a></li>
   <li><a href="#problemas-de-recubrimiento-en-grafos" id="toc-problemas-de-recubrimiento-en-grafos" class="nav-link" data-scroll-target="#problemas-de-recubrimiento-en-grafos"><span class="header-section-number">10.3</span> Problemas de Recubrimiento en Grafos</a>
   <ul class="collapse">
-  <li><a href="#definición-de-recubrimientos-y-conjuntos-independientes" id="toc-definición-de-recubrimientos-y-conjuntos-independientes" class="nav-link" data-scroll-target="#definición-de-recubrimientos-y-conjuntos-independientes"><span class="header-section-number">10.3.1</span> 1. Definición de Recubrimientos y Conjuntos Independientes</a></li>
+  <li><a href="#definición-de-recubrimientos-y-conjuntos-independientes" id="toc-definición-de-recubrimientos-y-conjuntos-independientes" class="nav-link" data-scroll-target="#definición-de-recubrimientos-y-conjuntos-independientes"><span class="header-section-number">10.3.1</span> Definición de Recubrimientos y Conjuntos Independientes</a></li>
   </ul></li>
   <li><a href="#emparejamiento-de-máximo-peso-y-algoritmo-húngaro" id="toc-emparejamiento-de-máximo-peso-y-algoritmo-húngaro" class="nav-link" data-scroll-target="#emparejamiento-de-máximo-peso-y-algoritmo-húngaro"><span class="header-section-number">10.4</span> Emparejamiento de Máximo Peso y Algoritmo Húngaro</a></li>
   <li><a href="#implementación-en-python-con-networkx" id="toc-implementación-en-python-con-networkx" class="nav-link" data-scroll-target="#implementación-en-python-con-networkx"><span class="header-section-number">10.5</span> Implementación en Python con NetworkX</a></li>
@@ -304,7 +324,7 @@ window.Quarto = {
 </header>
 
 
-<p>El problema de <strong>emparejamiento</strong> (matching) aborda la selección de un subconjunto de aristas de un grafo de tal manera que ninguna de ellas comparta un vértice común. Esta estructura discreta, en apariencia sencilla, posee una enorme relevancia teórica y práctica en problemas de asignación de tareas a operarios, emparejamiento de alumnos a centros universitarios (como en los algoritmos estables de Gale-Shapley), y enrutamiento en redes complejas.</p>
+<p>El problema de <strong>emparejamiento</strong> (matching) aborda la selección de un subconjunto de aristas de un grafo de tal manera que ninguna de ellas comparta un vértice común. Esta estructura discreta, en apariencia sencilla, posee una enorme relevancia teórica y práctica en problemas de asignación de tareas a operarios, emparejamiento de alumnos a centros universitarios (como en los algoritmos estables de Gale-Shapley), y enrutamiento en redes complejas, constituyendo una de las áreas más ricas de la optimización combinatoria <span class="citation" data-cites="ahuja1993network papadimitriou1998combinatorial">(<a href="references.html#ref-ahuja1993network" role="doc-biblioref">Ahuja, Magnanti, y Orlin 1993</a>; <a href="references.html#ref-papadimitriou1998combinatorial" role="doc-biblioref">Papadimitriou y Steiglitz 1998</a>)</span>.</p>
 <p>En este capítulo, estudiaremos las definiciones de emparejamientos maximales, máximos y perfectos, la caracterización de optimalidad de Berge basada en cadenas incrementales, la búsqueda mediante árboles alternantes, las relaciones de dualidad de Gallai entre emparejamiento y recubrimiento (<em>covering</em>), el teorema de König-Egerváry para grafos bipartitos y el algoritmo Húngaro para emparejamientos con pesos.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Objetivos de aprendizaje">
 <div class="callout-header d-flex align-content-center">
@@ -331,11 +351,11 @@ window.Quarto = {
 <h2 data-number="10.1" class="anchored" data-anchor-id="conceptos-fundamentales-de-emparejamiento"><span class="header-section-number">10.1</span> Conceptos Fundamentales de Emparejamiento</h2>
 <p>Sea un grafo simple no dirigido <span class="math inline">\(G = (V, E)\)</span>.</p>
 <section id="definición-de-emparejamiento" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="definición-de-emparejamiento"><span class="header-section-number">10.1.1</span> 1. Definición de Emparejamiento</h3>
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="definición-de-emparejamiento"><span class="header-section-number">10.1.1</span> Definición de Emparejamiento</h3>
 <p>Un subconjunto de aristas <span class="math inline">\(M \subseteq E\)</span> es un <strong>emparejamiento</strong> si para todo par de aristas distintas <span class="math inline">\(e_1, e_2 \in M\)</span> se cumple que no comparten ningún nodo (<span class="math inline">\(e_1 \cap e_2 = \emptyset\)</span>). - <strong>Vértice Saturado (o Emparejado)</strong>: Un vértice <span class="math inline">\(v \in V\)</span> que pertenece a alguna de las aristas seleccionadas en <span class="math inline">\(M\)</span>. - <strong>Vértice Insaturado (o Libre)</strong>: Un vértice <span class="math inline">\(v \in V\)</span> que no forma parte de ninguna arista de <span class="math inline">\(M\)</span>. - <strong>Emparejamiento Maximal</strong>: Un emparejamiento <span class="math inline">\(M\)</span> tal que no se le puede añadir ninguna arista de <span class="math inline">\(E \setminus M\)</span> sin violar la condición de emparejamiento. - <strong>Emparejamiento Máximo</strong>: Un emparejamiento que tiene la mayor cantidad de aristas posible en el grafo <span class="math inline">\(G\)</span>. Su tamaño se denota por la cardinalidad <span class="math inline">\(\alpha_E(G)\)</span>. - <strong>Emparejamiento Perfecto</strong>: Un emparejamiento que satura a todos los vértices del grafo. Si existe, la cardinalidad del emparejamiento es exactamente <span class="math inline">\(|M| = n/2\)</span> (lo que exige que el número total de nodos <span class="math inline">\(n\)</span> sea par).</p>
 </section>
 <section id="cadenas-alternantes-e-incrementales" class="level3" data-number="10.1.2">
-<h3 data-number="10.1.2" class="anchored" data-anchor-id="cadenas-alternantes-e-incrementales"><span class="header-section-number">10.1.2</span> 2. Cadenas Alternantes e Incrementales</h3>
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="cadenas-alternantes-e-incrementales"><span class="header-section-number">10.1.2</span> Cadenas Alternantes e Incrementales</h3>
 <p>Dada una red con un emparejamiento <span class="math inline">\(M\)</span>: - <strong>Cadena Alternante</strong>: Una cadena de aristas que pertenecen alternativamente a <span class="math inline">\(M\)</span> y a <span class="math inline">\(E \setminus M\)</span>. - <strong>Cadena Incremental (o de Aumento)</strong>: Una cadena alternante cuyos extremos inicial y final son nodos libres (insaturados) con respecto a <span class="math inline">\(M\)</span>.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema de Berge (1957)">
 <div class="callout-header d-flex align-content-center">
@@ -361,7 +381,7 @@ window.Quarto = {
 <h2 data-number="10.3" class="anchored" data-anchor-id="problemas-de-recubrimiento-en-grafos"><span class="header-section-number">10.3</span> Problemas de Recubrimiento en Grafos</h2>
 <p>Estudiamos la relación entre seleccionar aristas independientes y cubrir los componentes del grafo.</p>
 <section id="definición-de-recubrimientos-y-conjuntos-independientes" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="definición-de-recubrimientos-y-conjuntos-independientes"><span class="header-section-number">10.3.1</span> 1. Definición de Recubrimientos y Conjuntos Independientes</h3>
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="definición-de-recubrimientos-y-conjuntos-independientes"><span class="header-section-number">10.3.1</span> Definición de Recubrimientos y Conjuntos Independientes</h3>
 <ul>
 <li><strong>Recubrimiento de Vértices (Vertex Cover)</strong>: Un subconjunto de nodos <span class="math inline">\(V_C \subseteq V\)</span> tal que toda arista del grafo tiene al menos uno de sus extremos en <span class="math inline">\(V_C\)</span>: <span class="math display">\[ \{u, v\} \cap V_C \neq \emptyset, \quad \forall \{u, v\} \in E \]</span> El tamaño del recubrimiento de vértices mínimo se denota por <span class="math inline">\(\alpha_V(G)\)</span>.</li>
 <li><strong>Recubrimiento de Aristas (Edge Cover)</strong>: Un subconjunto de aristas <span class="math inline">\(E_C \subseteq E\)</span> tal que todo vértice del grafo es incidente en al menos una arista de <span class="math inline">\(E_C\)</span>. Solo existe si el grafo no tiene nodos aislados. Su tamaño mínimo se denota por <span class="math inline">\(\beta_E(G)\)</span>.</li>
@@ -463,6 +483,14 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ahuja1993network" class="csl-entry" role="listitem">
+Ahuja, Ravindra K, Thomas L Magnanti, y James B Orlin. 1993. <em>Network Flows: Theory, Algorithms, and Applications</em>. Prentice Hall.
+</div>
+<div id="ref-papadimitriou1998combinatorial" class="csl-entry" role="listitem">
+Papadimitriou, Christos H, y Kenneth Steiglitz. 1998. <em>Combinatorial Optimization: Algorithms and Complexity</em>. Courier Corporation.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

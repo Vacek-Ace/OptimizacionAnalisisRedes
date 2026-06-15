@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Conclusiones – Apuntes de Optimización y Análisis de Redes</title>
+<title>12&nbsp; Conclusiones – Apuntes de Optimización y Análisis de Redes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="estilos_html.css">
 </head>
@@ -84,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conclusiones.html">Conclusiones</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conclusiones.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -184,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,15 +227,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#resumen-de-los-aprendizajes" id="toc-resumen-de-los-aprendizajes" class="nav-link active" data-scroll-target="#resumen-de-los-aprendizajes"><span class="header-section-number">12.1</span> Resumen de los aprendizajes</a></li>
+  <li><a href="#reflexiones-finales" id="toc-reflexiones-finales" class="nav-link" data-scroll-target="#reflexiones-finales"><span class="header-section-number">12.2</span> Reflexiones finales</a></li>
+  <li><a href="#proyección-futura-el-valor-del-rigor-matemático" id="toc-proyección-futura-el-valor-del-rigor-matemático" class="nav-link" data-scroll-target="#proyección-futura-el-valor-del-rigor-matemático"><span class="header-section-number">12.3</span> Proyección futura: El valor del rigor matemático</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Conclusiones</h1>
+<h1 class="title"><span id="sec-conclusiones" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></h1>
 </div>
 
 
@@ -223,10 +260,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>A lo largo de este libro de apuntes hemos explorado las dos vertientes de la optimización matemática aplicadas al Grado en Matemáticas: la optimización no lineal (con un fuerte componente continuo y de análisis convexo) y la optimización en redes (con una estructura discreta y de teoría de grafos).</p>
-<p>El uso de <strong>Python</strong> (a través de <code>CVXPY</code> y <code>NetworkX</code>) permite trasladar de forma inmediata los teoremas de optimalidad y los algoritmos abstractos a la resolución numérica de problemas prácticos en logística, planificación y ciencia de datos.</p>
+<p>A lo largo de once capítulos hemos presentado el material de la asignatura de <strong>Optimización y Análisis de Redes</strong> del Grado en <strong>Matemáticas</strong>.</p>
+<p>En este capítulo de cierre, te invitamos a reflexionar sobre las principales lecciones aprendidas durante el curso, destacando cómo el rigor matemático y el pensamiento analítico se convierten en herramientas indispensables para dominar la modelización matemática. Además, animamos a los estudiantes a continuar explorando y ampliando sus conocimientos en cursos posteriores, consolidando una base sólida para afrontar los desafíos de la optimización y la ciencia de datos moderna desde una perspectiva analítica, rigurosa y fundamentada.</p>
+<p>Al finalizar este recorrido, queda patente que la optimización es mucho más que una colección de algoritmos aislados; es un marco de pensamiento estructurado para tomar decisiones óptimas bajo condiciones de recursos limitados. Hemos transitado desde los fundamentos continuos del análisis convexo y las condiciones de optimalidad hasta la estructura discreta y combinatorial de las redes y grafos, equipando a los futuros matemáticos con herramientas capaces de modelar, resolver e interpretar problemas complejos del mundo real.</p>
+<section id="resumen-de-los-aprendizajes" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="resumen-de-los-aprendizajes"><span class="header-section-number">12.1</span> Resumen de los aprendizajes</h2>
+<p>A lo largo de este manual, hemos construido un conocimiento progresivo y bidireccional sobre la optimización matemática, cubriendo los siguientes pilares:</p>
+<ol type="1">
+<li><p><strong>Optimización No Lineal y Métodos Numéricos</strong>: Partimos del estudio de problemas no lineales continuos sin restricciones. Analizamos métodos de búsqueda lineal unidimensional y algoritmos multivariantes, comprendiendo las ventajas de velocidad y convergencia del método de Newton y Cuasi-Newton (BFGS) frente al clásico descenso de gradiente.</p></li>
+<li><p><strong>Análisis Convexo</strong>: Establecimos el marco matemático que garantiza la globalidad de los óptimos. Estudiamos las propiedades de los conjuntos y funciones convexas, los teoremas de separación e hiperplanos de soporte, y la generalización de la diferenciabilidad mediante el subgradiente y el subdiferencial, sentando las bases teóricas de la optimización convexa moderna.</p></li>
+<li><p><strong>Condiciones de Optimalidad (KKT) y Programación Cuadrática</strong>: Dedujimos formalmente las condiciones necesarias de Fritz-John y las condiciones necesarias y suficientes de Karush-Kuhn-Tucker (KKT) bajo cualificación de restricciones (LICQ). Aplicamos este potente formalismo a la resolución de problemas lineales (conectando multiplicadores KKT con dualidad) y cuadráticos (Símplex de Wolfe).</p></li>
+<li><p><strong>Optimización en Ciencia de Datos</strong>: Exploramos aplicaciones reales y modernas en el aprendizaje automático. Formulamos regresiones robustas bajo diferentes normas (<span class="math inline">\(\ell_1\)</span>, <span class="math inline">\(\ell_2\)</span>, <span class="math inline">\(\ell_\infty\)</span>), dedujimos el clasificador de margen máximo (SVM) mediante su problema dual, y planteamos la explicabilidad mediante contrafácticos a través de modelos de optimización cuadrática entera mixta (MIQP).</p></li>
+<li><p><strong>Estructura y Algoritmos en Redes</strong>: Pasamos al dominio discreto de los grafos. Analizamos la propiedad clave de la total unimodularidad (TUM) de la matriz de incidencia, que actúa como puente matemático permitiendo resolver problemas discretos mediante programación lineal continua sin perder la integridad. Estudiamos algoritmos eficientes para árboles soporte mínimos (Prim y Kruskal), caminos mínimos (Dijkstra, Bellman-Ford, Floyd-Warshall) con su interpretación dual de potenciales nodales, y flujos máximos (Ford-Fulkerson y el teorema del corte mínimo).</p></li>
+<li><p><strong>Emparejamientos y Rutas Óptimas</strong>: Abordamos problemas combinatorios complejos. Desde el emparejamiento óptimo (bipartito y el algoritmo Húngaro) hasta el diseño de rutas óptimas (el problema del Cartero Chino y el TSP), contrastando la dificultad computacional de los problemas en P frente a los NP-duros y evaluando el diseño de heurísticas (2-opt) y algoritmos de aproximación (Christofides).</p></li>
+</ol>
+</section>
+<section id="reflexiones-finales" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="reflexiones-finales"><span class="header-section-number">12.2</span> Reflexiones finales</h2>
+<p>El estudio de la <strong>Optimización y el Análisis de Redes</strong> dota al matemático de un puente directo entre la abstracción algebraica y analítica y la resolución de problemas tangibles de toma de decisiones. Hemos visto cómo conceptos teóricos profundos —geometría convexa, dualidad lineal y estructura combinatorial de grafos— se traducen en algoritmos computacionales de alta eficiencia que gestionan la logística, las finanzas o las telecomunicaciones modernas.</p>
+<p>Hemos aprendido que modelar no es un proceso mecánico ni una mera aplicación de recetas informáticas. Construir un modelo útil requiere un proceso iterativo de <strong>abstracción, resolución, validación y análisis de sensibilidad</strong>. Entender las hipótesis que garantizan la convergencia de un algoritmo o la integridad de una solución es lo que distingue a un matemático de un aplicador de software a ciegas.</p>
+</section>
+<section id="proyección-futura-el-valor-del-rigor-matemático" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="proyección-futura-el-valor-del-rigor-matemático"><span class="header-section-number">12.3</span> Proyección futura: El valor del rigor matemático</h2>
+<p>Las competencias adquiridas en esta asignatura son esenciales en el perfil del matemático moderno. Vuestra formación os proporciona una ventaja competitiva fundamental: la capacidad de ir más allá del código, comprendiendo la geometría del espacio factible, la estabilidad de las restricciones y la justificación teórica de los óptimos obtenidos.</p>
+<p>Este conocimiento es el lenguaje compartido con la <strong>Investigación Operativa</strong> avanzada, el <strong>Aprendizaje Automático</strong> y la <strong>Ciencia de Datos Cuantitativa</strong>. Mientras que otros perfiles aplican modelos como “cajas negras”, vuestro rigor os capacita para diseñar nuevas formulaciones, diagnosticar fallos de convergencia y optimizar recursos con plenas garantías matemáticas.</p>
+<p>Esta sólida base analítica os posiciona de manera idnea para trayectorias profesionales avanzadas en sectores estratégicos como <strong>Ingeniería de Optimización y Logística</strong>, <strong>Científico de Datos Cuantitativo</strong>, <strong>Analista de Riesgos o Quants</strong> en el sector financiero, o para continuar vuestra formación en <strong>estudios de postgrado (Máster y Doctorado)</strong> en optimización, estadística aplicada e investigación operativa.</p>
+<p>¡Os deseamos el mayor de los éxitos en vuestra andadura profesional y académica!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

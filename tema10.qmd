@@ -1,6 +1,6 @@
 # Problemas de Emparejamiento (Matching)
 
-El problema de **emparejamiento** (matching) aborda la selección de un subconjunto de aristas de un grafo de tal manera que ninguna de ellas comparta un vértice común. Esta estructura discreta, en apariencia sencilla, posee una enorme relevancia teórica y práctica en problemas de asignación de tareas a operarios, emparejamiento de alumnos a centros universitarios (como en los algoritmos estables de Gale-Shapley), y enrutamiento en redes complejas.
+El problema de **emparejamiento** (matching) aborda la selección de un subconjunto de aristas de un grafo de tal manera que ninguna de ellas comparta un vértice común. Esta estructura discreta, en apariencia sencilla, posee una enorme relevancia teórica y práctica en problemas de asignación de tareas a operarios, emparejamiento de alumnos a centros universitarios (como en los algoritmos estables de Gale-Shapley), y enrutamiento en redes complejas, constituyendo una de las áreas más ricas de la optimización combinatoria [@ahuja1993network; @papadimitriou1998combinatorial].
 
 En este capítulo, estudiaremos las definiciones de emparejamientos maximales, máximos y perfectos, la caracterización de optimalidad de Berge basada en cadenas incrementales, la búsqueda mediante árboles alternantes, las relaciones de dualidad de Gallai entre emparejamiento y recubrimiento (*covering*), el teorema de König-Egerváry para grafos bipartitos y el algoritmo Húngaro para emparejamientos con pesos.
 
@@ -20,7 +20,7 @@ Al finalizar este capítulo, serás capaz de:
 
 Sea un grafo simple no dirigido $G = (V, E)$.
 
-### 1. Definición de Emparejamiento
+### Definición de Emparejamiento
 Un subconjunto de aristas $M \subseteq E$ es un **emparejamiento** si para todo par de aristas distintas $e_1, e_2 \in M$ se cumple que no comparten ningún nodo ($e_1 \cap e_2 = \emptyset$).
 -   **Vértice Saturado (o Emparejado)**:
     Un vértice $v \in V$ que pertenece a alguna de las aristas seleccionadas en $M$.
@@ -33,7 +33,7 @@ Un subconjunto de aristas $M \subseteq E$ es un **emparejamiento** si para todo 
 -   **Emparejamiento Perfecto**:
     Un emparejamiento que satura a todos los vértices del grafo. Si existe, la cardinalidad del emparejamiento es exactamente $|M| = n/2$ (lo que exige que el número total de nodos $n$ sea par).
 
-### 2. Cadenas Alternantes e Incrementales
+### Cadenas Alternantes e Incrementales
 Dada una red con un emparejamiento $M$:
 -   **Cadena Alternante**:
     Una cadena de aristas que pertenecen alternativamente a $M$ y a $E \setminus M$.
@@ -64,7 +64,7 @@ Para localizar de forma algorítmica las cadenas incrementales, construimos una 
 
 Estudiamos la relación entre seleccionar aristas independientes y cubrir los componentes del grafo.
 
-### 1. Definición de Recubrimientos y Conjuntos Independientes
+### Definición de Recubrimientos y Conjuntos Independientes
 -   **Recubrimiento de Vértices (Vertex Cover)**:
     Un subconjunto de nodos $V_C \subseteq V$ tal que toda arista del grafo tiene al menos uno de sus extremos en $V_C$:
     $$ \{u, v\} \cap V_C \neq \emptyset, \quad \forall \{u, v\} \in E $$

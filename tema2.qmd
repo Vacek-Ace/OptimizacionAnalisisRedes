@@ -69,7 +69,7 @@ $$
 & x_i \ge 0, \quad i = 1, \dots, n
 \end{aligned}
 $$
-Este problema posee una función objetivo cuadrática no lineal y restricciones lineales, lo que constituye un problema de **Programación Cuadrática (QP)**. Su naturaleza convexa (cuando la matriz de covarianzas es semidefinida positiva) garantiza que cualquier solución óptima local sea también global.
+Este problema posee una función objetivo cuadrática no lineal y restricciones lineales, lo que constituye un problema de **Programación Cuadrática (QP)**. Su naturaleza convexa (cuando la matriz de covarianzas es semidefinida positiva) garantiza que cualquier solución óptima local sea también global [@boyd2004convex; @hillier2010investigacion].
 :::
 
 
@@ -150,7 +150,7 @@ Sea $f: \mathbb{R}^n \to \mathbb{R}$ una función dos veces diferenciable.
 Los métodos unidimensionales buscan el mínimo de una función $f: \mathbb{R} \to \mathbb{R}$ en un intervalo cerrado $[a, b]$. Son fundamentales porque resolver problemas multidimensionales suele requerir resolver una sucesión de problemas unidimensionales a lo largo de direcciones de descenso (búsqueda lineal o *line search*):
 $$ \min_{\alpha > 0} \phi(\alpha) = f(x_k + \alpha d_k) $$
 
-### 1. Métodos sin Derivadas
+### Métodos sin Derivadas
 
 Estos métodos solo evalúan la función objetivo y requieren que la función sea **unimodal** en el intervalo $[a, b]$, es decir, que posea un único mínimo local en dicho intervalo.
 
@@ -189,7 +189,7 @@ def seccion_aurea(f, a, b, tol=1e-5):
 ```
 :::
 
-### 2. Métodos con Derivadas
+### Métodos con Derivadas
 
 -   **Método de Bisección (Bolzano)**:
     Busca el cero de la derivada $f'(x) = 0$. Requiere que los signos de la derivada en los extremos del intervalo sean opuestos ($f'(a) < 0$ y $f'(b) > 0$). En cada paso, evalúa la derivada en el punto medio del intervalo y reduce el intervalo exactamente a la mitad.
@@ -207,7 +207,7 @@ $$ x_{k+1} = x_k + \alpha_k d_k $$
 
 Donde $d_k$ es la **dirección de descenso** (debe cumplir que $\nabla f(x_k)^T d_k < 0$) y $\alpha_k > 0$ es el **tamaño de paso** obtenido mediante búsqueda unidimensional lineal.
 
-### 1. Máximo Descenso (Steepest Descent)
+### Máximo Descenso (Steepest Descent)
 
 La dirección de búsqueda se toma como el opuesto del gradiente, que es la dirección que minimiza localmente la derivada direccional:
 $$ d_k = -\nabla f(x_k) $$
@@ -219,7 +219,7 @@ $$ \alpha_k = \arg\min_{\alpha > 0} f(x_k - \alpha \nabla f(x_k)) $$
     $$ d_k^T d_{k+1} = 0 $$
     Si la función presenta curvas de nivel muy estiradas (problemas mal acondicionados, donde la relación entre el mayor y el menor autovalor de la hessiana es muy grande), el algoritmo zigzaguea con pasos ortogonales consecutivos, ralentizando drásticamente el avance hacia el óptimo.
 
-### 2. Método de Newton Multivariable
+### Método de Newton Multivariable
 
 El método de Newton incorpora la curvatura local dada por la matriz hessiana para corregir la dirección de búsqueda, apuntando directamente al mínimo de la aproximación cuadrática:
 $$ d_k = - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) $$
@@ -230,7 +230,7 @@ Si el punto inicial está cerca del mínimo y la hessiana es definida positiva, 
     2.  Requiere resolver un sistema de ecuaciones lineales de tamaño $n \times n$ para calcular $[\nabla^2 f(x_k)]^{-1} \nabla f(x_k)$, con un coste computacional de $O(n^3)$ operaciones, inviable para problemas a gran escala.
     3.  Si la hessiana no es definida positiva, la dirección puede no ser de descenso, provocando que el algoritmo diverja.
 
-### 3. Métodos Cuasi-Newton (BFGS)
+### Métodos Cuasi-Newton (BFGS)
 
 Los métodos Cuasi-Newton evitan el cálculo explícito y la inversión de la hessiana. En su lugar, construyen una aproximación simétrica y definida positiva de la inversa de la hessiana $H_k \approx [\nabla^2 f(x_k)]^{-1}$ basándose únicamente en los cambios observados en los vectores de gradiente entre pasos consecutivos, satisfaciendo la **ecuación de la secante**:
 $$ H_{k+1} y_k = s_k $$
@@ -239,7 +239,7 @@ Donde $s_k = x_{k+1} - x_k$ y $y_k = \nabla f(x_{k+1}) - \nabla f(x_k)$.
 La dirección de descenso se calcula con coste $O(n^2)$ como:
 $$ d_k = - H_k \nabla f(x_k) $$
 
-El método más popular y de mayor eficiencia es el algoritmo **BFGS** (Broyden-Fletcher-Goldfarb-Shanno), que actualiza $H_k$ de forma iterativa conservando la simetría y definición positiva de la aproximación.
+El método más popular y de mayor eficiencia es el algoritmo **BFGS** (Broyden-Fletcher-Goldfarb-Shanno), que actualiza $H_k$ de forma iterativa conservando la simetría y definición positiva de la aproximación, siendo una referencia estándar para la optimización multivariable continua [@nocedal2006numerical; @luenberger2015linear].
 
 
 ::: {.callout-tip title="Código Python: Algoritmo de Descenso de Gradiente con Búsqueda Lineal Exacta" collapse="true"}

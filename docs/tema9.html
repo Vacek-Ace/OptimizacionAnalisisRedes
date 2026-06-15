@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -248,7 +268,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -269,13 +289,13 @@ window.Quarto = {
   <ul>
   <li><a href="#estructura-algebraica-de-flujos-y-cociclos" id="toc-estructura-algebraica-de-flujos-y-cociclos" class="nav-link active" data-scroll-target="#estructura-algebraica-de-flujos-y-cociclos"><span class="header-section-number">9.1</span> Estructura Algebraica de Flujos y Cociclos</a>
   <ul class="collapse">
-  <li><a href="#definición-de-flujo-y-circulación" id="toc-definición-de-flujo-y-circulación" class="nav-link" data-scroll-target="#definición-de-flujo-y-circulación"><span class="header-section-number">9.1.1</span> 1. Definición de Flujo y Circulación</a></li>
+  <li><a href="#definición-de-flujo-y-circulación" id="toc-definición-de-flujo-y-circulación" class="nav-link" data-scroll-target="#definición-de-flujo-y-circulación"><span class="header-section-number">9.1.1</span> Definición de Flujo y Circulación</a></li>
   </ul></li>
   <li><a href="#el-lema-de-coloración-de-arcos-de-minty-1966" id="toc-el-lema-de-coloración-de-arcos-de-minty-1966" class="nav-link" data-scroll-target="#el-lema-de-coloración-de-arcos-de-minty-1966"><span class="header-section-number">9.2</span> El Lema de Coloración de Arcos de Minty (1966)</a></li>
   <li><a href="#el-problema-del-flujo-máximo" id="toc-el-problema-del-flujo-máximo" class="nav-link" data-scroll-target="#el-problema-del-flujo-máximo"><span class="header-section-number">9.3</span> El Problema del Flujo Máximo</a>
   <ul class="collapse">
-  <li><a href="#cortes-y-capacidad-de-un-corte" id="toc-cortes-y-capacidad-de-un-corte" class="nav-link" data-scroll-target="#cortes-y-capacidad-de-un-corte"><span class="header-section-number">9.3.1</span> 1. Cortes y Capacidad de un Corte</a></li>
-  <li><a href="#algoritmo-de-ford-fulkerson-camino-aumentante" id="toc-algoritmo-de-ford-fulkerson-camino-aumentante" class="nav-link" data-scroll-target="#algoritmo-de-ford-fulkerson-camino-aumentante"><span class="header-section-number">9.3.2</span> 2. Algoritmo de Ford-Fulkerson (Camino Aumentante)</a></li>
+  <li><a href="#cortes-y-capacidad-de-un-corte" id="toc-cortes-y-capacidad-de-un-corte" class="nav-link" data-scroll-target="#cortes-y-capacidad-de-un-corte"><span class="header-section-number">9.3.1</span> Cortes y Capacidad de un Corte</a></li>
+  <li><a href="#algoritmo-de-ford-fulkerson-camino-aumentante" id="toc-algoritmo-de-ford-fulkerson-camino-aumentante" class="nav-link" data-scroll-target="#algoritmo-de-ford-fulkerson-camino-aumentante"><span class="header-section-number">9.3.2</span> Algoritmo de Ford-Fulkerson (Camino Aumentante)</a></li>
   </ul></li>
   <li><a href="#problema-de-flujo-de-coste-mínimo-y-transbordo" id="toc-problema-de-flujo-de-coste-mínimo-y-transbordo" class="nav-link" data-scroll-target="#problema-de-flujo-de-coste-mínimo-y-transbordo"><span class="header-section-number">9.4</span> Problema de Flujo de Coste Mínimo y Transbordo</a></li>
   <li><a href="#implementación-en-python-con-networkx" id="toc-implementación-en-python-con-networkx" class="nav-link" data-scroll-target="#implementación-en-python-con-networkx"><span class="header-section-number">9.5</span> Implementación en Python con NetworkX</a></li>
@@ -304,7 +324,7 @@ window.Quarto = {
 </header>
 
 
-<p>La optimización de <strong>flujos en redes</strong> representa una de las ramas más maduras y de mayor impacto práctico de la investigación operativa. Permite modelar y resolver de forma exacta el envío de entidades físicas o lógicas (tales como toneladas de mercancía, litros de crudo, vatios de potencia eléctrica o gigabytes de datos) a través de canales con capacidades limitadas. En este capítulo, estudiaremos el concepto algebraico de flujo y cociclo, el célebre Lema de Coloración de Arcos de Minty (herramienta teórica cardinal para demostrar optimalidades), el teorema de flujo máximo y corte mínimo, el algoritmo de Ford-Fulkerson y el problema general del flujo de coste mínimo y transbordo.</p>
+<p>La optimización de <strong>flujos en redes</strong> representa una de las ramas más maduras y de mayor impacto práctico de la investigación operativa. Permite modelar y resolver de forma exacta el envío de entidades físicas o lógicas (tales como toneladas de mercancía, litros de crudo, vatios de potencia eléctrica o gigabytes de datos) a través de canales con capacidades limitadas, cuya teoría y aplicaciones algorítmicas se estudian detalladamente en los textos clásicos de flujos y optimización en redes <span class="citation" data-cites="ahuja1993network bertsekas1998network">(<a href="references.html#ref-ahuja1993network" role="doc-biblioref">Ahuja, Magnanti, y Orlin 1993</a>; <a href="references.html#ref-bertsekas1998network" role="doc-biblioref">Bertsekas 1998</a>)</span>. En este capítulo, estudiaremos el concepto algebraico de flujo y cociclo, el célebre Lema de Coloración de Arcos de Minty (herramienta teórica cardinal para demostrar optimalidades), el teorema de flujo máximo y corte mínimo, el algoritmo de Ford-Fulkerson y el problema general del flujo de coste mínimo y transbordo.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Objetivos de aprendizaje">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -330,7 +350,7 @@ window.Quarto = {
 <h2 data-number="9.1" class="anchored" data-anchor-id="estructura-algebraica-de-flujos-y-cociclos"><span class="header-section-number">9.1</span> Estructura Algebraica de Flujos y Cociclos</h2>
 <p>Sea un digrafo conexo <span class="math inline">\(G = (V, A)\)</span>.</p>
 <section id="definición-de-flujo-y-circulación" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="definición-de-flujo-y-circulación"><span class="header-section-number">9.1.1</span> 1. Definición de Flujo y Circulación</h3>
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="definición-de-flujo-y-circulación"><span class="header-section-number">9.1.1</span> Definición de Flujo y Circulación</h3>
 <p>Un <strong>flujo</strong> en la red <span class="math inline">\(G\)</span> es un vector <span class="math inline">\(x \in \mathbb{R}^{|A|}\)</span> que asigna a cada arco dirigido <span class="math inline">\((i, j) \in A\)</span> un caudal o cantidad <span class="math inline">\(x_{ij}\)</span>. El flujo debe cumplir con las ecuaciones de conservación en los nodos: <span class="math display">\[ \sum_{j \mid (i, j) \in A} x_{ij} - \sum_{j \mid (j, i) \in A} x_{ji} = b_i, \quad \forall i \in V \]</span> Donde el vector <span class="math inline">\(b \in \mathbb{R}^{|V|}\)</span> representa los balances externos: - <strong>fuentes (<span class="math inline">\(b_i &gt; 0\)</span>)</strong>: Nodos inyectores de flujo. - <strong>sumideros (<span class="math inline">\(b_i &lt; 0\)</span>)</strong>: Nodos extractores de flujo. - <strong>transbordo (<span class="math inline">\(b_i = 0\)</span>)</strong>: Nodos intermedios (todo flujo entrante sale).</p>
 <p>Para que el sistema tenga solución factible, la red debe estar en equilibrio global: <span class="math inline">\(\sum_{i \in V} b_i = 0\)</span>. Si <span class="math inline">\(b_i = 0\)</span> para todo <span class="math inline">\(i \in V\)</span>, el flujo <span class="math inline">\(x\)</span> se denomina <strong>circulación</strong>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Definición de Cociclo (Corte)">
@@ -393,7 +413,7 @@ window.Quarto = {
 \end{aligned}
 \]</span></p>
 <section id="cortes-y-capacidad-de-un-corte" class="level3" data-number="9.3.1">
-<h3 data-number="9.3.1" class="anchored" data-anchor-id="cortes-y-capacidad-de-un-corte"><span class="header-section-number">9.3.1</span> 1. Cortes y Capacidad de un Corte</h3>
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="cortes-y-capacidad-de-un-corte"><span class="header-section-number">9.3.1</span> Cortes y Capacidad de un Corte</h3>
 <p>Un corte <span class="math inline">\((S, T)\)</span> es una partición del conjunto de nodos <span class="math inline">\(V\)</span> tal que el origen <span class="math inline">\(s \in S\)</span> y el destino <span class="math inline">\(t \in T\)</span> (donde <span class="math inline">\(T = V \setminus S\)</span>). La <strong>capacidad del corte</strong> es la suma de las capacidades de los arcos que cruzan de <span class="math inline">\(S\)</span> a <span class="math inline">\(T\)</span>: <span class="math display">\[ C(S, T) = \sum_{i \in S, j \in T} u_{ij} \]</span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema de Flujo Máximo - Corte Mínimo (Ford-Fulkerson, 1956)">
 <div class="callout-header d-flex align-content-center">
@@ -413,7 +433,7 @@ window.Quarto = {
 </div>
 </section>
 <section id="algoritmo-de-ford-fulkerson-camino-aumentante" class="level3" data-number="9.3.2">
-<h3 data-number="9.3.2" class="anchored" data-anchor-id="algoritmo-de-ford-fulkerson-camino-aumentante"><span class="header-section-number">9.3.2</span> 2. Algoritmo de Ford-Fulkerson (Camino Aumentante)</h3>
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="algoritmo-de-ford-fulkerson-camino-aumentante"><span class="header-section-number">9.3.2</span> Algoritmo de Ford-Fulkerson (Camino Aumentante)</h3>
 <p>El algoritmo busca repetidamente rutas donde sea posible añadir flujo de <span class="math inline">\(s\)</span> a <span class="math inline">\(t\)</span> en la <strong>red residual</strong> <span class="math inline">\(G_f\)</span>: - <strong>Red Residual <span class="math inline">\(G_f\)</span></strong>: Para cada arco original <span class="math inline">\((i, j) \in A\)</span> con capacidad <span class="math inline">\(u_{ij}\)</span> y flujo actual <span class="math inline">\(x_{ij}\)</span>, se definen en <span class="math inline">\(G_f\)</span>: - Un arco directo <span class="math inline">\((i, j)\)</span> con capacidad residual <span class="math inline">\(u_{ij} - x_{ij}\)</span> (espacio libre para aumentar flujo). - Un arco inverso <span class="math inline">\((j, i)\)</span> con capacidad residual <span class="math inline">\(x_{ij}\)</span> (capacidad de cancelar o retornar flujo). - <strong>Pasos del Algoritmo</strong>: 1. Fijar el flujo inicial <span class="math inline">\(x_{ij} = 0\)</span> para todos los arcos. 2. Buscar un camino simple de <span class="math inline">\(s\)</span> a <span class="math inline">\(t\)</span> en la red residual <span class="math inline">\(G_f\)</span>. Si no existe, terminar (el flujo actual es óptimo). 3. Para el camino aumentante <span class="math inline">\(\mu\)</span> hallado, calcular su cuello de botella: <span class="math display">\[ \delta = \min_{e \in \mu} \{ \text{capacidad residual de } e \} \]</span> 4. Actualizar el flujo original: añadir <span class="math inline">\(\delta\)</span> en los arcos directos del camino y restar <span class="math inline">\(\delta\)</span> en los arcos inversos. 5. Volver al paso 2.</p>
 </section>
 </section>
@@ -506,6 +526,14 @@ window.Quarto = {
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-ahuja1993network" class="csl-entry" role="listitem">
+Ahuja, Ravindra K, Thomas L Magnanti, y James B Orlin. 1993. <em>Network Flows: Theory, Algorithms, and Applications</em>. Prentice Hall.
+</div>
+<div id="ref-bertsekas1998network" class="csl-entry" role="listitem">
+Bertsekas, Dimitri P. 1998. <em>Network Optimization: Continuous and Discrete Models</em>. Athena Scientific.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

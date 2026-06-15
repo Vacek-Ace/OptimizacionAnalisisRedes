@@ -9,7 +9,7 @@ El objetivo de este texto es doble: por un lado, asentar los fundamentos algebra
 
 ## Filosofía pedagógica del volumen
 
-Siguiendo el enfoque de nuestra obra de referencia, la filosofía de estos apuntes se sustenta en un método **"teórico-práctico"** sin concesiones. Creemos firmemente que la labor computacional y el desarrollo de código no deben reducirse a una mera aplicación ciega de funciones o recetas preestablecidas. El verdadero potencial de un matemático reside en comprender el *porqué* detrás de cada paso algorítmico, el comportamiento de las restricciones en el plano geométrico y la estructura algebraica que garantiza la convergencia. 
+Siguiendo el enfoque de nuestra obra de referencia, la filosofía de estos apuntes se sustenta en un método **"teórico-práctico"** sin concesiones. Creemos firmemente que la labor computacional y el desarrollo de código no deben reducirse a una mera aplicación ciega de funciones o recetas preestablecidas. El verdadero potencial de un matemático reside en comprender el *porqué* detrás de cada paso algorítmico, el comportamiento de las restricciones en el plano geométrico y la estructura algebraica que garantiza la convergencia, tal y como se promueve en los tratados clásicos de la disciplina [@hillier2010investigacion]. 
 
 Es por ello que cada concepto se introduce motivando su necesidad histórica y práctica, se formaliza mediante teoremas y lemas detallados, y finalmente se traduce a código ejecutable en Python, promoviendo una simbiosis natural entre el rigor teórico y la destreza computacional.
 

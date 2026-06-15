@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -185,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conclusiones.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conclusiones</span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Conclusiones</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -257,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
 <p>El objetivo de este texto es doble: por un lado, asentar los fundamentos algebraicos, analíticos y geométricos que justifican la existencia y propiedades de los óptimos y los flujos; por otro, dotar al lector de las destrezas de programación para modelar y resolver de forma eficiente problemas del mundo real. Al finalizar esta obra, habrás adquirido un criterio sólido para analizar la complejidad de un problema de decisión, seleccionar el algoritmo idóneo para su resolución e interpretar los resultados con sentido crítico.</p>
 <section id="filosofía-pedagógica-del-volumen" class="level2">
 <h2 class="anchored" data-anchor-id="filosofía-pedagógica-del-volumen">Filosofía pedagógica del volumen</h2>
-<p>Siguiendo el enfoque de nuestra obra de referencia, la filosofía de estos apuntes se sustenta en un método <strong>“teórico-práctico”</strong> sin concesiones. Creemos firmemente que la labor computacional y el desarrollo de código no deben reducirse a una mera aplicación ciega de funciones o recetas preestablecidas. El verdadero potencial de un matemático reside en comprender el <em>porqué</em> detrás de cada paso algorítmico, el comportamiento de las restricciones en el plano geométrico y la estructura algebraica que garantiza la convergencia.</p>
+<p>Siguiendo el enfoque de nuestra obra de referencia, la filosofía de estos apuntes se sustenta en un método <strong>“teórico-práctico”</strong> sin concesiones. Creemos firmemente que la labor computacional y el desarrollo de código no deben reducirse a una mera aplicación ciega de funciones o recetas preestablecidas. El verdadero potencial de un matemático reside en comprender el <em>porqué</em> detrás de cada paso algorítmico, el comportamiento de las restricciones en el plano geométrico y la estructura algebraica que garantiza la convergencia, tal y como se promueve en los tratados clásicos de la disciplina <span class="citation" data-cites="hillier2010investigacion">(<a href="references.html#ref-hillier2010investigacion" role="doc-biblioref">Hillier y Lieberman 2010</a>)</span>.</p>
 <p>Es por ello que cada concepto se introduce motivando su necesidad histórica y práctica, se formaliza mediante teoremas y lemas detallados, y finalmente se traduce a código ejecutable en Python, promoviendo una simbiosis natural entre el rigor teórico y la destreza computacional.</p>
 <section id="qué-aprenderás-con-este-libro" class="level3">
 <h3 class="anchored" data-anchor-id="qué-aprenderás-con-este-libro">¿Qué aprenderás con este libro?</h3>
@@ -314,6 +334,11 @@ ul.task-list li input[type="checkbox"] {
 <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licencia de Creative Commons" style="border-width:0"></a><br>Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Atribución-CompartirIgual 4.0 Internacional</a>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-hillier2010investigacion" class="csl-entry" role="listitem">
+Hillier, Frederick S, y Gerald J Lieberman. 2010. <em>Introducción a la Investigación de Operaciones</em>. 9na ed. McGraw-Hill.
+</div>
+</div>
 </section>
 </section>
 </section>
