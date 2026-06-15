@@ -25,6 +25,7 @@ Euler demostró que tal recorrido (denominado hoy ciclo euleriano) era imposible
 ![Grafo asociado al problema de los puentes de Königsberg](images/puentes_konigsberg.png){#fig-puentes-konigsberg fig-align="center" width="50%"}
 
 ### Definición Formal de un Grafo
+
 -   **Grafo No Dirigido**:
     Un par ordenado $G = (V, E)$ donde $V$ es un conjunto no vacío de **vértices** o **nodos** y $E$ es un conjunto de **aristas** formadas por pares no ordenados de vértices distintos $\{u, v\}$.
 -   **Grafo Dirigido (Digrafo)**:
@@ -35,6 +36,7 @@ Euler demostró que tal recorrido (denominado hoy ciclo euleriano) era imposible
     Un grafo asociado a una función de coste $w: E \to \mathbb{R}$ que asigna un peso o longitud a cada conexión.
 
 ### Subgrafos, Conectividad y Grados
+
 -   **Subgrafo**:
     Un grafo $G' = (V', E')$ es subgrafo de $G = (V, E)$ si $V' \subseteq V$ y $E' \subseteq E \cap (V' \times V')$.
 -   **Grafo Parcial (Spanning Subgraph)**:
@@ -63,10 +65,14 @@ Sea $G = (V, E)$ un grafo planar conexo con $n = |V|$ vértices y $m = |E|$ aris
 $$ n + r = m + 2 $$
 
 *Demostración (por inducción sobre el número de aristas $m$)*:
+
 -   **Base de la inducción ($m=1$)**:
+
     -   Si conecta dos nodos distintos ($n=2$), define 1 región (exterior): $2 + 1 = 1 + 2$ (correcto).
     -   Si es un bucle sobre un único nodo ($n=1$), divide el plano en una región interior y otra exterior ($r=2$): $1 + 2 = 1 + 2$ (correcto).
+
 -   **Paso inductivo**:
+
     Asumimos que la fórmula se cumple para grafos de $k$ aristas. Sea $G$ un grafo con $m = k+1$ aristas:
     -   *Caso 1*: Si $G$ contiene un nodo de grado 1 (vértice pendiente $v$), al eliminar $v$ y su arista asociada obtenemos un subgrafo conexo con $n-1$ vértices, $k$ aristas y las mismas $r$ regiones. Por hipótesis: $(n-1) + r = k + 2 \implies n + r = (k+1) + 2$.
     -   *Caso 2*: Si no hay nodos de grado 1, $G$ contiene al menos un ciclo. Al eliminar una arista del ciclo, el número de aristas pasa a $k$ y las dos regiones adyacentes a la arista se unen en una sola ($r-1$ regiones en el subgrafo). Por hipótesis: $n + (r-1) = k + 2 \implies n + r = (k+1) + 2$. $\blacksquare$
@@ -97,6 +103,7 @@ Un grafo es bipartito (sus vértices se dividen en dos conjuntos disjuntos $V_1$
 :::
 
 ### Representación en Ordenador
+
 -   **Matriz de Adyacencia ($A \in \mathbb{R}^{n \times n}$)**:
     Matriz donde la posición $a_{ij}$ indica la existencia (1) o el coste de la arista que une los nodos $i$ y $j$.
 -   **Matriz de Incidencia ($M \in \mathbb{R}^{n \times m}$)**:
@@ -112,6 +119,7 @@ Un árbol es un grafo que modela conexiones jerárquicas mínimas sin redundanci
 
 ::: {.callout-important title="Teorema: Caracterizaciones Equivalentes de un Árbol"}
 Sea $G = (V, E)$ un grafo simple no dirigido con $n$ vértices. Las siguientes proposiciones son equivalentes:
+
 1.  $G$ es un árbol (conexo y acíclico).
 2.  $G$ es conexo y tiene exactamente $n-1$ aristas.
 3.  $G$ es acíclico y tiene exactamente $n-1$ aristas.
@@ -131,6 +139,7 @@ $$ \min \sum_{e \in E_T} w(e) $$
 
 ### Algoritmo de Kruskal (1956)
 Es de naturaleza codiciosa (greedy) y procesa las aristas de forma aislada:
+
 1.  Ordenar todas las aristas del grafo de menor a mayor peso.
 2.  Inicializar cada nodo en su propia componente conexa disjunta.
 3.  Recorrer las aristas en orden. Si los extremos de la arista actual pertenecen a componentes conexas distintas (no forman ciclo), añadir la arista al árbol y fusionar las componentes. En caso contrario, descartar.
@@ -139,6 +148,7 @@ Es de naturaleza codiciosa (greedy) y procesa las aristas de forma aislada:
 
 ### Algoritmo de Prim
 Hace crecer una única componente conectada desde un nodo raíz arbitrario $s$:
+
 1.  Inicializar los nodos cubiertos $V_T = \{s\}$ y el árbol de aristas $E_T = \emptyset$.
 2.  Identificar la arista de coste mínimo $\{u, v\}$ tal que $u \in V_T$ y $v \notin V_T$.
 3.  Añadir el nodo $v$ a $V_T$ y la arista $\{u, v\}$ a $E_T$.
@@ -148,6 +158,7 @@ Hace crecer una única componente conectada desde un nodo raíz arbitrario $s$:
 
 ::: {.callout-note title="Clustering Jerárquico Basado en MST"}
 El MST es una herramienta potente en aprendizaje no supervisado. Para agrupar un conjunto de observaciones en $k$ grupos o clústeres disjuntos:
+
 1.  Construir un grafo completo donde los nodos son las observaciones y los pesos de las aristas corresponden a la distancia métrica (euclídea, Manhattan) entre los perfiles.
 2.  Calcular el MST del grafo.
 3.  Eliminar las $k-1$ aristas de mayor peso del MST.

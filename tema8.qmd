@@ -23,6 +23,7 @@ Dado un camino dirigido $\mu = (v_0, v_1, \dots, v_k)$ con arcos $(v_{i-1}, v_i)
 $$ c(\mu) = \sum_{j=1}^k c_{v_{j-1}, v_j} $$
 
 El problema busca encontrar un camino elemental $\mu^*$ de $s$ a $t$ de coste mínimo. Para que exista una solución óptima acotada y bien definida, se deben cumplir dos condiciones:
+
 -   **Accesibilidad**:
     Debe existir al menos un camino dirigido que una el origen $s$ con el destino $t$.
 -   **Ausencia de ciclos de coste negativo**:
@@ -81,6 +82,7 @@ Cuando los costes de los arcos son no negativos ($c_{ij} \ge 0$), se utiliza el 
 Si existen arcos con pesos negativos, Dijkstra puede fallar debido a que la etiqueta de un nodo fijada como permanente podría abaratarse posteriormente a través de un camino con arcos negativos. En este escenario, aplicamos el **Algoritmo de Bellman-Ford**.
 
 ### Algoritmo Paso a Paso
+
 1.  **Inicialización**:
     $d(s) = 0$ e $d(j) = \infty$ para todo $j \neq s$.
 2.  **Relajación sistemática**:

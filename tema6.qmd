@@ -17,6 +17,7 @@ Al finalizar este capítulo, serás capaz de:
 ## Introducción a la Optimización en Aprendizaje Automático
 
 El proceso de entrenamiento de un modelo de aprendizaje automático consiste en ajustar los parámetros de una función hipótesis $f(x; w)$ para modelar un patrón en un conjunto de datos, siguiendo los principios y metodologías analíticas del aprendizaje estadístico clásico [@hastie2009elements]. Las principales aplicaciones de la optimización en este ámbito son:
+
 -   **Estimación puntual**:
     Maximizar la función de verosimilitud (MLE) o minimizar el error cuadrático medio.
 -   **Regularización**:
@@ -43,6 +44,7 @@ $$ Y = 0.4261 + 0.6108 x $$
 
 ### Ajustes en Normas Robustas ($\ell_1$ y $\ell_\infty$)
 Cuando los datos contienen valores atípicos (*outliers*) o errores de medición severos (como el punto $(5.0, 1.0)$ en nuestra muestra), la norma cuadrática $\ell_2$ se ve fuertemente distorsionada. Proponemos alternativas más robustas:
+
 -   **Norma $\ell_1$ (Desviaciones Absolutas)**:
     Minimiza la suma de los valores absolutos de los residuos:
     $$ \min_{a, b} \sum_{i=1}^n |a + b x_i - y_i| $$
@@ -55,6 +57,7 @@ Cuando los datos contienen valores atípicos (*outliers*) o errores de medición
 
 ::: {.callout-note title="Formulación en Programación Lineal para Ajustes Robustos"}
 Podemos formular la minimización en normas $\ell_1$ y $\ell_\infty$ como problemas de programación lineal continua equivalentes mediante la introducción de variables auxiliares de error:
+
 -   **Formulación para la Norma $\ell_1$**:
     $$
     \begin{aligned}
@@ -76,6 +79,7 @@ Podemos formular la minimización en normas $\ell_1$ y $\ell_\infty$ como proble
 :::
 
 Al resolver estos modelos sobre los datos de nuestra muestra, se aprecian los siguientes ajustes lineales y cuadráticos:
+
 1.  **Ajuste lineal $\ell_1$**:
     $y = 0.6375x + 0.5812$ (con un error total de $11.46$ y un máximo error de $2.77$ en $x=5.0$).
 2.  **Ajuste lineal $\ell_\infty$**:
@@ -96,6 +100,7 @@ En presencia de múltiples variables explicativas, a menudo deseamos construir u
 Imponemos restricciones de "Gran M" utilizando cotas inferiores $\underline{\beta}_j$ y superiores $\overline{\beta}_j$ sobre el valor físico de los coeficientes:
 $$ \underline{\beta}_j \delta_j \le \beta_j \le \overline{\beta}_j \delta_j, \quad j = 1, \dots, m $$
 Esto nos permite plantear restricciones estructurales complejas:
+
 -   **Número máximo de variables seleccionadas**:
     $$ \sum_{j=1}^m \delta_j \le M_{\max} $$
 -   **Relación de exclusión mutua entre variables $i$ y $j$**:

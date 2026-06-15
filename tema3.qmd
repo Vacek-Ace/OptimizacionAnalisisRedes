@@ -307,6 +307,7 @@ Sea $f: \mathcal{S} \to \mathbb{R}$ una función convexa sobre un conjunto conve
 2.  **Si la función $f$ es estrictamente convexa, el mínimo global (si existe) es único**.
 
 *Demostración*:
+
 1.  Sea $x^*$ un mínimo local de $f$ en $\mathcal{S}$. Por definición, existe un radio $\epsilon > 0$ tal que $f(x) \ge f(x^*)$ para todo $x \in \mathcal{S}$ con $\|x - x^*\| < \epsilon$. Supongamos por contradicción que $x^*$ no es un mínimo global, lo que implica que existe un punto $y \in \mathcal{S}$ tal que $f(y) < f(x^*)$.
     Construimos una combinación lineal convexa de ambos puntos: $x(\lambda) = \lambda y + (1-\lambda) x^*$ para $\lambda \in (0, 1)$. Como el dominio $\mathcal{S}$ es convexo, $x(\lambda) \in \mathcal{S}$. Elegimos un $\lambda$ suficientemente pequeño de forma que el punto $x(\lambda)$ entre dentro de la bola de radio $\epsilon$ alrededor de $x^*$.
     Aplicando la propiedad de convexidad de $f$:

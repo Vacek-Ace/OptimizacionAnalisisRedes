@@ -353,7 +353,12 @@ window.Quarto = {
 </div>
 <section id="introducción-a-la-optimización-en-aprendizaje-automático" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="introducción-a-la-optimización-en-aprendizaje-automático"><span class="header-section-number">6.1</span> Introducción a la Optimización en Aprendizaje Automático</h2>
-<p>El proceso de entrenamiento de un modelo de aprendizaje automático consiste en ajustar los parámetros de una función hipótesis <span class="math inline">\(f(x; w)\)</span> para modelar un patrón en un conjunto de datos, siguiendo los principios y metodologías analíticas del aprendizaje estadístico clásico <span class="citation" data-cites="hastie2009elements">(<a href="references.html#ref-hastie2009elements" role="doc-biblioref">Hastie, Tibshirani, y Friedman 2009</a>)</span>. Las principales aplicaciones de la optimización en este ámbito son: - <strong>Estimación puntual</strong>: Maximizar la función de verosimilitud (MLE) o minimizar el error cuadrático medio. - <strong>Regularización</strong>: Añadir términos de penalización en la función objetivo (normas <span class="math inline">\(\ell_1\)</span> o <span class="math inline">\(\ell_2\)</span>) para controlar la complejidad del modelo y evitar el sobreajuste (<em>overfitting</em>). - <strong>Clasificación</strong>: Maximizar el margen de separación entre clases o minimizar la pérdida de bisagra (<em>hinge loss</em>).</p>
+<p>El proceso de entrenamiento de un modelo de aprendizaje automático consiste en ajustar los parámetros de una función hipótesis <span class="math inline">\(f(x; w)\)</span> para modelar un patrón en un conjunto de datos, siguiendo los principios y metodologías analíticas del aprendizaje estadístico clásico <span class="citation" data-cites="hastie2009elements">(<a href="references.html#ref-hastie2009elements" role="doc-biblioref">Hastie, Tibshirani, y Friedman 2009</a>)</span>. Las principales aplicaciones de la optimización en este ámbito son:</p>
+<ul>
+<li><strong>Estimación puntual</strong>: Maximizar la función de verosimilitud (MLE) o minimizar el error cuadrático medio.</li>
+<li><strong>Regularización</strong>: Añadir términos de penalización en la función objetivo (normas <span class="math inline">\(\ell_1\)</span> o <span class="math inline">\(\ell_2\)</span>) para controlar la complejidad del modelo y evitar el sobreajuste (<em>overfitting</em>).</li>
+<li><strong>Clasificación</strong>: Maximizar el margen de separación entre clases o minimizar la pérdida de bisagra (<em>hinge loss</em>).</li>
+</ul>
 </section>
 <section id="el-problema-de-ajuste-de-datos-en-diferentes-normas" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="el-problema-de-ajuste-de-datos-en-diferentes-normas"><span class="header-section-number">6.2</span> El Problema de Ajuste de Datos en Diferentes Normas</h2>
@@ -437,7 +442,11 @@ window.Quarto = {
 </section>
 <section id="ajustes-en-normas-robustas-ell_1-y-ell_infty" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="ajustes-en-normas-robustas-ell_1-y-ell_infty"><span class="header-section-number">6.2.2</span> Ajustes en Normas Robustas (<span class="math inline">\(\ell_1\)</span> y <span class="math inline">\(\ell_\infty\)</span>)</h3>
-<p>Cuando los datos contienen valores atípicos (<em>outliers</em>) o errores de medición severos (como el punto <span class="math inline">\((5.0, 1.0)\)</span> en nuestra muestra), la norma cuadrática <span class="math inline">\(\ell_2\)</span> se ve fuertemente distorsionada. Proponemos alternativas más robustas: - <strong>Norma <span class="math inline">\(\ell_1\)</span> (Desviaciones Absolutas)</strong>: Minimiza la suma de los valores absolutos de los residuos: <span class="math display">\[ \min_{a, b} \sum_{i=1}^n |a + b x_i - y_i| \]</span> - <strong>Norma <span class="math inline">\(\ell_\infty\)</span> (Minimax)</strong>: Minimiza el máximo error cometido: <span class="math display">\[ \min_{a, b} \max_{i=1, \dots, n} |a + b x_i - y_i| \]</span></p>
+<p>Cuando los datos contienen valores atípicos (<em>outliers</em>) o errores de medición severos (como el punto <span class="math inline">\((5.0, 1.0)\)</span> en nuestra muestra), la norma cuadrática <span class="math inline">\(\ell_2\)</span> se ve fuertemente distorsionada. Proponemos alternativas más robustas:</p>
+<ul>
+<li><strong>Norma <span class="math inline">\(\ell_1\)</span> (Desviaciones Absolutas)</strong>: Minimiza la suma de los valores absolutos de los residuos: <span class="math display">\[ \min_{a, b} \sum_{i=1}^n |a + b x_i - y_i| \]</span></li>
+<li><strong>Norma <span class="math inline">\(\ell_\infty\)</span> (Minimax)</strong>: Minimiza el máximo error cometido: <span class="math display">\[ \min_{a, b} \max_{i=1, \dots, n} |a + b x_i - y_i| \]</span></li>
+</ul>
 <div id="fig-regresion-robusta" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-regresion-robusta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -458,24 +467,34 @@ Figura&nbsp;6.1: Comparativa del ajuste lineal robusto en norma l1 frente a la d
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Podemos formular la minimización en normas <span class="math inline">\(\ell_1\)</span> y <span class="math inline">\(\ell_\infty\)</span> como problemas de programación lineal continua equivalentes mediante la introducción de variables auxiliares de error: - <strong>Formulación para la Norma <span class="math inline">\(\ell_1\)</span></strong>: <span class="math display">\[
-    \begin{aligned}
-    \min_{a, b, e} \quad &amp; \sum_{i=1}^n e_i \\
-    \text{sujeto a} \quad &amp; a + b x_i - y_i \le e_i, \quad i = 1, \dots, n \\
-    &amp; -(a + b x_i - y_i) \le e_i, \quad i = 1, \dots, n \\
-    &amp; e_i \ge 0, \quad i = 1, \dots, n
-    \end{aligned}
-    \]</span> - <strong>Formulación para la Norma <span class="math inline">\(\ell_\infty\)</span></strong>: <span class="math display">\[
-    \begin{aligned}
-    \min_{a, b, z} \quad &amp; z \\
-    \text{sujeto a} \quad &amp; a + b x_i - y_i \le z, \quad i = 1, \dots, n \\
-    &amp; -(a + b x_i - y_i) \le z, \quad i = 1, \dots, n \\
-    &amp; z \ge 0
-    \end{aligned}
-    \]</span></p>
+<p>Podemos formular la minimización en normas <span class="math inline">\(\ell_1\)</span> y <span class="math inline">\(\ell_\infty\)</span> como problemas de programación lineal continua equivalentes mediante la introducción de variables auxiliares de error:</p>
+<ul>
+<li><strong>Formulación para la Norma <span class="math inline">\(\ell_1\)</span></strong>: <span class="math display">\[
+\begin{aligned}
+\min_{a, b, e} \quad &amp; \sum_{i=1}^n e_i \\
+\text{sujeto a} \quad &amp; a + b x_i - y_i \le e_i, \quad i = 1, \dots, n \\
+&amp; -(a + b x_i - y_i) \le e_i, \quad i = 1, \dots, n \\
+&amp; e_i \ge 0, \quad i = 1, \dots, n
+\end{aligned}
+\]</span></li>
+<li><strong>Formulación para la Norma <span class="math inline">\(\ell_\infty\)</span></strong>: <span class="math display">\[
+\begin{aligned}
+\min_{a, b, z} \quad &amp; z \\
+\text{sujeto a} \quad &amp; a + b x_i - y_i \le z, \quad i = 1, \dots, n \\
+&amp; -(a + b x_i - y_i) \le z, \quad i = 1, \dots, n \\
+&amp; z \ge 0
+\end{aligned}
+\]</span></li>
+</ul>
 </div>
 </div>
-<p>Al resolver estos modelos sobre los datos de nuestra muestra, se aprecian los siguientes ajustes lineales y cuadráticos: 1. <strong>Ajuste lineal <span class="math inline">\(\ell_1\)</span></strong>: <span class="math inline">\(y = 0.6375x + 0.5812\)</span> (con un error total de <span class="math inline">\(11.46\)</span> y un máximo error de <span class="math inline">\(2.77\)</span> en <span class="math inline">\(x=5.0\)</span>). 2. <strong>Ajuste lineal <span class="math inline">\(\ell_\infty\)</span></strong>: <span class="math inline">\(y = 0.6245x - 0.4000\)</span> (con un error total de <span class="math inline">\(19.95\)</span> y un máximo error minimizado de <span class="math inline">\(1.725\)</span> en <span class="math inline">\(x=3.5, 7.0\)</span>). 3. <strong>Ajuste cuadrático <span class="math inline">\(\ell_1\)</span></strong>: <span class="math inline">\(y = 0.0337x^2 + 0.2945x + 0.9823\)</span>. 4. <strong>Ajuste cuadrático <span class="math inline">\(\ell_\infty\)</span></strong>: <span class="math inline">\(y = 0.1250x^2 - 0.6250x + 2.4750\)</span> (máximo error de <span class="math inline">\(1.475\)</span>).</p>
+<p>Al resolver estos modelos sobre los datos de nuestra muestra, se aprecian los siguientes ajustes lineales y cuadráticos:</p>
+<ol type="1">
+<li><strong>Ajuste lineal <span class="math inline">\(\ell_1\)</span></strong>: <span class="math inline">\(y = 0.6375x + 0.5812\)</span> (con un error total de <span class="math inline">\(11.46\)</span> y un máximo error de <span class="math inline">\(2.77\)</span> en <span class="math inline">\(x=5.0\)</span>).</li>
+<li><strong>Ajuste lineal <span class="math inline">\(\ell_\infty\)</span></strong>: <span class="math inline">\(y = 0.6245x - 0.4000\)</span> (con un error total de <span class="math inline">\(19.95\)</span> y un máximo error minimizado de <span class="math inline">\(1.725\)</span> en <span class="math inline">\(x=3.5, 7.0\)</span>).</li>
+<li><strong>Ajuste cuadrático <span class="math inline">\(\ell_1\)</span></strong>: <span class="math inline">\(y = 0.0337x^2 + 0.2945x + 0.9823\)</span>.</li>
+<li><strong>Ajuste cuadrático <span class="math inline">\(\ell_\infty\)</span></strong>: <span class="math inline">\(y = 0.1250x^2 - 0.6250x + 2.4750\)</span> (máximo error de <span class="math inline">\(1.475\)</span>).</li>
+</ol>
 </section>
 </section>
 <section id="regresión-lineal-múltiple-y-selección-de-características" class="level2" data-number="6.3">
@@ -483,7 +502,12 @@ Figura&nbsp;6.1: Comparativa del ajuste lineal robusto en norma l1 frente a la d
 <p>Cuando disponemos de <span class="math inline">\(m\)</span> variables independientes <span class="math inline">\(X_1, \dots, X_m\)</span>, el modelo es: <span class="math display">\[ Y = \beta_0 + \beta_1 X_1 + \dots + \beta_m X_m + \epsilon \]</span></p>
 <section id="selección-de-variables-mediante-programación-entera-mixta" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="selección-de-variables-mediante-programación-entera-mixta"><span class="header-section-number">6.3.1</span> Selección de Variables mediante Programación Entera Mixta</h3>
-<p>En presencia de múltiples variables explicativas, a menudo deseamos construir un modelo disperso (<em>sparse</em>) que solo incluya un subconjunto óptimo de características. Definimos variables binarias de decisión <span class="math inline">\(\delta_j \in \{0, 1\}\)</span> para indicar si la característica <span class="math inline">\(j\)</span> participa en el modelo (<span class="math inline">\(\beta_j \neq 0\)</span>). Imponemos restricciones de “Gran M” utilizando cotas inferiores <span class="math inline">\(\underline{\beta}_j\)</span> y superiores <span class="math inline">\(\overline{\beta}_j\)</span> sobre el valor físico de los coeficientes: <span class="math display">\[ \underline{\beta}_j \delta_j \le \beta_j \le \overline{\beta}_j \delta_j, \quad j = 1, \dots, m \]</span> Esto nos permite plantear restricciones estructurales complejas: - <strong>Número máximo de variables seleccionadas</strong>: <span class="math display">\[ \sum_{j=1}^m \delta_j \le M_{\max} \]</span> - <strong>Relación de exclusión mutua entre variables <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span></strong>: <span class="math display">\[ \delta_i + \delta_j \le 1 \]</span> - <strong>Inclusión obligatoria de al menos una entre <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span></strong>: <span class="math display">\[ \delta_i + \delta_j \ge 1 \]</span></p>
+<p>En presencia de múltiples variables explicativas, a menudo deseamos construir un modelo disperso (<em>sparse</em>) que solo incluya un subconjunto óptimo de características. Definimos variables binarias de decisión <span class="math inline">\(\delta_j \in \{0, 1\}\)</span> para indicar si la característica <span class="math inline">\(j\)</span> participa en el modelo (<span class="math inline">\(\beta_j \neq 0\)</span>). Imponemos restricciones de “Gran M” utilizando cotas inferiores <span class="math inline">\(\underline{\beta}_j\)</span> y superiores <span class="math inline">\(\overline{\beta}_j\)</span> sobre el valor físico de los coeficientes: <span class="math display">\[ \underline{\beta}_j \delta_j \le \beta_j \le \overline{\beta}_j \delta_j, \quad j = 1, \dots, m \]</span> Esto nos permite plantear restricciones estructurales complejas:</p>
+<ul>
+<li><strong>Número máximo de variables seleccionadas</strong>: <span class="math display">\[ \sum_{j=1}^m \delta_j \le M_{\max} \]</span></li>
+<li><strong>Relación de exclusión mutua entre variables <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span></strong>: <span class="math display">\[ \delta_i + \delta_j \le 1 \]</span></li>
+<li><strong>Inclusión obligatoria de al menos una entre <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span></strong>: <span class="math display">\[ \delta_i + \delta_j \ge 1 \]</span></li>
+</ul>
 <p>El problema resultante es un modelo <strong>Entero Cuadrático Mixto (MIQP)</strong>.</p>
 </section>
 </section>

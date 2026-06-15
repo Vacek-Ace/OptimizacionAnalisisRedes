@@ -106,6 +106,7 @@ El precio sombra $u_i$ mide la tasa de cambio del beneficio óptimo ante un incr
 $$ u_i^* = \frac{\partial (c^T x^*)}{\partial b_i} $$
 
 La condición de holgura complementaria $u_i (b_i - a_i^T x^*) = 0$ posee entonces una interpretación económica intuitiva y elegante:
+
 1.  Si al alcanzar el plan de producción óptimo sobra parte del recurso $i$ ($b_i - a_i^T x^* > 0$), dicho recurso no es un factor limitante (es abundante). Por tanto, añadir más cantidad del mismo no aumentará el beneficio, lo que obliga a que su precio sombra sea cero ($u_i^* = 0$).
 2.  Si un recurso posee un precio sombra estrictamente positivo ($u_i^* > 0$), significa que dicho recurso es valioso y está limitando la producción. En consecuencia, se consumirá por completo en el óptimo, dejando la holgura en cero ($b_i - a_i^T x^* = 0$).
 

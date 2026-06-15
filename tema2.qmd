@@ -31,6 +31,7 @@ En los problemas reales, las relaciones lineales son aproximaciones simplificada
 La transición de modelos lineales a no lineales introduce retos teóricos y algorítmicos formidables. En programación lineal, el teorema fundamental garantiza que si existe una solución óptima, esta se halla en un vértice de la región factible. Esto reduce la búsqueda a un conjunto finito de puntos y permite al algoritmo del Símplex avanzar eficientemente de vértice en vértice.
 
 En optimización no lineal, esta garantía desaparece por completo:
+
 1.  El óptimo puede encontrarse en el interior del espacio factible, alejado de cualquier vértice.
 2.  El espacio factible puede ser no convexo, lo que significa que incluso si nos movemos entre puntos factibles, el segmento que los une puede salir de la región de factibilidad.
 3.  La presencia de múltiples mínimos locales impide que los algoritmos locales (que solo "ven" el entorno inmediato del punto actual) garanticen haber hallado la mejor solución global del problema.
@@ -225,9 +226,8 @@ $$ \alpha_k = \arg\min_{\alpha > 0} f(x_k - \alpha \nabla f(x_k)) $$
 
 El método de Newton incorpora la curvatura local dada por la matriz hessiana para corregir la dirección de búsqueda, apuntando directamente al mínimo de la aproximación cuadrática:
 $$ d_k = - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) $$
-Si el punto inicial está cerca del mínimo y la hessiana es definida positiva, el método converge en muy pocas iteraciones con tamaño de paso $\alpha_k = 1$ (convergencia cuadrática).
+Si el punto inicial está cerca del mínimo y la hessiana es definida positiva, el método converge en muy pocas iteraciones con tamaño de paso $\alpha_k = 1$ (convergencia cuadrática). **Inconvenientes**:
 
--   **Inconvenientes**:
     1.  Exige calcular explícitamente la matriz hessiana de derivadas de segundo orden en cada paso.
     2.  Requiere resolver un sistema de ecuaciones lineales de tamaño $n \times n$ para calcular $[\nabla^2 f(x_k)]^{-1} \nabla f(x_k)$, con un coste computacional de $O(n^3)$ operaciones, inviable para problemas a gran escala.
     3.  Si la hessiana no es definida positiva, la dirección puede no ser de descenso, provocando que el algoritmo diverja.

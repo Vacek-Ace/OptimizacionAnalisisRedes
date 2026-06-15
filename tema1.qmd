@@ -136,11 +136,13 @@ Para formular el modelo matemático de este problema operativo:
 Atendiendo a las propiedades algebraicas y analíticas de sus componentes, los problemas de optimización se clasifican de la siguiente manera:
 
 -   **Según la linealidad**:
+
     -   *Programación Lineal (LP)*:
         Tanto la función objetivo $f(x)$ como todas las funciones de restricciones $g_i(x)$ e $h_j(x)$ son funciones afines (de primer grado). Permiten la aplicación del algoritmo del Símplex y métodos de punto interior. Su resolución numérica es sumamente rápida, pudiendo manejar millones de variables y restricciones.
     -   *Programación No Lineal (NLP)*:
         Al menos una de las funciones involucradas ($f$, $g_i$ o $h_j$) presenta curvatura o componentes no lineales (como potencias, exponenciales, logaritmos o funciones trigonométricas). La búsqueda del óptimo requiere herramientas de cálculo multivariable y análisis de curvatura.
 -   **Según el dominio de definición**:
+
     -   *Optimización Continua*:
         El espacio de búsqueda $X$ es continuo ($x \in \mathbb{R}^n$). Esto nos permite explotar las derivadas de la función (gradiente, hessiana) para dirigir la búsqueda.
     -   *Optimización Entera o Discreta (IP)*:
@@ -150,6 +152,7 @@ Atendiendo a las propiedades algebraicas y analíticas de sus componentes, los p
     -   *Optimización Entera Mixta (MIP)*:
         Coexisten variables continuas y enteras/binarias dentro del mismo modelo, permitiendo modelar simultáneamente decisiones lógicas y cantidades físicas continuas.
 -   **Según la presencia de incertidumbre**:
+
     -   *Optimización Determinista*:
         Todos los coeficientes y parámetros del modelo se conocen con absoluta certeza.
     -   *Optimización Estocástica*:

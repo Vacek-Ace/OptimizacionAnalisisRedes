@@ -42,6 +42,7 @@ Formulado por el matemático chino **Mei-Ko Kwan** en 1960, el Problema del Cart
     Cualquier ciclo euleriano es solución óptima del problema. La longitud de la ruta óptima es exactamente igual a la suma de los pesos de todas las aristas de la red.
 -   **Caso B: El grafo no es euleriano**:
     El grafo posee un conjunto de nodos de grado impar. Por el lema del apretón de manos, el número de estos nodos es par, denotado por $V_{\text{impar}}$ (con $|V_{\text{impar}}| = 2k$). Para poder trazar un recorrido euleriano, debemos duplicar ciertos caminos entre estos nodos de grado impar de modo que el coste añadido sea mínimo:
+    
     1.  Calcular la matriz de distancias mínimas $d(u, v)$ entre todos los pares de nodos pertenecientes a $V_{\text{impar}}$ (usando algoritmos como Dijkstra o Floyd-Warshall).
     2.  Construir un **grafo auxiliar completo** cuyos nodos son únicamente los elementos de $V_{\text{impar}}$, y el peso de cada arista $\{u, v\}$ es la distancia del camino mínimo $d(u, v)$ calculado en el paso anterior.
     3.  Encontrar un **emparejamiento perfecto de peso mínimo** en este grafo auxiliar completo.

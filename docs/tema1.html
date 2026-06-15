@@ -432,19 +432,19 @@ window.Quarto = {
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="clasificación-de-los-modelos-de-optimización"><span class="header-section-number">1.3.1</span> Clasificación de los Modelos de Optimización</h3>
 <p>Atendiendo a las propiedades algebraicas y analíticas de sus componentes, los problemas de optimización se clasifican de la siguiente manera:</p>
 <ul>
-<li><strong>Según la linealidad</strong>:
+<li><p><strong>Según la linealidad</strong>:</p>
 <ul>
 <li><em>Programación Lineal (LP)</em>: Tanto la función objetivo <span class="math inline">\(f(x)\)</span> como todas las funciones de restricciones <span class="math inline">\(g_i(x)\)</span> e <span class="math inline">\(h_j(x)\)</span> son funciones afines (de primer grado). Permiten la aplicación del algoritmo del Símplex y métodos de punto interior. Su resolución numérica es sumamente rápida, pudiendo manejar millones de variables y restricciones.</li>
 <li><em>Programación No Lineal (NLP)</em>: Al menos una de las funciones involucradas (<span class="math inline">\(f\)</span>, <span class="math inline">\(g_i\)</span> o <span class="math inline">\(h_j\)</span>) presenta curvatura o componentes no lineales (como potencias, exponenciales, logaritmos o funciones trigonométricas). La búsqueda del óptimo requiere herramientas de cálculo multivariable y análisis de curvatura.</li>
 </ul></li>
-<li><strong>Según el dominio de definición</strong>:
+<li><p><strong>Según el dominio de definición</strong>:</p>
 <ul>
 <li><em>Optimización Continua</em>: El espacio de búsqueda <span class="math inline">\(X\)</span> es continuo (<span class="math inline">\(x \in \mathbb{R}^n\)</span>). Esto nos permite explotar las derivadas de la función (gradiente, hessiana) para dirigir la búsqueda.</li>
 <li><em>Optimización Entera o Discreta (IP)</em>: Las variables de decisión solo pueden tomar valores en el conjunto de los números enteros (<span class="math inline">\(x \in \mathbb{Z}^n\)</span>). Estos problemas son combinatorios y presentan una alta dificultad de resolución (son NP-duros).</li>
 <li><em>Optimización Binaria</em>: Las variables se restringen a <span class="math inline">\(x_j \in \{0, 1\}\)</span>, representando decisiones lógicas excluyentes del tipo “sí” o “no” (por ejemplo, construir una planta o no).</li>
 <li><em>Optimización Entera Mixta (MIP)</em>: Coexisten variables continuas y enteras/binarias dentro del mismo modelo, permitiendo modelar simultáneamente decisiones lógicas y cantidades físicas continuas.</li>
 </ul></li>
-<li><strong>Según la presencia de incertidumbre</strong>:
+<li><p><strong>Según la presencia de incertidumbre</strong>:</p>
 <ul>
 <li><em>Optimización Determinista</em>: Todos los coeficientes y parámetros del modelo se conocen con absoluta certeza.</li>
 <li><em>Optimización Estocástica</em>: Algunos parámetros del modelo se comportan como variables aleatorias con distribuciones de probabilidad conocidas. Se busca optimizar el valor esperado o cumplir restricciones de probabilidad (restricciones de azar).</li>

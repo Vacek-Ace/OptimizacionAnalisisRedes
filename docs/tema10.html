@@ -352,7 +352,14 @@ window.Quarto = {
 <p>Sea un grafo simple no dirigido <span class="math inline">\(G = (V, E)\)</span>.</p>
 <section id="definición-de-emparejamiento" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="definición-de-emparejamiento"><span class="header-section-number">10.1.1</span> Definición de Emparejamiento</h3>
-<p>Un subconjunto de aristas <span class="math inline">\(M \subseteq E\)</span> es un <strong>emparejamiento</strong> si para todo par de aristas distintas <span class="math inline">\(e_1, e_2 \in M\)</span> se cumple que no comparten ningún nodo (<span class="math inline">\(e_1 \cap e_2 = \emptyset\)</span>). - <strong>Vértice Saturado (o Emparejado)</strong>: Un vértice <span class="math inline">\(v \in V\)</span> que pertenece a alguna de las aristas seleccionadas en <span class="math inline">\(M\)</span>. - <strong>Vértice Insaturado (o Libre)</strong>: Un vértice <span class="math inline">\(v \in V\)</span> que no forma parte de ninguna arista de <span class="math inline">\(M\)</span>. - <strong>Emparejamiento Maximal</strong>: Un emparejamiento <span class="math inline">\(M\)</span> tal que no se le puede añadir ninguna arista de <span class="math inline">\(E \setminus M\)</span> sin violar la condición de emparejamiento. - <strong>Emparejamiento Máximo</strong>: Un emparejamiento que tiene la mayor cantidad de aristas posible en el grafo <span class="math inline">\(G\)</span>. Su tamaño se denota por la cardinalidad <span class="math inline">\(\alpha_E(G)\)</span>. - <strong>Emparejamiento Perfecto</strong>: Un emparejamiento que satura a todos los vértices del grafo. Si existe, la cardinalidad del emparejamiento es exactamente <span class="math inline">\(|M| = n/2\)</span> (lo que exige que el número total de nodos <span class="math inline">\(n\)</span> sea par).</p>
+<p>Un subconjunto de aristas <span class="math inline">\(M \subseteq E\)</span> es un <strong>emparejamiento</strong> si para todo par de aristas distintas <span class="math inline">\(e_1, e_2 \in M\)</span> se cumple que no comparten ningún nodo (<span class="math inline">\(e_1 \cap e_2 = \emptyset\)</span>).</p>
+<ul>
+<li><strong>Vértice Saturado (o Emparejado)</strong>: Un vértice <span class="math inline">\(v \in V\)</span> que pertenece a alguna de las aristas seleccionadas en <span class="math inline">\(M\)</span>.</li>
+<li><strong>Vértice Insaturado (o Libre)</strong>: Un vértice <span class="math inline">\(v \in V\)</span> que no forma parte de ninguna arista de <span class="math inline">\(M\)</span>.</li>
+<li><strong>Emparejamiento Maximal</strong>: Un emparejamiento <span class="math inline">\(M\)</span> tal que no se le puede añadir ninguna arista de <span class="math inline">\(E \setminus M\)</span> sin violar la condición de emparejamiento.</li>
+<li><strong>Emparejamiento Máximo</strong>: Un emparejamiento que tiene la mayor cantidad de aristas posible en el grafo <span class="math inline">\(G\)</span>. Su tamaño se denota por la cardinalidad <span class="math inline">\(\alpha_E(G)\)</span>.</li>
+<li><strong>Emparejamiento Perfecto</strong>: Un emparejamiento que satura a todos los vértices del grafo. Si existe, la cardinalidad del emparejamiento es exactamente <span class="math inline">\(|M| = n/2\)</span> (lo que exige que el número total de nodos <span class="math inline">\(n\)</span> sea par).</li>
+</ul>
 <div id="fig-emparejamiento-bipartito" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-emparejamiento-bipartito-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -366,7 +373,11 @@ Figura&nbsp;10.1: Ejemplo de un emparejamiento máximo destacado en color rojo e
 </section>
 <section id="cadenas-alternantes-e-incrementales" class="level3" data-number="10.1.2">
 <h3 data-number="10.1.2" class="anchored" data-anchor-id="cadenas-alternantes-e-incrementales"><span class="header-section-number">10.1.2</span> Cadenas Alternantes e Incrementales</h3>
-<p>Dada una red con un emparejamiento <span class="math inline">\(M\)</span>: - <strong>Cadena Alternante</strong>: Una cadena de aristas que pertenecen alternativamente a <span class="math inline">\(M\)</span> y a <span class="math inline">\(E \setminus M\)</span>. - <strong>Cadena Incremental (o de Aumento)</strong>: Una cadena alternante cuyos extremos inicial y final son nodos libres (insaturados) con respecto a <span class="math inline">\(M\)</span>.</p>
+<p>Dada una red con un emparejamiento <span class="math inline">\(M\)</span>:</p>
+<ul>
+<li><strong>Cadena Alternante</strong>: Una cadena de aristas que pertenecen alternativamente a <span class="math inline">\(M\)</span> y a <span class="math inline">\(E \setminus M\)</span>.</li>
+<li><strong>Cadena Incremental (o de Aumento)</strong>: Una cadena alternante cuyos extremos inicial y final son nodos libres (insaturados) con respecto a <span class="math inline">\(M\)</span>.</li>
+</ul>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema de Berge (1957)">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -385,7 +396,14 @@ Figura&nbsp;10.1: Ejemplo de un emparejamiento máximo destacado en color rojo e
 </section>
 <section id="búsqueda-mediante-árboles-alternantes" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="búsqueda-mediante-árboles-alternantes"><span class="header-section-number">10.2</span> Búsqueda mediante Árboles Alternantes</h2>
-<p>Para localizar de forma algorítmica las cadenas incrementales, construimos una estructura jerárquica de búsqueda denominada <strong>árbol alternante</strong>: - Se selecciona un vértice libre como nodo raíz. - Las aristas que descienden desde niveles pares del árbol hacia niveles impares corresponden a aristas no emparejadas (<span class="math inline">\(E \setminus M\)</span>). - Las aristas que van desde niveles impares hacia niveles pares corresponden a aristas emparejadas (<span class="math inline">\(M\)</span>). - <em>Resolución</em>: Si durante la exploración del árbol se encuentra un nodo vecino que está libre, se ha identificado una cadena incremental entre la raíz y dicho nodo. - <em>Flores (Blossoms)</em>: En grafos bipartitos, el árbol alternante se construye sin ciclos impares. En grafos generales, la presencia de ciclos de longitud impar (denominados flores) puede bloquear la búsqueda del algoritmo. Jack Edmonds resolvió este problema en 1965 con su algoritmo de contraer las flores en un supernodo durante la búsqueda de caminos y expandirlas posteriormente al actualizar el emparejamiento.</p>
+<p>Para localizar de forma algorítmica las cadenas incrementales, construimos una estructura jerárquica de búsqueda denominada <strong>árbol alternante</strong>:</p>
+<ul>
+<li>Se selecciona un vértice libre como nodo raíz.</li>
+<li>Las aristas que descienden desde niveles pares del árbol hacia niveles impares corresponden a aristas no emparejadas (<span class="math inline">\(E \setminus M\)</span>).</li>
+<li>Las aristas que van desde niveles impares hacia niveles pares corresponden a aristas emparejadas (<span class="math inline">\(M\)</span>).</li>
+<li><em>Resolución</em>: Si durante la exploración del árbol se encuentra un nodo vecino que está libre, se ha identificado una cadena incremental entre la raíz y dicho nodo.</li>
+<li><em>Flores (Blossoms)</em>: En grafos bipartitos, el árbol alternante se construye sin ciclos impares. En grafos generales, la presencia de ciclos de longitud impar (denominados flores) puede bloquear la búsqueda del algoritmo. Jack Edmonds resolvió este problema en 1965 con su algoritmo de contraer las flores en un supernodo durante la búsqueda de caminos y expandirlas posteriormente al actualizar el emparejamiento.</li>
+</ul>
 </section>
 <section id="problemas-de-recubrimiento-en-grafos" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="problemas-de-recubrimiento-en-grafos"><span class="header-section-number">10.3</span> Problemas de Recubrimiento en Grafos</h2>
@@ -407,7 +425,11 @@ Figura&nbsp;10.1: Ejemplo de un emparejamiento máximo destacado en color rojo e
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Para cualquier grafo simple conexo <span class="math inline">\(G = (V, E)\)</span> con <span class="math inline">\(n\)</span> vértices y sin nodos aislados, se cumplen las siguientes relaciones de conservación: 1. <strong>Dualidad de Vértices</strong>: <span class="math display">\[ \alpha_V(G) + \beta_V(G) = n \]</span> 2. <strong>Dualidad de Aristas</strong>: <span class="math display">\[ \alpha_E(G) + \beta_E(G) = n \]</span></p>
+<p>Para cualquier grafo simple conexo <span class="math inline">\(G = (V, E)\)</span> con <span class="math inline">\(n\)</span> vértices y sin nodos aislados, se cumplen las siguientes relaciones de conservación:</p>
+<ol type="1">
+<li><strong>Dualidad de Vértices</strong>: <span class="math display">\[ \alpha_V(G) + \beta_V(G) = n \]</span></li>
+<li><strong>Dualidad de Aristas</strong>: <span class="math display">\[ \alpha_E(G) + \beta_E(G) = n \]</span></li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled" title="Teorema de König-Egerváry">
@@ -428,7 +450,13 @@ Figura&nbsp;10.1: Ejemplo de un emparejamiento máximo destacado en color rojo e
 <section id="emparejamiento-de-máximo-peso-y-algoritmo-húngaro" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="emparejamiento-de-máximo-peso-y-algoritmo-húngaro"><span class="header-section-number">10.4</span> Emparejamiento de Máximo Peso y Algoritmo Húngaro</h2>
 <p>Cuando cada arista <span class="math inline">\(\{u, v\}\)</span> tiene asociado un beneficio o peso <span class="math inline">\(w_{uv} \ge 0\)</span>, el problema de emparejamiento de peso máximo busca maximizar la recompensa total acumulada: <span class="math display">\[ \max \sum_{e \in M} w(e) \quad \text{s.t. } M \text{ es un emparejamiento en } G \]</span></p>
-<p>En grafos bipartitos completos donde <span class="math inline">\(|V_1| = |V_2| = n\)</span>, este problema se denomina <strong>problema de asignación óptima</strong>. Se resuelve de forma exacta mediante el <strong>Algoritmo Húngaro</strong> (Kuhn-Munkres, 1955), el cual opera sobre el problema dual de programación lineal: - Asocia un potencial o precio dual <span class="math inline">\(u_i\)</span> a los nodos de la izquierda y <span class="math inline">\(v_j\)</span> a los de la derecha. - Mantiene la viabilidad dual: <span class="math inline">\(u_i + v_j \le c_{ij}\)</span> (donde <span class="math inline">\(c_{ij}\)</span> es el coste o peso). - Busca un emparejamiento perfecto sobre el subgrafo de igualdad formado únicamente por los arcos donde se cumple la igualdad dual con holgura cero: <span class="math inline">\(u_i + v_j = c_{ij}\)</span>. - Si el emparejamiento no es perfecto, modifica de forma óptima los precios duales para activar nuevas aristas en el subgrafo de igualdad y repite.</p>
+<p>En grafos bipartitos completos donde <span class="math inline">\(|V_1| = |V_2| = n\)</span>, este problema se denomina <strong>problema de asignación óptima</strong>. Se resuelve de forma exacta mediante el <strong>Algoritmo Húngaro</strong> (Kuhn-Munkres, 1955), el cual opera sobre el problema dual de programación lineal:</p>
+<ul>
+<li>Asocia un potencial o precio dual <span class="math inline">\(u_i\)</span> a los nodos de la izquierda y <span class="math inline">\(v_j\)</span> a los de la derecha.</li>
+<li>Mantiene la viabilidad dual: <span class="math inline">\(u_i + v_j \le c_{ij}\)</span> (donde <span class="math inline">\(c_{ij}\)</span> es el coste o peso).</li>
+<li>Busca un emparejamiento perfecto sobre el subgrafo de igualdad formado únicamente por los arcos donde se cumple la igualdad dual con holgura cero: <span class="math inline">\(u_i + v_j = c_{ij}\)</span>.</li>
+<li>Si el emparejamiento no es perfecto, modifica de forma óptima los precios duales para activar nuevas aristas en el subgrafo de igualdad y repite.</li>
+</ul>
 </section>
 <section id="implementación-en-python-con-networkx" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="implementación-en-python-con-networkx"><span class="header-section-number">10.5</span> Implementación en Python con NetworkX</h2>

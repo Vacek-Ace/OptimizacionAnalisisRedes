@@ -22,6 +22,7 @@ Sea un grafo simple no dirigido $G = (V, E)$.
 
 ### Definición de Emparejamiento
 Un subconjunto de aristas $M \subseteq E$ es un **emparejamiento** si para todo par de aristas distintas $e_1, e_2 \in M$ se cumple que no comparten ningún nodo ($e_1 \cap e_2 = \emptyset$).
+
 -   **Vértice Saturado (o Emparejado)**:
     Un vértice $v \in V$ que pertenece a alguna de las aristas seleccionadas en $M$.
 -   **Vértice Insaturado (o Libre)**:
@@ -37,6 +38,7 @@ Un subconjunto de aristas $M \subseteq E$ es un **emparejamiento** si para todo 
 
 ### Cadenas Alternantes e Incrementales
 Dada una red con un emparejamiento $M$:
+
 -   **Cadena Alternante**:
     Una cadena de aristas que pertenecen alternativamente a $M$ y a $E \setminus M$.
 -   **Cadena Incremental (o de Aumento)**:
@@ -55,6 +57,7 @@ Definimos la diferencia simétrica $M' = M \oplus P = (M \setminus P) \cup (P \s
 ## Búsqueda mediante Árboles Alternantes
 
 Para localizar de forma algorítmica las cadenas incrementales, construimos una estructura jerárquica de búsqueda denominada **árbol alternante**:
+
 -   Se selecciona un vértice libre como nodo raíz.
 -   Las aristas que descienden desde niveles pares del árbol hacia niveles impares corresponden a aristas no emparejadas ($E \setminus M$).
 -   Las aristas que van desde niveles impares hacia niveles pares corresponden a aristas emparejadas ($M$).
@@ -67,6 +70,7 @@ Para localizar de forma algorítmica las cadenas incrementales, construimos una 
 Estudiamos la relación entre seleccionar aristas independientes y cubrir los componentes del grafo.
 
 ### Definición de Recubrimientos y Conjuntos Independientes
+
 -   **Recubrimiento de Vértices (Vertex Cover)**:
     Un subconjunto de nodos $V_C \subseteq V$ tal que toda arista del grafo tiene al menos uno de sus extremos en $V_C$:
     $$ \{u, v\} \cap V_C \neq \emptyset, \quad \forall \{u, v\} \in E $$
@@ -79,6 +83,7 @@ Estudiamos la relación entre seleccionar aristas independientes y cubrir los co
 
 ::: {.callout-important title="Teoremas de Dualidad de Gallai (1959)"}
 Para cualquier grafo simple conexo $G = (V, E)$ con $n$ vértices y sin nodos aislados, se cumplen las siguientes relaciones de conservación:
+
 1.  **Dualidad de Vértices**:
     $$ \alpha_V(G) + \beta_V(G) = n $$
 2.  **Dualidad de Aristas**:
@@ -98,6 +103,7 @@ Cuando cada arista $\{u, v\}$ tiene asociado un beneficio o peso $w_{uv} \ge 0$,
 $$ \max \sum_{e \in M} w(e) \quad \text{s.t. } M \text{ es un emparejamiento en } G $$
 
 En grafos bipartitos completos donde $|V_1| = |V_2| = n$, este problema se denomina **problema de asignación óptima**. Se resuelve de forma exacta mediante el **Algoritmo Húngaro** (Kuhn-Munkres, 1955), el cual opera sobre el problema dual de programación lineal:
+
 -   Asocia un potencial o precio dual $u_i$ a los nodos de la izquierda y $v_j$ a los de la derecha.
 -   Mantiene la viabilidad dual: $u_i + v_j \le c_{ij}$ (donde $c_{ij}$ es el coste o peso).
 -   Busca un emparejamiento perfecto sobre el subgrafo de igualdad formado únicamente por los arcos donde se cumple la igualdad dual con holgura cero: $u_i + v_j = c_{ij}$.

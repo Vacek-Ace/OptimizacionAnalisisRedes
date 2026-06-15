@@ -22,6 +22,7 @@ Sea un digrafo conexo $G = (V, A)$.
 Un **flujo** en la red $G$ es un vector $x \in \mathbb{R}^{|A|}$ que asigna a cada arco dirigido $(i, j) \in A$ un caudal o cantidad $x_{ij}$. El flujo debe cumplir con las ecuaciones de conservación en los nodos:
 $$ \sum_{j \mid (i, j) \in A} x_{ij} - \sum_{j \mid (j, i) \in A} x_{ji} = b_i, \quad \forall i \in V $$
 Donde el vector $b \in \mathbb{R}^{|V|}$ representa los balances externos:
+
 -   **fuentes ($b_i > 0$)**: Nodos inyectores de flujo.
 -   **sumideros ($b_i < 0$)**: Nodos extractores de flujo.
 -   **transbordo ($b_i = 0$)**: Nodos intermedios (todo flujo entrante sale).
@@ -49,6 +50,7 @@ El lema de coloración de Minty es un teorema fundamental en optimización combi
 Sea $G = (V, A)$ un digrafo conexo cuyos arcos se pueden colorear de forma arbitraria con tres colores: **negro** ($N$), **verde** ($V$), **rojo** ($R$) o dejarse **sin color** ($0$). Se exige que al menos un arco $u_0 = (t, s) \in A$ esté coloreado de **negro**.
 
 Entonces, se verifica una, y solo una, de las dos afirmaciones siguientes:
+
 1.  El arco negro $u_0$ pertenece a un **ciclo elemental** coloreado (formado solo por arcos negros, verdes o rojos). Los arcos negros están orientados en sentido directo en el ciclo, los verdes en sentido inverso y los rojos en cualquier sentido.
 2.  El arco negro $u_0$ pertenece a un **cociclo elemental** coloreado (formado solo por arcos negros, verdes o sin color). Los arcos negros están orientados en sentido directo en el corte, los verdes en sentido inverso y los arcos sin color en cualquier sentido.
 :::
@@ -56,6 +58,7 @@ Entonces, se verifica una, y solo una, de las dos afirmaciones siguientes:
 
 ::: {.callout-note title="Demostración y Algoritmo de Etiquetado de Minty" collapse="true"}
 La demostración del lema es constructiva y define el algoritmo de etiquetado:
+
 1.  **Etiquetado inicial**:
     Etiquetar el nodo $s$ (extremo del arco negro de referencia $u_0 = (t, s)$) como $p(s) = s$. Todos los demás nodos se marcan como no etiquetados ($p(j) = 0$).
 2.  **Propagación**:
@@ -98,11 +101,15 @@ $$ C(S, T) = \sum_{i \in S, j \in T} u_{ij} $$
 
 ### Algoritmo de Ford-Fulkerson (Camino Aumentante)
 El algoritmo busca repetidamente rutas donde sea posible añadir flujo de $s$ a $t$ en la **red residual** $G_f$:
+
 -   **Red Residual $G_f$**:
     Para cada arco original $(i, j) \in A$ con capacidad $u_{ij}$ y flujo actual $x_{ij}$, se definen en $G_f$:
+
     -   Un arco directo $(i, j)$ con capacidad residual $u_{ij} - x_{ij}$ (espacio libre para aumentar flujo).
     -   Un arco inverso $(j, i)$ con capacidad residual $x_{ij}$ (capacidad de cancelar o retornar flujo).
+    
 -   **Pasos del Algoritmo**:
+
     1.  Fijar el flujo inicial $x_{ij} = 0$ para todos los arcos.
     2.  Buscar un camino simple de $s$ a $t$ en la red residual $G_f$. Si no existe, terminar (el flujo actual es óptimo).
     3.  Para el camino aumentante $\mu$ hallado, calcular su cuello de botella:

@@ -412,7 +412,20 @@ Figura&nbsp;7.1: Grafo asociado al problema de los puentes de Königsberg
 </div>
 <div class="callout-body-container callout-body">
 <p>Sea <span class="math inline">\(G = (V, E)\)</span> un grafo planar conexo con <span class="math inline">\(n = |V|\)</span> vértices y <span class="math inline">\(m = |E|\)</span> aristas. Si <span class="math inline">\(r\)</span> es el número de regiones de su representación planar, entonces se cumple: <span class="math display">\[ n + r = m + 2 \]</span></p>
-<p><em>Demostración (por inducción sobre el número de aristas <span class="math inline">\(m\)</span>)</em>: - <strong>Base de la inducción (<span class="math inline">\(m=1\)</span>)</strong>: - Si conecta dos nodos distintos (<span class="math inline">\(n=2\)</span>), define 1 región (exterior): <span class="math inline">\(2 + 1 = 1 + 2\)</span> (correcto). - Si es un bucle sobre un único nodo (<span class="math inline">\(n=1\)</span>), divide el plano en una región interior y otra exterior (<span class="math inline">\(r=2\)</span>): <span class="math inline">\(1 + 2 = 1 + 2\)</span> (correcto). - <strong>Paso inductivo</strong>: Asumimos que la fórmula se cumple para grafos de <span class="math inline">\(k\)</span> aristas. Sea <span class="math inline">\(G\)</span> un grafo con <span class="math inline">\(m = k+1\)</span> aristas: - <em>Caso 1</em>: Si <span class="math inline">\(G\)</span> contiene un nodo de grado 1 (vértice pendiente <span class="math inline">\(v\)</span>), al eliminar <span class="math inline">\(v\)</span> y su arista asociada obtenemos un subgrafo conexo con <span class="math inline">\(n-1\)</span> vértices, <span class="math inline">\(k\)</span> aristas y las mismas <span class="math inline">\(r\)</span> regiones. Por hipótesis: <span class="math inline">\((n-1) + r = k + 2 \implies n + r = (k+1) + 2\)</span>. - <em>Caso 2</em>: Si no hay nodos de grado 1, <span class="math inline">\(G\)</span> contiene al menos un ciclo. Al eliminar una arista del ciclo, el número de aristas pasa a <span class="math inline">\(k\)</span> y las dos regiones adyacentes a la arista se unen en una sola (<span class="math inline">\(r-1\)</span> regiones en el subgrafo). Por hipótesis: <span class="math inline">\(n + (r-1) = k + 2 \implies n + r = (k+1) + 2\)</span>. <span class="math inline">\(\blacksquare\)</span></p>
+<p><em>Demostración (por inducción sobre el número de aristas <span class="math inline">\(m\)</span>)</em>:</p>
+<ul>
+<li><p><strong>Base de la inducción (<span class="math inline">\(m=1\)</span>)</strong>:</p>
+<ul>
+<li>Si conecta dos nodos distintos (<span class="math inline">\(n=2\)</span>), define 1 región (exterior): <span class="math inline">\(2 + 1 = 1 + 2\)</span> (correcto).</li>
+<li>Si es un bucle sobre un único nodo (<span class="math inline">\(n=1\)</span>), divide el plano en una región interior y otra exterior (<span class="math inline">\(r=2\)</span>): <span class="math inline">\(1 + 2 = 1 + 2\)</span> (correcto).</li>
+</ul></li>
+<li><p><strong>Paso inductivo</strong>:</p>
+<p>Asumimos que la fórmula se cumple para grafos de <span class="math inline">\(k\)</span> aristas. Sea <span class="math inline">\(G\)</span> un grafo con <span class="math inline">\(m = k+1\)</span> aristas:</p>
+<ul>
+<li><em>Caso 1</em>: Si <span class="math inline">\(G\)</span> contiene un nodo de grado 1 (vértice pendiente <span class="math inline">\(v\)</span>), al eliminar <span class="math inline">\(v\)</span> y su arista asociada obtenemos un subgrafo conexo con <span class="math inline">\(n-1\)</span> vértices, <span class="math inline">\(k\)</span> aristas y las mismas <span class="math inline">\(r\)</span> regiones. Por hipótesis: <span class="math inline">\((n-1) + r = k + 2 \implies n + r = (k+1) + 2\)</span>.</li>
+<li><em>Caso 2</em>: Si no hay nodos de grado 1, <span class="math inline">\(G\)</span> contiene al menos un ciclo. Al eliminar una arista del ciclo, el número de aristas pasa a <span class="math inline">\(k\)</span> y las dos regiones adyacentes a la arista se unen en una sola (<span class="math inline">\(r-1\)</span> regiones en el subgrafo). Por hipótesis: <span class="math inline">\(n + (r-1) = k + 2 \implies n + r = (k+1) + 2\)</span>. <span class="math inline">\(\blacksquare\)</span></li>
+</ul></li>
+</ul>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled" title="Corolario de la Planaridad">
@@ -479,7 +492,15 @@ Figura&nbsp;7.1: Grafo asociado al problema de los puentes de Königsberg
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sea <span class="math inline">\(G = (V, E)\)</span> un grafo simple no dirigido con <span class="math inline">\(n\)</span> vértices. Las siguientes proposiciones son equivalentes: 1. <span class="math inline">\(G\)</span> es un árbol (conexo y acíclico). 2. <span class="math inline">\(G\)</span> es conexo y tiene exactamente <span class="math inline">\(n-1\)</span> aristas. 3. <span class="math inline">\(G\)</span> es acíclico y tiene exactamente <span class="math inline">\(n-1\)</span> aristas. 4. Existe un único camino elemental entre cualquier par de vértices de <span class="math inline">\(G\)</span>. 5. <span class="math inline">\(G\)</span> es acíclico, pero si se añade una arista cualquiera se forma exactamente un ciclo. 6. <span class="math inline">\(G\)</span> es conexo, pero si se elimina una arista cualquiera se desconecta.</p>
+<p>Sea <span class="math inline">\(G = (V, E)\)</span> un grafo simple no dirigido con <span class="math inline">\(n\)</span> vértices. Las siguientes proposiciones son equivalentes:</p>
+<ol type="1">
+<li><span class="math inline">\(G\)</span> es un árbol (conexo y acíclico).</li>
+<li><span class="math inline">\(G\)</span> es conexo y tiene exactamente <span class="math inline">\(n-1\)</span> aristas.</li>
+<li><span class="math inline">\(G\)</span> es acíclico y tiene exactamente <span class="math inline">\(n-1\)</span> aristas.</li>
+<li>Existe un único camino elemental entre cualquier par de vértices de <span class="math inline">\(G\)</span>.</li>
+<li><span class="math inline">\(G\)</span> es acíclico, pero si se añade una arista cualquiera se forma exactamente un ciclo.</li>
+<li><span class="math inline">\(G\)</span> es conexo, pero si se elimina una arista cualquiera se desconecta.</li>
+</ol>
 </div>
 </div>
 </section>
@@ -499,11 +520,29 @@ Figura&nbsp;7.2: Árbol Soporte de Mínimo Peso (MST) destacado en color rojo so
 </div>
 <section id="algoritmo-de-kruskal-1956" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="algoritmo-de-kruskal-1956"><span class="header-section-number">7.4.1</span> Algoritmo de Kruskal (1956)</h3>
-<p>Es de naturaleza codiciosa (greedy) y procesa las aristas de forma aislada: 1. Ordenar todas las aristas del grafo de menor a mayor peso. 2. Inicializar cada nodo en su propia componente conexa disjunta. 3. Recorrer las aristas en orden. Si los extremos de la arista actual pertenecen a componentes conexas distintas (no forman ciclo), añadir la arista al árbol y fusionar las componentes. En caso contrario, descartar. 4. Terminar al seleccionar <span class="math inline">\(n-1\)</span> aristas. - <em>Complejidad</em>: <span class="math inline">\(O(|E| \log |E|)\)</span> debido al coste de la ordenación inicial.</p>
+<p>Es de naturaleza codiciosa (greedy) y procesa las aristas de forma aislada:</p>
+<ol type="1">
+<li>Ordenar todas las aristas del grafo de menor a mayor peso.</li>
+<li>Inicializar cada nodo en su propia componente conexa disjunta.</li>
+<li>Recorrer las aristas en orden. Si los extremos de la arista actual pertenecen a componentes conexas distintas (no forman ciclo), añadir la arista al árbol y fusionar las componentes. En caso contrario, descartar.</li>
+<li>Terminar al seleccionar <span class="math inline">\(n-1\)</span> aristas.</li>
+</ol>
+<ul>
+<li><em>Complejidad</em>: <span class="math inline">\(O(|E| \log |E|)\)</span> debido al coste de la ordenación inicial.</li>
+</ul>
 </section>
 <section id="algoritmo-de-prim" class="level3" data-number="7.4.2">
 <h3 data-number="7.4.2" class="anchored" data-anchor-id="algoritmo-de-prim"><span class="header-section-number">7.4.2</span> Algoritmo de Prim</h3>
-<p>Hace crecer una única componente conectada desde un nodo raíz arbitrario <span class="math inline">\(s\)</span>: 1. Inicializar los nodos cubiertos <span class="math inline">\(V_T = \{s\}\)</span> y el árbol de aristas <span class="math inline">\(E_T = \emptyset\)</span>. 2. Identificar la arista de coste mínimo <span class="math inline">\(\{u, v\}\)</span> tal que <span class="math inline">\(u \in V_T\)</span> y <span class="math inline">\(v \notin V_T\)</span>. 3. Añadir el nodo <span class="math inline">\(v\)</span> a <span class="math inline">\(V_T\)</span> y la arista <span class="math inline">\(\{u, v\}\)</span> a <span class="math inline">\(E_T\)</span>. 4. Repetir hasta cubrir todos los nodos (<span class="math inline">\(V_T = V\)</span>). - <em>Complejidad</em>: <span class="math inline">\(O(|E| + |V| \log |V|)\)</span> si se implementa mediante colas de prioridad con montículos de Fibonacci.</p>
+<p>Hace crecer una única componente conectada desde un nodo raíz arbitrario <span class="math inline">\(s\)</span>:</p>
+<ol type="1">
+<li>Inicializar los nodos cubiertos <span class="math inline">\(V_T = \{s\}\)</span> y el árbol de aristas <span class="math inline">\(E_T = \emptyset\)</span>.</li>
+<li>Identificar la arista de coste mínimo <span class="math inline">\(\{u, v\}\)</span> tal que <span class="math inline">\(u \in V_T\)</span> y <span class="math inline">\(v \notin V_T\)</span>.</li>
+<li>Añadir el nodo <span class="math inline">\(v\)</span> a <span class="math inline">\(V_T\)</span> y la arista <span class="math inline">\(\{u, v\}\)</span> a <span class="math inline">\(E_T\)</span>.</li>
+<li>Repetir hasta cubrir todos los nodos (<span class="math inline">\(V_T = V\)</span>).</li>
+</ol>
+<ul>
+<li><em>Complejidad</em>: <span class="math inline">\(O(|E| + |V| \log |V|)\)</span> si se implementa mediante colas de prioridad con montículos de Fibonacci.</li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled" title="Clustering Jerárquico Basado en MST">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -514,7 +553,13 @@ Figura&nbsp;7.2: Árbol Soporte de Mínimo Peso (MST) destacado en color rojo so
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>El MST es una herramienta potente en aprendizaje no supervisado. Para agrupar un conjunto de observaciones en <span class="math inline">\(k\)</span> grupos o clústeres disjuntos: 1. Construir un grafo completo donde los nodos son las observaciones y los pesos de las aristas corresponden a la distancia métrica (euclídea, Manhattan) entre los perfiles. 2. Calcular el MST del grafo. 3. Eliminar las <span class="math inline">\(k-1\)</span> aristas de mayor peso del MST. 4. Las <span class="math inline">\(k\)</span> componentes conexas resultantes definen los clústeres óptimos bajo el criterio de enlace simple (<em>Single-Linkage</em>).</p>
+<p>El MST es una herramienta potente en aprendizaje no supervisado. Para agrupar un conjunto de observaciones en <span class="math inline">\(k\)</span> grupos o clústeres disjuntos:</p>
+<ol type="1">
+<li>Construir un grafo completo donde los nodos son las observaciones y los pesos de las aristas corresponden a la distancia métrica (euclídea, Manhattan) entre los perfiles.</li>
+<li>Calcular el MST del grafo.</li>
+<li>Eliminar las <span class="math inline">\(k-1\)</span> aristas de mayor peso del MST.</li>
+<li>Las <span class="math inline">\(k\)</span> componentes conexas resultantes definen los clústeres óptimos bajo el criterio de enlace simple (<em>Single-Linkage</em>).</li>
+</ol>
 </div>
 </div>
 </section>

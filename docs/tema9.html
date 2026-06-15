@@ -351,7 +351,12 @@ window.Quarto = {
 <p>Sea un digrafo conexo <span class="math inline">\(G = (V, A)\)</span>.</p>
 <section id="definición-de-flujo-y-circulación" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="definición-de-flujo-y-circulación"><span class="header-section-number">9.1.1</span> Definición de Flujo y Circulación</h3>
-<p>Un <strong>flujo</strong> en la red <span class="math inline">\(G\)</span> es un vector <span class="math inline">\(x \in \mathbb{R}^{|A|}\)</span> que asigna a cada arco dirigido <span class="math inline">\((i, j) \in A\)</span> un caudal o cantidad <span class="math inline">\(x_{ij}\)</span>. El flujo debe cumplir con las ecuaciones de conservación en los nodos: <span class="math display">\[ \sum_{j \mid (i, j) \in A} x_{ij} - \sum_{j \mid (j, i) \in A} x_{ji} = b_i, \quad \forall i \in V \]</span> Donde el vector <span class="math inline">\(b \in \mathbb{R}^{|V|}\)</span> representa los balances externos: - <strong>fuentes (<span class="math inline">\(b_i &gt; 0\)</span>)</strong>: Nodos inyectores de flujo. - <strong>sumideros (<span class="math inline">\(b_i &lt; 0\)</span>)</strong>: Nodos extractores de flujo. - <strong>transbordo (<span class="math inline">\(b_i = 0\)</span>)</strong>: Nodos intermedios (todo flujo entrante sale).</p>
+<p>Un <strong>flujo</strong> en la red <span class="math inline">\(G\)</span> es un vector <span class="math inline">\(x \in \mathbb{R}^{|A|}\)</span> que asigna a cada arco dirigido <span class="math inline">\((i, j) \in A\)</span> un caudal o cantidad <span class="math inline">\(x_{ij}\)</span>. El flujo debe cumplir con las ecuaciones de conservación en los nodos: <span class="math display">\[ \sum_{j \mid (i, j) \in A} x_{ij} - \sum_{j \mid (j, i) \in A} x_{ji} = b_i, \quad \forall i \in V \]</span> Donde el vector <span class="math inline">\(b \in \mathbb{R}^{|V|}\)</span> representa los balances externos:</p>
+<ul>
+<li><strong>fuentes (<span class="math inline">\(b_i &gt; 0\)</span>)</strong>: Nodos inyectores de flujo.</li>
+<li><strong>sumideros (<span class="math inline">\(b_i &lt; 0\)</span>)</strong>: Nodos extractores de flujo.</li>
+<li><strong>transbordo (<span class="math inline">\(b_i = 0\)</span>)</strong>: Nodos intermedios (todo flujo entrante sale).</li>
+</ul>
 <p>Para que el sistema tenga solución factible, la red debe estar en equilibrio global: <span class="math inline">\(\sum_{i \in V} b_i = 0\)</span>. Si <span class="math inline">\(b_i = 0\)</span> para todo <span class="math inline">\(i \in V\)</span>, el flujo <span class="math inline">\(x\)</span> se denomina <strong>circulación</strong>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Definición de Cociclo (Corte)">
 <div class="callout-header d-flex align-content-center">
@@ -382,7 +387,11 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <p>Sea <span class="math inline">\(G = (V, A)\)</span> un digrafo conexo cuyos arcos se pueden colorear de forma arbitraria con tres colores: <strong>negro</strong> (<span class="math inline">\(N\)</span>), <strong>verde</strong> (<span class="math inline">\(V\)</span>), <strong>rojo</strong> (<span class="math inline">\(R\)</span>) o dejarse <strong>sin color</strong> (<span class="math inline">\(0\)</span>). Se exige que al menos un arco <span class="math inline">\(u_0 = (t, s) \in A\)</span> esté coloreado de <strong>negro</strong>.</p>
-<p>Entonces, se verifica una, y solo una, de las dos afirmaciones siguientes: 1. El arco negro <span class="math inline">\(u_0\)</span> pertenece a un <strong>ciclo elemental</strong> coloreado (formado solo por arcos negros, verdes o rojos). Los arcos negros están orientados en sentido directo en el ciclo, los verdes en sentido inverso y los rojos en cualquier sentido. 2. El arco negro <span class="math inline">\(u_0\)</span> pertenece a un <strong>cociclo elemental</strong> coloreado (formado solo por arcos negros, verdes o sin color). Los arcos negros están orientados en sentido directo en el corte, los verdes en sentido inverso y los arcos sin color en cualquier sentido.</p>
+<p>Entonces, se verifica una, y solo una, de las dos afirmaciones siguientes:</p>
+<ol type="1">
+<li>El arco negro <span class="math inline">\(u_0\)</span> pertenece a un <strong>ciclo elemental</strong> coloreado (formado solo por arcos negros, verdes o rojos). Los arcos negros están orientados en sentido directo en el ciclo, los verdes en sentido inverso y los rojos en cualquier sentido.</li>
+<li>El arco negro <span class="math inline">\(u_0\)</span> pertenece a un <strong>cociclo elemental</strong> coloreado (formado solo por arcos negros, verdes o sin color). Los arcos negros están orientados en sentido directo en el corte, los verdes en sentido inverso y los arcos sin color en cualquier sentido.</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Demostración y Algoritmo de Etiquetado de Minty">
@@ -397,7 +406,20 @@ window.Quarto = {
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>La demostración del lema es constructiva y define el algoritmo de etiquetado: 1. <strong>Etiquetado inicial</strong>: Etiquetar el nodo <span class="math inline">\(s\)</span> (extremo del arco negro de referencia <span class="math inline">\(u_0 = (t, s)\)</span>) como <span class="math inline">\(p(s) = s\)</span>. Todos los demás nodos se marcan como no etiquetados (<span class="math inline">\(p(j) = 0\)</span>). 2. <strong>Propagación</strong>: Buscar un nodo <span class="math inline">\(i\)</span> etiquetado (<span class="math inline">\(p(i) \neq 0\)</span>) y un nodo <span class="math inline">\(j\)</span> no etiquetado (<span class="math inline">\(p(j) = 0\)</span>) adyacentes en la red. Etiquetar <span class="math inline">\(j\)</span> asignando <span class="math inline">\(p(j) = i\)</span> si se cumple alguna de las siguientes condiciones: - Existe el arco dirigido <span class="math inline">\(u = (i, j) \in A\)</span> y <span class="math inline">\(u\)</span> está coloreado de negro o rojo. - Existe el arco dirigido <span class="math inline">\(u = (j, i) \in A\)</span> y <span class="math inline">\(u\)</span> está coloreado de verde o rojo. 3. <strong>Criterio de Parada</strong>: Repetir el paso 2 hasta que no se puedan realizar más etiquetas. Al finalizar: - <em>Caso A (El nodo <span class="math inline">\(t\)</span> está etiquetado)</em>: Siguiendo la cadena de predecesores desde <span class="math inline">\(t\)</span> hasta <span class="math inline">\(s\)</span> (<span class="math inline">\(t - p(t) - p(p(t)) - \dots - s\)</span>) junto con el arco <span class="math inline">\(u_0 = (t, s)\)</span>, se define un ciclo elemental que satisface la primera afirmación del lema. - <em>Caso B (El nodo <span class="math inline">\(t\)</span> no está etiquetado)</em>: Definimos el conjunto <span class="math inline">\(S = \{i \in V \mid p(i) \neq 0\}\)</span>. Al no estar <span class="math inline">\(t\)</span> etiquetado, <span class="math inline">\(s \in S\)</span> y <span class="math inline">\(t \notin S\)</span>, por lo que el cociclo <span class="math inline">\(w(S)\)</span> contiene al arco <span class="math inline">\(u_0\)</span>. Por construcción de las etiquetas, este cociclo no puede contener arcos rojos ni arcos con orientaciones prohibidas, satisfaciendo la segunda afirmación. <span class="math inline">\(\blacksquare\)</span></p>
+<p>La demostración del lema es constructiva y define el algoritmo de etiquetado:</p>
+<ol type="1">
+<li><strong>Etiquetado inicial</strong>: Etiquetar el nodo <span class="math inline">\(s\)</span> (extremo del arco negro de referencia <span class="math inline">\(u_0 = (t, s)\)</span>) como <span class="math inline">\(p(s) = s\)</span>. Todos los demás nodos se marcan como no etiquetados (<span class="math inline">\(p(j) = 0\)</span>).</li>
+<li><strong>Propagación</strong>: Buscar un nodo <span class="math inline">\(i\)</span> etiquetado (<span class="math inline">\(p(i) \neq 0\)</span>) y un nodo <span class="math inline">\(j\)</span> no etiquetado (<span class="math inline">\(p(j) = 0\)</span>) adyacentes en la red. Etiquetar <span class="math inline">\(j\)</span> asignando <span class="math inline">\(p(j) = i\)</span> si se cumple alguna de las siguientes condiciones:
+<ul>
+<li>Existe el arco dirigido <span class="math inline">\(u = (i, j) \in A\)</span> y <span class="math inline">\(u\)</span> está coloreado de negro o rojo.</li>
+<li>Existe el arco dirigido <span class="math inline">\(u = (j, i) \in A\)</span> y <span class="math inline">\(u\)</span> está coloreado de verde o rojo.</li>
+</ul></li>
+<li><strong>Criterio de Parada</strong>: Repetir el paso 2 hasta que no se puedan realizar más etiquetas. Al finalizar:
+<ul>
+<li><em>Caso A (El nodo <span class="math inline">\(t\)</span> está etiquetado)</em>: Siguiendo la cadena de predecesores desde <span class="math inline">\(t\)</span> hasta <span class="math inline">\(s\)</span> (<span class="math inline">\(t - p(t) - p(p(t)) - \dots - s\)</span>) junto con el arco <span class="math inline">\(u_0 = (t, s)\)</span>, se define un ciclo elemental que satisface la primera afirmación del lema.</li>
+<li><em>Caso B (El nodo <span class="math inline">\(t\)</span> no está etiquetado)</em>: Definimos el conjunto <span class="math inline">\(S = \{i \in V \mid p(i) \neq 0\}\)</span>. Al no estar <span class="math inline">\(t\)</span> etiquetado, <span class="math inline">\(s \in S\)</span> y <span class="math inline">\(t \notin S\)</span>, por lo que el cociclo <span class="math inline">\(w(S)\)</span> contiene al arco <span class="math inline">\(u_0\)</span>. Por construcción de las etiquetas, este cociclo no puede contener arcos rojos ni arcos con orientaciones prohibidas, satisfaciendo la segunda afirmación. <span class="math inline">\(\blacksquare\)</span></li>
+</ul></li>
+</ol>
 </div>
 </div>
 </div>
@@ -444,7 +466,22 @@ Figura&nbsp;9.1: Una red de transporte con capacidades y flujo compatible, mostr
 </section>
 <section id="algoritmo-de-ford-fulkerson-camino-aumentante" class="level3" data-number="9.3.2">
 <h3 data-number="9.3.2" class="anchored" data-anchor-id="algoritmo-de-ford-fulkerson-camino-aumentante"><span class="header-section-number">9.3.2</span> Algoritmo de Ford-Fulkerson (Camino Aumentante)</h3>
-<p>El algoritmo busca repetidamente rutas donde sea posible añadir flujo de <span class="math inline">\(s\)</span> a <span class="math inline">\(t\)</span> en la <strong>red residual</strong> <span class="math inline">\(G_f\)</span>: - <strong>Red Residual <span class="math inline">\(G_f\)</span></strong>: Para cada arco original <span class="math inline">\((i, j) \in A\)</span> con capacidad <span class="math inline">\(u_{ij}\)</span> y flujo actual <span class="math inline">\(x_{ij}\)</span>, se definen en <span class="math inline">\(G_f\)</span>: - Un arco directo <span class="math inline">\((i, j)\)</span> con capacidad residual <span class="math inline">\(u_{ij} - x_{ij}\)</span> (espacio libre para aumentar flujo). - Un arco inverso <span class="math inline">\((j, i)\)</span> con capacidad residual <span class="math inline">\(x_{ij}\)</span> (capacidad de cancelar o retornar flujo). - <strong>Pasos del Algoritmo</strong>: 1. Fijar el flujo inicial <span class="math inline">\(x_{ij} = 0\)</span> para todos los arcos. 2. Buscar un camino simple de <span class="math inline">\(s\)</span> a <span class="math inline">\(t\)</span> en la red residual <span class="math inline">\(G_f\)</span>. Si no existe, terminar (el flujo actual es óptimo). 3. Para el camino aumentante <span class="math inline">\(\mu\)</span> hallado, calcular su cuello de botella: <span class="math display">\[ \delta = \min_{e \in \mu} \{ \text{capacidad residual de } e \} \]</span> 4. Actualizar el flujo original: añadir <span class="math inline">\(\delta\)</span> en los arcos directos del camino y restar <span class="math inline">\(\delta\)</span> en los arcos inversos. 5. Volver al paso 2.</p>
+<p>El algoritmo busca repetidamente rutas donde sea posible añadir flujo de <span class="math inline">\(s\)</span> a <span class="math inline">\(t\)</span> en la <strong>red residual</strong> <span class="math inline">\(G_f\)</span>:</p>
+<ul>
+<li><p><strong>Red Residual <span class="math inline">\(G_f\)</span></strong>: Para cada arco original <span class="math inline">\((i, j) \in A\)</span> con capacidad <span class="math inline">\(u_{ij}\)</span> y flujo actual <span class="math inline">\(x_{ij}\)</span>, se definen en <span class="math inline">\(G_f\)</span>:</p>
+<ul>
+<li>Un arco directo <span class="math inline">\((i, j)\)</span> con capacidad residual <span class="math inline">\(u_{ij} - x_{ij}\)</span> (espacio libre para aumentar flujo).</li>
+<li>Un arco inverso <span class="math inline">\((j, i)\)</span> con capacidad residual <span class="math inline">\(x_{ij}\)</span> (capacidad de cancelar o retornar flujo).</li>
+</ul></li>
+<li><p><strong>Pasos del Algoritmo</strong>:</p>
+<ol type="1">
+<li>Fijar el flujo inicial <span class="math inline">\(x_{ij} = 0\)</span> para todos los arcos.</li>
+<li>Buscar un camino simple de <span class="math inline">\(s\)</span> a <span class="math inline">\(t\)</span> en la red residual <span class="math inline">\(G_f\)</span>. Si no existe, terminar (el flujo actual es óptimo).</li>
+<li>Para el camino aumentante <span class="math inline">\(\mu\)</span> hallado, calcular su cuello de botella: <span class="math display">\[ \delta = \min_{e \in \mu} \{ \text{capacidad residual de } e \} \]</span></li>
+<li>Actualizar el flujo original: añadir <span class="math inline">\(\delta\)</span> en los arcos directos del camino y restar <span class="math inline">\(\delta\)</span> en los arcos inversos.</li>
+<li>Volver al paso 2.</li>
+</ol></li>
+</ul>
 </section>
 </section>
 <section id="problema-de-flujo-de-coste-mínimo-y-transbordo" class="level2" data-number="9.4">
