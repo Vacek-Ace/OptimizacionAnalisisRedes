@@ -261,17 +261,17 @@ window.Quarto = {
   <li><a href="#el-monopolio-de-cournot-1838" id="toc-el-monopolio-de-cournot-1838" class="nav-link" data-scroll-target="#el-monopolio-de-cournot-1838"><span class="header-section-number">2.1.2</span> El monopolio de Cournot (1838)</a></li>
   <li><a href="#selección-de-cartera-de-valores-markowitz-1952" id="toc-selección-de-cartera-de-valores-markowitz-1952" class="nav-link" data-scroll-target="#selección-de-cartera-de-valores-markowitz-1952"><span class="header-section-number">2.1.3</span> Selección de cartera de valores (Markowitz, 1952)</a></li>
   </ul></li>
-  <li><a href="#tipos-de-soluciones" id="toc-tipos-de-soluciones" class="nav-link" data-scroll-target="#tipos-de-soluciones"><span class="header-section-number">2.2</span> Tipos de soluciones</a></li>
-  <li><a href="#fundamentos-matemáticos" id="toc-fundamentos-matemáticos" class="nav-link" data-scroll-target="#fundamentos-matemáticos"><span class="header-section-number">2.3</span> Fundamentos matemáticos</a>
+  <li><a href="#óptimos-locales-globales-y-puntos-de-silla" id="toc-óptimos-locales-globales-y-puntos-de-silla" class="nav-link" data-scroll-target="#óptimos-locales-globales-y-puntos-de-silla"><span class="header-section-number">2.2</span> Óptimos locales, globales y puntos de silla</a></li>
+  <li><a href="#herramientas-de-análisis-diferencial" id="toc-herramientas-de-análisis-diferencial" class="nav-link" data-scroll-target="#herramientas-de-análisis-diferencial"><span class="header-section-number">2.3</span> Herramientas de análisis diferencial</a>
   <ul class="collapse">
   <li><a href="#desarrollo-de-taylor-multivariable" id="toc-desarrollo-de-taylor-multivariable" class="nav-link" data-scroll-target="#desarrollo-de-taylor-multivariable"><span class="header-section-number">2.3.1</span> Desarrollo de Taylor multivariable</a></li>
   <li><a href="#caracterización-de-curvatura-y-clasificación-de-matrices" id="toc-caracterización-de-curvatura-y-clasificación-de-matrices" class="nav-link" data-scroll-target="#caracterización-de-curvatura-y-clasificación-de-matrices"><span class="header-section-number">2.3.2</span> Caracterización de curvatura y clasificación de matrices</a></li>
   <li><a href="#condiciones-de-optimalidad-y-puntos-estacionarios" id="toc-condiciones-de-optimalidad-y-puntos-estacionarios" class="nav-link" data-scroll-target="#condiciones-de-optimalidad-y-puntos-estacionarios"><span class="header-section-number">2.3.3</span> Condiciones de optimalidad y puntos estacionarios</a></li>
   </ul></li>
-  <li><a href="#métodos-numéricos-de-búsqueda-lineal" id="toc-métodos-numéricos-de-búsqueda-lineal" class="nav-link" data-scroll-target="#métodos-numéricos-de-búsqueda-lineal"><span class="header-section-number">2.4</span> Métodos numéricos de búsqueda lineal</a>
+  <li><a href="#métodos-de-búsqueda-unidimensional" id="toc-métodos-de-búsqueda-unidimensional" class="nav-link" data-scroll-target="#métodos-de-búsqueda-unidimensional"><span class="header-section-number">2.4</span> Métodos de búsqueda unidimensional</a>
   <ul class="collapse">
-  <li><a href="#métodos-de-búsqueda-lineal-sin-derivadas" id="toc-métodos-de-búsqueda-lineal-sin-derivadas" class="nav-link" data-scroll-target="#métodos-de-búsqueda-lineal-sin-derivadas"><span class="header-section-number">2.4.1</span> Métodos de búsqueda lineal sin derivadas</a></li>
-  <li><a href="#métodos-de-búsqueda-lineal-con-derivadas" id="toc-métodos-de-búsqueda-lineal-con-derivadas" class="nav-link" data-scroll-target="#métodos-de-búsqueda-lineal-con-derivadas"><span class="header-section-number">2.4.2</span> Métodos de búsqueda lineal con derivadas</a></li>
+  <li><a href="#métodos-sin-derivadas" id="toc-métodos-sin-derivadas" class="nav-link" data-scroll-target="#métodos-sin-derivadas"><span class="header-section-number">2.4.1</span> Métodos sin derivadas</a></li>
+  <li><a href="#métodos-con-derivadas" id="toc-métodos-con-derivadas" class="nav-link" data-scroll-target="#métodos-con-derivadas"><span class="header-section-number">2.4.2</span> Métodos con derivadas</a></li>
   </ul></li>
   <li><a href="#métodos-multivariables-de-optimización-sin-restricciones" id="toc-métodos-multivariables-de-optimización-sin-restricciones" class="nav-link" data-scroll-target="#métodos-multivariables-de-optimización-sin-restricciones"><span class="header-section-number">2.5</span> Métodos multivariables de optimización sin restricciones</a>
   <ul class="collapse">
@@ -305,7 +305,7 @@ window.Quarto = {
 
 
 <p>La <strong>optimización no lineal</strong> (Nonlinear Programming, NLP) estudia problemas de decisión donde la función objetivo o alguna de las restricciones presentan comportamientos no lineales. A diferencia de la programación lineal, donde las soluciones óptimas se encuentran siempre en la frontera del conjunto factible (específicamente en sus puntos extremos o vértices), en optimización no lineal el óptimo puede situarse en el interior del espacio factible o en cualquier punto de su frontera. La presencia de curvatura en la función objetivo y en las restricciones exige herramientas avanzadas de análisis diferencial multivariable y algoritmos iterativos complejos.</p>
-<p>En este capítulo, estudiaremos la formulación general de los problemas de optimización no lineal, su clasificación en familias estructurales específicas y su interpretación geométrica. Asimismo, desarrollaremos la fundamentación matemática basada en el gradiente y la matriz hessiana para caracterizar la curvatura local y establecer las condiciones de optimalidad. Por último, abordaremos de forma analítica y práctica los principales métodos numéricos de búsqueda unidimensional (1D) y multivariable sin restricciones, complementándolos con código numérico y simbólico en Python.</p>
+<p>En este tema estudiaremos la formulación y clasificación de los problemas de optimización no lineal y sus casos más relevantes. Desarrollaremos las herramientas de análisis diferencial necesarias —gradiente, hessiana y condiciones de optimalidad— para caracterizar la curvatura local e identificar mínimos, máximos y puntos de silla. Finalmente, abordaremos los principales métodos numéricos de búsqueda unidimensional —sin y con derivadas— y los métodos multivariables sin restricciones, desde el sencillo descenso por coordenadas hasta los métodos de Newton y la técnica Quasi-Newton BFGS.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Objetivos de aprendizaje">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -393,8 +393,8 @@ Figura&nbsp;2.1: Geometría del Monopolio de Cournot: el óptimo de tangencia (3
 <p>Este problema posee una función objetivo cuadrática no lineal y restricciones lineales, lo que constituye un problema clásico de <strong>Programación Cuadrática (QP)</strong>. Su naturaleza estrictamente convexa (cuando la matriz de covarianzas es semidefinida positiva) asegura que cualquier óptimo local sea también el óptimo global del sistema <span class="citation" data-cites="boyd2004convex hillier2010investigacion">(<a href="references.html#ref-boyd2004convex" role="doc-biblioref">Boyd y Vandenberghe 2004</a>; <a href="references.html#ref-hillier2010investigacion" role="doc-biblioref">Hillier y Lieberman 2010</a>)</span>.</p>
 </section>
 </section>
-<section id="tipos-de-soluciones" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="tipos-de-soluciones"><span class="header-section-number">2.2</span> Tipos de soluciones</h2>
+<section id="óptimos-locales-globales-y-puntos-de-silla" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="óptimos-locales-globales-y-puntos-de-silla"><span class="header-section-number">2.2</span> Óptimos locales, globales y puntos de silla</h2>
 <p>Sea <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> una función real definida sobre un conjunto factible <span class="math inline">\(\mathcal{X} \subseteq \mathbb{R}^n\)</span>. Un punto <span class="math inline">\(x^* \in \mathcal{X}\)</span> es un <strong>mínimo global</strong> si no existe ningún otro punto factible con un valor inferior de la función objetivo, es decir, <span class="math inline">\(f(x) \ge f(x^*)\)</span> para todo <span class="math inline">\(x \in \mathcal{X}\)</span>. Del mismo modo, <span class="math inline">\(x^*\)</span> es un <strong>mínimo global estricto</strong> si se cumple que <span class="math inline">\(f(x) &gt; f(x^*)\)</span> para cualquier <span class="math inline">\(x \in \mathcal{X} \setminus \{x^*\}\)</span>.</p>
 <p>Por otro lado, un punto <span class="math inline">\(x^*\)</span> constituye un <strong>mínimo local</strong> si es la mejor solución dentro de un entorno local delimitado por una bola de radio <span class="math inline">\(\epsilon &gt; 0\)</span> centrada en él, satisfaciendo <span class="math inline">\(f(x) \ge f(x^*)\)</span> para todo <span class="math inline">\(x \in \mathcal{X}\)</span> tal que <span class="math inline">\(\|x - x^*\| \le \epsilon\)</span>. Finalmente, <span class="math inline">\(x^*\)</span> es un <strong>mínimo local estricto</strong> si existe un radio <span class="math inline">\(\epsilon &gt; 0\)</span> tal que <span class="math inline">\(f(x) &gt; f(x^*)\)</span> para todo <span class="math inline">\(x \in \mathcal{X} \setminus \{x^*\}\)</span> con <span class="math inline">\(\|x - x^*\| \le \epsilon\)</span>.</p>
 <p>En optimización no lineal general, debido a la posible presencia de no convexidades, los algoritmos locales basados en derivadas pueden converger hacia mínimos locales mediocres en lugar de alcanzar el óptimo global. Esta es la complejidad fundamental que diferencia al PNL de la programación lineal (como se ilustra en la <a href="#fig-tipos-optimos" class="quarto-xref">Figura&nbsp;<span>2.2</span></a>).</p>
@@ -409,8 +409,8 @@ Figura&nbsp;2.2: Ilustración de los distintos tipos de óptimos locales y globa
 </figure>
 </div>
 </section>
-<section id="fundamentos-matemáticos" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="fundamentos-matemáticos"><span class="header-section-number">2.3</span> Fundamentos matemáticos</h2>
+<section id="herramientas-de-análisis-diferencial" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="herramientas-de-análisis-diferencial"><span class="header-section-number">2.3</span> Herramientas de análisis diferencial</h2>
 <p>Para caracterizar y clasificar los puntos óptimos locales en múltiples dimensiones, recurrimos al cálculo diferencial. Consideremos una función <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> diferenciable de clase <span class="math inline">\(\mathcal{C}^2\)</span> (con segundas derivadas continuas).</p>
 <p>El <strong>vector gradiente</strong> representa la dirección de máxima pendiente de subida local de la función y se define como el vector columna de derivadas parciales de primer orden: <span class="math display">\[ \nabla f(x) = \begin{pmatrix} \frac{\partial f(x)}{\partial x_1} \\ \frac{\partial f(x)}{\partial x_2} \\ \vdots \\ \frac{\partial f(x)}{\partial x_n} \end{pmatrix} \]</span> Por su parte, la <strong>matriz hessiana</strong> modela la curvatura local de la función (análoga a la segunda derivada en una dimensión) y se define como la matriz simétrica de segundas derivadas parciales: <span class="math display">\[ [\nabla^2 f(x)]_{ij} = \frac{\partial^2 f(x)}{\partial x_i \partial x_j} \]</span></p>
 <section id="desarrollo-de-taylor-multivariable" class="level3" data-number="2.3.1">
@@ -429,15 +429,17 @@ Figura&nbsp;2.2: Ilustración de los distintos tipos de óptimos locales y globa
 <li><strong>Semidefinida negativa (<span class="math inline">\(\nabla^2 f(x) \preceq 0\)</span>)</strong>: Si <span class="math inline">\(z^T \nabla^2 f(x) z \le 0\)</span> para todo vector <span class="math inline">\(z\)</span>. Todos sus autovalores son no positivos y todos sus menores principales alternan de signo de forma no estricta o son nulos.</li>
 <li><strong>Indefinida</strong>: Si existen autovalores estrictamente positivos y negativos. El punto crítico resultante constituye un <strong>punto de silla</strong> (con direcciones de subida y direcciones de bajada).</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled" title="Ejemplos: Clasificación de Matrices">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-note callout-titled" title="Ejemplos: Clasificación de matrices">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Ejemplos: Clasificación de Matrices
+<span class="screen-reader-only">Nota</span>Ejemplos: Clasificación de matrices
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p><strong>Matriz Definida Positiva</strong>: Sea la matriz: <span class="math display">\[ A_1 = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix} \]</span> Sus menores principales son: <span class="math display">\[ M_1 = |2| = 2 &gt; 0 \qquad \text{y} \qquad M_2 = \det(A_1) = 4 - 1 = 3 &gt; 0 \]</span> Al ser ambos menores principales estrictamente positivos, se tiene que <span class="math inline">\(A_1 \succ 0\)</span>.</p>
@@ -448,17 +450,18 @@ Figura&nbsp;2.2: Ilustración de los distintos tipos de óptimos locales y globa
 </ol>
 </div>
 </div>
+</div>
 </section>
 <section id="condiciones-de-optimalidad-y-puntos-estacionarios" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="condiciones-de-optimalidad-y-puntos-estacionarios"><span class="header-section-number">2.3.3</span> Condiciones de optimalidad y puntos estacionarios</h3>
 <p>Las condiciones diferenciales para determinar extremos locales se enuncian en el siguiente teorema.</p>
-<div class="callout callout-style-default callout-important callout-titled" title="Teorema: Condiciones de Optimalidad de Segundo Orden">
+<div class="callout callout-style-default callout-important callout-titled" title="Teorema: Condiciones de optimalidad de segundo orden">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Importante</span>Teorema: Condiciones de Optimalidad de Segundo Orden
+<span class="screen-reader-only">Importante</span>Teorema: Condiciones de optimalidad de segundo orden
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -470,28 +473,30 @@ Figura&nbsp;2.2: Ilustración de los distintos tipos de óptimos locales y globa
 </ol>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled" title="Importancia de la Definición Positiva en SOSC">
+<div class="callout callout-style-default callout-warning callout-titled" title="Importancia de la definición positiva en SOSC">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Advertencia</span>Importancia de la Definición Positiva en SOSC
+<span class="screen-reader-only">Advertencia</span>Importancia de la definición positiva en SOSC
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Es fundamental notar que en la condición suficiente (SOSC), la matriz hessiana debe ser <strong>estrictamente definida positiva</strong> (<span class="math inline">\(\nabla^2 f(x^*) \succ 0\)</span>) y no simplemente semidefinida positiva. Si la hessiana es semidefinida con algún autovalor nulo (por ejemplo, en la función <span class="math inline">\(f(x) = x^4\)</span> en el origen <span class="math inline">\(x^*=0\)</span>, donde <span class="math inline">\(f'(0)=0\)</span> y <span class="math inline">\(f''(0)=0 \succeq 0\)</span>), el análisis de segundo orden es insuficiente para garantizar analíticamente si el punto es un mínimo, un máximo o un punto de inflexión.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Ejemplos: Clasificación de Puntos Estacionarios">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-note callout-titled" title="Ejemplos: Clasificación de puntos estacionarios">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Ejemplos: Clasificación de Puntos Estacionarios
+<span class="screen-reader-only">Nota</span>Ejemplos: Clasificación de puntos estacionarios
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>Punto de Silla</strong>: Sea <span class="math inline">\(f(x, y) = \frac{1}{2} x^2 + 2xy + \frac{1}{2} y^2 - y + 9\)</span>. Su gradiente es <span class="math inline">\(\nabla f(x, y) = (x + 2y, 2x + y - 1)^T\)</span>. Igualando a cero obtenemos el punto crítico en <span class="math inline">\(x^* = 2/3, y^* = -1/3\)</span>. La matriz hessiana es <span class="math inline">\(\nabla^2 f = \begin{pmatrix} 1 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}\)</span>. Como su menor principal de segundo orden es <span class="math inline">\(M_2 = -3 &lt; 0\)</span>, la matriz es indefinida, lo que clasifica al punto <span class="math inline">\((2/3, -1/3)\)</span> como un <strong>punto de silla</strong>.</li>
@@ -500,10 +505,11 @@ Figura&nbsp;2.2: Ilustración de los distintos tipos de óptimos locales y globa
 </ul>
 </div>
 </div>
+</div>
 </section>
 </section>
-<section id="métodos-numéricos-de-búsqueda-lineal" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="métodos-numéricos-de-búsqueda-lineal"><span class="header-section-number">2.4</span> Métodos numéricos de búsqueda lineal</h2>
+<section id="métodos-de-búsqueda-unidimensional" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="métodos-de-búsqueda-unidimensional"><span class="header-section-number">2.4</span> Métodos de búsqueda unidimensional</h2>
 <p>Los métodos de búsqueda unidimensional buscan minimizar una función real de una variable <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> en un intervalo acotado <span class="math inline">\([a, b]\)</span>. Son fundamentales porque resolver problemas multidimensionales complejos suele requerir resolver una sucesión de problemas unidimensionales a lo largo de direcciones de descenso: <span class="math inline">\(\min_{\alpha &gt; 0} f(x_k + \alpha d_k)\)</span>.</p>
 <p>A modo de ilustración de las trazas numéricas de los algoritmos 1D, utilizaremos como caso de prueba la minimización en el intervalo <span class="math inline">\([1, 4]\)</span> de la función de cuarto grado: <span class="math display">\[ f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1 \]</span> cuyo gráfico y mínimo global en <span class="math inline">\(x^* = 3.0\)</span> se muestran en la <a href="#fig-opt-1d-ejemplo" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>.</p>
 <div id="fig-opt-1d-ejemplo" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -516,8 +522,8 @@ Figura&nbsp;2.3: Caso de prueba para métodos de búsqueda 1D: función de cuart
 </figcaption>
 </figure>
 </div>
-<section id="métodos-de-búsqueda-lineal-sin-derivadas" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="métodos-de-búsqueda-lineal-sin-derivadas"><span class="header-section-number">2.4.1</span> Métodos de búsqueda lineal sin derivadas</h3>
+<section id="métodos-sin-derivadas" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="métodos-sin-derivadas"><span class="header-section-number">2.4.1</span> Métodos sin derivadas</h3>
 <p>Estos métodos solo requieren evaluar el valor de la función objetivo. Exigen que la función sea <strong>unimodal</strong> en el intervalo <span class="math inline">\([a, b]\)</span>, es decir, que posea un único mínimo local en dicho intervalo, decreciendo de forma monótona a la izquierda del mínimo y creciendo a su derecha.</p>
 <p>La <strong>Búsqueda Uniforme (Rejilla)</strong> consiste en dividir el intervalo inicial <span class="math inline">\([a, b]\)</span> en <span class="math inline">\(n\)</span> subintervalos de igual anchura mediante una rejilla de puntos <span class="math inline">\(x_k = a + k \frac{b-a}{n}\)</span> para <span class="math inline">\(k = 0, \dots, n\)</span>. Se evalúa la función en todos los puntos de la rejilla, se identifica el punto mínimo <span class="math inline">\(x_{k^*}\)</span> y se define el nuevo intervalo reducido como <span class="math inline">\([x_{k^*-1}, x_{k^*+1}]\)</span>. Aunque es un método muy robusto, resulta poco eficiente debido a que no aprovecha la información de las evaluaciones previas (ver la <a href="#fig-busqueda-uniforme-concepto" class="quarto-xref">Figura&nbsp;<span>2.4</span></a>).</p>
 <div id="fig-busqueda-uniforme-concepto" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -641,8 +647,8 @@ Figura&nbsp;2.8: Animación de la búsqueda por Sección Áurea (7 iteraciones)
 </div>
 <hr>
 </section>
-<section id="métodos-de-búsqueda-lineal-con-derivadas" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="métodos-de-búsqueda-lineal-con-derivadas"><span class="header-section-number">2.4.2</span> Métodos de búsqueda lineal con derivadas</h3>
+<section id="métodos-con-derivadas" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="métodos-con-derivadas"><span class="header-section-number">2.4.2</span> Métodos con derivadas</h3>
 <p>Los métodos con derivadas incorporan información analítica del gradiente para acelerar la convergencia o resolver ecuaciones.</p>
 <p>El <strong>Método de Bisección (Bolzano)</strong> busca el cero de la derivada de primer orden (<span class="math inline">\(f'(x) = 0\)</span>). Requiere que los signos de la derivada en los extremos sean opuestos (<span class="math inline">\(f'(a) &lt; 0\)</span> y <span class="math inline">\(f'(b) &gt; 0\)</span>), lo que garantiza, por el teorema de Bolzano, la existencia de al menos un punto estacionario en el interior. En cada iteración, evalúa la derivada en el punto medio <span class="math inline">\(c = (a+b)/2\)</span>. Si <span class="math inline">\(f'(c) &lt; 0\)</span>, actualiza <span class="math inline">\(a = c\)</span>; si <span class="math inline">\(f'(c) &gt; 0\)</span>, actualiza <span class="math inline">\(b = c\)</span>. El algoritmo reduce el intervalo a la mitad en cada paso.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Ejemplo: Método de Bisección">

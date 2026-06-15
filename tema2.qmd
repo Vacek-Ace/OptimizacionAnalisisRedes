@@ -2,7 +2,7 @@
 
 La **optimización no lineal** (Nonlinear Programming, NLP) estudia problemas de decisión donde la función objetivo o alguna de las restricciones presentan comportamientos no lineales. A diferencia de la programación lineal, donde las soluciones óptimas se encuentran siempre en la frontera del conjunto factible (específicamente en sus puntos extremos o vértices), en optimización no lineal el óptimo puede situarse en el interior del espacio factible o en cualquier punto de su frontera. La presencia de curvatura en la función objetivo y en las restricciones exige herramientas avanzadas de análisis diferencial multivariable y algoritmos iterativos complejos.
 
-En este capítulo, estudiaremos la formulación general de los problemas de optimización no lineal, su clasificación en familias estructurales específicas y su interpretación geométrica. Asimismo, desarrollaremos la fundamentación matemática basada en el gradiente y la matriz hessiana para caracterizar la curvatura local y establecer las condiciones de optimalidad. Por último, abordaremos de forma analítica y práctica los principales métodos numéricos de búsqueda unidimensional (1D) y multivariable sin restricciones, complementándolos con código numérico y simbólico en Python.
+En este tema estudiaremos la formulación y clasificación de los problemas de optimización no lineal y sus casos más relevantes. Desarrollaremos las herramientas de análisis diferencial necesarias ---gradiente, hessiana y condiciones de optimalidad--- para caracterizar la curvatura local e identificar mínimos, máximos y puntos de silla. Finalmente, abordaremos los principales métodos numéricos de búsqueda unidimensional ---sin y con derivadas--- y los métodos multivariables sin restricciones, desde el sencillo descenso por coordenadas hasta los métodos de Newton y la técnica Quasi-Newton BFGS.
 
 ::: {.callout-important title="Objetivos de aprendizaje"}
 Al finalizar este capítulo, serás capaz de:
@@ -107,7 +107,7 @@ $$
 Este problema posee una función objetivo cuadrática no lineal y restricciones lineales, lo que constituye un problema clásico de **Programación Cuadrática (QP)**. Su naturaleza estrictamente convexa (cuando la matriz de covarianzas es semidefinida positiva) asegura que cualquier óptimo local sea también el óptimo global del sistema [@boyd2004convex; @hillier2010investigacion].
 
 
-## Tipos de soluciones
+## Óptimos locales, globales y puntos de silla
 
 Sea $f: \mathbb{R}^n \to \mathbb{R}$ una función real definida sobre un conjunto factible $\mathcal{X} \subseteq \mathbb{R}^n$. Un punto $x^* \in \mathcal{X}$ es un **mínimo global** si no existe ningún otro punto factible con un valor inferior de la función objetivo, es decir, $f(x) \ge f(x^*)$ para todo $x \in \mathcal{X}$. Del mismo modo, $x^*$ es un **mínimo global estricto** si se cumple que $f(x) > f(x^*)$ para cualquier $x \in \mathcal{X} \setminus \{x^*\}$. 
 
@@ -118,7 +118,7 @@ En optimización no lineal general, debido a la posible presencia de no convexid
 ![Ilustración de los distintos tipos de óptimos locales y globales (estrictos y no estrictos) sobre funciones convexas y no convexas](images/tipos_optimos.png){#fig-tipos-optimos fig-align="center" width="80%"}
 
 
-## Fundamentos matemáticos
+## Herramientas de análisis diferencial
 
 Para caracterizar y clasificar los puntos óptimos locales en múltiples dimensiones, recurrimos al cálculo diferencial. Consideremos una función $f: \mathbb{R}^n \to \mathbb{R}$ diferenciable de clase $\mathcal{C}^2$ (con segundas derivadas continuas).
 
@@ -146,7 +146,7 @@ $$ z^T \nabla^2 f(x) z $$
 *   **Semidefinida negativa ($\nabla^2 f(x) \preceq 0$)**: Si $z^T \nabla^2 f(x) z \le 0$ para todo vector $z$. Todos sus autovalores son no positivos y todos sus menores principales alternan de signo de forma no estricta o son nulos.
 *   **Indefinida**: Si existen autovalores estrictamente positivos y negativos. El punto crítico resultante constituye un **punto de silla** (con direcciones de subida y direcciones de bajada).
 
-::: {.callout-note title="Ejemplos: Clasificación de Matrices"}
+::: {.callout-note title="Ejemplos: Clasificación de matrices" collapse="true"}
 
 1.  **Matriz Definida Positiva**:
     Sea la matriz:
@@ -184,7 +184,7 @@ $$ z^T \nabla^2 f(x) z $$
 
 Las condiciones diferenciales para determinar extremos locales se enuncian en el siguiente teorema.
 
-::: {.callout-important title="Teorema: Condiciones de Optimalidad de Segundo Orden"}
+::: {.callout-important title="Teorema: Condiciones de optimalidad de segundo orden"}
 Sea $f: \mathbb{R}^n \to \mathbb{R}$ una función diferenciable de clase $\mathcal{C}^2$:
 
 1.  **Condición Necesaria de Primer Orden (FONC)**: Si $x^*$ es un mínimo local, entonces el gradiente de la función se anula en dicho punto:
@@ -197,11 +197,11 @@ Sea $f: \mathbb{R}^n \to \mathbb{R}$ una función diferenciable de clase $\mathc
     Entonces $x^*$ es un **mínimo local estricto** de la función.
 :::
 
-::: {.callout-warning title="Importancia de la Definición Positiva en SOSC"}
+::: {.callout-warning title="Importancia de la definición positiva en SOSC"}
 Es fundamental notar que en la condición suficiente (SOSC), la matriz hessiana debe ser **estrictamente definida positiva** ($\nabla^2 f(x^*) \succ 0$) y no simplemente semidefinida positiva. Si la hessiana es semidefinida con algún autovalor nulo (por ejemplo, en la función $f(x) = x^4$ en el origen $x^*=0$, donde $f'(0)=0$ y $f''(0)=0 \succeq 0$), el análisis de segundo orden es insuficiente para garantizar analíticamente si el punto es un mínimo, un máximo o un punto de inflexión.
 :::
 
-::: {.callout-note title="Ejemplos: Clasificación de Puntos Estacionarios"}
+::: {.callout-note title="Ejemplos: Clasificación de puntos estacionarios" collapse="true"}
 
 *   **Punto de Silla**: Sea $f(x, y) = \frac{1}{2} x^2 + 2xy + \frac{1}{2} y^2 - y + 9$. Su gradiente es $\nabla f(x, y) = (x + 2y, 2x + y - 1)^T$. Igualando a cero obtenemos el punto crítico en $x^* = 2/3, y^* = -1/3$. La matriz hessiana es $\nabla^2 f = \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$. Como su menor principal de segundo orden es $M_2 = -3 < 0$, la matriz es indefinida, lo que clasifica al punto $(2/3, -1/3)$ como un **punto de silla**.
 *   **Mínimo Local Estricto**: Sea $f(x, y) = (x-2)^2 + (y-1)^2$. Su gradiente es $\nabla f(x, y) = (2(x-2), 2(y-1))^T$, anulándose en $(x^*, y^*) = (2, 1)$. La matriz hessiana es $\nabla^2 f = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}$. Al ser definida positiva ($M_1=2>0, M_2=4>0$), el punto crítico constituye un **mínimo local estricto**.
@@ -211,7 +211,7 @@ Es fundamental notar que en la condición suficiente (SOSC), la matriz hessiana 
 
 
 
-## Métodos numéricos de búsqueda lineal
+## Métodos de búsqueda unidimensional
 
 Los métodos de búsqueda unidimensional buscan minimizar una función real de una variable $f: \mathbb{R} \to \mathbb{R}$ en un intervalo acotado $[a, b]$. Son fundamentales porque resolver problemas multidimensionales complejos suele requerir resolver una sucesión de problemas unidimensionales a lo largo de direcciones de descenso: $\min_{\alpha > 0} f(x_k + \alpha d_k)$.
 
@@ -221,7 +221,7 @@ cuyo gráfico y mínimo global en $x^* = 3.0$ se muestran en la @fig-opt-1d-ejem
 
 ![Caso de prueba para métodos de búsqueda 1D: función de cuarto grado y su mínimo global](images/opt_1d_ejemplo.png){#fig-opt-1d-ejemplo fig-align="center" width="60%"}
 
-### Métodos de búsqueda lineal sin derivadas
+### Métodos sin derivadas
 
 Estos métodos solo requieren evaluar el valor de la función objetivo. Exigen que la función sea **unimodal** en el intervalo $[a, b]$, es decir, que posea un único mínimo local en dicho intervalo, decreciendo de forma monótona a la izquierda del mínimo y creciendo a su derecha.
 
@@ -299,7 +299,7 @@ Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1
 
 ---
 
-### Métodos de búsqueda lineal con derivadas
+### Métodos con derivadas
 
 Los métodos con derivadas incorporan información analítica del gradiente para acelerar la convergencia o resolver ecuaciones.
 

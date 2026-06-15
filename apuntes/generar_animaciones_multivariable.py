@@ -216,7 +216,8 @@ def gen_steepest_descent_animation():
             m = '*' if is_last else 'o'
             ax.plot(traj[i][0], traj[i][1], m, color=c, markersize=13 if m == '*' else 7, zorder=10)
             lbl = f'$x_{i}$' + (r'$\approx x^*$' if is_last else '')
-            ax.text(traj[i][0]+0.15, traj[i][1]+0.22, lbl, fontsize=9, color=lcols[i] if i < len(lcols) else C_TEXT)
+            lbl_color = C_SUCCESS if is_last else C_TEXT
+            ax.text(traj[i][0]+0.15, traj[i][1]+0.22, lbl, fontsize=9, color=lbl_color)
 
         # Flechas de trayectoria
         for i in range(k):

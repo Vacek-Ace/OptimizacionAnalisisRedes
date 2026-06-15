@@ -15,9 +15,9 @@ Al finalizar este capítulo, serás capaz de:
 :::
 
 
-## Definición e Historia de la Investigación Operativa
+## Definición e historia de la investigación operativa
 
-### Raíces Históricas y el Nacimiento de la Disciplina
+### Raíces históricas y el nacimiento de la disciplina
 
 La Investigación Operativa no nació en laboratorios académicos aislados, sino en el fragor de la necesidad estratégica y militar durante la Segunda Guerra Mundial. A finales de la década de 1930, el mando militar británico se enfrentaba a la inminente amenaza aérea del régimen nazi. Para contrarrestarla, desarrollaron el sistema de radares costeros, pero se percataron rápidamente de que disponer de la tecnología no bastaba: era imperativo aprender a utilizarla de manera integrada y eficiente.
 
@@ -27,7 +27,7 @@ Paralelamente, en la Unión Soviética, el matemático y economista **Leonid Kan
 
 Tras la finalización del conflicto mundial, en 1947, el matemático estadounidense **George Dantzig** revolucionó la disciplina al proponer el **método del Símplex**, un algoritmo sistemático y extremadamente eficiente para resolver problemas de programación lineal. Este descubrimiento coincidió con la invención y el rápido desarrollo de las primeras computadoras electrónicas, lo que permitió aplicar las metodologías de la Investigación Operativa a la planificación industrial, la logística comercial, el sector financiero y la administración pública. La rápida expansión económica de la posguerra demandaba una gestión científica y optimizada de las grandes corporaciones, consolidando el éxito de esta disciplina [@bazaraa2011linear].
 
-### Definiciones Formales
+### Definiciones formales
 
 Existen dos definiciones clásicas promovidas por las instituciones profesionales de referencia a nivel mundial:
 
@@ -36,7 +36,7 @@ Existen dos definiciones clásicas promovidas por las instituciones profesionale
 -   **Institute for Operations Research and the Management Sciences (INFORMS, EE.UU.)**:
     La Investigación Operativa se define como el empleo de la ciencia de la decisión y la modelización analítica avanzada para resolver problemas y mejorar el rendimiento de sistemas y procesos de negocio complejos.
 
-### Herramientas de la Investigación Operativa
+### Herramientas de la investigación operativa
 
 Para dar respuesta a problemas de diversa naturaleza, la Investigación Operativa se sirve de un amplio catálogo de metodologías científicas:
 
@@ -52,13 +52,13 @@ Para dar respuesta a problemas de diversa naturaleza, la Investigación Operativ
     Análisis de interacciones estratégicas entre agentes competitivos y metodologías para tomar decisiones cuando existen múltiples objetivos contrapuestos.
 
 
-## El Concepto de Modelo en Ciencias de la Decisión
+## El concepto de modelo en ciencias de la decisión
 
 Un **modelo** es una representación simplificada, abstracta y selectiva de un sistema real destinada a facilitar la comprensión de su estructura interna y predecir su comportamiento bajo diversos escenarios. 
 
 La labor del modelador matemático es similar a la del cartógrafo. Tal y como enunció el filósofo Alfred Korzybski, *"el mapa no es el territorio"*. Un mapa a escala 1:1 sería perfectamente inútil por su inmanejabilidad. De igual modo, un modelo matemático que pretenda incluir cada mínimo detalle físico del sistema real resultará intratable computacionalmente. La clave reside en realizar una **abstracción selectiva**: identificar y capturar las variables esenciales del problema eliminando el ruido irrelevante, logrando un equilibrio óptimo entre fidelidad (realismo) y manejabilidad (capacidad de resolución).
 
-### Clasificación General de los Modelos
+### Clasificación general de los modelos
 
 Atendiendo a su naturaleza física o abstracta, los modelos se dividen clásicamente en:
 
@@ -73,7 +73,7 @@ Desde la perspectiva de su propósito metodológico, podemos catalogar los model
 2.  **Modelos Predictivos**: Utilizan datos históricos y estadística para responder a la pregunta *"¿qué podría ocurrir en el futuro?"*.
 3.  **Modelos Prescriptivos**: Integran los niveles anteriores para responder a la pregunta *"¿qué decisión debemos tomar para optimizar el rendimiento del sistema?"*. La optimización matemática pertenece a esta última categoría.
 
-### El Ciclo de Vida del Modelado Matemático
+### El ciclo de vida del modelado matemático
 
 La resolución de un problema mediante la Investigación Operativa no consiste en un proceso lineal, sino en un ciclo iterativo de retroalimentación constante que consta de cuatro fases diferenciadas:
 
@@ -87,7 +87,7 @@ La resolución de un problema mediante la Investigación Operativa no consiste e
     Se traduce la solución matemática en decisiones operativas ejecutables por la organización. Se diseñan sistemas informáticos de soporte a la decisión y se establecen mecanismos de supervisión para detectar cambios en el sistema real que exijan reformular el modelo.
 
 
-## Formulación General de Modelos de Optimización
+## Formulación general de modelos de optimización
 
 Un modelo de optimización matemática busca seleccionar la mejor alternativa posible dentro de un conjunto de soluciones factibles. Su formulación matemática genérica se escribe formalmente como:
 
@@ -131,7 +131,7 @@ Para formular el modelo matemático de este problema operativo:
     -   No negatividad (no se puede consumir comida negativa): $x_1, x_2 \ge 0$
 :::
 
-### Clasificación de los Modelos de Optimización
+### Clasificación de los modelos de optimización
 
 Atendiendo a las propiedades algebraicas y analíticas de sus componentes, los problemas de optimización se clasifican de la siguiente manera:
 
@@ -159,16 +159,16 @@ Atendiendo a las propiedades algebraicas y analíticas de sus componentes, los p
         Algunos parámetros del modelo se comportan como variables aleatorias con distribuciones de probabilidad conocidas. Se busca optimizar el valor esperado o cumplir restricciones de probabilidad (restricciones de azar).
 
 
-## La Estructura del Libro: Optimización No Lineal y en Redes
+## La estructura del libro: optimización no lineal y en redes
 
 Este volumen se organiza en dos bloques metodológicos bien diferenciados por su naturaleza matemática, geométrica y algorítmica:
 
-### Bloque I: Optimización No Lineal (Temas 2 a 6)
+### Bloque I: Optimización no lineal (Temas 2 a 6)
 
 Cuando abandonamos la hipótesis de linealidad, la optimización matemática gana sustancialmente en realismo, pero incrementa de manera drástica su complejidad teórica y computacional.
 
--   **Métodos Numéricos (Tema 2)**:
-    Estudiaremos las herramientas fundamentales de la optimización continua sin restricciones en una y múltiples dimensiones. Analizaremos algoritmos de búsqueda unidimensional (sección áurea, Fibonacci, bisección, Newton) y métodos multivariables basados en el gradiente (descenso de gradiente, método de Newton y técnicas Quasi-Newton como BFGS).
+-   **Métodos numéricos (Tema 2)**:
+    Estudiaremos las herramientas fundamentales de la optimización continua sin restricciones, tanto en una como en múltiples variables. En el caso unidimensional, analizaremos métodos sin derivadas (búsqueda uniforme, dicotómica, sección áurea y Fibonacci) y métodos con derivadas (bisección y Newton). En el caso multivariable, veremos el método de coordenadas cíclicas, el método del máximo descenso y los métodos de segundo orden (Newton multivariable y la técnica Quasi-Newton BFGS).
 -   **Análisis Convexo (Tema 3)**:
     Estableceremos las propiedades de los conjuntos y funciones convexas. En este marco matemático se formula el resultado cardinal de la optimización: cualquier mínimo local es de forma garantizada un mínimo global, dotando a los algoritmos numéricos de una gran estabilidad. Introduciremos el concepto de subgradiente para manejar funciones no diferenciables.
 -   **Condiciones KKT (Temas 4 y 5)**:
@@ -176,7 +176,7 @@ Cuando abandonamos la hipótesis de linealidad, la optimización matemática gan
 -   **Ciencia de Datos (Tema 6)**:
     Veremos la aplicación de la optimización continua en el aprendizaje automático moderno, analizando la regresión robusta bajo diferentes normas ($\ell_1$, $\ell_2$, $\ell_\infty$), las Máquinas de Vectores de Soporte (SVM) y la explicabilidad mediante contrafácticos.
 
-### Bloque II: Optimización en Redes (Temas 7 a 11)
+### Bloque II: Optimización en redes (Temas 7 a 11)
 
 La optimización en redes aprovecha la estructura combinatorial de los grafos para resolver problemas de gran envergadura de forma extremadamente eficiente.
 
