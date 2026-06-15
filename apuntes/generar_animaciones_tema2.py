@@ -58,13 +58,13 @@ def gen_seccion_aurea_animation():
         x_vals = np.linspace(0.5, 4.5, 300)
         ax.plot(x_vals, f(x_vals), color=C_PRIMARY, lw=2.5, label=r'$f(x)$')
         
-        # Shade accumulated discarded regions
+        # Shade accumulated discarded regions (hollow outlines)
         labeled_hist = False
         if a > a_init:
-            ax.axvspan(a_init, a, color='#ef4444', alpha=0.08, label='Descartes acumulados')
+            ax.axvspan(a_init, a, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.2, alpha=0.7, label='Descartes acumulados')
             labeled_hist = True
         if b < b_init:
-            ax.axvspan(b, b_init, color='#ef4444', alpha=0.08, label='Descartes acumulados' if not labeled_hist else None)
+            ax.axvspan(b, b_init, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.2, alpha=0.7, label='Descartes acumulados' if not labeled_hist else None)
             
         # Draw lambda and mu
         ax.axvline(lmbda, color=C_TEXT_MUTED, linestyle='--', lw=1.2)
@@ -82,7 +82,7 @@ def gen_seccion_aurea_animation():
             a_next = lmbda
             b_next = b
             
-        ax.axvspan(discard_a, discard_b, color='#ef4444', alpha=0.25, hatch='/', label='Descarte del paso')
+        ax.axvspan(discard_a, discard_b, facecolor='none', edgecolor='#ef4444', hatch='/', linewidth=1.8, label='Descarte del paso')
         
         # Labels and Title
         ax.set_title(f"Sección Áurea - Paso {k+1}\nIntervalo: [{a:.3f}, {b:.3f}], $I_k$ = {b-a:.3f}", color=C_TEXT, fontsize=12)
@@ -102,14 +102,14 @@ def gen_seccion_aurea_animation():
             ax_pdf = axes_pdf[pdf_idx]
             ax_pdf.plot(x_vals, f(x_vals), color=C_PRIMARY, lw=2)
             if a > a_init:
-                ax_pdf.axvspan(a_init, a, color='#ef4444', alpha=0.08)
+                ax_pdf.axvspan(a_init, a, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.0, alpha=0.6)
             if b < b_init:
-                ax_pdf.axvspan(b, b_init, color='#ef4444', alpha=0.08)
+                ax_pdf.axvspan(b, b_init, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.0, alpha=0.6)
             ax_pdf.axvline(lmbda, color=C_TEXT_MUTED, linestyle='--', lw=1)
             ax_pdf.axvline(mu, color=C_TEXT_MUTED, linestyle='--', lw=1)
             ax_pdf.plot(lmbda, f(lmbda), 'o', color=C_ACCENT, markersize=6)
             ax_pdf.plot(mu, f(mu), 'o', color=C_SUCCESS, markersize=6)
-            ax_pdf.axvspan(discard_a, discard_b, color='#ef4444', alpha=0.18, hatch='/')
+            ax_pdf.axvspan(discard_a, discard_b, facecolor='none', edgecolor='#ef4444', hatch='/', linewidth=1.2)
             ax_pdf.set_title(f"Paso {k+1}: [{a:.3f}, {b:.3f}]", fontsize=10)
             ax_pdf.set_xlim(0.8, 4.2)
             ax_pdf.set_ylim(-75, -45)
@@ -155,13 +155,13 @@ def gen_biseccion_animation():
         x_vals = np.linspace(0.5, 4.5, 300)
         ax.plot(x_vals, f(x_vals), color=C_PRIMARY, lw=2.5, label=r'$f(x)$')
         
-        # Shade accumulated discarded regions
+        # Shade accumulated discarded regions (hollow outlines)
         labeled_hist = False
         if a > a_init:
-            ax.axvspan(a_init, a, color='#ef4444', alpha=0.08, label='Descartes acumulados')
+            ax.axvspan(a_init, a, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.2, alpha=0.7, label='Descartes acumulados')
             labeled_hist = True
         if b < b_init:
-            ax.axvspan(b, b_init, color='#ef4444', alpha=0.08, label='Descartes acumulados' if not labeled_hist else None)
+            ax.axvspan(b, b_init, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.2, alpha=0.7, label='Descartes acumulados' if not labeled_hist else None)
             
         # Midpoint
         ax.axvline(c, color=C_ACCENT, linestyle='--', lw=1.5)
@@ -182,7 +182,7 @@ def gen_biseccion_animation():
             a_next = a
             b_next = c
             
-        ax.axvspan(discard_a, discard_b, color='#ef4444', alpha=0.25, hatch='\\', label='Descarte del paso')
+        ax.axvspan(discard_a, discard_b, facecolor='none', edgecolor='#ef4444', hatch='\\', linewidth=1.8, label='Descarte del paso')
         
         ax.set_title(f"Bisección (Bolzano) - Paso {k+1}\nIntervalo: [{a:.4f}, {b:.4f}], $f'(c)$ = {df_c:.4f}", color=C_TEXT, fontsize=12)
         ax.set_xlabel('$x$')
@@ -199,13 +199,13 @@ def gen_biseccion_animation():
             ax_pdf = axes_pdf[pdf_idx]
             ax_pdf.plot(x_vals, f(x_vals), color=C_PRIMARY, lw=2)
             if a > a_init:
-                ax_pdf.axvspan(a_init, a, color='#ef4444', alpha=0.08)
+                ax_pdf.axvspan(a_init, a, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.0, alpha=0.6)
             if b < b_init:
-                ax_pdf.axvspan(b, b_init, color='#ef4444', alpha=0.08)
+                ax_pdf.axvspan(b, b_init, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.0, alpha=0.6)
             ax_pdf.axvline(c, color=C_ACCENT, linestyle='--', lw=1)
             ax_pdf.plot(c, f(c), 'o', color=C_ACCENT, markersize=6)
             ax_pdf.plot(tangent_x, tangent_y, color=C_ALERT, lw=1.5)
-            ax_pdf.axvspan(discard_a, discard_b, color='#ef4444', alpha=0.18, hatch='\\')
+            ax_pdf.axvspan(discard_a, discard_b, facecolor='none', edgecolor='#ef4444', hatch='\\', linewidth=1.2)
             ax_pdf.set_title(f"Paso {k+1}: [{a:.3f}, {b:.3f}], $f'(c)$={df_c:.3f}", fontsize=10)
             ax_pdf.set_xlim(0.8, 4.2)
             ax_pdf.set_ylim(-75, -45)
@@ -587,13 +587,13 @@ def gen_dicotomica_trace_animation():
         x_vals = np.linspace(0.5, 4.5, 300)
         ax.plot(x_vals, f(x_vals), color=C_PRIMARY, lw=2.5, label=r'$f(x)$')
         
-        # Shade accumulated discarded regions
+        # Shade accumulated discarded regions (hollow outlines)
         labeled_hist = False
         if a > a_init:
-            ax.axvspan(a_init, a, color='#ef4444', alpha=0.08, label='Descartes acumulados')
+            ax.axvspan(a_init, a, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.2, alpha=0.7, label='Descartes acumulados')
             labeled_hist = True
         if b < b_init:
-            ax.axvspan(b, b_init, color='#ef4444', alpha=0.08, label='Descartes acumulados' if not labeled_hist else None)
+            ax.axvspan(b, b_init, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.2, alpha=0.7, label='Descartes acumulados' if not labeled_hist else None)
             
         # Draw lambda and mu
         ax.axvline(lmbda, color=C_ACCENT, linestyle='--', lw=1.2)
@@ -611,7 +611,7 @@ def gen_dicotomica_trace_animation():
             a_next = lmbda
             b_next = b
             
-        ax.axvspan(discard_a, discard_b, color='#ef4444', alpha=0.25, hatch='/', label='Descarte del paso')
+        ax.axvspan(discard_a, discard_b, facecolor='none', edgecolor='#ef4444', hatch='/', linewidth=1.8, label='Descarte del paso')
         
         ax.set_title(f"Búsqueda Dicotómica - Paso {k+1}\nIntervalo: [{a:.3f}, {b:.3f}], Amplitud = {b-a:.3f}", color=C_TEXT, fontsize=12)
         ax.set_xlabel('$x$')
@@ -628,14 +628,14 @@ def gen_dicotomica_trace_animation():
             ax_pdf = axes_pdf[pdf_idx]
             ax_pdf.plot(x_vals, f(x_vals), color=C_PRIMARY, lw=2)
             if a > a_init:
-                ax_pdf.axvspan(a_init, a, color='#ef4444', alpha=0.08)
+                ax_pdf.axvspan(a_init, a, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.0, alpha=0.6)
             if b < b_init:
-                ax_pdf.axvspan(b, b_init, color='#ef4444', alpha=0.08)
+                ax_pdf.axvspan(b, b_init, facecolor='none', edgecolor='#ef4444', linestyle='--', linewidth=1.0, alpha=0.6)
             ax_pdf.axvline(lmbda, color=C_ACCENT, linestyle='--', lw=1)
             ax_pdf.axvline(mu, color=C_SUCCESS, linestyle='--', lw=1)
             ax_pdf.plot(lmbda, f_lmbda, 'o', color=C_ACCENT, markersize=6)
             ax_pdf.plot(mu, f_mu, 'o', color=C_SUCCESS, markersize=6)
-            ax_pdf.axvspan(discard_a, discard_b, color='#ef4444', alpha=0.18, hatch='/')
+            ax_pdf.axvspan(discard_a, discard_b, facecolor='none', edgecolor='#ef4444', hatch='/', linewidth=1.2)
             ax_pdf.set_title(f"Paso {k+1}: [{a:.3f}, {b:.3f}]", fontsize=10)
             ax_pdf.set_xlim(0.8, 4.2)
             ax_pdf.set_ylim(-75, -45)

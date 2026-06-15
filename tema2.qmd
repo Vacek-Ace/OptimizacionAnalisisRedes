@@ -215,6 +215,12 @@ Es fundamental notar que en la condición suficiente (SOSC), la matriz hessiana 
 
 Los métodos de búsqueda unidimensional buscan minimizar una función real de una variable $f: \mathbb{R} \to \mathbb{R}$ en un intervalo acotado $[a, b]$. Son fundamentales porque resolver problemas multidimensionales complejos suele requerir resolver una sucesión de problemas unidimensionales a lo largo de direcciones de descenso: $\min_{\alpha > 0} f(x_k + \alpha d_k)$.
 
+A modo de ilustración de las trazas numéricas de los algoritmos 1D, utilizaremos como caso de prueba la minimización en el intervalo $[1, 4]$ de la función de cuarto grado:
+$$ f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1 $$
+cuyo gráfico y mínimo global en $x^* = 3.0$ se muestran en la @fig-opt-1d-ejemplo.
+
+![Caso de prueba para métodos de búsqueda 1D: función de cuarto grado y su mínimo global](images/opt_1d_ejemplo.png){#fig-opt-1d-ejemplo fig-align="center" width="60%"}
+
 ### Métodos de Búsqueda Lineal sin Derivadas
 
 Estos métodos solo requieren evaluar el valor de la función objetivo. Exigen que la función sea **unimodal** en el intervalo $[a, b]$, es decir, que posea un único mínimo local en dicho intervalo, decreciendo de forma monótona a la izquierda del mínimo y creciendo a su derecha.
@@ -237,15 +243,7 @@ Para resolver este inconveniente, la Búsqueda Dicotómica calcula en cada itera
 
 ![Concepto de la Búsqueda Dicotómica: la comparación de $\lambda_k$ y $\mu_k$ descarta con certeza una de las mitades del intervalo](images/busqueda_dicotomica_concepto.png){#fig-busqueda-dicotomica-concepto fig-align="center" width="70%"}
 
-La **Sección Áurea (Golden Section)** optimiza la búsqueda dicotómica al colocar los puntos de evaluación de manera que uno de ellos pueda ser reutilizado en la iteración siguiente. Para que se mantenga esta relación de escala constante entre iteraciones, la anchura de los intervalos decrece según la razón áurea $\alpha = (1 + \sqrt{5})/2 \approx 1.618$. Los puntos en cada paso $k$ sobre el intervalo $[a_k, b_k]$ se definen como $\lambda_k = b_k - (b_k - a_k)/\alpha$ y $\mu_k = a_k + (b_k - a_k)/\alpha$. Este método reduce el intervalo de incertidumbre en cada paso en un factor constante de $1/\alpha \approx 0.618$. A partir de la segunda iteración, solo se requiere evaluar la función en un único punto nuevo. Dada una tolerancia $\epsilon > 0$, el número total de iteraciones necesarias se calcula mediante la expresión $N = \lceil (\ln(b - a) - \ln(\epsilon)) / \ln(\alpha) \rceil$.
-
-La **Búsqueda de Fibonacci** fija de antemano el número total de evaluaciones de función $N$ y utiliza los términos de la sucesión de Fibonacci ($F_k$, donde $F_0=1, F_1=1, F_2=2, F_3=3, F_4=5, F_5=8, F_6=13, F_7=21, \dots$) para situar los puntos de evaluación. En la iteración $k$, los puntos se colocan en $\mu_k = a_k + \frac{F_{N-k}}{F_{N-k+1}} (b_k - a_k)$ y $\lambda_k = a_k + (1 - \frac{F_{N-k}}{F_{N-k+1}}) (b_k - a_k)$. Proporciona la máxima reducción teórica del intervalo de incertidumbre para un número de pasos preestablecido. Aunque Fibonacci ofrece una reducción ligeramente mayor, la Sección Áurea suele ser preferida en la práctica porque no exige predeterminar el número total de iteraciones $N$.
-
-A modo de ilustración de las trazas numéricas de estos algoritmos, consideremos la minimización en el intervalo $[1, 4]$ de la función de cuarto grado $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1$ (cuyo gráfico se muestra en la @fig-opt-1d-ejemplo) utilizando una tolerancia de precisión $\epsilon = 0.15$:
-
-![Minimización de la función de cuarto grado y su mínimo global en $x^* = 3.0$](images/opt_1d_ejemplo.png){#fig-opt-1d-ejemplo fig-align="center" width="60%"}
-
-::: {.callout-note title="Ejemplo: Búsqueda Dicotómica"}
+::: {.callout-note title="Ejemplo: Búsqueda Dicotómica" collapse="true"}
 Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1$ con perturbación $\delta = 0.02$ y tolerancia $\epsilon = 0.15$:
 
 *   **Iteración 1**: $[a_0, b_0] = [1, 4]$. El punto medio es $c = 2.5$. Evaluamos los puntos simétricos: $\lambda_0 = 2.5 - 0.02 = 2.48 \implies f(2.48) = -68.397$, y $\mu_0 = 2.5 + 0.02 = 2.52 \implies f(2.52) = -68.490$. Al cumplirse que $f(\lambda_0) > f(\mu_0)$, descartamos la porción izquierda $[a_0, \lambda_0]$. El nuevo intervalo es $[a_1, b_1] = [2.48, 4]$.
@@ -263,7 +261,9 @@ Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1
 :::
 :::
 
-::: {.callout-note title="Ejemplo: Sección Áurea"}
+La **Sección Áurea (Golden Section)** optimiza la búsqueda dicotómica al colocar los puntos de evaluación de manera que uno de ellos pueda ser reutilizado en la iteración siguiente. Para que se mantenga esta relación de escala constante entre iteraciones, la anchura de los intervalos decrece según la razón áurea $\alpha = (1 + \sqrt{5})/2 \approx 1.618$. Los puntos en cada paso $k$ sobre el intervalo $[a_k, b_k]$ se definen como $\lambda_k = b_k - (b_k - a_k)/\alpha$ y $\mu_k = a_k + (b_k - a_k)/\alpha$. Este método reduce el intervalo de incertidumbre en cada paso en un factor constante de $1/\alpha \approx 0.618$. A partir de la segunda iteración, solo se requiere evaluar la función en un único punto nuevo. Dada una tolerancia $\epsilon > 0$, el número total de iteraciones necesarias se calcula mediante la expresión $N = \lceil (\ln(b - a) - \ln(\epsilon)) / \ln(\alpha) \rceil$.
+
+::: {.callout-note title="Ejemplo: Sección Áurea" collapse="true"}
 Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1$ con tolerancia $\epsilon = 0.15$. El número de iteraciones requeridas es $N = \lceil (\ln(3.0) - \ln(0.15)) / \ln(1.618) \rceil = 7$.
 
 *   **Iteración 1**: $[a_0, b_0] = [1, 4]$. Amplitud $I_1 = 3.0 / 1.618 = 1.8541$. Calculamos $\lambda_0 = 4 - 1.8541 = 2.1459 \implies f(2.1459) = -66.692$, y $\mu_0 = 1 + 1.8541 = 2.8541 \implies f(2.8541) = -68.714$. Como $f(\lambda_0) > f(\mu_0)$, descartamos la izquierda. Nuevo intervalo: $[2.1459, 4]$.
@@ -279,13 +279,23 @@ Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1
 :::
 :::
 
-::: {.callout-note title="Ejemplo: Búsqueda de Fibonacci"}
+La **Búsqueda de Fibonacci** fija de antemano el número total de evaluaciones de función $N$ y utiliza los términos de la sucesión de Fibonacci ($F_k$, donde $F_0=1, F_1=1, F_2=2, F_3=3, F_4=5, F_5=8, F_6=13, F_7=21, \dots$) para situar los puntos de evaluación. En la iteración $k$, los puntos se colocan en $\mu_k = a_k + \frac{F_{N-k}}{F_{N-k+1}} (b_k - a_k)$ y $\lambda_k = a_k + (1 - \frac{F_{N-k}}{F_{N-k+1}}) (b_k - a_k)$. Proporciona la máxima reducción teórica del intervalo de incertidumbre para un número de pasos preestablecido. Aunque Fibonacci ofrece una reducción ligeramente mayor, la Sección Áurea suele ser preferida en la práctica porque no exige predeterminar el número total de iteraciones $N$.
+
+::: {.callout-note title="Ejemplo: Búsqueda de Fibonacci" collapse="true"}
 Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1$ con tolerancia $\epsilon = 0.15$. Fijamos $N = 6$ evaluaciones de la función (usando $F_7 = 21$).
 
 *   **Iteración 1**: $[a_0, b_0] = [1, 4]$. Amplitud del paso 1: $I_1 = \frac{13}{21} \cdot 3.0 \approx 1.8571$. Calculamos $\lambda_0 = 4 - 1.8571 = 2.1429 \implies f(2.1429) = -66.673$, y $\mu_0 = 1 + 1.8571 = 2.8571 \implies f(2.8571) = -68.715$. Como $f(\lambda_0) > f(\mu_0)$, descartamos la izquierda. Nuevo intervalo: $[2.1429, 4]$.
 *   **Iteración 2**: $[a_1, b_1] = [2.1429, 4]$. Amplitud $I_2 = \frac{8}{21} \cdot 3.0 \approx 1.1429$. Reutilizamos $\lambda_1 = \mu_0 = 2.8571$. Calculamos $\mu_1 = 2.1429 + 1.1429 = 3.2857 \implies f(3.2857) = -68.657$. Como $f(\lambda_1) < f(\mu_1)$, descartamos la derecha. Nuevo intervalo: $[2.1429, 3.2857]$.
 *   **Iteración 6 (Última)**: La amplitud se reduce a $I_6 = 0.1429 \le 0.15$, logrando la convergencia en $[2.8541, 3.001]$ con una iteración menos que la sección áurea gracias al uso de la serie de Fibonacci.
 :::
+
+
+
+
+
+
+
+
 
 ---
 
@@ -295,13 +305,7 @@ Los métodos con derivadas incorporan información analítica del gradiente para
 
 El **Método de Bisección (Bolzano)** busca el cero de la derivada de primer orden ($f'(x) = 0$). Requiere que los signos de la derivada en los extremos sean opuestos ($f'(a) < 0$ y $f'(b) > 0$), lo que garantiza, por el teorema de Bolzano, la existencia de al menos un punto estacionario en el interior. En cada iteración, evalúa la derivada en el punto medio $c = (a+b)/2$. Si $f'(c) < 0$, actualiza $a = c$; si $f'(c) > 0$, actualiza $b = c$. El algoritmo reduce el intervalo a la mitad en cada paso.
 
-El **Método de Newton 1D** aproxima la función objetivo en cada paso mediante un polinomio cuadrático de Taylor de segundo orden en el punto actual $x_k$ y salta directamente al vértice de la parábola: $x_{k+1} = x_k - f'(x_k)/f''(x_k)$. Presenta una convergencia cuadrática local (orden 2), lo que significa que el número de dígitos significativos de precisión se duplica en cada iteración cerca del óptimo. Requiere calcular la segunda derivada $f''(x)$ en cada paso y exige que sea estrictamente positiva ($f''(x_k) > 0$).
-
-El **Método de la Secante** evita el cálculo de la segunda derivada del método de Newton aproximándola numéricamente por diferencias finitas a partir de los dos últimos puntos evaluados: $f''(x_k) \approx (f'(x_k) - f'(x_{k-1})) / (x_k - x_{k-1})$. Sustituyendo esta aproximación en la fórmula de Newton, el nuevo punto se calcula como $x_{k+1} = x_k - f'(x_k) \frac{x_k - x_{k-1}}{f'(x_k) - f'(x_{k-1})}$. Presenta una convergencia superlineal de orden $\approx 1.618$.
-
-Minimizamos de nuevo la función $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1$ en $[1, 4]$ partiendo del punto inicial $x_0 = 1.0$. Las derivadas son $f'(x) = x^3 - 13x^2 + 54x - 72$ y $f''(x) = 3x^2 - 26x + 54$.
-
-::: {.callout-note title="Ejemplo: Método de Bisección"}
+::: {.callout-note title="Ejemplo: Método de Bisección" collapse="true"}
 Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1$ con tolerancia $\epsilon = 0.15$. Las derivadas son $f'(x) = x^3 - 13x^2 + 54x - 72$ y $f''(x) = 3x^2 - 26x + 54$.
 
 *   **Iteración 1**: $[a_0, b_0] = [1, 4]$. Punto medio $c_0 = 2.5 \implies f'(2.5) = -2.6225 < 0$. Descartamos la izquierda, nuevo intervalo $[2.5, 4]$.
@@ -319,7 +323,9 @@ Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1
 :::
 :::
 
-::: {.callout-note title="Ejemplo: Método de Newton 1D"}
+El **Método de Newton 1D** aproxima la función objetivo en cada paso mediante un polinomio cuadrático de Taylor de segundo orden en el punto actual $x_k$ y salta directamente al vértice de la parábola: $x_{k+1} = x_k - f'(x_k)/f''(x_k)$. Presenta una convergencia cuadrática local (orden 2), lo que significa que el número de dígitos significativos de precisión se duplica en cada iteración cerca del óptimo. Requiere calcular la segunda derivada $f''(x)$ en cada paso y exige que sea estrictamente positiva ($f''(x_k) > 0$).
+
+::: {.callout-note title="Ejemplo: Método de Newton 1D" collapse="true"}
 Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1$ partiendo del punto inicial $x_0 = 1.0$. Las derivadas son $f'(x) = x^3 - 13x^2 + 54x - 72$ y $f''(x) = 3x^2 - 26x + 54$.
 
 *   **Iteración 1**: Partimos de $x_0 = 1.0$. $f'(1.0) = -30.0$, $f''(1.0) = 31.0 \implies x_1 = 1.0 - (-30.0 / 31.0) \approx 1.9677$.
@@ -337,6 +343,13 @@ Minimizamos en el intervalo $[1, 4]$ la función de cuarto grado $f(x) = \frac{1
 :::
 :::
 
+El **Método de la Secante** evita el cálculo de la segunda derivada del método de Newton aproximándola numéricamente por diferencias finitas a partir de los dos últimos puntos evaluados: $f''(x_k) \approx (f'(x_k) - f'(x_{k-1})) / (x_k - x_{k-1})$. Sustituyendo esta aproximación en la fórmula de Newton, el nuevo punto se calcula como $x_{k+1} = x_k - f'(x_k) \frac{x_k - x_{k-1}}{f'(x_k) - f'(x_{k-1})}$. Presenta una convergencia superlineal de orden $\approx 1.618$.
+
+
+
+
+
+
 
 ## Métodos Multivariables de Optimización Sin Restricciones
 
@@ -346,7 +359,7 @@ Para minimizar funciones multivariables $f: \mathbb{R}^n \to \mathbb{R}$ sin res
 
 Es uno de los algoritmos de optimización multivariable más sencillos. Evita por completo el cálculo de derivadas y gradientes. En su lugar, avanza secuencialmente minimizando la función respecto a una única variable de decisión a la vez, manteniendo constantes las restantes $n-1$ variables. Las direcciones de búsqueda coinciden cíclicamente con los vectores de la base canónica de $\mathbb{R}^n$: $d_k = e_{(k \bmod n) + 1}$, donde $e_i$ es el $i$-ésimo vector unitario. En cada paso, se resuelve un subproblema de optimización lineal 1D.
 
-::: {.callout-note title="Ejemplo: Coordenadas Cíclicas"}
+::: {.callout-note title="Ejemplo: Coordenadas Cíclicas" collapse="true"}
 *   **Variables Desacopladas**:
     Minimizamos la función de distancia $f(x, y) = (x-2)^2 + (y-1)^2$ (ver @fig-coord-ciclicas-1) partiendo de $x_0 = (0, 0)^T$.
     
@@ -375,6 +388,8 @@ Es uno de los algoritmos de optimización multivariable más sencillos. Evita po
 ![Trayectoria en escalera del descenso por coordenadas sobre una función cuadrática acoplada](images/coordenadas_ciclicas_ej2.png){#fig-coord-ciclicas-2 fig-align="center" width="50%"}
 :::
 
+
+
 ### Método del Máximo Descenso (Steepest Descent)
 
 La dirección de búsqueda en el método de máximo descenso se define como la dirección en la que la función decrece más rápidamente a nivel local, dada por el opuesto del vector gradiente: $d_k = -\nabla f(x_k)$. El tamaño de paso óptimo $\alpha_k$ se calcula mediante búsqueda de línea exacta: $\alpha_k = \arg\min_{\alpha > 0} f(x_k - \alpha \nabla f(x_k))$.
@@ -385,8 +400,7 @@ Para demostrarlo, definimos la función unidimensional $\phi(\alpha) = f(x_k + \
 
 Esta ortogonalidad geométrica provoca que, si la función presenta curvas de nivel elípticas muy alargadas (problemas mal acondicionados), el algoritmo realice continuos giros de 90°, generando un patrón en **zigzag** que ralentiza la convergencia, tal y como se observa en la @fig-steepest-descent.
 
-
-::: {.callout-note title="Ejemplo: Máximo Descenso"}
+::: {.callout-note title="Ejemplo: Máximo Descenso" collapse="true"}
 Minimizamos $f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29$ partiendo de $x_0 = (0, 0)^T$.
 
 *   **Gradiente en $x_0$**:
@@ -412,6 +426,9 @@ Minimizamos $f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29$ partiendo de $x_0 = (
 
 ![Trayectoria ortogonal de máximo descenso: giros de 90 grados sobre las curvas de nivel elípticas de la función cuadrática](images/steepest_descent_ej.png){#fig-steepest-descent fig-align="center" width="55%"}
 :::
+
+
+
 
 ### Métodos de Newton Multivariable y BFGS
 
