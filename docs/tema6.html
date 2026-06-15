@@ -567,7 +567,11 @@ Figura&nbsp;6.1: Comparativa del ajuste lineal robusto en norma l1 frente a la d
 \text{sujeto a} \quad &amp; 0 \le \alpha_i \le C, \quad i = 1, \dots, n \\
 &amp; \sum_{i=1}^n \alpha_i y_i = 0
 \end{aligned}
-\]</span> - <strong>Vectores de soporte</strong>: Los puntos con multiplicador óptimo <span class="math inline">\(\alpha_i &gt; 0\)</span> son los únicos que determinan la posición del hiperplano óptimo. - <strong>El Truco del Kernel</strong>: Dado que los datos de entrada solo intervienen en el problema dual mediante el producto escalar <span class="math inline">\(x_i^T x_j\)</span>, podemos reemplazar este término por una función de coincidencia kernel <span class="math inline">\(K(x_i, x_j) = \phi(x_i)^T \phi(x_j)\)</span>. Esto permite proyectar los datos de forma implícita a un espacio de características infinito o de gran dimensión (como el kernel Gaussiano RBF), logrando fronteras de decisión altamente no lineales en el espacio original sin incurrir en costes computacionales prohibitivos.</p>
+\]</span></p>
+<ul>
+<li><strong>Vectores de soporte</strong>: Los puntos con multiplicador óptimo <span class="math inline">\(\alpha_i &gt; 0\)</span> son los únicos que determinan la posición del hiperplano óptimo.</li>
+<li><strong>El Truco del Kernel</strong>: Dado que los datos de entrada solo intervienen en el problema dual mediante el producto escalar <span class="math inline">\(x_i^T x_j\)</span>, podemos reemplazar este término por una función de coincidencia kernel <span class="math inline">\(K(x_i, x_j) = \phi(x_i)^T \phi(x_j)\)</span>. Esto permite proyectar los datos de forma implícita a un espacio de características infinito o de gran dimensión (como el kernel Gaussiano RBF), logrando fronteras de decisión altamente no lineales en el espacio original sin incurrir en costes computacionales prohibitivos.</li>
+</ul>
 </div>
 </div>
 </section>

@@ -148,6 +148,7 @@ $$
 & \sum_{i=1}^n \alpha_i y_i = 0
 \end{aligned}
 $$
+
 -   **Vectores de soporte**:
     Los puntos con multiplicador óptimo $\alpha_i > 0$ son los únicos que determinan la posición del hiperplano óptimo.
 -   **El Truco del Kernel**:

@@ -543,9 +543,11 @@ Figura&nbsp;2.1: Búsqueda unidimensional y reducción de intervalos de incertid
 <section id="método-de-newton-multivariable" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="método-de-newton-multivariable"><span class="header-section-number">2.5.2</span> Método de Newton Multivariable</h3>
 <p>El método de Newton incorpora la curvatura local dada por la matriz hessiana para corregir la dirección de búsqueda, apuntando directamente al mínimo de la aproximación cuadrática: <span class="math display">\[ d_k = - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) \]</span> Si el punto inicial está cerca del mínimo y la hessiana es definida positiva, el método converge en muy pocas iteraciones con tamaño de paso <span class="math inline">\(\alpha_k = 1\)</span> (convergencia cuadrática). <strong>Inconvenientes</strong>:</p>
-<pre><code>1.  Exige calcular explícitamente la matriz hessiana de derivadas de segundo orden en cada paso.
-2.  Requiere resolver un sistema de ecuaciones lineales de tamaño $n \times n$ para calcular $[\nabla^2 f(x_k)]^{-1} \nabla f(x_k)$, con un coste computacional de $O(n^3)$ operaciones, inviable para problemas a gran escala.
-3.  Si la hessiana no es definida positiva, la dirección puede no ser de descenso, provocando que el algoritmo diverja.</code></pre>
+<ol type="1">
+<li>Exige calcular explícitamente la matriz hessiana de derivadas de segundo orden en cada paso.</li>
+<li>Requiere resolver un sistema de ecuaciones lineales de tamaño <span class="math inline">\(n \times n\)</span> para calcular <span class="math inline">\([\nabla^2 f(x_k)]^{-1} \nabla f(x_k)\)</span>, con un coste computacional de <span class="math inline">\(O(n^3)\)</span> operaciones, inviable para problemas a gran escala.</li>
+<li>Si la hessiana no es definida positiva, la dirección puede no ser de descenso, provocando que el algoritmo diverja.</li>
+</ol>
 </section>
 <section id="métodos-cuasi-newton-bfgs" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="métodos-cuasi-newton-bfgs"><span class="header-section-number">2.5.3</span> Métodos Cuasi-Newton (BFGS)</h3>
@@ -565,27 +567,27 @@ Figura&nbsp;2.1: Búsqueda unidimensional y reducción de intervalos de incertid
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Este script implementa el método del máximo descenso en múltiples variables, resolviendo el paso exacto mediante la sección áurea:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximo_descenso(f, grad_f, x_init, tol<span class="op">=</span><span class="fl">1e-5</span>, max_iter<span class="op">=</span><span class="dv">1000</span>):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.array(x_init, dtype<span class="op">=</span><span class="bu">float</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> grad_f(x)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.norm(g) <span class="op">&lt;</span> tol:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Convergencia alcanzada en la iteracion </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Definimos la funcion unidimensional para la busqueda del tamano de paso alpha</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> f_lineal(alpha):</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> f(x <span class="op">-</span> alpha <span class="op">*</span> g)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Resolvemos el problema de linea unidimensional usando la Seccion Aurea</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        alpha_opt <span class="op">=</span> seccion_aurea(f_lineal, <span class="fl">0.0</span>, <span class="fl">1.0</span>, tol<span class="op">=</span><span class="fl">1e-5</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Actualizamos el punto</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">-</span> alpha_opt <span class="op">*</span> g</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> maximo_descenso(f, grad_f, x_init, tol<span class="op">=</span><span class="fl">1e-5</span>, max_iter<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.array(x_init, dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> grad_f(x)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.norm(g) <span class="op">&lt;</span> tol:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Convergencia alcanzada en la iteracion </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Definimos la funcion unidimensional para la busqueda del tamano de paso alpha</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> f_lineal(alpha):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> f(x <span class="op">-</span> alpha <span class="op">*</span> g)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Resolvemos el problema de linea unidimensional usando la Seccion Aurea</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        alpha_opt <span class="op">=</span> seccion_aurea(f_lineal, <span class="fl">0.0</span>, <span class="fl">1.0</span>, tol<span class="op">=</span><span class="fl">1e-5</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Actualizamos el punto</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">-</span> alpha_opt <span class="op">*</span> g</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

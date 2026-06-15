@@ -6,7 +6,7 @@ En este capítulo de cierre, te invitamos a reflexionar sobre las principales le
 
 Al finalizar este recorrido, queda patente que la optimización es mucho más que una colección de algoritmos aislados; es un marco de pensamiento estructurado para tomar decisiones óptimas bajo condiciones de recursos limitados. Hemos transitado desde los fundamentos continuos del análisis convexo y las condiciones de optimalidad hasta la estructura discreta y combinatorial de las redes y grafos, equipando a los futuros matemáticos con herramientas capaces de modelar, resolver e interpretar problemas complejos del mundo real.
 
-## Resumen de los aprendizajes
+## Resumen del aprendizaje
 
 A lo largo de este manual, hemos construido un conocimiento progresivo y bidireccional sobre la optimización matemática, cubriendo los siguientes pilares:
 

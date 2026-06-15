@@ -228,9 +228,9 @@ El método de Newton incorpora la curvatura local dada por la matriz hessiana pa
 $$ d_k = - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) $$
 Si el punto inicial está cerca del mínimo y la hessiana es definida positiva, el método converge en muy pocas iteraciones con tamaño de paso $\alpha_k = 1$ (convergencia cuadrática). **Inconvenientes**:
 
-    1.  Exige calcular explícitamente la matriz hessiana de derivadas de segundo orden en cada paso.
-    2.  Requiere resolver un sistema de ecuaciones lineales de tamaño $n \times n$ para calcular $[\nabla^2 f(x_k)]^{-1} \nabla f(x_k)$, con un coste computacional de $O(n^3)$ operaciones, inviable para problemas a gran escala.
-    3.  Si la hessiana no es definida positiva, la dirección puede no ser de descenso, provocando que el algoritmo diverja.
+1.  Exige calcular explícitamente la matriz hessiana de derivadas de segundo orden en cada paso.
+2.  Requiere resolver un sistema de ecuaciones lineales de tamaño $n \times n$ para calcular $[\nabla^2 f(x_k)]^{-1} \nabla f(x_k)$, con un coste computacional de $O(n^3)$ operaciones, inviable para problemas a gran escala.
+3.  Si la hessiana no es definida positiva, la dirección puede no ser de descenso, provocando que el algoritmo diverja.
 
 ### Métodos Cuasi-Newton (BFGS)
 
