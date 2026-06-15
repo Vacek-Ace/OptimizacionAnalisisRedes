@@ -1,4 +1,4 @@
-# Conclusiones {#sec-conclusiones}
+# Conclusiones {.unnumbered #sec-conclusiones}
 
 A lo largo de once capítulos hemos presentado el material de la asignatura de **Optimización y Análisis de Redes** del Grado en **Matemáticas**.
 
