@@ -129,8 +129,7 @@ La curvatura local de la función está determinada por el carácter de su matri
 *   **Semidefinida negativa ($\nabla^2 f(x) \preceq 0$)**: Si $z^T \nabla^2 f(x) z \le 0$ para todo vector $z$. Todos sus autovalores son no positivos y todos sus menores principales alternan de signo de forma no estricta o son nulos.
 *   **Indefinida**: Si existen autovalores estrictamente positivos y negativos. El punto crítico resultante constituye un **punto de silla** (con direcciones de subida y direcciones de bajada).
 
-::: {.callout-note}
-## Ejemplos de Clasificación de Matrices
+::: {.callout-note title="Ejemplos: Clasificación de Matrices"}
 
 1.  **Matriz Definida Positiva**:
     Sea $A_1 = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Sus menores principales son $M_1 = |2| = 2 > 0$, y $M_2 = \det(A_1) = 4 - 1 = 3 > 0$. Al ser ambos menores principales estrictamente positivos, $A_1 \succ 0$. Resolviendo el polinomio característico $\det(A_1 - \lambda I) = (2-\lambda)^2 - 1 = 0 \implies \lambda^2 - 4\lambda + 3 = 0$, obtenemos los autovalores $\lambda_1 = 3$ y $\lambda_2 = 1$, los cuales confirman que es definida positiva.
@@ -146,8 +145,7 @@ La curvatura local de la función está determinada por el carácter de su matri
 
 Las condiciones diferenciales para determinar extremos locales se enuncian en el siguiente teorema.
 
-::: {.callout-important}
-## Teorema: Condiciones de Optimalidad de Segundo Orden
+::: {.callout-important title="Teorema: Condiciones de Optimalidad de Segundo Orden"}
 Sea $f: \mathbb{R}^n \to \mathbb{R}$ una función diferenciable de clase $\mathcal{C}^2$:
 
 1.  **Condición Necesaria de Primer Orden (FONC)**: Si $x^*$ es un mínimo local, entonces el gradiente de la función se anula en dicho punto:
@@ -160,13 +158,11 @@ Sea $f: \mathbb{R}^n \to \mathbb{R}$ una función diferenciable de clase $\mathc
     Entonces $x^*$ es un **mínimo local estricto** de la función.
 :::
 
-::: {.callout-warning}
-## Importancia de la Definición Positiva en SOSC
+::: {.callout-warning title="Importancia de la Definición Positiva en SOSC"}
 Es fundamental notar que en la condición suficiente (SOSC), la matriz hessiana debe ser **estrictamente definida positiva** ($\nabla^2 f(x^*) \succ 0$) y no simplemente semidefinida positiva. Si la hessiana es semidefinida con algún autovalor nulo (por ejemplo, en la función $f(x) = x^4$ en el origen $x^*=0$, donde $f'(0)=0$ y $f''(0)=0 \succeq 0$), el análisis de segundo orden es insuficiente para garantizar analíticamente si el punto es un mínimo, un máximo o un punto de inflexión.
 :::
 
-::: {.callout-note}
-## Ejemplos de Clasificación de Puntos Estacionarios
+::: {.callout-note title="Ejemplos: Clasificación de Puntos Estacionarios"}
 
 *   **Punto de Silla**: Sea $f(x, y) = \frac{1}{2} x^2 + 2xy + \frac{1}{2} y^2 - y + 9$. Su gradiente es $\nabla f(x, y) = (x + 2y, 2x + y - 1)^T$. Igualando a cero obtenemos el punto crítico en $x^* = 2/3, y^* = -1/3$. La matriz hessiana es $\nabla^2 f = \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$. Como su menor principal de segundo orden es $M_2 = -3 < 0$, la matriz es indefinida, lo que clasifica al punto $(2/3, -1/3)$ como un **punto de silla**.
 *   **Mínimo Local Estricto**: Sea $f(x, y) = (x-2)^2 + (y-1)^2$. Su gradiente es $\nabla f(x, y) = (2(x-2), 2(y-1))^T$, anulándose en $(x^*, y^*) = (2, 1)$. La matriz hessiana es $\nabla^2 f = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}$. Al ser definida positiva ($M_1=2>0, M_2=4>0$), el punto crítico constituye un **mínimo local estricto**.
@@ -258,6 +254,31 @@ A modo de ilustración de las trazas numéricas de estos algoritmos, consideremo
 ![Evolución del intervalo en la Búsqueda Dicotómica (Pasos 1 a 4)](images/dicotomica_pasos.png){#fig-dicotomica fig-align="center" width="85%"}
 :::
 
+::: {.callout-tip title="Código Python: Búsqueda Dicotómica" collapse="true"}
+```python
+f = lambda x: 0.25*x**4 - (13/3)*x**3 + 27*x**2 - 72*x + 1
+a, b = 1.0, 4.0
+tol = 0.15
+delta = 0.02
+
+print("Iteración | a_k     | b_k     | c_k     | lambda_k | mu_k    | f(lambda) | f(mu)")
+print("-" * 80)
+for k in range(1, 10):
+    c = (a + b) / 2
+    lmbda = c - delta
+    mu = c + delta
+    f_l = f(lmbda)
+    f_m = f(mu)
+    print(f"{k:9d} | {a:7.4f} | {b:7.4f} | {c:7.4f} | {lmbda:8.4f} | {mu:7.4f} | {f_l:9.4f} | {f_m:8.4f}")
+    if f_l < f_m:
+        b = mu
+    else:
+        a = lmbda
+    if (b - a) < tol:
+        break
+```
+:::
+
 *   *Traza de la Sección Áurea*: El número de iteraciones requeridas es $N = \lceil (\ln(3.0) - \ln(0.15)) / \ln(1.618) \rceil = 7$.
     *   *Iteración 1*: $[a_0, b_0] = [1, 4]$. Amplitud $I_1 = 3.0 / 1.618 = 1.8541$. Calculamos $\lambda_0 = 4 - 1.8541 = 2.1459 \implies f(2.1459) = -66.692$, y $\mu_0 = 1 + 1.8541 = 2.8541 \implies f(2.8541) = -68.714$. Como $f(\lambda_0) > f(\mu_0)$, descartamos la izquierda. Nuevo intervalo: $[2.1459, 4]$.
     *   *Iteración 2*: $[a_1, b_1] = [2.1459, 4]$. Amplitud $I_2 = 1.8541 / 1.618 = 1.1459$. Reutilizamos $\lambda_1 = \mu_0 = 2.8541 \implies f(2.8541) = -68.714$. Calculamos el nuevo punto $\mu_1 = 2.1459 + 1.1459 = 3.2918 \implies f(3.2918) = -68.654$. Como $f(\lambda_1) < f(\mu_1)$, descartamos la derecha. Nuevo intervalo: $[2.1459, 3.2918]$.
@@ -271,80 +292,79 @@ A modo de ilustración de las trazas numéricas de estos algoritmos, consideremo
 ![Evolución del intervalo en la búsqueda por Sección Áurea (Pasos 1 a 4)](images/seccion_aurea_pasos.png){#fig-seccion-aurea fig-align="center" width="85%"}
 :::
 
+::: {.callout-tip title="Código Python: Sección Áurea" collapse="true"}
+```python
+import math
+f = lambda x: 0.25*x**4 - (13/3)*x**3 + 27*x**2 - 72*x + 1
+a, b = 1.0, 4.0
+tol = 0.15
+alpha = (1 + math.sqrt(5)) / 2
+
+lmbda = b - (b - a) / alpha
+mu = a + (b - a) / alpha
+f_l = f(lmbda)
+f_m = f(mu)
+
+print("Iteración | a_k     | b_k     | lambda_k | mu_k    | f(lambda) | f(mu)")
+print("-" * 75)
+print(f"{1:9d} | {a:7.4f} | {b:7.4f} | {lmbda:8.4f} | {mu:7.4f} | {f_l:9.4f} | {f_m:8.4f}")
+
+n_iter = int(math.ceil((math.log(b - a) - math.log(tol)) / math.log(alpha)))
+for k in range(2, n_iter + 1):
+    if f_l < f_m:
+        b = mu
+        mu = lmbda
+        f_m = f_l
+        lmbda = b - (b - a) / alpha
+        f_l = f(lmbda)
+    else:
+        a = lmbda
+        lmbda = mu
+        f_l = f_m
+        mu = a + (b - a) / alpha
+        f_m = f(mu)
+    print(f"{k:9d} | {a:7.4f} | {b:7.4f} | {lmbda:8.4f} | {mu:7.4f} | {f_l:9.4f} | {f_m:8.4f}")
+```
+:::
+
 *   *Traza de Fibonacci*: Fijamos $N = 6$ evaluaciones de la función (usando $F_7 = 21$).
     *   *Iteración 1*: $[a_0, b_0] = [1, 4]$. Amplitud del paso 1: $I_1 = \frac{13}{21} \cdot 3.0 \approx 1.8571$. Calculamos $\lambda_0 = 4 - 1.8571 = 2.1429 \implies f(2.1429) = -66.673$, y $\mu_0 = 1 + 1.8571 = 2.8571 \implies f(2.8571) = -68.715$. Como $f(\lambda_0) > f(\mu_0)$, descartamos la izquierda. Nuevo intervalo: $[2.1429, 4]$.
     *   *Iteración 2*: $[a_1, b_1] = [2.1429, 4]$. Amplitud $I_2 = \frac{8}{21} \cdot 3.0 \approx 1.1429$. Reutilizamos $\lambda_1 = \mu_0 = 2.8571$. Calculamos $\mu_1 = 2.1429 + 1.1429 = 3.2857 \implies f(3.2857) = -68.657$. Como $f(\lambda_1) < f(\mu_1)$, descartamos la derecha. Nuevo intervalo: $[2.1429, 3.2857]$.
     *   *Iteración 6 (Última)*: La amplitud se reduce a $I_6 = 0.1429 \le 0.15$, logrando la convergencia en $[2.8541, 3.001]$ con una iteración menos que la sección áurea gracias al uso de la serie de Fibonacci.
 
----
-
-::: {.carousel}
-::: {.callout-tip title="Código Python: Búsqueda por Sección Áurea" collapse="true"}
+::: {.callout-tip title="Código Python: Búsqueda de Fibonacci" collapse="true"}
 ```python
-import math
+f = lambda x: 0.25*x**4 - (13/3)*x**3 + 27*x**2 - 72*x + 1
+a, b = 1.0, 4.0
+n = 6
+fib = [1, 1]
+for i in range(2, n + 2):
+    fib.append(fib[-1] + fib[-2])
+    
+lmbda = a + (1 - fib[n] / fib[n+1]) * (b - a)
+mu = a + (fib[n] / fib[n+1]) * (b - a)
+f_l = f(lmbda)
+f_m = f(mu)
 
-def seccion_aurea(f, a, b, tol=1e-5):
-    alpha = (1 + math.sqrt(5)) / 2
-    n_iter = int(math.ceil((math.log(b - a) - math.log(tol)) / math.log(alpha)))
-    
-    lmbda = b - (b - a) / alpha
-    mu = a + (b - a) / alpha
-    f_lmbda = f(lmbda)
-    f_mu = f(mu)
-    
-    for _ in range(n_iter - 1):
-        if f_lmbda < f_mu:
-            b = mu
-            mu = lmbda
-            f_mu = f_lmbda
-            lmbda = b - (b - a) / alpha
-            f_lmbda = f(lmbda)
-        else:
-            a = lmbda
-            lmbda = mu
-            f_lmbda = f_mu
-            mu = a + (b - a) / alpha
-            f_mu = f(mu)
-            
-    return (a + b) / 2
-```
-:::
-<!-- slide -->
-::: {.callout-tip title="Código Python: Búsqueda por Fibonacci" collapse="true"}
-```python
-def fibonacci_search(f, a, b, n, eps=1e-3):
-    fib = [1, 1]
-    for i in range(2, n + 2):
-        fib.append(fib[-1] + fib[-2])
-        
-    lmbda = a + (1 - fib[n] / fib[n+1]) * (b - a)
-    mu = a + (fib[n] / fib[n+1]) * (b - a)
-    f_l = f(lmbda)
-    f_m = f(mu)
-    
-    for k in range(1, n - 1):
-        if f_l < f_m:
-            b = mu
-            mu = lmbda
-            f_m = f_l
-            lmbda = a + (1 - fib[n-k] / fib[n-k+1]) * (b - a)
-            f_l = f(lmbda)
-        else:
-            a = lmbda
-            lmbda = mu
-            f_l = f_m
-            mu = a + (fib[n-k] / fib[n-k+1]) * (b - a)
-            f_m = f(mu)
-            
-    mu = lmbda + eps
-    if f(lmbda) < f(mu):
+print("Iteración | a_k     | b_k     | lambda_k | mu_k    | f(lambda) | f(mu)")
+print("-" * 75)
+print(f"{1:9d} | {a:7.4f} | {b:7.4f} | {lmbda:8.4f} | {mu:7.4f} | {f_l:9.4f} | {f_m:8.4f}")
+
+for k in range(2, n):
+    if f_l < f_m:
         b = mu
+        mu = lmbda
+        f_m = f_l
+        lmbda = a + (1 - fib[n-k+1] / fib[n-k+2]) * (b - a)
+        f_l = f(lmbda)
     else:
         a = lmbda
-        
-    return (a + b) / 2
+        lmbda = mu
+        f_l = f_m
+        mu = a + (fib[n-k+1] / fib[n-k+2]) * (b - a)
+        f_m = f(mu)
+    print(f"{k:9d} | {a:7.4f} | {b:7.4f} | {lmbda:8.4f} | {mu:7.4f} | {f_l:9.4f} | {f_m:8.4f}")
 ```
-:::
 :::
 
 ---
@@ -376,6 +396,27 @@ Minimizamos de nuevo la función $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^
 ![Evolución del intervalo en la búsqueda por Bisección (Pasos 1 a 4)](images/biseccion_pasos.png){#fig-biseccion fig-align="center" width="85%"}
 :::
 
+::: {.callout-tip title="Código Python: Método de Bisección" collapse="true"}
+```python
+df = lambda x: x**3 - 13*x**2 + 54*x - 72
+a, b = 1.0, 4.0
+tol = 0.15
+
+print("Iteración | a_k     | b_k     | c_k     | f'(c)")
+print("-" * 55)
+for k in range(1, 10):
+    c = (a + b) / 2
+    val_df = df(c)
+    print(f"{k:9d} | {a:7.4f} | {b:7.4f} | {c:7.4f} | {val_df:8.4f}")
+    if val_df < 0:
+        a = c
+    else:
+        b = c
+    if (b - a) < tol:
+        break
+```
+:::
+
 *   *Iteración de Newton 1D*: Partimos de $x_0 = 1.0$.
     *   *Iteración 1*: $f'(1.0) = -30.0$, $f''(1.0) = 31.0 \implies x_1 = 1.0 - (-30.0 / 31.0) \approx 1.9677$.
     *   *Iteración 2*: $f'(1.9677) \approx -8.459$, $f''(1.9677) \approx 14.450 \implies x_2 = 1.9677 - (-8.459 / 14.450) \approx 2.5529$.
@@ -391,42 +432,24 @@ Minimizamos de nuevo la función $f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^
 ![Aproximaciones cuadráticas en el método de Newton 1D (Pasos 1 a 4)](images/newton_1d_pasos.png){#fig-newton-1d fig-align="center" width="85%"}
 :::
 
----
-
-::: {.carousel}
 ::: {.callout-tip title="Código Python: Método de Newton 1D" collapse="true"}
 ```python
-def newton_1d(df, ddf, x0, tol=1e-6, max_iter=100):
-    x = x0
-    for i in range(max_iter):
-        val_df = df(x)
-        val_ddf = ddf(x)
-        if abs(val_ddf) < 1e-12:
-            raise ValueError("La segunda derivada es nula o muy cercana a cero.")
-        
-        x_new = x - val_df / val_ddf
-        if abs(x_new - x) < tol:
-            return x_new
-        x = x_new
-    return x
+df = lambda x: x**3 - 13*x**2 + 54*x - 72
+ddf = lambda x: 3*x**2 - 26*x + 54
+x = 1.0
+tol = 1e-5
+
+print("Iteración | x_k     | f'(x_k)  | f''(x_k) | x_k+1")
+print("-" * 55)
+for k in range(1, 10):
+    val_df = df(x)
+    val_ddf = ddf(x)
+    x_new = x - val_df / val_ddf
+    print(f"{k:9d} | {x:7.4f} | {val_df:8.4f} | {val_ddf:8.4f} | {x_new:7.4f}")
+    if abs(x_new - x) < tol:
+        break
+    x = x_new
 ```
-:::
-<!-- slide -->
-::: {.callout-tip title="Código Python: Método de la Secante 1D" collapse="true"}
-```python
-def secante_1d(df, x0, x1, tol=1e-6, max_iter=100):
-    for _ in range(max_iter):
-        df0 = df(x0)
-        df1 = df(x1)
-        if abs(df1 - df0) < 1e-12:
-            break
-        x_new = x1 - df1 * (x1 - x0) / (df1 - df0)
-        if abs(x_new - x1) < tol:
-            return x_new
-        x0, x1 = x1, x_new
-    return x1
-```
-:::
 :::
 
 
@@ -438,9 +461,7 @@ Para minimizar funciones multivariables $f: \mathbb{R}^n \to \mathbb{R}$ sin res
 
 Es uno de los algoritmos de optimización multivariable más sencillos. Evita por completo el cálculo de derivadas y gradientes. En su lugar, avanza secuencialmente minimizando la función respecto a una única variable de decisión a la vez, manteniendo constantes las restantes $n-1$ variables. Las direcciones de búsqueda coinciden cíclicamente con los vectores de la base canónica de $\mathbb{R}^n$: $d_k = e_{(k \bmod n) + 1}$, donde $e_i$ es el $i$-ésimo vector unitario. En cada paso, se resuelve un subproblema de optimización lineal 1D.
 
-::: {.callout-note}
-## Ejemplo de Coordenadas Cíclicas
-
+::: {.callout-note title="Ejemplo: Coordenadas Cíclicas"}
 *   **Variables Desacopladas**: Minimizamos la función de distancia $f(x, y) = (x-2)^2 + (y-1)^2$ (ver @fig-coord-ciclicas-1) partiendo de $x_0 = (0, 0)$.
     *   *Paso 1*: Minimizamos respecto a $x$: $\min_{x} f(x, 0) = (x-2)^2 + 1 \implies x_1 = 2 \implies x_1 = (2, 0)$.
     *   *Paso 2*: Minimizamos respecto a $y$: $\min_{y} f(2, y) = (y-1)^2 \implies y_1 = 1 \implies x_2 = (2, 1)$.
@@ -455,6 +476,31 @@ Es uno de los algoritmos de optimización multivariable más sencillos. Evita po
     Debido al acoplamiento bilineal inducido por el término $3xy$, la trayectoria dibuja un patrón de "escalera", requiriendo múltiples ciclos para aproximarse al mínimo global situado en $x^* = (2.060, -2.656)$.
 
 ![Trayectoria en escalera del descenso por coordenadas sobre una función cuadrática acoplada](images/coordenadas_ciclicas_ej2.png){#fig-coord-ciclicas-2 fig-align="center" width="50%"}
+
+::: {.callout-tip title="Código Python: Descenso por Coordenadas" collapse="true"}
+```python
+import numpy as np
+
+# Función del ejemplo
+f = lambda x: 8*x[0]**2 + 3*x[0]*x[1] + 7*x[1]**2 - 25*x[0] + 31*x[1] - 29
+
+# Punto inicial
+x = np.array([0.0, 0.0])
+print(f"Punto inicial x_0: {x}")
+
+# Paso 1: optimizar x (componente 0) manteniendo y = 0
+x[0] = 25 / 16
+print(f"Paso 1 (optimizar x): {x} -> f(x) = {f(x):.4f}")
+
+# Paso 2: optimizar y (componente 1) manteniendo x = 1.5625
+x[1] = - (3*x[0] + 31) / 14
+print(f"Paso 2 (optimizar y): {x} -> f(x) = {f(x):.4f}")
+
+# Paso 3: optimizar x (componente 0) manteniendo y = -2.5491
+x[0] = - (3*x[1] - 25) / 16
+print(f"Paso 3 (optimizar x): {x} -> f(x) = {f(x):.4f}")
+```
+:::
 :::
 
 ### Método del Máximo Descenso (Steepest Descent)
@@ -467,12 +513,37 @@ Para demostrarlo, definimos la función unidimensional $\phi(\alpha) = f(x_k + \
 
 Esta ortogonalidad geométrica provoca que, si la función presenta curvas de nivel elípticas muy alargadas (problemas mal acondicionados), el algoritmo realice continuos giros de 90°, generando un patrón en **zigzag** que ralentiza la convergencia, tal y como se observa en la @fig-steepest-descent.
 
-::: {.callout-note}
-## Ejemplo de Máximo Descenso
+::: {.callout-note title="Ejemplo: Máximo Descenso"}
 Minimizamos $f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29$ partiendo de $x_0 = (0, 0)$.
 *   *Gradiente en $x_0$*: $\nabla f(x_0) = (16x - 25 + 3y, 3x + 14y + 31)^T_{x=(0,0)} = (-25, 31)^T$. La dirección de descenso es $d_0 = -\nabla f(x_0) = (25, -31)^T$.
 *   *Búsqueda de línea*: Minimizamos $\phi(\alpha) = f(25\alpha, -31\alpha) = 9402\alpha^2 - 1586\alpha - 29$. Derivando e igualando a cero: $\phi'(\alpha) = 18804\alpha - 1586 = 0 \implies \alpha_0 \approx 0.0843$.
 *   *Actualización*: $x_1 = x_0 + \alpha_0 d_0 = (0, 0)^T + 0.0843 (25, -31)^T = (2.109, -2.615)^T$. El nuevo gradiente en $x_1$ es $\nabla f(x_1) \approx (0.8925, 0.7225)^T$. Su producto escalar con la dirección anterior es $d_0^T \nabla f(x_1) = 25(0.8925) - 31(0.7225) \approx 0$, lo que ilustra la ortogonalidad.
+
+::: {.callout-tip title="Código Python: Máximo Descenso" collapse="true"}
+```python
+import numpy as np
+
+# Función y gradiente del ejemplo
+f = lambda x: 8*x[0]**2 + 3*x[0]*x[1] + 7*x[1]**2 - 25*x[0] + 31*x[1] - 29
+grad_f = lambda x: np.array([16*x[0] + 3*x[1] - 25, 3*x[0] + 14*x[1] + 31])
+
+# Punto inicial
+x = np.array([0.0, 0.0])
+g = grad_f(x)
+d = -g
+print(f"Punto inicial x_0: {x}")
+print(f"Gradiente g_0: {g} -> Dirección de descenso d_0: {d}")
+
+# Búsqueda lineal exacta: minimizar f(x + alpha * d)
+# alpha_0 = 1586 / 18804 approx 0.0843
+alpha = 1586 / 18804
+x_new = x + alpha * d
+g_new = grad_f(x_new)
+print(f"Paso 1: x_1 = {x_new} -> f(x_1) = {f(x_new):.4f}")
+print(f"Nuevo gradiente g_1: {g_new}")
+print(f"Producto escalar d_0^T g_1: {np.dot(d, g_new):.6f} (Ortogonalidad)")
+```
+:::
 :::
 
 ![Trayectoria ortogonal de máximo descenso: giros de 90 grados sobre las curvas de nivel elípticas de la función cuadrática](images/steepest_descent_ej.png){#fig-steepest-descent fig-align="center" width="55%"}
@@ -485,71 +556,4 @@ A pesar de su velocidad de convergencia, el método de Newton tiene importantes 
 
 Los **Métodos Cuasi-Newton (BFGS)** eliminan estos inconvenientes estimando iterativamente una aproximación simétrica y definida positiva de la inversa de la hessiana, denotada por $H_k \approx [\nabla^2 f(x_k)]^{-1}$. Esta matriz se actualiza utilizando únicamente la información de los gradientes de los dos puntos consecutivos, forzando a que se cumpla la **ecuación de la secante**: $H_{k+1} y_k = s_k$, donde $s_k = x_{k+1} - x_k$ y $y_k = \nabla f(x_{k+1}) - \nabla f(x_k)$. El algoritmo BFGS actualiza la matriz aproximada mediante la expresión $H_{k+1} = (I - \rho_k s_k y_k^T) H_k (I - \rho_k y_k s_k^T) + \rho_k s_k s_k^T$, donde $\rho_k = 1 / (y_k^T s_k)$. Garantiza que la aproximación se mantenga definida positiva en cada paso si la búsqueda de línea satisface las condiciones de Wolfe, proporcionando una convergencia superlineal con un coste por iteración de tan solo $O(n^2)$ operaciones [@nocedal2006numerical; @luenberger2015linear].
 
----
 
-::: {.carousel}
-::: {.callout-tip title="Código Python: Descenso por Coordenadas" collapse="true"}
-```python
-import numpy as np
-
-def descenso_coordenadas(f, x_init, tol=1e-5, max_iter=100):
-    x = np.array(x_init, dtype=float)
-    n = len(x)
-    
-    for iteration in range(max_iter):
-        x_old = x.copy()
-        for j in range(n):
-            def phi(alpha):
-                x_temp = x.copy()
-                x_temp[j] += alpha
-                return f(x_temp)
-            
-            alpha_opt = seccion_aurea(phi, -5.0, 5.0, tol=1e-5)
-            x[j] += alpha_opt
-            
-        if np.linalg.norm(x - x_old) < tol:
-            break
-    return x
-```
-:::
-<!-- slide -->
-::: {.callout-tip title="Código Python: Máximo Descenso con Búsqueda Lineal Exacta" collapse="true"}
-```python
-def maximo_descenso(f, grad_f, x_init, tol=1e-5, max_iter=100):
-    x = np.array(x_init, dtype=float)
-    for i in range(max_iter):
-        g = grad_f(x)
-        if np.linalg.norm(g) < tol:
-            break
-            
-        def phi(alpha):
-            return f(x - alpha * g)
-            
-        alpha_opt = seccion_aurea(phi, 0.0, 1.0, tol=1e-5)
-        x = x - alpha_opt * g
-    return x
-```
-:::
-<!-- slide -->
-::: {.callout-tip title="Código Python: Newton Multivariable" collapse="true"}
-```python
-def newton_multivariable(f, grad_f, hessian_f, x_init, tol=1e-6, max_iter=100):
-    x = np.array(x_init, dtype=float)
-    for _ in range(max_iter):
-        g = grad_f(x)
-        H = hessian_f(x)
-        
-        if np.linalg.norm(g) < tol:
-            break
-            
-        try:
-            d = np.linalg.solve(H, -g)
-        except np.linalg.LinAlgError:
-            H_reg = H + 1e-4 * np.eye(len(x))
-            d = np.linalg.solve(H_reg, -g)
-            
-        x += d
-    return x
-```
-:::
-:::
