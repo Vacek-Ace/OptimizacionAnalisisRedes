@@ -1,0 +1,65 @@
+# Introducción al Análisis de Redes y NetworkX
+
+El **análisis de redes** es una rama de las matemáticas discretas y la optimización que estudia sistemas de objetos interconectados. Muchas redes físicas, biológicas y sociales (como la red eléctrica, el tráfico vial, internet o las relaciones de amistad) se modelan matemáticamente mediante **grafos**.
+
+---
+
+## Conceptos Básicos de Teoría de Grafos
+
+Un **grafo** $G$ es un par ordenado $G = (V, E)$ donde:
+- $V$ es el conjunto de **vértices** o **nodos** ($V = \{v_1, v_2, \ldots, v_n\}$).
+- $E$ es el conjunto de **aristas** o **arcos** ($E \subseteq V \times V$), que representan las conexiones entre nodos.
+
+### Tipos de Grafos
+1. **Grafo No Dirigido:** Las conexiones no tienen dirección; si $(u, v) \in E$, entonces también $(v, u) \in E$. Se representan gráficamente como segmentos.
+2. **Grafo Dirigido (Digrafo):** Las conexiones tienen un sentido; el arco $(u, v)$ va del nodo origen $u$ al nodo destino $v$. Se representan como flechas.
+3. **Grafo Valorado (o Red):** A cada arista o arco se le asigna un número real llamado **peso** o **coste** $w(u, v)$ (por ejemplo, la distancia en kilómetros o el retardo de un canal de datos).
+
+---
+
+## Representación de Grafos en Ordenador
+
+Para procesar grafos mediante algoritmos, existen dos representaciones clásicas:
+
+1. **Matriz de Adyacencia ($A \in \mathbb{R}^{n \times n}$):** Es una matriz donde la entrada $a_{ij}$ es 1 (o el peso $w$) si existe conexión entre el nodo $i$ y el $j$, y 0 en caso contrario. Es idónea para grafos densos.
+2. **Lista de Adyacencia:** Asocia a cada nodo una lista con sus vecinos. Es eficiente en memoria para grafos dispersos.
+
+---
+
+## Introducción a NetworkX en Python
+
+**NetworkX** es la librería estándar de Python para la creación, manipulación y estudio de redes complejas.
+
+```python
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# 1. Crear un grafo no dirigido
+G = nx.Graph()
+
+# 2. Añadir nodos
+G.add_node("A")
+G.add_nodes_from(["B", "C", "D"])
+
+# 3. Añadir aristas con pesos
+G.add_edge("A", "B", weight=4.5)
+G.add_edges_from([
+    ("B", "C", {"weight": 2.0}),
+    ("C", "D", {"weight": 1.5}),
+    ("D", "A", {"weight": 3.0})
+])
+
+# 4. Obtener información básica
+print(f"Nodos: {G.nodes()}")
+print(f"Aristas: {G.edges(data=True)}")
+print(f"Número de nodos: {G.number_of_nodes()}")
+print(f"Número de aristas: {G.number_of_edges()}")
+
+# 5. Dibujar el grafo
+pos = nx.spring_layout(G)  # Distribución de fuerza elástica para los nodos
+nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=800, font_weight='bold')
+labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+plt.title("Grafo Valorado en NetworkX")
+plt.show()
+```

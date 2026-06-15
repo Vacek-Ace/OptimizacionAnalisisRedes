@@ -1,0 +1,222 @@
+---
+lang: es
+format:
+  pdf:
+    pdf-engine: weasyprint
+    title-block-banner: false 
+    toc: true
+    toc-title: "Índice guía de estudio"
+    include-before-body: portada.html
+    css: ../estilos.css
+---
+
+# Introducción a la asignatura
+
+La **optimización matemática** y el **análisis de redes** son pilares fundamentales de las matemáticas aplicadas y la ciencia de datos moderna. En un mundo donde los recursos son limitados y los datos interconectados crecen de forma exponencial, la capacidad de modelar problemas reales como sistemas de optimización y resolverlos eficientemente es crucial para la toma de decisiones óptimas.
+
+Esta asignatura, diseñada para el **Grado en Matemáticas**, extiende los conocimientos tradicionales de optimización lineal y continua, adentrándose en el ámbito de la **optimización no lineal** y el modelado sobre estructuras discretas a través del **análisis de redes**.
+
+A lo largo del curso, el enfoque metodológico combinará el rigor matemático de los teoremas de convexidad y optimalidad con la implementación práctica en **Python**, utilizando herramientas estándar de la industria como **NumPy**, **Matplotlib**, **CVXPY** (para optimización convexa restringida) y **NetworkX** (para el modelado y resolución de algoritmos sobre grafos).
+
+## Objetivos de la asignatura
+
+Proveer a los estudiantes de los conocimientos teóricos y las habilidades prácticas para:
+- Formular y clasificar matemáticamente problemas de optimización a partir de descripciones verbales de situaciones reales.
+- Analizar la convexidad de conjuntos y funciones, garantizando la existencia de óptimos globales.
+- Aplicar e interpretar las condiciones de optimalidad de Karush-Kuhn-Tucker (KKT) y la dualidad lagrangiana.
+- Utilizar algoritmos numéricos de optimización e implementarlos en Python.
+- Resolver problemas de clasificación y regresión en ciencia de datos (como SVM y regresión lineal) desde la perspectiva de la optimización.
+- Modelar problemas de decisión sobre redes y resolver de manera eficiente problemas de caminos mínimos, flujos óptimos, emparejamientos y rutas mediante librerías de Python.
+
+---
+
+# Desarrollo de la asignatura
+
+La asignatura se imparte a lo largo de 15 semanas. Cada semana se estructura en sesiones de teoría (para asentar los conceptos y demostraciones matemáticas) y sesiones de laboratorio práctico en Python (donde el alumno implementará y resolverá los modelos estudiados).
+
+## SEMANA 1: Presentación y Conceptos Fundamentales
+**Contenidos**:
+- Presentación de la asignatura: guía docente, metodología y evaluación.
+- Introducción al modelado matemático de optimización (variables, restricciones, objetivo).
+- Preparación del entorno de trabajo en Python (Anaconda, Jupyter Notebooks, VS Code).
+- Repaso de álgebra lineal y cálculo multivariable con NumPy.
+
+**Objetivos de aprendizaje**:
+- Comprender la estructura general del curso.
+- Configurar el entorno de desarrollo y familiarizarse con la manipulación de vectores y matrices en Python.
+
+---
+
+## SEMANA 2: Optimización No Lineal Sin Restricciones
+**Contenidos**:
+- Condiciones necesarias y suficientes de primer y segundo orden para óptimos locales.
+- Introducción al descenso de gradiente (Gradient Descent): fundamentación teórica y tasa de aprendizaje.
+- Implementación en Python del descenso de gradiente para funciones cuadráticas.
+
+**Objetivos de aprendizaje**:
+- Caracterizar analíticamente los puntos críticos de una función multivariable.
+- Programar desde cero el algoritmo de descenso de gradiente y visualizar su convergencia.
+
+---
+
+## SEMANA 3: Algoritmos de Descenso y Visualización Avanzada
+**Contenidos**:
+- El método de Newton para optimización sin restricciones: ventajas e inconvenientes (matriz Hessiana).
+- Visualización de la convergencia y curvas de nivel en superficies 2D y 3D usando Matplotlib.
+- Introducción a la resolución de problemas con el módulo `scipy.optimize`.
+
+**Objetivos de aprendizaje**:
+- Implementar y comparar la velocidad de convergencia del método de Newton frente al descenso de gradiente.
+- Crear gráficos interactivos tridimensionales para analizar el comportamiento de las trayectorias de optimización.
+
+---
+
+## SEMANA 4: Análisis Convexo I - Conjuntos Convexos
+**Contenidos**:
+- Definición y propiedades de conjuntos convexos.
+- Ejemplos clásicos: hiperplanos, semiespacios, poliedros y elipsoides.
+- Operaciones que preservan la convexidad de conjuntos.
+
+**Objetivos de aprendizaje**:
+- Demostrar la convexidad de conjuntos matemáticos comunes.
+- Representar y verificar computacionalmente la intersección de semiespacios (poliedros) en Python.
+
+---
+
+## SEMANA 5: Análisis Convexo II - Funciones Convexas
+**Contenidos**:
+- Definición de función convexa mediante combinaciones convexas.
+- Propiedades del epígrafe. Caracterización de primer y segundo orden para funciones diferenciables.
+- Operaciones que preservan la convexidad (suma, composición, supremo).
+
+**Objetivos de aprendizaje**:
+- Analizar la convexidad de funciones multivariables mediante su matriz Hessiana.
+- Entender el teorema fundamental: en optimización convexa, todo óptimo local es óptimo global.
+
+---
+
+## SEMANA 6: Optimización con Restricciones y Condiciones KKT
+**Contenidos**:
+- Restricciones de igualdad y desigualdad. Multiplicadores de Lagrange.
+- Condiciones necesarias de Fritz-John.
+- Condiciones necesarias y suficientes de Karush-Kuhn-Tucker (KKT).
+
+**Objetivos de aprendizaje**:
+- Resolver analíticamente problemas de optimización con restricciones sencillos usando las condiciones KKT.
+- Identificar puntos estacionarios, de mínimo y máximo bajo restricciones.
+
+---
+
+## SEMANA 7: Dualidad Lagrangiana
+**Contenidos**:
+- Formulación del problema Dual de Lagrange.
+- Propiedad de dualidad débil y el salto dual (dual gap).
+- Teoremas de dualidad fuerte y condiciones de Slater bajo convexidad.
+- Interpretación económica y geométrica de los multiplicadores duales.
+
+**Objetivos de aprendizaje**:
+- Formular analíticamente el problema dual de un problema de optimización primal dado.
+- Comprobar la dualidad fuerte en problemas convexos.
+
+---
+
+## SEMANA 8: Programación Lineal, Cuadrática y CVXPY
+**Contenidos**:
+- Estructura de problemas LP (Programación Lineal) y QP (Programación Cuadrática).
+- Introducción a la librería **CVXPY** para optimización convexa disciplinada (DCP).
+- Formulación y resolución de problemas LP y QP con restricciones en CVXPY.
+
+**Objetivos de aprendizaje**:
+- Escribir y resolver problemas de optimización complejos de forma compacta utilizando CVXPY.
+- Interpretar el estado del solver y recuperar variables primales y duales.
+
+---
+
+## SEMANA 9: Optimización en Ciencia de Datos I - Regresión y SVM Lineal
+**Contenidos**:
+- Formulación de la regresión lineal por mínimos cuadrados y regularización Ridge/Lasso.
+- El problema de clasificación binaria: Máquinas de Vectores de Soporte (SVM).
+- Margen máximo para datos linealmente separables: formulación matemática primal.
+- Resolución de SVM lineal utilizando CVXPY.
+
+**Objetivos de aprendizaje**:
+- Modelar y resolver algoritmos clásicos de aprendizaje automático como problemas de optimización convexa.
+- Representar gráficamente el hiperplano óptimo de separación y sus márgenes.
+
+---
+
+## SEMANA 10: Optimización en Ciencia de Datos II - SVM Generalizada y Dualidad
+**Contenidos**:
+- Clasificación no separable: margen blando y variables de holgura (slack variables).
+- Formulación Dual del clasificador SVM.
+- Introducción al truco del Kernel para separación no lineal.
+- Comparativa práctica entre la resolución directa en CVXPY y la librería `scikit-learn` (`sklearn.svm.SVC`).
+
+**Objetivos de aprendizaje**:
+- Comprender la utilidad práctica de la dualidad en el contexto de SVM (ahorro computacional y kernels).
+- Resolver y clasificar conjuntos de datos no lineales simulados en Python.
+
+---
+
+## SEMANA 11: Introducción a la Optimización en Redes
+**Contenidos**:
+- Teoría de Grafos: definiciones básicas, tipos de grafos (dirigidos, no dirigidos, bipartitos, valorados).
+- Estructuras de datos de representación: matriz de adyacencia y lista de adyacencia.
+- Introducción a **NetworkX** en Python: creación de grafos, importación de datos y visualización básica.
+
+**Objetivos de aprendizaje**:
+- Representar redes e infraestructura real mediante estructuras de grafos en Python.
+- Utilizar NetworkX para calcular propiedades topológicas básicas de la red.
+
+---
+
+## SEMANA 12: Algoritmos de Caminos Mínimos
+**Contenidos**:
+- Problema del camino mínimo (Shortest Path).
+- Algoritmo de Dijkstra para pesos no negativos.
+- Algoritmo de Bellman-Ford y la detección de circuitos de longitud negativa.
+- Algoritmo de Floyd-Warshall para caminos entre todos los pares de vértices.
+- Resolución y visualización interactiva de rutas óptimas con NetworkX.
+
+**Objetivos de aprendizaje**:
+- Comprender la lógica y complejidad temporal de los principales algoritmos de caminos mínimos.
+- Diseñar soluciones de enrutamiento óptimo sobre redes de transporte simplificadas.
+
+---
+
+## SEMANA 13: Problemas de Flujo en Redes
+**Contenidos**:
+- Conceptos de capacidades, flujos y conservación de flujo.
+- Problema del Flujo Máximo: Algoritmo de Ford-Fulkerson y teorema de Max-Flow Min-Cut.
+- Problema del Flujo a Coste Mínimo (Min-Cost Flow).
+- Modelado de redes de distribución y logística en Python.
+
+**Objetivos de aprendizaje**:
+- Resolver problemas de transporte de recursos minimizando costes o maximizando el rendimiento de la red.
+- Graficar flujos y capacidades de forma intuitiva en diagramas de red.
+
+---
+
+## SEMANA 14: Problemas de Emparejamiento (Matching)
+**Contenidos**:
+- Definición de emparejamiento (matching), emparejamiento máximo y emparejamiento perfecto.
+- Grafos bipartitos y el algoritmo de emparejamiento de margen máximo.
+- Relación entre emparejamientos y flujos de red.
+- Problema de la asignación óptima de tareas y recursos.
+
+**Objetivos de aprendizaje**:
+- Formular problemas de asignación como emparejamientos máximos.
+- Utilizar los solvers especializados de NetworkX para emparejamiento en grafos bipartitos.
+
+---
+
+## SEMANA 15: Rutas y Recorridos (Tours) y Cierre
+**Contenidos**:
+- Ciclos eulerianos y el problema del Cartero Chino.
+- Ciclos hamiltonianos y el problema del Viajante de Comercio (TSP). Heurísticas de aproximación.
+- Implementación de algoritmos heurísticos en Python.
+- Repaso y cierre del curso.
+
+**Objetivos de aprendizaje**:
+- Diferenciar la complejidad computacional entre recorridos eulerianos (polinomiales) y hamiltonianos (NP-difíciles).
+- Aplicar heurísticas prácticas para aproximar rutas óptimas de reparto o distribución logística.

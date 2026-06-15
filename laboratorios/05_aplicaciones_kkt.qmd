@@ -1,0 +1,139 @@
+# Programación Lineal, Cuadrática y CVXPY
+
+En este capítulo estudiaremos cómo aplicar las condiciones KKT a las familias de problemas de optimización convexa más comunes e importantes en la práctica: la **Programación Lineal (LP)** y la **Programación Cuadrática (QP)**. Posteriormente, aprenderemos a formular y resolver estos modelos en Python mediante la librería **CVXPY**.
+
+---
+
+## Programación Lineal (LP)
+
+La Programación Lineal trata de minimizar (o maximizar) una función lineal sujeta a restricciones de igualdad y desigualdad lineales:
+
+$$
+\begin{aligned}
+& \underset{x \in \mathbb{R}^n}{\text{minimizar}} \quad & c^T x \\
+& \text{sujeto a} \quad & A x \le b \\
+& & C x = d
+\end{aligned}
+$$
+
+Donde $c \in \mathbb{R}^n$, $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$, $C \in \mathbb{R}^{p \times n}$ y $d \in \mathbb{R}^p$.
+
+### Condiciones KKT para LP
+
+La función Lagrangiana de este problema es:
+$$ L(x, \lambda, \nu) = c^T x + \lambda^T (A x - b) + \nu^T (C x - d) $$
+
+Aplicando las condiciones KKT:
+1. **Estacionariedad:** $\nabla_x L = c + A^T \lambda + C^T \nu = 0$
+2. **Factibilidad primal:** $A x \le b$ y $C x = d$
+3. **Factibilidad dual:** $\lambda \ge 0$
+4. **Holgura complementaria:** $\lambda_i (a_i^T x - b_i) = 0 \quad \forall i=1,\dots,m$
+
+---
+
+## Programación Cuadrática (QP)
+
+La Programación Cuadrática implica minimizar una función objetivo cuadrática sujeta a restricciones lineales de igualdad y desigualdad:
+
+$$
+\begin{aligned}
+& \underset{x \in \mathbb{R}^n}{\text{minimizar}} \quad & \frac{1}{2} x^T P x + q^T x \\
+& \text{sujeto a} \quad & A x \le b \\
+& & C x = d
+\end{aligned}
+$$
+
+Donde $P \in \mathbb{R}^{n \times n}$ es una matriz simétrica. Para que el problema sea convexo y tenga un mínimo global garantizado, la matriz $P$ debe ser **semidefinida positiva** ($P \succeq 0$).
+
+### Condiciones KKT para QP
+
+La Lagrangiana es:
+$$ L(x, \lambda, \nu) = \frac{1}{2} x^T P x + q^T x + \lambda^T (A x - b) + \nu^T (C x - d) $$
+
+Condiciones KKT:
+1. **Estacionariedad:** $P x + q + A^T \lambda + C^T \nu = 0$
+2. **Factibilidad primal:** $A x \le b$ y $C x = d$
+3. **Factibilidad dual:** $\lambda \ge 0$
+4. **Holgura complementaria:** $\lambda_i (a_i^T x - b_i) = 0 \quad \forall i=1,\dots,m$
+
+---
+
+## Resolución de Problemas en Python con CVXPY
+
+**CVXPY** es un lenguaje de modelado en Python para optimización convexa que permite escribir problemas de manera natural, similar a la notación matemática.
+
+### Ejemplo 1: Resolución de una Programación Lineal (LP)
+
+Resolveremos el siguiente problema:
+
+$$
+\begin{aligned}
+& \underset{x_1, x_2}{\text{maximizar}} \quad & 3 x_1 + 4 x_2 \\
+& \text{sujeto a} \quad & x_1 + 2 x_2 \le 4 \\
+& & 3 x_1 - x_2 \ge 1 \\
+& & x_1 \ge 0, \ x_2 \ge 0
+\end{aligned}
+$$
+
+```python
+import cvxpy as cp
+
+# 1. Definir variables de decisión
+x = cp.Variable(2, nonneg=True)  # Equivalente a x1 >= 0, x2 >= 0
+
+# 2. Definir restricciones
+restricciones = [
+    x[0] + 2 * x[1] <= 4,
+    3 * x[0] - x[1] >= 1
+]
+
+# 3. Definir función objetivo
+objetivo = cp.Maximize(3 * x[0] + 4 * x[1])
+
+# 4. Definir y resolver el problema
+problema = cp.Problem(objetivo, restricciones)
+problema.solve()
+
+# 5. Mostrar resultados
+print(f"Estado del problema: {problema.status}")
+print(f"Valor óptimo de la función objetivo: {problema.value:.4f}")
+print(f"Valores óptimos de las variables: x1 = {x.value[0]:.4f}, x2 = {x.value[1]:.4f}")
+print(f"Valores óptimos de las variables duales (multiplicadores): {restricciones[0].dual_value}")
+```
+
+### Ejemplo 2: Resolución de una Programación Cuadrática (QP)
+
+Resolveremos la minimización de la distancia al origen sujeta a restricciones lineales (un problema QP convexo):
+
+$$
+\begin{aligned}
+& \underset{x_1, x_2}{\text{minimizar}} \quad & \frac{1}{2} (x_1^2 + x_2^2) \\
+& \text{sujeto a} \quad & x_1 + x_2 \ge 1
+\end{aligned}
+$$
+
+```python
+import cvxpy as cp
+import numpy as np
+
+x = cp.Variable(2)
+
+# P = identidad, q = cero
+P = np.eye(2)
+q = np.zeros(2)
+
+# Función objetivo: 1/2 * x^T * P * x
+objetivo = cp.Minimize(0.5 * cp.quad_form(x, P))
+
+# Restricciones
+restricciones = [
+    x[0] + x[1] >= 1
+]
+
+problema = cp.Problem(objetivo, restricciones)
+problema.solve()
+
+print(f"Estado: {problema.status}")
+print(f"Valor óptimo: {problema.value:.4f}")
+print(f"x óptimo: {x.value}")
+```

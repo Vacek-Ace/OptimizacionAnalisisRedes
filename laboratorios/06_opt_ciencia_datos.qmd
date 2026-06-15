@@ -1,0 +1,97 @@
+# Optimización en Ciencia de Datos: Regresión y SVM
+
+La optimización es el motor matemático del aprendizaje automático. En este capítulo estudiaremos cómo formular y resolver dos problemas fundamentales de la ciencia de datos desde la perspectiva de la optimización convexa: la **Regresión Lineal** y las **Máquinas de Vectores de Soporte (SVM)**.
+
+---
+
+## Regresión Lineal y Regularización
+
+Dada una matriz de características $X \in \mathbb{R}^{m \times n}$ y un vector de etiquetas $y \in \mathbb{R}^m$, el problema de mínimos cuadrados ordinarios busca minimizar la norma del residuo:
+
+$$ \underset{w \in \mathbb{R}^n, b \in \mathbb{R}}{\text{minimizar}} \quad \| X w + b \mathbf{1} - y \|_2^2 $$
+
+Para evitar el sobreajuste y estabilizar el sistema cuando hay multicolinealidad, se añaden términos de penalización (regularización):
+
+1. **Ridge Regression (L2):** Minimiza $\| X w + b \mathbf{1} - y \|_2^2 + \gamma \| w \|_2^2$ (convexo, diferenciable).
+2. **Lasso Regression (L1):** Minimiza $\| X w + b \mathbf{1} - y \|_2^2 + \gamma \| w \|_1$ (convexo, no diferenciable en cero, genera soluciones dispersas/sparse).
+
+---
+
+## Máquinas de Vectores de Soporte (SVM)
+
+El objetivo de una SVM es encontrar un hiperplano de separación en $\mathbb{R}^n$ para clasificar datos binarios $y_i \in \{-1, +1\}$ maximizando el **margen** (la distancia al punto más cercano de cada clase).
+
+### 1. Caso Linealmente Separable (Margen Máximo)
+
+El margen es inversamente proporcional a la norma del vector de pesos: $M = 2 / \| w \|_2$. Maximizar el margen equivale a minimizar la norma al cuadrado, lo que da lugar al problema QP convexo restringido:
+
+$$
+\begin{aligned}
+& \underset{w \in \mathbb{R}^n, b \in \mathbb{R}}{\text{minimizar}} \quad & \frac{1}{2} \| w \|_2^2 \\
+& \text{sujeto a} \quad & y_i (w^T x_i + b) \ge 1, \quad i = 1, \dots, m
+\end{aligned}
+$$
+
+```python
+# Formulación de SVM separable en CVXPY
+import cvxpy as cp
+import numpy as np
+
+# Datos de prueba simulados
+X_data = np.array([[1, 2], [2, 3], [3, 1], [6, 8], [7, 7], [8, 9]])
+y_data = np.array([-1, -1, -1, 1, 1, 1])
+
+m, n = X_data.shape
+w = cp.Variable(n)
+b = cp.Variable()
+
+restricciones = [
+    y_data[i] * (X_data[i] @ w + b) >= 1 for i in range(m)
+]
+
+objetivo = cp.Minimize(0.5 * cp.sum_squares(w))
+prob = cp.Problem(objetivo, restricciones)
+prob.solve()
+
+print(f"w óptimo: {w.value}")
+print(f"b óptimo: {b.value}")
+```
+
+### 2. Caso No Separable (Margen Blando)
+
+Si los datos no son perfectamente separables, introducimos variables de holgura $\xi_i \ge 0$ que penalizan los puntos mal clasificados. El parámetro $C > 0$ controla el equilibrio entre la maximización del margen y la tolerancia al error:
+
+$$
+\begin{aligned}
+& \underset{w, b, \xi}{\text{minimizar}} \quad & \frac{1}{2} \| w \|_2^2 + C \sum_{i=1}^m \xi_i \\
+& \text{sujeto a} \quad & y_i (w^T x_i + b) \ge 1 - \xi_i, \quad i = 1, \dots, m \\
+& & \xi_i \ge 0, \quad i = 1, \dots, m
+\end{aligned}
+$$
+
+### 3. Formulación Dual de SVM
+
+Mediante la dualidad lagrangiana, el problema de SVM se puede reescribir de forma dual, donde las variables de optimización son los multiplicadores $\alpha_i$:
+
+$$
+\begin{aligned}
+& \underset{\alpha \in \mathbb{R}^m}{\text{maximizar}} \quad & \sum_{i=1}^m \alpha_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \alpha_i \alpha_j y_i y_j x_i^T x_j \\
+& \text{sujeto a} \quad & 0 \le \alpha_i \le C, \quad i = 1, \dots, m \\
+& & \sum_{i=1}^m \alpha_i y_i = 0
+\end{aligned}
+$$
+
+Esta formulación dual es de gran valor por dos motivos:
+- **Vectores de soporte:** Los puntos correspondientes a $\alpha_i > 0$ son los únicos que determinan el hiperplano (los *vectores de soporte*).
+- **El Truco del Kernel:** Podemos sustituir el producto escalar $x_i^T x_j$ por una función Kernel $K(x_i, x_j)$ para mapear los datos de entrada a un espacio de mayor dimensión donde sean linealmente separables (por ejemplo, usando kernels polinomiales o Gaussianos RBF).
+
+```python
+# Ejemplo de uso con scikit-learn para comparar
+from sklearn.svm import SVC
+
+clf = SVC(kernel='linear', C=1.0)
+clf.fit(X_data, y_data)
+
+print(f"coef_ (w) de sklearn: {clf.coef_}")
+print(f"intercept_ (b) de sklearn: {clf.intercept_}")
+```

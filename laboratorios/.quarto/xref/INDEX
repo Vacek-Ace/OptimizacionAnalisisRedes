@@ -1,0 +1,38 @@
+{
+  "index.qmd": {
+    "index.html": "86a4c2f8"
+  },
+  "01_intro_opt.qmd": {
+    "01_intro_opt.html": "e86654b5"
+  },
+  "02_opt_sin_rest.qmd": {
+    "02_opt_sin_rest.html": "0032eba4"
+  },
+  "03_analisis_convexo.qmd": {
+    "03_analisis_convexo.html": "cb289027"
+  },
+  "04_opt_con_rest.qmd": {
+    "04_opt_con_rest.html": "fb652a57"
+  },
+  "05_aplicaciones_kkt.qmd": {
+    "05_aplicaciones_kkt.html": "8b289abf"
+  },
+  "06_opt_ciencia_datos.qmd": {
+    "06_opt_ciencia_datos.html": "7d28a6d9"
+  },
+  "07_intro_redes.qmd": {
+    "07_intro_redes.html": "40ed7296"
+  },
+  "08_camino_minimo.qmd": {
+    "08_camino_minimo.html": "15c065db"
+  },
+  "09_problemas_flujo.qmd": {
+    "09_problemas_flujo.html": "799fc0e2"
+  },
+  "10_emparejamiento.qmd": {
+    "10_emparejamiento.html": "d793cd29"
+  },
+  "11_problemas_recorridos.qmd": {
+    "11_problemas_recorridos.html": "e64c6fb7"
+  }
+}

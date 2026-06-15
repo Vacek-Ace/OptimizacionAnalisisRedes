@@ -1,0 +1,85 @@
+# Introducción a la Optimización
+
+La **optimización matemática** (o programación matemática) es la disciplina que se ocupa de seleccionar, de acuerdo con algún criterio, el mejor elemento de un conjunto de alternativas disponibles. En términos prácticos, consiste en maximizar o minimizar una función real eligiendo sistemáticamente valores de variables de decisión dentro de un conjunto permitido.
+
+## Formulación Matemática General
+
+Un problema de optimización continua se expresa matemáticamente de la siguiente forma general:
+
+$$
+\begin{aligned}
+& \underset{x}{\text{minimizar}} \quad & f(x) \\
+& \text{sujeto a} \quad & g_i(x) \le 0, \quad i = 1, \ldots, m \\
+& & h_j(x) = 0, \quad j = 1, \ldots, p
+\end{aligned}
+$$
+
+Donde:
+- $x \in \mathbb{R}^n$ es el **vector de variables de decisión** ($x = (x_1, x_2, \ldots, x_n)^T$).
+- $f: \mathbb{R}^n \to \mathbb{R}$ es la **función objetivo** que se desea minimizar (o maximizar, ya que maximizar $f(x)$ es equivalente a minimizar $-f(x)$).
+- $g_i: \mathbb{R}^n \to \mathbb{R}$ son las **restricciones de desigualdad**.
+- $h_j: \mathbb{R}^n \to \mathbb{R}$ son las **restricciones de igualdad**.
+
+### El Conjunto Factible
+
+El conjunto de todos los puntos que satisfacen todas las restricciones se denomina **conjunto factible** (o región factible), denotado por $\Omega$:
+
+$$ \Omega = \{ x \in \mathbb{R}^n \mid g_i(x) \le 0, \ i=1,\ldots,m; \ h_j(x) = 0, \ j=1,\ldots,p \} $$
+
+Si $\Omega = \emptyset$, el problema se dice que es **incompatible** o **infactible**. Si no hay restricciones ($m=0, p=0$), el problema se denomina **no restringido** y $\Omega = \mathbb{R}^n$.
+
+---
+
+## Clasificación de Problemas de Optimización
+
+Los problemas de optimización se clasifican según las propiedades matemáticas de sus funciones y variables:
+
+1. **Optimización Lineal (LP):** La función objetivo $f(x)$ y todas las restricciones $g_i(x)$ y $h_j(x)$ son combinaciones lineales de las variables.
+2. **Optimización No Lineal (NLP):** La función objetivo o alguna de las restricciones no es lineal.
+3. **Optimización Convexa:** El conjunto factible $\Omega$ es un conjunto convexo y la función objetivo $f(x)$ es una función convexa. (Veremos en detalle esta clase de problemas en el Capítulo 3, ya que son de vital importancia debido a que cualquier óptimo local es global).
+4. **Optimización Continua vs. Discreta:** En la optimización continua, las variables pueden tomar cualquier valor real dentro de un intervalo. En la discreta (o entera), algunas o todas las variables deben tomar valores enteros (como binarios 0 o 1).
+
+---
+
+## Óptimos Locales y Globales
+
+::: {.callout-note}
+### Definición de Mínimo Global
+Un punto $x^* \in \Omega$ es un **mínimo global** del problema si:
+$$ f(x^*) \le f(x) \quad \forall x \in \Omega $$
+:::
+
+::: {.callout-note}
+### Definición de Mínimo Local
+Un punto $x^* \in \Omega$ es un **mínimo local** si existe un entorno de radio $\epsilon > 0$ alrededor de $x^*$ (denotado por $B(x^*, \epsilon)$) tal que:
+$$ f(x^*) \le f(x) \quad \forall x \in \Omega \cap B(x^*, \epsilon) $$
+:::
+
+En general, encontrar un mínimo global para problemas no lineales no convexos es extremadamente difícil, ya que los algoritmos numéricos basados en derivadas locales suelen quedar atrapados en mínimos locales.
+
+```python
+# Ejemplo de visualización de mínimos locales vs globales en Python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definimos una función no convexa con múltiples óptimos
+def f(x):
+    return x**2 + 10 * np.sin(x)
+
+x = np.linspace(-10, 10, 1000)
+y = f(x)
+
+plt.figure(figsize=(8, 5))
+plt.plot(x, y, label='$f(x) = x^2 + 10 \\sin(x)$', color='darkblue', linewidth=2)
+
+# Destacar mínimo local y global
+plt.scatter(-1.3, f(-1.3), color='orange', s=100, zorder=5, label='Mínimo Global')
+plt.scatter(4.9, f(4.9), color='red', s=100, zorder=5, label='Mínimo Local')
+
+plt.title('Óptimos Locales y Globales')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.legend()
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.show()
+```

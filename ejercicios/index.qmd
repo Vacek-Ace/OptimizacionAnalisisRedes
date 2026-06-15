@@ -1,0 +1,5 @@
+# Introducción {.unnumbered}
+
+Este cuaderno recopila los enunciados de los ejercicios propuestos para la asignatura **Optimización y Análisis de Redes** para el Grado en Matemáticas.
+
+El objetivo es que los alumnos trabajen en la formulación matemática y resolución manual o algorítmica de los distintos problemas antes de revisar el cuaderno de soluciones.

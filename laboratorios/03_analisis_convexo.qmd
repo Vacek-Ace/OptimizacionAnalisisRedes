@@ -1,0 +1,86 @@
+# Análisis Convexo
+
+El **análisis convexo** es el estudio de conjuntos y funciones convexas. En optimización, la convexidad es una propiedad extraordinaria: garantiza que cualquier mínimo local es, obligatoriamente, un mínimo global. Esto hace que los problemas de optimización convexa sean computacionalmente resolubles de forma eficiente y fiable.
+
+---
+
+## Conjuntos Convexos
+
+::: {.callout-note}
+### Definición de Conjunto Convexo
+Un conjunto $C \subseteq \mathbb{R}^n$ es **convexo** si el segmento de recta que une cualquier par de puntos en $C$ se encuentra totalmente contenido en $C$. Matemáticamente:
+$$ \forall x, y \in C, \ \forall \theta \in [0, 1] \implies \theta x + (1 - \theta) y \in C $$
+:::
+
+### Ejemplos Clásicos de Conjuntos Convexos
+
+1. **Espacios y Subespacios Afines:** Rectas, planos y sus generalizaciones.
+2. **Hiperplanos:** El conjunto de puntos que satisfacen un producto escalar constante:
+   $$ H = \{ x \in \mathbb{R}^n \mid a^T x = b \} \quad (a \in \mathbb{R}^n, a \neq 0, b \in \mathbb{R}) $$
+3. **Semiespacios:** La región delimitada por un hiperplano:
+   $$ S_1 = \{ x \in \mathbb{R}^n \mid a^T x \le b \} \quad \text{o} \quad S_2 = \{ x \in \mathbb{R}^n \mid a^T x \ge b \} $$
+4. **Poliedros:** La intersección de un número finito de semiespacios e hiperplanos (el conjunto factible de problemas de programación lineal):
+   $$ P = \{ x \in \mathbb{R}^n \mid A x \le b, \ C x = d \} $$
+
+```python
+# Verificación e ilustración gráfica de combinaciones convexas en Python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Puntos extremos
+x = np.array([1, 2])
+y = np.array([4, 6])
+
+# Combinación convexa con diferentes valores de theta
+thetas = np.linspace(0, 1, 10)
+segmento = np.array([theta * x + (1 - theta) * y for theta in thetas])
+
+plt.figure(figsize=(6, 4))
+plt.plot(segmento[:, 0], segmento[:, 1], 'o--', color='darkgreen', label='Segmento Convexo')
+plt.scatter([x[0], y[0]], [x[1], y[1]], color='red', s=80, zorder=5, label='Puntos Extremos')
+plt.title('Segmento Convexo entre dos Puntos en $\\mathbb{R}^2$')
+plt.xlabel('$x_1$')
+plt.ylabel('$x_2$')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+---
+
+## Funciones Convexas
+
+::: {.callout-note}
+### Definición de Función Convexa
+Una función $f: \mathbb{R}^n \to \mathbb{R}$ es **convexa** si su dominio $\text{dom } f$ es un conjunto convexo y para todos los puntos en su dominio se cumple:
+$$ f(\theta x + (1 - \theta) y) \le \theta f(x) + (1 - \theta) f(y) \quad \forall \theta \in [0, 1] $$
+Si la desigualdad es estricta para $x \neq y$ y $\theta \in (0, 1)$, se dice que es **estrictamente convexa**.
+:::
+
+### Caracterización mediante Derivadas
+
+Para funciones diferenciables, la convexidad se puede caracterizar localmente:
+
+- **Condición de Primer Orden:** Una función diferenciable $f$ es convexa si y solo si:
+  $$ f(y) \ge f(x) + \nabla f(x)^T (y - x) \quad \forall x, y \in \text{dom } f $$
+  *Interpretación geométrica:* La aproximación por plano tangente (afín) siempre se encuentra por debajo de la función.
+  
+- **Condición de Segundo Orden:** Una función dos veces diferenciable $f$ es convexa si y solo si su dominio es convexo y su Hessiana es semidefinida positiva en todo punto:
+  $$ \nabla^2 f(x) \succeq 0 \quad \forall x \in \text{dom } f $$
+
+---
+
+## Operaciones que Preservan la Convexidad
+
+Para construir nuevas funciones y conjuntos convexos a partir de otros conocidos:
+
+### En Conjuntos:
+- **Intersección:** La intersección de cualquier familia de conjuntos convexos es convexa.
+- **Funciones Afines:** Si $C$ es convexo, su imagen bajo una transformación afín $f(x) = A x + b$ es convexa.
+
+### En Funciones:
+- **Suma ponderada no negativa:** Si $f_1, f_2$ son convexas y $w_1, w_2 \ge 0$, entonces $w_1 f_1 + w_2 f_2$ es convexa.
+- **Supremo puntual (Máximo):** Si $f_1, \ldots, f_k$ son convexas, la función máximo:
+  $$ f(x) = \max \{ f_1(x), f_2(x), \ldots, f_k(x) \} $$
+  es convexa.
+- **Composición con funciones crecientes:** Si $g: \mathbb{R}^n \to \mathbb{R}$ es convexa y $h: \mathbb{R} \to \mathbb{R}$ es convexa y creciente, entonces $f(x) = h(g(x))$ es convexa.

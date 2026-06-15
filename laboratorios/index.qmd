@@ -1,0 +1,23 @@
+# Introducción {.unnumbered}
+
+Este libro digital recopila los apuntes teóricos y los laboratorios prácticos de la asignatura **Optimización y Análisis de Redes** para el Grado en Matemáticas de la Universidad Rey Juan Carlos.
+
+El objetivo principal de esta colección es guiar al estudiante en la formulación, análisis y resolución computacional de problemas de optimización matemática y redes utilizando el lenguaje de programación **Python**.
+
+## Estructura de los Apuntes
+
+Los temas están divididos en dos grandes bloques:
+
+1. **Optimización No Lineal (Temas 1 a 6):** Desde la modelización inicial y la optimización numérica sin restricciones (como el descenso de gradiente), pasando por la teoría del análisis convexo y las condiciones de optimalidad de Karush-Kuhn-Tucker (KKT), hasta la resolución práctica restringida mediante la librería **CVXPY** y su aplicación directa en problemas de Ciencia de Datos (regresión y Máquinas de Vectores de Soporte).
+2. **Optimización en Redes (Temas 7 a 11):** Introducción a la representación de grafos y uso de **NetworkX**, resolución de caminos mínimos (Dijkstra, Bellman-Ford, Floyd-Warshall), problemas de flujo óptimo y corte mínimo, emparejamientos máximos sobre grafos bipartitos, y enrutamiento óptimo (recorridos eulerianos y hamiltonianos, incluyendo el problema del viajante).
+
+## Requisitos y Preparación del Entorno
+
+Para ejecutar los ejemplos de código y realizar los ejercicios propuestos en cada tema, deberás configurar tu entorno de trabajo. Se recomienda utilizar el entorno de Conda `oar_env` provisto en el curso.
+
+Las principales librerías utilizadas son:
+- **NumPy:** Para cálculo vectorial y matricial.
+- **Matplotlib:** Para la generación de gráficos en 2D y 3D.
+- **CVXPY:** Para formular y resolver problemas de optimización convexa.
+- **NetworkX:** Para crear, manipular y analizar la estructura de redes complejas.
+- **Scikit-learn:** Para realizar comparativas de modelos de aprendizaje automático (SVM).

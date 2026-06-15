@@ -1,0 +1,92 @@
+# Optimización con Restricciones y Condiciones KKT
+
+La mayoría de problemas prácticos implican optimizar bajo recursos o límites limitados. La **optimización restringida** introduce desigualdades e igualdades matemáticas que el vector de variables de decisión debe cumplir.
+
+---
+
+## Formulación del Problema
+
+Consideramos el problema estándar de minimización con restricciones de desigualdad e igualdad:
+
+$$
+\begin{aligned}
+& \underset{x \in \mathbb{R}^n}{\text{minimizar}} \quad & f(x) \\
+& \text{sujeto a} \quad & g_i(x) \le 0, \quad i = 1, \ldots, m \\
+& & h_j(x) = 0, \quad j = 1, \ldots, p
+\end{aligned}
+$$
+
+### Restricciones Activas e Inactivas
+
+::: {.callout-note}
+### Definición de Restricción Activa
+Una restricción de desigualdad $g_i(x) \le 0$ se dice que está **activa** en un punto factible $x$ si se cumple con igualdad estricta:
+$$ g_i(x) = 0 $$
+Si $g_i(x) < 0$, la restricción está **inactiva** en ese punto.
+:::
+
+Las restricciones de igualdad $h_j(x) = 0$ siempre están activas en cualquier punto factible.
+
+---
+
+## La Función Lagrangiana y Multiplicadores de Lagrange
+
+La **función Lagrangiana** combina la función objetivo y las restricciones mediante pesos llamados **multiplicadores de Lagrange** (o variables duales):
+
+$$ L(x, \lambda, \nu) = f(x) + \sum_{i=1}^m \lambda_i g_i(x) + \sum_{j=1}^p \nu_j h_j(x) $$
+
+Donde:
+- $\lambda_i \ge 0$ son los multiplicadores asociados a las restricciones de desigualdad $g_i(x) \le 0$.
+- $\nu_j \in \mathbb{R}$ son los multiplicadores asociados a las restricciones de igualdad $h_j(x) = 0$.
+
+---
+
+## Condiciones de Karush-Kuhn-Tucker (KKT)
+
+Las condiciones KKT son fundamentales y proporcionan las condiciones necesarias de primer orden para que un punto $x^*$ sea óptimo.
+
+### Teorema de KKT (Condiciones Necesarias)
+
+Si $x^*$ es un óptimo local y el problema cumple ciertas condiciones de regularidad (llamadas *cualificaciones de restricciones*, como la independencia lineal de los gradientes de las restricciones activas - LICQ), entonces existen vectores de multiplicadores $\lambda^*$ y $\nu^*$ tales que se cumplen las siguientes cuatro condiciones KKT:
+
+1. **Estacionariedad (Gradiente Nulo de la Lagrangiana):**
+   $$ \nabla_x L(x^*, \lambda^*, \nu^*) = \nabla f(x^*) + \sum_{i=1}^m \lambda_i^* \nabla g_i(x^*) + \sum_{j=1}^p \nu_j^* \nabla h_j(x^*) = 0 $$
+2. **Factibilidad Primal:**
+   $$ g_i(x^*) \le 0, \quad i=1,\ldots,m \quad \text{y} \quad h_j(x^*) = 0, \quad j=1,\ldots,p $$
+3. **Factibilidad Dual (Multiplicadores no negativos para desigualdades):**
+   $$ \lambda_i^* \ge 0, \quad i=1,\ldots,m $$
+4. **Holgura Complementaria:**
+   $$ \lambda_i^* g_i(x^*) = 0, \quad i=1,\ldots,m $$
+   *Implicación:* Si una restricción de desigualdad no está activa en el óptimo ($g_i(x^*) < 0$), su multiplicador asociado debe ser cero ($\lambda_i^* = 0$).
+
+### Condiciones Suficientes de KKT bajo Convexidad
+
+Si el problema original es **convexo** (es decir, $f(x)$ y $g_i(x)$ son convexas y $h_j(x)$ son afines), entonces las condiciones KKT no solo son necesarias, sino que son **suficientes** para garantizar que el punto $x^*$ es un **mínimo global**.
+
+---
+
+## Dualidad Lagrangiana
+
+### La Función Dual de Lagrange
+
+La función dual de Lagrange $q(\lambda, \nu)$ se define como el ínfimo de la Lagrangiana sobre $x$:
+
+$$ q(\lambda, \nu) = \inf_{x \in \mathbb{R}^n} L(x, \lambda, \nu) $$
+
+La función dual tiene una propiedad importante: es siempre cóncava, incluso si el problema original no es convexo. Además, para cualquier par factible $(\lambda \ge 0, \nu)$, la función dual acota inferiormente al valor óptimo primal $p^*$:
+
+$$ q(\lambda, \nu) \le p^* $$
+
+### El Problema Dual de Lagrange
+
+El problema dual consiste en encontrar la mejor cota inferior:
+
+$$
+\begin{aligned}
+& \underset{\lambda, \nu}{\text{maximizar}} \quad & q(\lambda, \nu) \\
+& \text{sujeto a} \quad & \lambda_i \ge 0, \quad i = 1, \ldots, m
+\end{aligned}
+$$
+
+- **Dualidad Débil:** Siempre se cumple que el valor óptimo dual $d^*$ es menor o igual al óptimo primal $p^*$: $d^* \le p^*$.
+- **Dualidad Fuerte:** Si $d^* = p^*$, se dice que se cumple la dualidad fuerte. En problemas convexos, bajo la **condición de Slater** (existencia de un punto estrictamente factible tal que $g_i(x) < 0$ para restricciones no afines), se garantiza la dualidad fuerte.

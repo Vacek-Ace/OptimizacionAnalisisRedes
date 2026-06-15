@@ -1,0 +1,60 @@
+# Problemas de Recorridos (Tours)
+
+Los problemas de **recorridos o rutas** estudian cómo viajar a través de los nodos o aristas de un grafo cumpliendo ciertas restricciones de visita y minimizando la distancia o coste total.
+
+---
+
+## Recorridos Eulerianos y el Cartero Chino
+
+::: {.callout-note}
+### Definición de Ciclo Euleriano
+Un **ciclo euleriano** es un camino cerrado que recorre **cada arista** del grafo exactamente una vez.
+:::
+
+- **Condición de Euler:** Un grafo conexo no dirigido admite un ciclo euleriano si y solo si **todos sus nodos tienen grado par**. Si tiene exactamente dos nodos de grado impar, admite un *camino euleriano* (con origen y destino en dichos nodos impares).
+- **Problema del Cartero Chino (CPP):** Si el grafo tiene nodos de grado impar, no es euleriano. El CPP consiste en encontrar la ruta cerrada más corta que pase por cada arista al menos una vez (lo que requiere duplicar algunas aristas de coste mínimo).
+
+---
+
+## Recorridos Hamiltonianos y el Viajante de Comercio (TSP)
+
+::: {.callout-note}
+### Definición de Ciclo Hamiltoniano
+Un **ciclo hamiltoniano** es un camino cerrado que visita **cada nodo** del grafo exactamente una vez.
+:::
+
+- **Problema del Viajante de Comercio (TSP):** Consiste en encontrar el ciclo hamiltoniano de coste mínimo en un grafo completo valorado. A diferencia de los ciclos eulerianos (fáciles de calcular), el TSP es un problema **NP-difícil**, lo que significa que no se conoce ningún algoritmo exacto en tiempo polinomial.
+- **Estrategias de resolución:** Heurísticas de vecino más cercano, búsqueda local (2-opt), algoritmos de aproximación (como el algoritmo de Christofides, que garantiza un coste no superior a 1.5 veces el óptimo en espacios métricos) y solvers exactos de programación lineal entera.
+
+---
+
+## Implementación en Python con NetworkX
+
+```python
+import networkx as nx
+
+# 1. Crear un grafo euleriano (todos los nodos con grado par)
+G = nx.cycle_graph(4) # Ciclo simple de 4 nodos (grado 2 en todos)
+es_euleriano = nx.is_eulerian(G)
+print(f"¿El grafo G es euleriano?: {es_euleriano}")
+
+if es_euleriano:
+    recorrido = list(nx.eulerian_circuit(G))
+    print(f"Recorrido Euleriano: {recorrido}")
+
+# 2. Resolución del Viajante de Comercio (TSP) aproximado
+# Crear un grafo completo valorado
+K = nx.complete_graph(4)
+# Añadir pesos
+pesos = {
+    (0, 1): 10, (0, 2): 15, (0, 3): 20,
+    (1, 2): 35, (1, 3): 25, (2, 3): 30
+}
+for (u, v), w in pesos.items():
+    K[u][v]['weight'] = w
+
+# Resolver usando aproximación de Christofides (requiere pesos métricos)
+from networkx.algorithms.approximation import traveling_salesperson_problem
+ruta_tsp = traveling_salesperson_problem(K, weight='weight', cycle=True)
+print(f"\nRuta aproximada del TSP: {ruta_tsp}")
+```

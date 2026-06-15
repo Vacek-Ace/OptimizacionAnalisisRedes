@@ -1,0 +1,122 @@
+# Optimización Sin Restricciones
+
+La **optimización sin restricciones** aborda la búsqueda de mínimos o máximos de una función real $f(x)$ definida en todo el espacio $\mathbb{R}^n$, es decir, sin condiciones sobre los valores de las variables. 
+
+$$ \underset{x \in \mathbb{R}^n}{\text{minimizar}} \quad f(x) $$
+
+---
+
+## Fundamentos Matemáticos: Gradiente y Hessiana
+
+Para funciones multivariables diferenciables $f: \mathbb{R}^n \to \mathbb{R}$, las derivadas de primer y segundo orden se organizan en el **gradiente** y la **matriz Hessiana**:
+
+1. **Gradiente ($\nabla f(x)$):** Es el vector columna de las derivadas parciales de primer orden:
+   $$ \nabla f(x) = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \ldots, \frac{\partial f}{\partial x_n} \right)^T $$
+   El gradiente apunta en la dirección de máximo crecimiento local de la función.
+
+2. **Matriz Hessiana ($\nabla^2 f(x)$):** Es la matriz cuadrada de las segundas derivadas parciales:
+   $$ \nabla^2 f(x) = \begin{pmatrix} 
+   \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
+   \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\
+   \vdots & \vdots & \ddots & \vdots \\
+   \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2}
+   \end{pmatrix} $$
+   Bajo continuidad (Teorema de Clairaut), la matriz Hessiana es simétrica.
+
+### Aproximación de Taylor
+
+La aproximación cuadrática de $f(x)$ alrededor de un punto $x_k$ viene dada por:
+$$ f(x_k + p) \approx f(x_k) + \nabla f(x_k)^T p + \frac{1}{2} p^T \nabla^2 f(x_k) p $$
+donde $p \in \mathbb{R}^n$ es el vector de perturbación o dirección de paso.
+
+---
+
+## Condiciones de Optimalidad
+
+Para que un punto $x^*$ sea un mínimo local de $f(x)$:
+
+- **Condición Necesaria de Primer Orden (FONC):** El punto debe ser estacionario (gradiente nulo):
+  $$ \nabla f(x^*) = 0 $$
+- **Condición Necesaria de Segundo Orden (SONC):** La matriz Hessiana debe ser semidefinida positiva:
+  $$ \nabla^2 f(x^*) \succeq 0 $$
+- **Condición Suficiente de Segundo Orden (SOSC):** Si $\nabla f(x^*) = 0$ y la matriz Hessiana es **definida positiva** ($\nabla^2 f(x^*) \succ 0$), entonces $x^*$ es un mínimo local estricto.
+
+---
+
+## Algoritmos de Resolución
+
+### 1. Descenso de Gradiente (Gradient Descent)
+
+El método del descenso de gradiente es un algoritmo iterativo que se mueve en la dirección opuesta al gradiente (máximo descenso):
+
+$$ x_{k+1} = x_k - \alpha_k \nabla f(x_k) $$
+
+Donde $\alpha_k > 0$ es la **tasa de aprendizaje** (o longitud de paso).
+
+```python
+# Implementación paso a paso de Descenso de Gradiente en Python
+import numpy as np
+
+def descenso_gradiente(f, grad_f, x_init, tasa_aprendizaje=0.1, max_iter=100, tol=1e-5):
+    x = np.array(x_init, dtype=float)
+    historial = [x.copy()]
+    
+    for i in range(max_iter):
+        grad = grad_f(x)
+        if np.linalg.norm(grad) < tol:
+            print(f"Convergencia alcanzada en la iteración {i}")
+            break
+        x = x - tasa_aprendizaje * grad
+        historial.append(x.copy())
+        
+    return x, np.array(historial)
+```
+
+### 2. Método de Newton
+
+El método de Newton utiliza la aproximación cuadrática de Taylor y minimiza esta aproximación en cada paso, lo que requiere resolver el sistema lineal definido por la Hessiana:
+
+$$ x_{k+1} = x_k - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) $$
+
+Este método tiene convergencia cuadrática (muy rápida) cerca del óptimo, pero es costoso debido al cálculo e inversión de la matriz Hessiana.
+
+```python
+# Implementación del Método de Newton en Python
+def metodo_newton(f, grad_f, hess_f, x_init, max_iter=50, tol=1e-6):
+    x = np.array(x_init, dtype=float)
+    historial = [x.copy()]
+    
+    for i in range(max_iter):
+        grad = grad_f(x)
+        if np.linalg.norm(grad) < tol:
+            print(f"Newton: Convergencia alcanzada en la iteración {i}")
+            break
+        hess = hess_f(x)
+        # Resolver el sistema lineal H * p = -grad para evitar inversión explícita
+        p = np.linalg.solve(hess, -grad)
+        x = x + p
+        historial.append(x.copy())
+        
+    return x, np.array(historial)
+```
+
+---
+
+## Optimización Científica con SciPy
+
+En la práctica, se utilizan solvers optimizados. En Python, la librería `scipy.optimize` proporciona la función `minimize` que implementa algoritmos avanzados como BFGS (cuasi-Newton) o Nelder-Mead.
+
+```python
+from scipy.optimize import minimize
+
+# Definición de la función de Rosenbrock (clásica para test de optimización)
+def rosenbrock(x):
+    return (1 - x[0])**2 + 100 * (x[1] - x[0]**2)**2
+
+# Optimización usando BFGS
+x_init = [1.3, 0.7]
+res = minimize(rosenbrock, x_init, method='BFGS')
+
+print("Resultado de la optimización:")
+print(res)
+```

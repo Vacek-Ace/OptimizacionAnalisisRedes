@@ -1,0 +1,12 @@
+project:
+  type: default
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true

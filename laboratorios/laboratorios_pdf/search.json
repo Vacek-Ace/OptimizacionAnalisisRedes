@@ -1,0 +1,472 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Apuntes y Laboratorios de Optimización y Análisis de Redes",
+    "section": "",
+    "text": "Introducción\nEste libro digital recopila los apuntes teóricos y los laboratorios prácticos de la asignatura Optimización y Análisis de Redes para el Grado en Matemáticas de la Universidad Rey Juan Carlos.\nEl objetivo principal de esta colección es guiar al estudiante en la formulación, análisis y resolución computacional de problemas de optimización matemática y redes utilizando el lenguaje de programación Python.",
+    "crumbs": [
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "index.html#estructura-de-los-apuntes",
+    "href": "index.html#estructura-de-los-apuntes",
+    "title": "Apuntes y Laboratorios de Optimización y Análisis de Redes",
+    "section": "Estructura de los Apuntes",
+    "text": "Estructura de los Apuntes\nLos temas están divididos en dos grandes bloques:\n\nOptimización No Lineal (Temas 1 a 6): Desde la modelización inicial y la optimización numérica sin restricciones (como el descenso de gradiente), pasando por la teoría del análisis convexo y las condiciones de optimalidad de Karush-Kuhn-Tucker (KKT), hasta la resolución práctica restringida mediante la librería CVXPY y su aplicación directa en problemas de Ciencia de Datos (regresión y Máquinas de Vectores de Soporte).\nOptimización en Redes (Temas 7 a 11): Introducción a la representación de grafos y uso de NetworkX, resolución de caminos mínimos (Dijkstra, Bellman-Ford, Floyd-Warshall), problemas de flujo óptimo y corte mínimo, emparejamientos máximos sobre grafos bipartitos, y enrutamiento óptimo (recorridos eulerianos y hamiltonianos, incluyendo el problema del viajante).",
+    "crumbs": [
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "index.html#requisitos-y-preparación-del-entorno",
+    "href": "index.html#requisitos-y-preparación-del-entorno",
+    "title": "Apuntes y Laboratorios de Optimización y Análisis de Redes",
+    "section": "Requisitos y Preparación del Entorno",
+    "text": "Requisitos y Preparación del Entorno\nPara ejecutar los ejemplos de código y realizar los ejercicios propuestos en cada tema, deberás configurar tu entorno de trabajo. Se recomienda utilizar el entorno de Conda oar_env provisto en el curso.\nLas principales librerías utilizadas son: - NumPy: Para cálculo vectorial y matricial. - Matplotlib: Para la generación de gráficos en 2D y 3D. - CVXPY: Para formular y resolver problemas de optimización convexa. - NetworkX: Para crear, manipular y analizar la estructura de redes complejas. - Scikit-learn: Para realizar comparativas de modelos de aprendizaje automático (SVM).",
+    "crumbs": [
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "01_intro_opt.html",
+    "href": "01_intro_opt.html",
+    "title": "1  Introducción a la Optimización",
+    "section": "",
+    "text": "1.1 Formulación Matemática General\nLa optimización matemática (o programación matemática) es la disciplina que se ocupa de seleccionar, de acuerdo con algún criterio, el mejor elemento de un conjunto de alternativas disponibles. En términos prácticos, consiste en maximizar o minimizar una función real eligiendo sistemáticamente valores de variables de decisión dentro de un conjunto permitido.\nUn problema de optimización continua se expresa matemáticamente de la siguiente forma general:\n\\[\n\\begin{aligned}\n& \\underset{x}{\\text{minimizar}} \\quad & f(x) \\\\\n& \\text{sujeto a} \\quad & g_i(x) \\le 0, \\quad i = 1, \\ldots, m \\\\\n& & h_j(x) = 0, \\quad j = 1, \\ldots, p\n\\end{aligned}\n\\]\nDonde: - \\(x \\in \\mathbb{R}^n\\) es el vector de variables de decisión (\\(x = (x_1, x_2, \\ldots, x_n)^T\\)). - \\(f: \\mathbb{R}^n \\to \\mathbb{R}\\) es la función objetivo que se desea minimizar (o maximizar, ya que maximizar \\(f(x)\\) es equivalente a minimizar \\(-f(x)\\)). - \\(g_i: \\mathbb{R}^n \\to \\mathbb{R}\\) son las restricciones de desigualdad. - \\(h_j: \\mathbb{R}^n \\to \\mathbb{R}\\) son las restricciones de igualdad.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introducción a la Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro_opt.html#formulación-matemática-general",
+    "href": "01_intro_opt.html#formulación-matemática-general",
+    "title": "1  Introducción a la Optimización",
+    "section": "",
+    "text": "1.1.1 El Conjunto Factible\nEl conjunto de todos los puntos que satisfacen todas las restricciones se denomina conjunto factible (o región factible), denotado por \\(\\Omega\\):\n\\[ \\Omega = \\{ x \\in \\mathbb{R}^n \\mid g_i(x) \\le 0, \\ i=1,\\ldots,m; \\ h_j(x) = 0, \\ j=1,\\ldots,p \\} \\]\nSi \\(\\Omega = \\emptyset\\), el problema se dice que es incompatible o infactible. Si no hay restricciones (\\(m=0, p=0\\)), el problema se denomina no restringido y \\(\\Omega = \\mathbb{R}^n\\).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introducción a la Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro_opt.html#clasificación-de-problemas-de-optimización",
+    "href": "01_intro_opt.html#clasificación-de-problemas-de-optimización",
+    "title": "1  Introducción a la Optimización",
+    "section": "1.2 Clasificación de Problemas de Optimización",
+    "text": "1.2 Clasificación de Problemas de Optimización\nLos problemas de optimización se clasifican según las propiedades matemáticas de sus funciones y variables:\n\nOptimización Lineal (LP): La función objetivo \\(f(x)\\) y todas las restricciones \\(g_i(x)\\) y \\(h_j(x)\\) son combinaciones lineales de las variables.\nOptimización No Lineal (NLP): La función objetivo o alguna de las restricciones no es lineal.\nOptimización Convexa: El conjunto factible \\(\\Omega\\) es un conjunto convexo y la función objetivo \\(f(x)\\) es una función convexa. (Veremos en detalle esta clase de problemas en el Capítulo 3, ya que son de vital importancia debido a que cualquier óptimo local es global).\nOptimización Continua vs. Discreta: En la optimización continua, las variables pueden tomar cualquier valor real dentro de un intervalo. En la discreta (o entera), algunas o todas las variables deben tomar valores enteros (como binarios 0 o 1).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introducción a la Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro_opt.html#óptimos-locales-y-globales",
+    "href": "01_intro_opt.html#óptimos-locales-y-globales",
+    "title": "1  Introducción a la Optimización",
+    "section": "1.3 Óptimos Locales y Globales",
+    "text": "1.3 Óptimos Locales y Globales\n\n\n\n\n\n\nNoteDefinición de Mínimo Global\n\n\n\nUn punto \\(x^* \\in \\Omega\\) es un mínimo global del problema si: \\[ f(x^*) \\le f(x) \\quad \\forall x \\in \\Omega \\]\n\n\n\n\n\n\n\n\nNoteDefinición de Mínimo Local\n\n\n\nUn punto \\(x^* \\in \\Omega\\) es un mínimo local si existe un entorno de radio \\(\\epsilon &gt; 0\\) alrededor de \\(x^*\\) (denotado por \\(B(x^*, \\epsilon)\\)) tal que: \\[ f(x^*) \\le f(x) \\quad \\forall x \\in \\Omega \\cap B(x^*, \\epsilon) \\]\n\n\nEn general, encontrar un mínimo global para problemas no lineales no convexos es extremadamente difícil, ya que los algoritmos numéricos basados en derivadas locales suelen quedar atrapados en mínimos locales.\n# Ejemplo de visualización de mínimos locales vs globales en Python\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Definimos una función no convexa con múltiples óptimos\ndef f(x):\n    return x**2 + 10 * np.sin(x)\n\nx = np.linspace(-10, 10, 1000)\ny = f(x)\n\nplt.figure(figsize=(8, 5))\nplt.plot(x, y, label='$f(x) = x^2 + 10 \\\\sin(x)$', color='darkblue', linewidth=2)\n\n# Destacar mínimo local y global\nplt.scatter(-1.3, f(-1.3), color='orange', s=100, zorder=5, label='Mínimo Global')\nplt.scatter(4.9, f(4.9), color='red', s=100, zorder=5, label='Mínimo Local')\n\nplt.title('Óptimos Locales y Globales')\nplt.xlabel('x')\nplt.ylabel('f(x)')\nplt.legend()\nplt.grid(True, linestyle='--', alpha=0.6)\nplt.show()",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introducción a la Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "02_opt_sin_rest.html",
+    "href": "02_opt_sin_rest.html",
+    "title": "2  Optimización Sin Restricciones",
+    "section": "",
+    "text": "2.1 Fundamentos Matemáticos: Gradiente y Hessiana\nLa optimización sin restricciones aborda la búsqueda de mínimos o máximos de una función real \\(f(x)\\) definida en todo el espacio \\(\\mathbb{R}^n\\), es decir, sin condiciones sobre los valores de las variables.\n\\[ \\underset{x \\in \\mathbb{R}^n}{\\text{minimizar}} \\quad f(x) \\]\nPara funciones multivariables diferenciables \\(f: \\mathbb{R}^n \\to \\mathbb{R}\\), las derivadas de primer y segundo orden se organizan en el gradiente y la matriz Hessiana:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimización Sin Restricciones</span>"
+    ]
+  },
+  {
+    "objectID": "02_opt_sin_rest.html#fundamentos-matemáticos-gradiente-y-hessiana",
+    "href": "02_opt_sin_rest.html#fundamentos-matemáticos-gradiente-y-hessiana",
+    "title": "2  Optimización Sin Restricciones",
+    "section": "",
+    "text": "Gradiente (\\(\\nabla f(x)\\)): Es el vector columna de las derivadas parciales de primer orden: \\[ \\nabla f(x) = \\left( \\frac{\\partial f}{\\partial x_1}, \\frac{\\partial f}{\\partial x_2}, \\ldots, \\frac{\\partial f}{\\partial x_n} \\right)^T \\] El gradiente apunta en la dirección de máximo crecimiento local de la función.\nMatriz Hessiana (\\(\\nabla^2 f(x)\\)): Es la matriz cuadrada de las segundas derivadas parciales: \\[ \\nabla^2 f(x) = \\begin{pmatrix}\n\\frac{\\partial^2 f}{\\partial x_1^2} & \\frac{\\partial^2 f}{\\partial x_1 \\partial x_2} & \\cdots & \\frac{\\partial^2 f}{\\partial x_1 \\partial x_n} \\\\\n\\frac{\\partial^2 f}{\\partial x_2 \\partial x_1} & \\frac{\\partial^2 f}{\\partial x_2^2} & \\cdots & \\frac{\\partial^2 f}{\\partial x_2 \\partial x_n} \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\n\\frac{\\partial^2 f}{\\partial x_n \\partial x_1} & \\frac{\\partial^2 f}{\\partial x_n \\partial x_2} & \\cdots & \\frac{\\partial^2 f}{\\partial x_n^2}\n\\end{pmatrix} \\] Bajo continuidad (Teorema de Clairaut), la matriz Hessiana es simétrica.\n\n\n2.1.1 Aproximación de Taylor\nLa aproximación cuadrática de \\(f(x)\\) alrededor de un punto \\(x_k\\) viene dada por: \\[ f(x_k + p) \\approx f(x_k) + \\nabla f(x_k)^T p + \\frac{1}{2} p^T \\nabla^2 f(x_k) p \\] donde \\(p \\in \\mathbb{R}^n\\) es el vector de perturbación o dirección de paso.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimización Sin Restricciones</span>"
+    ]
+  },
+  {
+    "objectID": "02_opt_sin_rest.html#condiciones-de-optimalidad",
+    "href": "02_opt_sin_rest.html#condiciones-de-optimalidad",
+    "title": "2  Optimización Sin Restricciones",
+    "section": "2.2 Condiciones de Optimalidad",
+    "text": "2.2 Condiciones de Optimalidad\nPara que un punto \\(x^*\\) sea un mínimo local de \\(f(x)\\):\n\nCondición Necesaria de Primer Orden (FONC): El punto debe ser estacionario (gradiente nulo): \\[ \\nabla f(x^*) = 0 \\]\nCondición Necesaria de Segundo Orden (SONC): La matriz Hessiana debe ser semidefinida positiva: \\[ \\nabla^2 f(x^*) \\succeq 0 \\]\nCondición Suficiente de Segundo Orden (SOSC): Si \\(\\nabla f(x^*) = 0\\) y la matriz Hessiana es definida positiva (\\(\\nabla^2 f(x^*) \\succ 0\\)), entonces \\(x^*\\) es un mínimo local estricto.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimización Sin Restricciones</span>"
+    ]
+  },
+  {
+    "objectID": "02_opt_sin_rest.html#algoritmos-de-resolución",
+    "href": "02_opt_sin_rest.html#algoritmos-de-resolución",
+    "title": "2  Optimización Sin Restricciones",
+    "section": "2.3 Algoritmos de Resolución",
+    "text": "2.3 Algoritmos de Resolución\n\n2.3.1 1. Descenso de Gradiente (Gradient Descent)\nEl método del descenso de gradiente es un algoritmo iterativo que se mueve en la dirección opuesta al gradiente (máximo descenso):\n\\[ x_{k+1} = x_k - \\alpha_k \\nabla f(x_k) \\]\nDonde \\(\\alpha_k &gt; 0\\) es la tasa de aprendizaje (o longitud de paso).\n# Implementación paso a paso de Descenso de Gradiente en Python\nimport numpy as np\n\ndef descenso_gradiente(f, grad_f, x_init, tasa_aprendizaje=0.1, max_iter=100, tol=1e-5):\n    x = np.array(x_init, dtype=float)\n    historial = [x.copy()]\n    \n    for i in range(max_iter):\n        grad = grad_f(x)\n        if np.linalg.norm(grad) &lt; tol:\n            print(f\"Convergencia alcanzada en la iteración {i}\")\n            break\n        x = x - tasa_aprendizaje * grad\n        historial.append(x.copy())\n        \n    return x, np.array(historial)\n\n\n2.3.2 2. Método de Newton\nEl método de Newton utiliza la aproximación cuadrática de Taylor y minimiza esta aproximación en cada paso, lo que requiere resolver el sistema lineal definido por la Hessiana:\n\\[ x_{k+1} = x_k - [\\nabla^2 f(x_k)]^{-1} \\nabla f(x_k) \\]\nEste método tiene convergencia cuadrática (muy rápida) cerca del óptimo, pero es costoso debido al cálculo e inversión de la matriz Hessiana.\n# Implementación del Método de Newton en Python\ndef metodo_newton(f, grad_f, hess_f, x_init, max_iter=50, tol=1e-6):\n    x = np.array(x_init, dtype=float)\n    historial = [x.copy()]\n    \n    for i in range(max_iter):\n        grad = grad_f(x)\n        if np.linalg.norm(grad) &lt; tol:\n            print(f\"Newton: Convergencia alcanzada en la iteración {i}\")\n            break\n        hess = hess_f(x)\n        # Resolver el sistema lineal H * p = -grad para evitar inversión explícita\n        p = np.linalg.solve(hess, -grad)\n        x = x + p\n        historial.append(x.copy())\n        \n    return x, np.array(historial)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimización Sin Restricciones</span>"
+    ]
+  },
+  {
+    "objectID": "02_opt_sin_rest.html#optimización-científica-con-scipy",
+    "href": "02_opt_sin_rest.html#optimización-científica-con-scipy",
+    "title": "2  Optimización Sin Restricciones",
+    "section": "2.4 Optimización Científica con SciPy",
+    "text": "2.4 Optimización Científica con SciPy\nEn la práctica, se utilizan solvers optimizados. En Python, la librería scipy.optimize proporciona la función minimize que implementa algoritmos avanzados como BFGS (cuasi-Newton) o Nelder-Mead.\nfrom scipy.optimize import minimize\n\n# Definición de la función de Rosenbrock (clásica para test de optimización)\ndef rosenbrock(x):\n    return (1 - x[0])**2 + 100 * (x[1] - x[0]**2)**2\n\n# Optimización usando BFGS\nx_init = [1.3, 0.7]\nres = minimize(rosenbrock, x_init, method='BFGS')\n\nprint(\"Resultado de la optimización:\")\nprint(res)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Optimización Sin Restricciones</span>"
+    ]
+  },
+  {
+    "objectID": "03_analisis_convexo.html",
+    "href": "03_analisis_convexo.html",
+    "title": "3  Análisis Convexo",
+    "section": "",
+    "text": "3.1 Conjuntos Convexos\nEl análisis convexo es el estudio de conjuntos y funciones convexas. En optimización, la convexidad es una propiedad extraordinaria: garantiza que cualquier mínimo local es, obligatoriamente, un mínimo global. Esto hace que los problemas de optimización convexa sean computacionalmente resolubles de forma eficiente y fiable.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis Convexo</span>"
+    ]
+  },
+  {
+    "objectID": "03_analisis_convexo.html#conjuntos-convexos",
+    "href": "03_analisis_convexo.html#conjuntos-convexos",
+    "title": "3  Análisis Convexo",
+    "section": "",
+    "text": "NoteDefinición de Conjunto Convexo\n\n\n\nUn conjunto \\(C \\subseteq \\mathbb{R}^n\\) es convexo si el segmento de recta que une cualquier par de puntos en \\(C\\) se encuentra totalmente contenido en \\(C\\). Matemáticamente: \\[ \\forall x, y \\in C, \\ \\forall \\theta \\in [0, 1] \\implies \\theta x + (1 - \\theta) y \\in C \\]\n\n\n\n3.1.1 Ejemplos Clásicos de Conjuntos Convexos\n\nEspacios y Subespacios Afines: Rectas, planos y sus generalizaciones.\nHiperplanos: El conjunto de puntos que satisfacen un producto escalar constante: \\[ H = \\{ x \\in \\mathbb{R}^n \\mid a^T x = b \\} \\quad (a \\in \\mathbb{R}^n, a \\neq 0, b \\in \\mathbb{R}) \\]\nSemiespacios: La región delimitada por un hiperplano: \\[ S_1 = \\{ x \\in \\mathbb{R}^n \\mid a^T x \\le b \\} \\quad \\text{o} \\quad S_2 = \\{ x \\in \\mathbb{R}^n \\mid a^T x \\ge b \\} \\]\nPoliedros: La intersección de un número finito de semiespacios e hiperplanos (el conjunto factible de problemas de programación lineal): \\[ P = \\{ x \\in \\mathbb{R}^n \\mid A x \\le b, \\ C x = d \\} \\]\n\n# Verificación e ilustración gráfica de combinaciones convexas en Python\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Puntos extremos\nx = np.array([1, 2])\ny = np.array([4, 6])\n\n# Combinación convexa con diferentes valores de theta\nthetas = np.linspace(0, 1, 10)\nsegmento = np.array([theta * x + (1 - theta) * y for theta in thetas])\n\nplt.figure(figsize=(6, 4))\nplt.plot(segmento[:, 0], segmento[:, 1], 'o--', color='darkgreen', label='Segmento Convexo')\nplt.scatter([x[0], y[0]], [x[1], y[1]], color='red', s=80, zorder=5, label='Puntos Extremos')\nplt.title('Segmento Convexo entre dos Puntos en $\\\\mathbb{R}^2$')\nplt.xlabel('$x_1$')\nplt.ylabel('$x_2$')\nplt.legend()\nplt.grid(True)\nplt.show()",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis Convexo</span>"
+    ]
+  },
+  {
+    "objectID": "03_analisis_convexo.html#funciones-convexas",
+    "href": "03_analisis_convexo.html#funciones-convexas",
+    "title": "3  Análisis Convexo",
+    "section": "3.2 Funciones Convexas",
+    "text": "3.2 Funciones Convexas\n\n\n\n\n\n\nNoteDefinición de Función Convexa\n\n\n\nUna función \\(f: \\mathbb{R}^n \\to \\mathbb{R}\\) es convexa si su dominio \\(\\text{dom } f\\) es un conjunto convexo y para todos los puntos en su dominio se cumple: \\[ f(\\theta x + (1 - \\theta) y) \\le \\theta f(x) + (1 - \\theta) f(y) \\quad \\forall \\theta \\in [0, 1] \\] Si la desigualdad es estricta para \\(x \\neq y\\) y \\(\\theta \\in (0, 1)\\), se dice que es estrictamente convexa.\n\n\n\n3.2.1 Caracterización mediante Derivadas\nPara funciones diferenciables, la convexidad se puede caracterizar localmente:\n\nCondición de Primer Orden: Una función diferenciable \\(f\\) es convexa si y solo si: \\[ f(y) \\ge f(x) + \\nabla f(x)^T (y - x) \\quad \\forall x, y \\in \\text{dom } f \\] Interpretación geométrica: La aproximación por plano tangente (afín) siempre se encuentra por debajo de la función.\nCondición de Segundo Orden: Una función dos veces diferenciable \\(f\\) es convexa si y solo si su dominio es convexo y su Hessiana es semidefinida positiva en todo punto: \\[ \\nabla^2 f(x) \\succeq 0 \\quad \\forall x \\in \\text{dom } f \\]",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis Convexo</span>"
+    ]
+  },
+  {
+    "objectID": "03_analisis_convexo.html#operaciones-que-preservan-la-convexidad",
+    "href": "03_analisis_convexo.html#operaciones-que-preservan-la-convexidad",
+    "title": "3  Análisis Convexo",
+    "section": "3.3 Operaciones que Preservan la Convexidad",
+    "text": "3.3 Operaciones que Preservan la Convexidad\nPara construir nuevas funciones y conjuntos convexos a partir de otros conocidos:\n\n3.3.1 En Conjuntos:\n\nIntersección: La intersección de cualquier familia de conjuntos convexos es convexa.\nFunciones Afines: Si \\(C\\) es convexo, su imagen bajo una transformación afín \\(f(x) = A x + b\\) es convexa.\n\n\n\n3.3.2 En Funciones:\n\nSuma ponderada no negativa: Si \\(f_1, f_2\\) son convexas y \\(w_1, w_2 \\ge 0\\), entonces \\(w_1 f_1 + w_2 f_2\\) es convexa.\nSupremo puntual (Máximo): Si \\(f_1, \\ldots, f_k\\) son convexas, la función máximo: \\[ f(x) = \\max \\{ f_1(x), f_2(x), \\ldots, f_k(x) \\} \\] es convexa.\nComposición con funciones crecientes: Si \\(g: \\mathbb{R}^n \\to \\mathbb{R}\\) es convexa y \\(h: \\mathbb{R} \\to \\mathbb{R}\\) es convexa y creciente, entonces \\(f(x) = h(g(x))\\) es convexa.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Análisis Convexo</span>"
+    ]
+  },
+  {
+    "objectID": "04_opt_con_rest.html",
+    "href": "04_opt_con_rest.html",
+    "title": "4  Optimización con Restricciones y Condiciones KKT",
+    "section": "",
+    "text": "4.1 Formulación del Problema\nLa mayoría de problemas prácticos implican optimizar bajo recursos o límites limitados. La optimización restringida introduce desigualdades e igualdades matemáticas que el vector de variables de decisión debe cumplir.\nConsideramos el problema estándar de minimización con restricciones de desigualdad e igualdad:\n\\[\n\\begin{aligned}\n& \\underset{x \\in \\mathbb{R}^n}{\\text{minimizar}} \\quad & f(x) \\\\\n& \\text{sujeto a} \\quad & g_i(x) \\le 0, \\quad i = 1, \\ldots, m \\\\\n& & h_j(x) = 0, \\quad j = 1, \\ldots, p\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Optimización con Restricciones y Condiciones KKT</span>"
+    ]
+  },
+  {
+    "objectID": "04_opt_con_rest.html#formulación-del-problema",
+    "href": "04_opt_con_rest.html#formulación-del-problema",
+    "title": "4  Optimización con Restricciones y Condiciones KKT",
+    "section": "",
+    "text": "4.1.1 Restricciones Activas e Inactivas\n\n\n\n\n\n\nNoteDefinición de Restricción Activa\n\n\n\nUna restricción de desigualdad \\(g_i(x) \\le 0\\) se dice que está activa en un punto factible \\(x\\) si se cumple con igualdad estricta: \\[ g_i(x) = 0 \\] Si \\(g_i(x) &lt; 0\\), la restricción está inactiva en ese punto.\n\n\nLas restricciones de igualdad \\(h_j(x) = 0\\) siempre están activas en cualquier punto factible.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Optimización con Restricciones y Condiciones KKT</span>"
+    ]
+  },
+  {
+    "objectID": "04_opt_con_rest.html#la-función-lagrangiana-y-multiplicadores-de-lagrange",
+    "href": "04_opt_con_rest.html#la-función-lagrangiana-y-multiplicadores-de-lagrange",
+    "title": "4  Optimización con Restricciones y Condiciones KKT",
+    "section": "4.2 La Función Lagrangiana y Multiplicadores de Lagrange",
+    "text": "4.2 La Función Lagrangiana y Multiplicadores de Lagrange\nLa función Lagrangiana combina la función objetivo y las restricciones mediante pesos llamados multiplicadores de Lagrange (o variables duales):\n\\[ L(x, \\lambda, \\nu) = f(x) + \\sum_{i=1}^m \\lambda_i g_i(x) + \\sum_{j=1}^p \\nu_j h_j(x) \\]\nDonde: - \\(\\lambda_i \\ge 0\\) son los multiplicadores asociados a las restricciones de desigualdad \\(g_i(x) \\le 0\\). - \\(\\nu_j \\in \\mathbb{R}\\) son los multiplicadores asociados a las restricciones de igualdad \\(h_j(x) = 0\\).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Optimización con Restricciones y Condiciones KKT</span>"
+    ]
+  },
+  {
+    "objectID": "04_opt_con_rest.html#condiciones-de-karush-kuhn-tucker-kkt",
+    "href": "04_opt_con_rest.html#condiciones-de-karush-kuhn-tucker-kkt",
+    "title": "4  Optimización con Restricciones y Condiciones KKT",
+    "section": "4.3 Condiciones de Karush-Kuhn-Tucker (KKT)",
+    "text": "4.3 Condiciones de Karush-Kuhn-Tucker (KKT)\nLas condiciones KKT son fundamentales y proporcionan las condiciones necesarias de primer orden para que un punto \\(x^*\\) sea óptimo.\n\n4.3.1 Teorema de KKT (Condiciones Necesarias)\nSi \\(x^*\\) es un óptimo local y el problema cumple ciertas condiciones de regularidad (llamadas cualificaciones de restricciones, como la independencia lineal de los gradientes de las restricciones activas - LICQ), entonces existen vectores de multiplicadores \\(\\lambda^*\\) y \\(\\nu^*\\) tales que se cumplen las siguientes cuatro condiciones KKT:\n\nEstacionariedad (Gradiente Nulo de la Lagrangiana): \\[ \\nabla_x L(x^*, \\lambda^*, \\nu^*) = \\nabla f(x^*) + \\sum_{i=1}^m \\lambda_i^* \\nabla g_i(x^*) + \\sum_{j=1}^p \\nu_j^* \\nabla h_j(x^*) = 0 \\]\nFactibilidad Primal: \\[ g_i(x^*) \\le 0, \\quad i=1,\\ldots,m \\quad \\text{y} \\quad h_j(x^*) = 0, \\quad j=1,\\ldots,p \\]\nFactibilidad Dual (Multiplicadores no negativos para desigualdades): \\[ \\lambda_i^* \\ge 0, \\quad i=1,\\ldots,m \\]\nHolgura Complementaria: \\[ \\lambda_i^* g_i(x^*) = 0, \\quad i=1,\\ldots,m \\] Implicación: Si una restricción de desigualdad no está activa en el óptimo (\\(g_i(x^*) &lt; 0\\)), su multiplicador asociado debe ser cero (\\(\\lambda_i^* = 0\\)).\n\n\n\n4.3.2 Condiciones Suficientes de KKT bajo Convexidad\nSi el problema original es convexo (es decir, \\(f(x)\\) y \\(g_i(x)\\) son convexas y \\(h_j(x)\\) son afines), entonces las condiciones KKT no solo son necesarias, sino que son suficientes para garantizar que el punto \\(x^*\\) es un mínimo global.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Optimización con Restricciones y Condiciones KKT</span>"
+    ]
+  },
+  {
+    "objectID": "04_opt_con_rest.html#dualidad-lagrangiana",
+    "href": "04_opt_con_rest.html#dualidad-lagrangiana",
+    "title": "4  Optimización con Restricciones y Condiciones KKT",
+    "section": "4.4 Dualidad Lagrangiana",
+    "text": "4.4 Dualidad Lagrangiana\n\n4.4.1 La Función Dual de Lagrange\nLa función dual de Lagrange \\(q(\\lambda, \\nu)\\) se define como el ínfimo de la Lagrangiana sobre \\(x\\):\n\\[ q(\\lambda, \\nu) = \\inf_{x \\in \\mathbb{R}^n} L(x, \\lambda, \\nu) \\]\nLa función dual tiene una propiedad importante: es siempre cóncava, incluso si el problema original no es convexo. Además, para cualquier par factible \\((\\lambda \\ge 0, \\nu)\\), la función dual acota inferiormente al valor óptimo primal \\(p^*\\):\n\\[ q(\\lambda, \\nu) \\le p^* \\]\n\n\n4.4.2 El Problema Dual de Lagrange\nEl problema dual consiste en encontrar la mejor cota inferior:\n\\[\n\\begin{aligned}\n& \\underset{\\lambda, \\nu}{\\text{maximizar}} \\quad & q(\\lambda, \\nu) \\\\\n& \\text{sujeto a} \\quad & \\lambda_i \\ge 0, \\quad i = 1, \\ldots, m\n\\end{aligned}\n\\]\n\nDualidad Débil: Siempre se cumple que el valor óptimo dual \\(d^*\\) es menor o igual al óptimo primal \\(p^*\\): \\(d^* \\le p^*\\).\nDualidad Fuerte: Si \\(d^* = p^*\\), se dice que se cumple la dualidad fuerte. En problemas convexos, bajo la condición de Slater (existencia de un punto estrictamente factible tal que \\(g_i(x) &lt; 0\\) para restricciones no afines), se garantiza la dualidad fuerte.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Optimización con Restricciones y Condiciones KKT</span>"
+    ]
+  },
+  {
+    "objectID": "05_aplicaciones_kkt.html",
+    "href": "05_aplicaciones_kkt.html",
+    "title": "5  Programación Lineal, Cuadrática y CVXPY",
+    "section": "",
+    "text": "5.1 Programación Lineal (LP)\nEn este capítulo estudiaremos cómo aplicar las condiciones KKT a las familias de problemas de optimización convexa más comunes e importantes en la práctica: la Programación Lineal (LP) y la Programación Cuadrática (QP). Posteriormente, aprenderemos a formular y resolver estos modelos en Python mediante la librería CVXPY.\nLa Programación Lineal trata de minimizar (o maximizar) una función lineal sujeta a restricciones de igualdad y desigualdad lineales:\n\\[\n\\begin{aligned}\n& \\underset{x \\in \\mathbb{R}^n}{\\text{minimizar}} \\quad & c^T x \\\\\n& \\text{sujeto a} \\quad & A x \\le b \\\\\n& & C x = d\n\\end{aligned}\n\\]\nDonde \\(c \\in \\mathbb{R}^n\\), \\(A \\in \\mathbb{R}^{m \\times n}\\), \\(b \\in \\mathbb{R}^m\\), \\(C \\in \\mathbb{R}^{p \\times n}\\) y \\(d \\in \\mathbb{R}^p\\).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Programación Lineal, Cuadrática y CVXPY</span>"
+    ]
+  },
+  {
+    "objectID": "05_aplicaciones_kkt.html#programación-lineal-lp",
+    "href": "05_aplicaciones_kkt.html#programación-lineal-lp",
+    "title": "5  Programación Lineal, Cuadrática y CVXPY",
+    "section": "",
+    "text": "5.1.1 Condiciones KKT para LP\nLa función Lagrangiana de este problema es: \\[ L(x, \\lambda, \\nu) = c^T x + \\lambda^T (A x - b) + \\nu^T (C x - d) \\]\nAplicando las condiciones KKT: 1. Estacionariedad: \\(\\nabla_x L = c + A^T \\lambda + C^T \\nu = 0\\) 2. Factibilidad primal: \\(A x \\le b\\) y \\(C x = d\\) 3. Factibilidad dual: \\(\\lambda \\ge 0\\) 4. Holgura complementaria: \\(\\lambda_i (a_i^T x - b_i) = 0 \\quad \\forall i=1,\\dots,m\\)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Programación Lineal, Cuadrática y CVXPY</span>"
+    ]
+  },
+  {
+    "objectID": "05_aplicaciones_kkt.html#programación-cuadrática-qp",
+    "href": "05_aplicaciones_kkt.html#programación-cuadrática-qp",
+    "title": "5  Programación Lineal, Cuadrática y CVXPY",
+    "section": "5.2 Programación Cuadrática (QP)",
+    "text": "5.2 Programación Cuadrática (QP)\nLa Programación Cuadrática implica minimizar una función objetivo cuadrática sujeta a restricciones lineales de igualdad y desigualdad:\n\\[\n\\begin{aligned}\n& \\underset{x \\in \\mathbb{R}^n}{\\text{minimizar}} \\quad & \\frac{1}{2} x^T P x + q^T x \\\\\n& \\text{sujeto a} \\quad & A x \\le b \\\\\n& & C x = d\n\\end{aligned}\n\\]\nDonde \\(P \\in \\mathbb{R}^{n \\times n}\\) es una matriz simétrica. Para que el problema sea convexo y tenga un mínimo global garantizado, la matriz \\(P\\) debe ser semidefinida positiva (\\(P \\succeq 0\\)).\n\n5.2.1 Condiciones KKT para QP\nLa Lagrangiana es: \\[ L(x, \\lambda, \\nu) = \\frac{1}{2} x^T P x + q^T x + \\lambda^T (A x - b) + \\nu^T (C x - d) \\]\nCondiciones KKT: 1. Estacionariedad: \\(P x + q + A^T \\lambda + C^T \\nu = 0\\) 2. Factibilidad primal: \\(A x \\le b\\) y \\(C x = d\\) 3. Factibilidad dual: \\(\\lambda \\ge 0\\) 4. Holgura complementaria: \\(\\lambda_i (a_i^T x - b_i) = 0 \\quad \\forall i=1,\\dots,m\\)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Programación Lineal, Cuadrática y CVXPY</span>"
+    ]
+  },
+  {
+    "objectID": "05_aplicaciones_kkt.html#resolución-de-problemas-en-python-con-cvxpy",
+    "href": "05_aplicaciones_kkt.html#resolución-de-problemas-en-python-con-cvxpy",
+    "title": "5  Programación Lineal, Cuadrática y CVXPY",
+    "section": "5.3 Resolución de Problemas en Python con CVXPY",
+    "text": "5.3 Resolución de Problemas en Python con CVXPY\nCVXPY es un lenguaje de modelado en Python para optimización convexa que permite escribir problemas de manera natural, similar a la notación matemática.\n\n5.3.1 Ejemplo 1: Resolución de una Programación Lineal (LP)\nResolveremos el siguiente problema:\n\\[\n\\begin{aligned}\n& \\underset{x_1, x_2}{\\text{maximizar}} \\quad & 3 x_1 + 4 x_2 \\\\\n& \\text{sujeto a} \\quad & x_1 + 2 x_2 \\le 4 \\\\\n& & 3 x_1 - x_2 \\ge 1 \\\\\n& & x_1 \\ge 0, \\ x_2 \\ge 0\n\\end{aligned}\n\\]\nimport cvxpy as cp\n\n# 1. Definir variables de decisión\nx = cp.Variable(2, nonneg=True)  # Equivalente a x1 &gt;= 0, x2 &gt;= 0\n\n# 2. Definir restricciones\nrestricciones = [\n    x[0] + 2 * x[1] &lt;= 4,\n    3 * x[0] - x[1] &gt;= 1\n]\n\n# 3. Definir función objetivo\nobjetivo = cp.Maximize(3 * x[0] + 4 * x[1])\n\n# 4. Definir y resolver el problema\nproblema = cp.Problem(objetivo, restricciones)\nproblema.solve()\n\n# 5. Mostrar resultados\nprint(f\"Estado del problema: {problema.status}\")\nprint(f\"Valor óptimo de la función objetivo: {problema.value:.4f}\")\nprint(f\"Valores óptimos de las variables: x1 = {x.value[0]:.4f}, x2 = {x.value[1]:.4f}\")\nprint(f\"Valores óptimos de las variables duales (multiplicadores): {restricciones[0].dual_value}\")\n\n\n5.3.2 Ejemplo 2: Resolución de una Programación Cuadrática (QP)\nResolveremos la minimización de la distancia al origen sujeta a restricciones lineales (un problema QP convexo):\n\\[\n\\begin{aligned}\n& \\underset{x_1, x_2}{\\text{minimizar}} \\quad & \\frac{1}{2} (x_1^2 + x_2^2) \\\\\n& \\text{sujeto a} \\quad & x_1 + x_2 \\ge 1\n\\end{aligned}\n\\]\nimport cvxpy as cp\nimport numpy as np\n\nx = cp.Variable(2)\n\n# P = identidad, q = cero\nP = np.eye(2)\nq = np.zeros(2)\n\n# Función objetivo: 1/2 * x^T * P * x\nobjetivo = cp.Minimize(0.5 * cp.quad_form(x, P))\n\n# Restricciones\nrestricciones = [\n    x[0] + x[1] &gt;= 1\n]\n\nproblema = cp.Problem(objetivo, restricciones)\nproblema.solve()\n\nprint(f\"Estado: {problema.status}\")\nprint(f\"Valor óptimo: {problema.value:.4f}\")\nprint(f\"x óptimo: {x.value}\")",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Programación Lineal, Cuadrática y CVXPY</span>"
+    ]
+  },
+  {
+    "objectID": "06_opt_ciencia_datos.html",
+    "href": "06_opt_ciencia_datos.html",
+    "title": "6  Optimización en Ciencia de Datos: Regresión y SVM",
+    "section": "",
+    "text": "6.1 Regresión Lineal y Regularización\nLa optimización es el motor matemático del aprendizaje automático. En este capítulo estudiaremos cómo formular y resolver dos problemas fundamentales de la ciencia de datos desde la perspectiva de la optimización convexa: la Regresión Lineal y las Máquinas de Vectores de Soporte (SVM).\nDada una matriz de características \\(X \\in \\mathbb{R}^{m \\times n}\\) y un vector de etiquetas \\(y \\in \\mathbb{R}^m\\), el problema de mínimos cuadrados ordinarios busca minimizar la norma del residuo:\n\\[ \\underset{w \\in \\mathbb{R}^n, b \\in \\mathbb{R}}{\\text{minimizar}} \\quad \\| X w + b \\mathbf{1} - y \\|_2^2 \\]\nPara evitar el sobreajuste y estabilizar el sistema cuando hay multicolinealidad, se añaden términos de penalización (regularización):",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Optimización en Ciencia de Datos: Regresión y SVM</span>"
+    ]
+  },
+  {
+    "objectID": "06_opt_ciencia_datos.html#regresión-lineal-y-regularización",
+    "href": "06_opt_ciencia_datos.html#regresión-lineal-y-regularización",
+    "title": "6  Optimización en Ciencia de Datos: Regresión y SVM",
+    "section": "",
+    "text": "Ridge Regression (L2): Minimiza \\(\\| X w + b \\mathbf{1} - y \\|_2^2 + \\gamma \\| w \\|_2^2\\) (convexo, diferenciable).\nLasso Regression (L1): Minimiza \\(\\| X w + b \\mathbf{1} - y \\|_2^2 + \\gamma \\| w \\|_1\\) (convexo, no diferenciable en cero, genera soluciones dispersas/sparse).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Optimización en Ciencia de Datos: Regresión y SVM</span>"
+    ]
+  },
+  {
+    "objectID": "06_opt_ciencia_datos.html#máquinas-de-vectores-de-soporte-svm",
+    "href": "06_opt_ciencia_datos.html#máquinas-de-vectores-de-soporte-svm",
+    "title": "6  Optimización en Ciencia de Datos: Regresión y SVM",
+    "section": "6.2 Máquinas de Vectores de Soporte (SVM)",
+    "text": "6.2 Máquinas de Vectores de Soporte (SVM)\nEl objetivo de una SVM es encontrar un hiperplano de separación en \\(\\mathbb{R}^n\\) para clasificar datos binarios \\(y_i \\in \\{-1, +1\\}\\) maximizando el margen (la distancia al punto más cercano de cada clase).\n\n6.2.1 1. Caso Linealmente Separable (Margen Máximo)\nEl margen es inversamente proporcional a la norma del vector de pesos: \\(M = 2 / \\| w \\|_2\\). Maximizar el margen equivale a minimizar la norma al cuadrado, lo que da lugar al problema QP convexo restringido:\n\\[\n\\begin{aligned}\n& \\underset{w \\in \\mathbb{R}^n, b \\in \\mathbb{R}}{\\text{minimizar}} \\quad & \\frac{1}{2} \\| w \\|_2^2 \\\\\n& \\text{sujeto a} \\quad & y_i (w^T x_i + b) \\ge 1, \\quad i = 1, \\dots, m\n\\end{aligned}\n\\]\n# Formulación de SVM separable en CVXPY\nimport cvxpy as cp\nimport numpy as np\n\n# Datos de prueba simulados\nX_data = np.array([[1, 2], [2, 3], [3, 1], [6, 8], [7, 7], [8, 9]])\ny_data = np.array([-1, -1, -1, 1, 1, 1])\n\nm, n = X_data.shape\nw = cp.Variable(n)\nb = cp.Variable()\n\nrestricciones = [\n    y_data[i] * (X_data[i] @ w + b) &gt;= 1 for i in range(m)\n]\n\nobjetivo = cp.Minimize(0.5 * cp.sum_squares(w))\nprob = cp.Problem(objetivo, restricciones)\nprob.solve()\n\nprint(f\"w óptimo: {w.value}\")\nprint(f\"b óptimo: {b.value}\")\n\n\n6.2.2 2. Caso No Separable (Margen Blando)\nSi los datos no son perfectamente separables, introducimos variables de holgura \\(\\xi_i \\ge 0\\) que penalizan los puntos mal clasificados. El parámetro \\(C &gt; 0\\) controla el equilibrio entre la maximización del margen y la tolerancia al error:\n\\[\n\\begin{aligned}\n& \\underset{w, b, \\xi}{\\text{minimizar}} \\quad & \\frac{1}{2} \\| w \\|_2^2 + C \\sum_{i=1}^m \\xi_i \\\\\n& \\text{sujeto a} \\quad & y_i (w^T x_i + b) \\ge 1 - \\xi_i, \\quad i = 1, \\dots, m \\\\\n& & \\xi_i \\ge 0, \\quad i = 1, \\dots, m\n\\end{aligned}\n\\]\n\n\n6.2.3 3. Formulación Dual de SVM\nMediante la dualidad lagrangiana, el problema de SVM se puede reescribir de forma dual, donde las variables de optimización son los multiplicadores \\(\\alpha_i\\):\n\\[\n\\begin{aligned}\n& \\underset{\\alpha \\in \\mathbb{R}^m}{\\text{maximizar}} \\quad & \\sum_{i=1}^m \\alpha_i - \\frac{1}{2} \\sum_{i=1}^m \\sum_{j=1}^m \\alpha_i \\alpha_j y_i y_j x_i^T x_j \\\\\n& \\text{sujeto a} \\quad & 0 \\le \\alpha_i \\le C, \\quad i = 1, \\dots, m \\\\\n& & \\sum_{i=1}^m \\alpha_i y_i = 0\n\\end{aligned}\n\\]\nEsta formulación dual es de gran valor por dos motivos: - Vectores de soporte: Los puntos correspondientes a \\(\\alpha_i &gt; 0\\) son los únicos que determinan el hiperplano (los vectores de soporte). - El Truco del Kernel: Podemos sustituir el producto escalar \\(x_i^T x_j\\) por una función Kernel \\(K(x_i, x_j)\\) para mapear los datos de entrada a un espacio de mayor dimensión donde sean linealmente separables (por ejemplo, usando kernels polinomiales o Gaussianos RBF).\n# Ejemplo de uso con scikit-learn para comparar\nfrom sklearn.svm import SVC\n\nclf = SVC(kernel='linear', C=1.0)\nclf.fit(X_data, y_data)\n\nprint(f\"coef_ (w) de sklearn: {clf.coef_}\")\nprint(f\"intercept_ (b) de sklearn: {clf.intercept_}\")",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Optimización en Ciencia de Datos: Regresión y SVM</span>"
+    ]
+  },
+  {
+    "objectID": "07_intro_redes.html",
+    "href": "07_intro_redes.html",
+    "title": "7  Introducción al Análisis de Redes y NetworkX",
+    "section": "",
+    "text": "7.1 Conceptos Básicos de Teoría de Grafos\nEl análisis de redes es una rama de las matemáticas discretas y la optimización que estudia sistemas de objetos interconectados. Muchas redes físicas, biológicas y sociales (como la red eléctrica, el tráfico vial, internet o las relaciones de amistad) se modelan matemáticamente mediante grafos.\nUn grafo \\(G\\) es un par ordenado \\(G = (V, E)\\) donde: - \\(V\\) es el conjunto de vértices o nodos (\\(V = \\{v_1, v_2, \\ldots, v_n\\}\\)). - \\(E\\) es el conjunto de aristas o arcos (\\(E \\subseteq V \\times V\\)), que representan las conexiones entre nodos.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al Análisis de Redes y NetworkX</span>"
+    ]
+  },
+  {
+    "objectID": "07_intro_redes.html#conceptos-básicos-de-teoría-de-grafos",
+    "href": "07_intro_redes.html#conceptos-básicos-de-teoría-de-grafos",
+    "title": "7  Introducción al Análisis de Redes y NetworkX",
+    "section": "",
+    "text": "7.1.1 Tipos de Grafos\n\nGrafo No Dirigido: Las conexiones no tienen dirección; si \\((u, v) \\in E\\), entonces también \\((v, u) \\in E\\). Se representan gráficamente como segmentos.\nGrafo Dirigido (Digrafo): Las conexiones tienen un sentido; el arco \\((u, v)\\) va del nodo origen \\(u\\) al nodo destino \\(v\\). Se representan como flechas.\nGrafo Valorado (o Red): A cada arista o arco se le asigna un número real llamado peso o coste \\(w(u, v)\\) (por ejemplo, la distancia en kilómetros o el retardo de un canal de datos).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al Análisis de Redes y NetworkX</span>"
+    ]
+  },
+  {
+    "objectID": "07_intro_redes.html#representación-de-grafos-en-ordenador",
+    "href": "07_intro_redes.html#representación-de-grafos-en-ordenador",
+    "title": "7  Introducción al Análisis de Redes y NetworkX",
+    "section": "7.2 Representación de Grafos en Ordenador",
+    "text": "7.2 Representación de Grafos en Ordenador\nPara procesar grafos mediante algoritmos, existen dos representaciones clásicas:\n\nMatriz de Adyacencia (\\(A \\in \\mathbb{R}^{n \\times n}\\)): Es una matriz donde la entrada \\(a_{ij}\\) es 1 (o el peso \\(w\\)) si existe conexión entre el nodo \\(i\\) y el \\(j\\), y 0 en caso contrario. Es idónea para grafos densos.\nLista de Adyacencia: Asocia a cada nodo una lista con sus vecinos. Es eficiente en memoria para grafos dispersos.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al Análisis de Redes y NetworkX</span>"
+    ]
+  },
+  {
+    "objectID": "07_intro_redes.html#introducción-a-networkx-en-python",
+    "href": "07_intro_redes.html#introducción-a-networkx-en-python",
+    "title": "7  Introducción al Análisis de Redes y NetworkX",
+    "section": "7.3 Introducción a NetworkX en Python",
+    "text": "7.3 Introducción a NetworkX en Python\nNetworkX es la librería estándar de Python para la creación, manipulación y estudio de redes complejas.\nimport networkx as nx\nimport matplotlib.pyplot as plt\n\n# 1. Crear un grafo no dirigido\nG = nx.Graph()\n\n# 2. Añadir nodos\nG.add_node(\"A\")\nG.add_nodes_from([\"B\", \"C\", \"D\"])\n\n# 3. Añadir aristas con pesos\nG.add_edge(\"A\", \"B\", weight=4.5)\nG.add_edges_from([\n    (\"B\", \"C\", {\"weight\": 2.0}),\n    (\"C\", \"D\", {\"weight\": 1.5}),\n    (\"D\", \"A\", {\"weight\": 3.0})\n])\n\n# 4. Obtener información básica\nprint(f\"Nodos: {G.nodes()}\")\nprint(f\"Aristas: {G.edges(data=True)}\")\nprint(f\"Número de nodos: {G.number_of_nodes()}\")\nprint(f\"Número de aristas: {G.number_of_edges()}\")\n\n# 5. Dibujar el grafo\npos = nx.spring_layout(G)  # Distribución de fuerza elástica para los nodos\nnx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=800, font_weight='bold')\nlabels = nx.get_edge_attributes(G, 'weight')\nnx.draw_networkx_edge_labels(G, pos, edge_labels=labels)\nplt.title(\"Grafo Valorado en NetworkX\")\nplt.show()",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Introducción al Análisis de Redes y NetworkX</span>"
+    ]
+  },
+  {
+    "objectID": "08_camino_minimo.html",
+    "href": "08_camino_minimo.html",
+    "title": "8  Problemas de Camino Mínimo",
+    "section": "",
+    "text": "8.1 Algoritmos Fundamentales\nEl problema del camino mínimo consiste en encontrar la ruta de menor coste o distancia acumulada entre un nodo origen \\(s\\) y un nodo destino \\(t\\) (o entre todos los pares de nodos) en un grafo valorado dirigiendo o no.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Problemas de Camino Mínimo</span>"
+    ]
+  },
+  {
+    "objectID": "08_camino_minimo.html#algoritmos-fundamentales",
+    "href": "08_camino_minimo.html#algoritmos-fundamentales",
+    "title": "8  Problemas de Camino Mínimo",
+    "section": "",
+    "text": "8.1.1 1. Algoritmo de Dijkstra\nDiseñado para grafos con pesos no negativos (\\(w(u, v) \\ge 0\\)). Es un algoritmo codicioso (greedy) que mantiene una estimación de la distancia mínima a cada nodo y explora los vecinos del nodo más cercano aún no procesado. - Complejidad: \\(O(|V|^2)\\) o \\(O(|E| + |V| \\log |V|)\\) utilizando colas de prioridad (heaps).\n\n\n8.1.2 2. Algoritmo de Bellman-Ford\nAcepta pesos negativos en las aristas. Además, es capaz de detectar la existencia de ciclos de coste negativo (circuitos donde dar una vuelta reduce el coste acumulado, lo que hace que el camino mínimo tienda a \\(-\\infty\\) y no esté bien definido). - Complejidad: \\(O(|V||E|)\\).\n\n\n8.1.3 3. Algoritmo de Floyd-Warshall\nEs un algoritmo de programación dinámica que calcula los caminos mínimos entre todos los pares de nodos en un solo paso. Admite pesos negativos pero no ciclos negativos. - Complejidad: \\(O(|V|^3)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Problemas de Camino Mínimo</span>"
+    ]
+  },
+  {
+    "objectID": "08_camino_minimo.html#resolución-de-caminos-mínimos-con-networkx",
+    "href": "08_camino_minimo.html#resolución-de-caminos-mínimos-con-networkx",
+    "title": "8  Problemas de Camino Mínimo",
+    "section": "8.2 Resolución de Caminos Mínimos con NetworkX",
+    "text": "8.2 Resolución de Caminos Mínimos con NetworkX\nNetworkX implementa todos estos algoritmos en funciones optimizadas de alta jerarquía.\nimport networkx as nx\nimport matplotlib.pyplot as plt\n\n# Crear una red con pesos de ejemplo\nG = nx.DiGraph()\nG.add_edge(\"s\", \"A\", weight=3)\nG.add_edge(\"s\", \"B\", weight=5)\nG.add_edge(\"A\", \"B\", weight=1)\nG.add_edge(\"A\", \"C\", weight=6)\n# Arista con peso negativo para ilustrar\nG.add_edge(\"B\", \"C\", weight=-2)\nG.add_edge(\"C\", \"t\", weight=4)\n\n# 1. Calcular camino mínimo con Dijkstra (no recomendado si hay pesos negativos)\ntry:\n    path_dij = nx.dijkstra_path(G, \"s\", \"t\")\n    dist_dij = nx.dijkstra_path_length(G, \"s\", \"t\")\n    print(f\"Dijkstra: Ruta = {path_dij}, Distancia = {dist_dij}\")\nexcept ValueError as e:\n    print(f\"Error en Dijkstra: {e} (debido al peso negativo)\")\n\n# 2. Calcular camino mínimo con Bellman-Ford (robusto frente a pesos negativos)\npath_bf = nx.bellman_ford_path(G, \"s\", \"t\")\ndist_bf = nx.bellman_ford_path_length(G, \"s\", \"t\")\nprint(f\"Bellman-Ford: Ruta = {path_bf}, Distancia = {dist_bf}\")\n\n# 3. Detectar ciclos negativos\ntiene_ciclo_negativo = nx.negative_edge_cycle(G)\nprint(f\"¿Tiene ciclos negativos?: {tiene_ciclo_negativo}\")\n\n# 4. Dibujar y destacar el camino mínimo\npos = {\"s\": (0, 1), \"A\": (1, 2), \"B\": (1, 0), \"C\": (2, 1), \"t\": (3, 1)}\nnx.draw(G, pos, with_labels=True, node_color='lightgrey', node_size=700)\n\n# Destacar nodos y aristas del camino mínimo (s -&gt; A -&gt; B -&gt; C -&gt; t)\nedges_camino = [(\"s\", \"A\"), (\"A\", \"B\"), (\"B\", \"C\"), (\"C\", \"t\")]\nnx.draw_networkx_nodes(G, pos, nodelist=path_bf, node_color='orange', node_size=700)\nnx.draw_networkx_edges(G, pos, edgelist=edges_camino, edge_color='orange', width=3)\n\nlabels = nx.get_edge_attributes(G, 'weight')\nnx.draw_networkx_edge_labels(G, pos, edge_labels=labels)\nplt.title(\"Ruta del Camino Mínimo Destacada\")\nplt.show()",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Problemas de Camino Mínimo</span>"
+    ]
+  },
+  {
+    "objectID": "09_problemas_flujo.html",
+    "href": "09_problemas_flujo.html",
+    "title": "9  Problemas de Flujo en Redes",
+    "section": "",
+    "text": "9.1 El Problema de Flujo Máximo\nLos problemas de flujo en redes modelan el transporte de un recurso (fluido, datos, productos, energía) a través de una red de tuberías o canales con capacidades limitadas.\nConsiste en determinar la cantidad máxima de recurso que se puede enviar desde un nodo origen (fuente \\(s\\)) hasta un nodo destino (sumidero \\(t\\)), respetando las capacidades de cada canal y la conservación de flujo en los nodos intermedios.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Problemas de Flujo en Redes</span>"
+    ]
+  },
+  {
+    "objectID": "09_problemas_flujo.html#el-problema-de-flujo-máximo",
+    "href": "09_problemas_flujo.html#el-problema-de-flujo-máximo",
+    "title": "9  Problemas de Flujo en Redes",
+    "section": "",
+    "text": "9.1.1 Algoritmo de Ford-Fulkerson\nEl método se basa en encontrar caminos aumentadores (rutas desde \\(s\\) a \\(t\\) donde todavía queda capacidad residual) e ir empujando flujo a través de ellas hasta que no queden más caminos disponibles. - Cuando se implementa buscando el camino más corto mediante BFS, el algoritmo se conoce como Edmonds-Karp y tiene una complejidad garantizada de \\(O(|V||E|^2)\\).\n\n\n9.1.2 Teorema de Flujo Máximo - Corte Mínimo\n\n\n\n\n\n\nImportantTeorema Max-Flow Min-Cut\n\n\n\nEl flujo máximo que puede circular desde \\(s\\) a \\(t\\) en una red es exactamente igual a la capacidad del corte mínimo que separa a \\(s\\) de \\(t\\). Un corte mínimo es una partición de los nodos en dos conjuntos \\(S\\) (que contiene a \\(s\\)) y \\(T\\) (que contiene a \\(t\\)) tal que la suma de las capacidades de los arcos que van de \\(S\\) a \\(T\\) es mínima.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Problemas de Flujo en Redes</span>"
+    ]
+  },
+  {
+    "objectID": "09_problemas_flujo.html#problema-de-flujo-a-coste-mínimo-min-cost-flow",
+    "href": "09_problemas_flujo.html#problema-de-flujo-a-coste-mínimo-min-cost-flow",
+    "title": "9  Problemas de Flujo en Redes",
+    "section": "9.2 Problema de Flujo a Coste Mínimo (Min-Cost Flow)",
+    "text": "9.2 Problema de Flujo a Coste Mínimo (Min-Cost Flow)\nEn este problema, cada arco de la red tiene tanto una capacidad (límite superior de flujo) como un coste unitario por enviar flujo a través de él. El objetivo es satisfacer una demanda de recurso determinada en los nodos de destino a partir de los nodos de origen minimizando el coste total acumulado.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Problemas de Flujo en Redes</span>"
+    ]
+  },
+  {
+    "objectID": "09_problemas_flujo.html#modelado-y-resolución-con-networkx",
+    "href": "09_problemas_flujo.html#modelado-y-resolución-con-networkx",
+    "title": "9  Problemas de Flujo en Redes",
+    "section": "9.3 Modelado y Resolución con NetworkX",
+    "text": "9.3 Modelado y Resolución con NetworkX\nimport networkx as nx\n\n# 1. Crear la red de flujo\nG = nx.DiGraph()\nG.add_edge(\"s\", \"A\", capacity=10)\nG.add_edge(\"s\", \"B\", capacity=10)\nG.add_edge(\"A\", \"B\", capacity=2)\nG.add_edge(\"A\", \"t\", capacity=8)\n# Arco con gran capacidad\nG.add_edge(\"B\", \"t\", capacity=12)\n\n# 2. Resolver Flujo Máximo\nflow_value, flow_dict = nx.maximum_flow(G, \"s\", \"t\")\nprint(f\"Flujo Máximo: {flow_value}\")\nprint(\"Flujo por arco:\")\nfor u, neighbors in flow_dict.items():\n    for v, flow in neighbors.items():\n        if flow &gt; 0:\n            print(f\"  {u} -&gt; {v}: {flow}/{G[u][v]['capacity']}\")\n\n# 3. Encontrar el Corte Mínimo\ncut_value, partitions = nx.minimum_cut(G, \"s\", \"t\")\nprint(f\"\\nValor del Corte Mínimo: {cut_value}\")\nprint(f\"Partición de nodos S: {partitions[0]}\")\nprint(f\"Partición de nodos T: {partitions[1]}\")",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Problemas de Flujo en Redes</span>"
+    ]
+  },
+  {
+    "objectID": "10_emparejamiento.html",
+    "href": "10_emparejamiento.html",
+    "title": "10  Problemas de Emparejamiento (Matching)",
+    "section": "",
+    "text": "10.1 Tipos de Emparejamientos\nUn emparejamiento (o matching) en un grafo \\(G=(V, E)\\) es un conjunto de aristas \\(M \\subseteq E\\) independientes, es decir, aristas que no comparten ningún nodo en común.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Problemas de Emparejamiento (Matching)</span>"
+    ]
+  },
+  {
+    "objectID": "10_emparejamiento.html#tipos-de-emparejamientos",
+    "href": "10_emparejamiento.html#tipos-de-emparejamientos",
+    "title": "10  Problemas de Emparejamiento (Matching)",
+    "section": "",
+    "text": "Emparejamiento Máximo: Un emparejamiento \\(M\\) tal que contiene el mayor número posible de aristas.\nEmparejamiento Perfecto: Un emparejamiento tal que todos los nodos del grafo están conectados a alguna arista de \\(M\\) (es decir, \\(|M| = |V|/2\\)).",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Problemas de Emparejamiento (Matching)</span>"
+    ]
+  },
+  {
+    "objectID": "10_emparejamiento.html#emparejamiento-en-grafos-bipartitos",
+    "href": "10_emparejamiento.html#emparejamiento-en-grafos-bipartitos",
+    "title": "10  Problemas de Emparejamiento (Matching)",
+    "section": "10.2 Emparejamiento en Grafos Bipartitos",
+    "text": "10.2 Emparejamiento en Grafos Bipartitos\nUn grafo es bipartito si su conjunto de nodos \\(V\\) se puede dividir en dos conjuntos disjuntos \\(U\\) y \\(W\\) (\\(V = U \\cup W\\)) tal que no existen aristas que unan nodos dentro del mismo conjunto.\nEl problema del emparejamiento máximo bipartito consiste en emparejar el mayor número de elementos de \\(U\\) con elementos de \\(W\\) (por ejemplo, asignar trabajadores a tareas de forma óptima). - Este problema se puede resolver de manera muy eficiente reformulándolo como un problema de flujo máximo añadiendo una fuente artificial conectada a todos los nodos de \\(U\\) y un sumidero artificial conectado a todos los nodos de \\(W\\).",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Problemas de Emparejamiento (Matching)</span>"
+    ]
+  },
+  {
+    "objectID": "10_emparejamiento.html#resolución-de-emparejamientos-con-networkx",
+    "href": "10_emparejamiento.html#resolución-de-emparejamientos-con-networkx",
+    "title": "10  Problemas de Emparejamiento (Matching)",
+    "section": "10.3 Resolución de Emparejamientos con NetworkX",
+    "text": "10.3 Resolución de Emparejamientos con NetworkX\nNetworkX proporciona algoritmos eficientes especializados para grafos bipartitos.\nimport networkx as nx\nfrom networkx.algorithms import bipartite\n\n# 1. Crear un grafo bipartito\nB = nx.Graph()\n# Nodos de la izquierda (Trabajadores)\ntrabajadores = [\"T1\", \"T2\", \"T3\", \"T4\"]\n# Nodos de la derecha (Tareas)\ntareas = [\"Tarea_A\", \"Tarea_B\", \"Tarea_C\", \"Tarea_D\"]\n\nB.add_nodes_from(trabajadores, bipartite=0)\nB.add_nodes_from(tareas, bipartite=1)\n\n# Aristas: compatibilidades o habilidades\nB.add_edges_from([\n    (\"T1\", \"Tarea_A\"), (\"T1\", \"Tarea_B\"),\n    (\"T2\", \"Tarea_B\"), (\"T2\", \"Tarea_C\"),\n    (\"T3\", \"Tarea_C\"),\n    (\"T4\", \"Tarea_A\"), (\"T4\", \"Tarea_D\")\n])\n\n# 2. Calcular emparejamiento máximo\nmatching = bipartite.maximum_matching(B, top_nodes=trabajadores)\nprint(\"Emparejamiento Máximo calculado:\")\nfor k, v in matching.items():\n    # El diccionario devuelto es bidireccional, filtramos para mostrar solo una dirección\n    if k in trabajadores:\n        print(f\"  {k} asignado a: {v}\")",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Problemas de Emparejamiento (Matching)</span>"
+    ]
+  },
+  {
+    "objectID": "11_problemas_recorridos.html",
+    "href": "11_problemas_recorridos.html",
+    "title": "11  Problemas de Recorridos (Tours)",
+    "section": "",
+    "text": "11.1 Recorridos Eulerianos y el Cartero Chino\nLos problemas de recorridos o rutas estudian cómo viajar a través de los nodos o aristas de un grafo cumpliendo ciertas restricciones de visita y minimizando la distancia o coste total.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Problemas de Recorridos (Tours)</span>"
+    ]
+  },
+  {
+    "objectID": "11_problemas_recorridos.html#recorridos-eulerianos-y-el-cartero-chino",
+    "href": "11_problemas_recorridos.html#recorridos-eulerianos-y-el-cartero-chino",
+    "title": "11  Problemas de Recorridos (Tours)",
+    "section": "",
+    "text": "NoteDefinición de Ciclo Euleriano\n\n\n\nUn ciclo euleriano es un camino cerrado que recorre cada arista del grafo exactamente una vez.\n\n\n\nCondición de Euler: Un grafo conexo no dirigido admite un ciclo euleriano si y solo si todos sus nodos tienen grado par. Si tiene exactamente dos nodos de grado impar, admite un camino euleriano (con origen y destino en dichos nodos impares).\nProblema del Cartero Chino (CPP): Si el grafo tiene nodos de grado impar, no es euleriano. El CPP consiste en encontrar la ruta cerrada más corta que pase por cada arista al menos una vez (lo que requiere duplicar algunas aristas de coste mínimo).",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Problemas de Recorridos (Tours)</span>"
+    ]
+  },
+  {
+    "objectID": "11_problemas_recorridos.html#recorridos-hamiltonianos-y-el-viajante-de-comercio-tsp",
+    "href": "11_problemas_recorridos.html#recorridos-hamiltonianos-y-el-viajante-de-comercio-tsp",
+    "title": "11  Problemas de Recorridos (Tours)",
+    "section": "11.2 Recorridos Hamiltonianos y el Viajante de Comercio (TSP)",
+    "text": "11.2 Recorridos Hamiltonianos y el Viajante de Comercio (TSP)\n\n\n\n\n\n\nNoteDefinición de Ciclo Hamiltoniano\n\n\n\nUn ciclo hamiltoniano es un camino cerrado que visita cada nodo del grafo exactamente una vez.\n\n\n\nProblema del Viajante de Comercio (TSP): Consiste en encontrar el ciclo hamiltoniano de coste mínimo en un grafo completo valorado. A diferencia de los ciclos eulerianos (fáciles de calcular), el TSP es un problema NP-difícil, lo que significa que no se conoce ningún algoritmo exacto en tiempo polinomial.\nEstrategias de resolución: Heurísticas de vecino más cercano, búsqueda local (2-opt), algoritmos de aproximación (como el algoritmo de Christofides, que garantiza un coste no superior a 1.5 veces el óptimo en espacios métricos) y solvers exactos de programación lineal entera.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Problemas de Recorridos (Tours)</span>"
+    ]
+  },
+  {
+    "objectID": "11_problemas_recorridos.html#implementación-en-python-con-networkx",
+    "href": "11_problemas_recorridos.html#implementación-en-python-con-networkx",
+    "title": "11  Problemas de Recorridos (Tours)",
+    "section": "11.3 Implementación en Python con NetworkX",
+    "text": "11.3 Implementación en Python con NetworkX\nimport networkx as nx\n\n# 1. Crear un grafo euleriano (todos los nodos con grado par)\nG = nx.cycle_graph(4) # Ciclo simple de 4 nodos (grado 2 en todos)\nes_euleriano = nx.is_eulerian(G)\nprint(f\"¿El grafo G es euleriano?: {es_euleriano}\")\n\nif es_euleriano:\n    recorrido = list(nx.eulerian_circuit(G))\n    print(f\"Recorrido Euleriano: {recorrido}\")\n\n# 2. Resolución del Viajante de Comercio (TSP) aproximado\n# Crear un grafo completo valorado\nK = nx.complete_graph(4)\n# Añadir pesos\npesos = {\n    (0, 1): 10, (0, 2): 15, (0, 3): 20,\n    (1, 2): 35, (1, 3): 25, (2, 3): 30\n}\nfor (u, v), w in pesos.items():\n    K[u][v]['weight'] = w\n\n# Resolver usando aproximación de Christofides (requiere pesos métricos)\nfrom networkx.algorithms.approximation import traveling_salesperson_problem\nruta_tsp = traveling_salesperson_problem(K, weight='weight', cycle=True)\nprint(f\"\\nRuta aproximada del TSP: {ruta_tsp}\")",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Problemas de Recorridos (Tours)</span>"
+    ]
+  }
+]

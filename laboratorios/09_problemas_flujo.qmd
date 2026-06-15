@@ -1,0 +1,59 @@
+# Problemas de Flujo en Redes
+
+Los problemas de **flujo en redes** modelan el transporte de un recurso (fluido, datos, productos, energía) a través de una red de tuberías o canales con capacidades limitadas.
+
+---
+
+## El Problema de Flujo Máximo
+
+Consiste en determinar la cantidad máxima de recurso que se puede enviar desde un nodo origen (fuente $s$) hasta un nodo destino (sumidero $t$), respetando las capacidades de cada canal y la conservación de flujo en los nodos intermedios.
+
+### Algoritmo de Ford-Fulkerson
+
+El método se basa en encontrar **caminos aumentadores** (rutas desde $s$ a $t$ donde todavía queda capacidad residual) e ir empujando flujo a través de ellas hasta que no queden más caminos disponibles.
+- Cuando se implementa buscando el camino más corto mediante BFS, el algoritmo se conoce como **Edmonds-Karp** y tiene una complejidad garantizada de $O(|V||E|^2)$.
+
+### Teorema de Flujo Máximo - Corte Mínimo
+
+::: {.callout-important}
+### Teorema Max-Flow Min-Cut
+El flujo máximo que puede circular desde $s$ a $t$ en una red es exactamente igual a la capacidad del **corte mínimo** que separa a $s$ de $t$. Un corte mínimo es una partición de los nodos en dos conjuntos $S$ (que contiene a $s$) y $T$ (que contiene a $t$) tal que la suma de las capacidades de los arcos que van de $S$ a $T$ es mínima.
+:::
+
+---
+
+## Problema de Flujo a Coste Mínimo (Min-Cost Flow)
+
+En este problema, cada arco de la red tiene tanto una **capacidad** (límite superior de flujo) como un **coste unitario** por enviar flujo a través de él. El objetivo es satisfacer una demanda de recurso determinada en los nodos de destino a partir de los nodos de origen minimizando el coste total acumulado.
+
+---
+
+## Modelado y Resolución con NetworkX
+
+```python
+import networkx as nx
+
+# 1. Crear la red de flujo
+G = nx.DiGraph()
+G.add_edge("s", "A", capacity=10)
+G.add_edge("s", "B", capacity=10)
+G.add_edge("A", "B", capacity=2)
+G.add_edge("A", "t", capacity=8)
+# Arco con gran capacidad
+G.add_edge("B", "t", capacity=12)
+
+# 2. Resolver Flujo Máximo
+flow_value, flow_dict = nx.maximum_flow(G, "s", "t")
+print(f"Flujo Máximo: {flow_value}")
+print("Flujo por arco:")
+for u, neighbors in flow_dict.items():
+    for v, flow in neighbors.items():
+        if flow > 0:
+            print(f"  {u} -> {v}: {flow}/{G[u][v]['capacity']}")
+
+# 3. Encontrar el Corte Mínimo
+cut_value, partitions = nx.minimum_cut(G, "s", "t")
+print(f"\nValor del Corte Mínimo: {cut_value}")
+print(f"Partición de nodos S: {partitions[0]}")
+print(f"Partición de nodos T: {partitions[1]}")
+```

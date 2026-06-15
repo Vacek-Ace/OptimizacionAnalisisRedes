@@ -1,0 +1,56 @@
+---
+title: "Tema 1: Introducción a la Optimización"
+subtitle: "Optimización y Análisis de Redes"
+author: "Víctor Aceña Gil / Emilio López Cano / Javier Martínez Moguerza"
+date: "2026-06-15"
+format:
+  revealjs:
+    theme: league
+    transition: slide
+    slide-number: true
+    chalkboard: true
+    code-line-numbers: true
+---
+
+# Introducción a la Optimización
+
+## ¿Qué es la Optimización?
+
+La **optimización matemática** consiste en seleccionar el mejor elemento (según algún criterio) de un conjunto de alternativas disponibles.
+
+- **Variables de decisión:** Las incógnitas que podemos controlar ($x \in \mathbb{R}^n$).
+- **Función objetivo:** La función real que deseamos maximizar o minimizar ($f(x)$).
+- **Restricciones:** Límites o condiciones que deben cumplir las variables.
+
+---
+
+## Formulación General
+
+Un problema clásico de minimización se escribe:
+
+$$
+\begin{aligned}
+& \underset{x}{\text{minimizar}} \quad & f(x) \\
+& \text{sujeto a} \quad & g_i(x) \le 0, \quad i = 1, \ldots, m \\
+& & h_j(x) = 0, \quad j = 1, \ldots, p
+\end{aligned}
+$$
+
+---
+
+## Código Interactivo en Python
+
+Reveal.js de Quarto nos permite incrustar y ejecutar código Python en las diapositivas de forma fluida:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-5, 5, 100)
+y = x**2
+
+plt.plot(x, y, label="$f(x) = x^2$", color="cyan")
+plt.title("Función Convexa Simple")
+plt.legend()
+plt.show()
+```

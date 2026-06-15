@@ -1,0 +1,74 @@
+# Problemas de Camino Mínimo
+
+El problema del **camino mínimo** consiste en encontrar la ruta de menor coste o distancia acumulada entre un nodo origen $s$ y un nodo destino $t$ (o entre todos los pares de nodos) en un grafo valorado dirigiendo o no.
+
+---
+
+## Algoritmos Fundamentales
+
+### 1. Algoritmo de Dijkstra
+
+Diseñado para grafos con pesos **no negativos** ($w(u, v) \ge 0$). Es un algoritmo codicioso (greedy) que mantiene una estimación de la distancia mínima a cada nodo y explora los vecinos del nodo más cercano aún no procesado.
+- **Complejidad:** $O(|V|^2)$ o $O(|E| + |V| \log |V|)$ utilizando colas de prioridad (heaps).
+
+### 2. Algoritmo de Bellman-Ford
+
+Acepta pesos **negativos** en las aristas. Además, es capaz de detectar la existencia de **ciclos de coste negativo** (circuitos donde dar una vuelta reduce el coste acumulado, lo que hace que el camino mínimo tienda a $-\infty$ y no esté bien definido).
+- **Complejidad:** $O(|V||E|)$.
+
+### 3. Algoritmo de Floyd-Warshall
+
+Es un algoritmo de programación dinámica que calcula los caminos mínimos entre **todos los pares de nodos** en un solo paso. Admite pesos negativos pero no ciclos negativos.
+- **Complejidad:** $O(|V|^3)$.
+
+---
+
+## Resolución de Caminos Mínimos con NetworkX
+
+NetworkX implementa todos estos algoritmos en funciones optimizadas de alta jerarquía.
+
+```python
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Crear una red con pesos de ejemplo
+G = nx.DiGraph()
+G.add_edge("s", "A", weight=3)
+G.add_edge("s", "B", weight=5)
+G.add_edge("A", "B", weight=1)
+G.add_edge("A", "C", weight=6)
+# Arista con peso negativo para ilustrar
+G.add_edge("B", "C", weight=-2)
+G.add_edge("C", "t", weight=4)
+
+# 1. Calcular camino mínimo con Dijkstra (no recomendado si hay pesos negativos)
+try:
+    path_dij = nx.dijkstra_path(G, "s", "t")
+    dist_dij = nx.dijkstra_path_length(G, "s", "t")
+    print(f"Dijkstra: Ruta = {path_dij}, Distancia = {dist_dij}")
+except ValueError as e:
+    print(f"Error en Dijkstra: {e} (debido al peso negativo)")
+
+# 2. Calcular camino mínimo con Bellman-Ford (robusto frente a pesos negativos)
+path_bf = nx.bellman_ford_path(G, "s", "t")
+dist_bf = nx.bellman_ford_path_length(G, "s", "t")
+print(f"Bellman-Ford: Ruta = {path_bf}, Distancia = {dist_bf}")
+
+# 3. Detectar ciclos negativos
+tiene_ciclo_negativo = nx.negative_edge_cycle(G)
+print(f"¿Tiene ciclos negativos?: {tiene_ciclo_negativo}")
+
+# 4. Dibujar y destacar el camino mínimo
+pos = {"s": (0, 1), "A": (1, 2), "B": (1, 0), "C": (2, 1), "t": (3, 1)}
+nx.draw(G, pos, with_labels=True, node_color='lightgrey', node_size=700)
+
+# Destacar nodos y aristas del camino mínimo (s -> A -> B -> C -> t)
+edges_camino = [("s", "A"), ("A", "B"), ("B", "C"), ("C", "t")]
+nx.draw_networkx_nodes(G, pos, nodelist=path_bf, node_color='orange', node_size=700)
+nx.draw_networkx_edges(G, pos, edgelist=edges_camino, edge_color='orange', width=3)
+
+labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+plt.title("Ruta del Camino Mínimo Destacada")
+plt.show()
+```

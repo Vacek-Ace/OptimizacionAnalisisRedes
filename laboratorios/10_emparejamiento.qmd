@@ -1,0 +1,56 @@
+# Problemas de Emparejamiento (Matching)
+
+Un **emparejamiento** (o matching) en un grafo $G=(V, E)$ es un conjunto de aristas $M \subseteq E$ independientes, es decir, aristas que no comparten ningún nodo en común.
+
+---
+
+## Tipos de Emparejamientos
+
+1. **Emparejamiento Máximo:** Un emparejamiento $M$ tal que contiene el mayor número posible de aristas.
+2. **Emparejamiento Perfecto:** Un emparejamiento tal que todos los nodos del grafo están conectados a alguna arista de $M$ (es decir, $|M| = |V|/2$).
+
+---
+
+## Emparejamiento en Grafos Bipartitos
+
+Un grafo es **bipartito** si su conjunto de nodos $V$ se puede dividir en dos conjuntos disjuntos $U$ y $W$ ($V = U \cup W$) tal que no existen aristas que unan nodos dentro del mismo conjunto.
+
+El problema del **emparejamiento máximo bipartito** consiste en emparejar el mayor número de elementos de $U$ con elementos de $W$ (por ejemplo, asignar trabajadores a tareas de forma óptima).
+- Este problema se puede resolver de manera muy eficiente reformulándolo como un **problema de flujo máximo** añadiendo una fuente artificial conectada a todos los nodos de $U$ y un sumidero artificial conectado a todos los nodos de $W$.
+
+---
+
+## Resolución de Emparejamientos con NetworkX
+
+NetworkX proporciona algoritmos eficientes especializados para grafos bipartitos.
+
+```python
+import networkx as nx
+from networkx.algorithms import bipartite
+
+# 1. Crear un grafo bipartito
+B = nx.Graph()
+# Nodos de la izquierda (Trabajadores)
+trabajadores = ["T1", "T2", "T3", "T4"]
+# Nodos de la derecha (Tareas)
+tareas = ["Tarea_A", "Tarea_B", "Tarea_C", "Tarea_D"]
+
+B.add_nodes_from(trabajadores, bipartite=0)
+B.add_nodes_from(tareas, bipartite=1)
+
+# Aristas: compatibilidades o habilidades
+B.add_edges_from([
+    ("T1", "Tarea_A"), ("T1", "Tarea_B"),
+    ("T2", "Tarea_B"), ("T2", "Tarea_C"),
+    ("T3", "Tarea_C"),
+    ("T4", "Tarea_A"), ("T4", "Tarea_D")
+])
+
+# 2. Calcular emparejamiento máximo
+matching = bipartite.maximum_matching(B, top_nodes=trabajadores)
+print("Emparejamiento Máximo calculado:")
+for k, v in matching.items():
+    # El diccionario devuelto es bidireccional, filtramos para mostrar solo una dirección
+    if k in trabajadores:
+        print(f"  {k} asignado a: {v}")
+```

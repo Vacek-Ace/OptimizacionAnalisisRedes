@@ -1,0 +1,5 @@
+# Introducción {.unnumbered}
+
+Este cuaderno recopila las **soluciones detalladas** a los ejercicios propuestos para la asignatura **Optimización y Análisis de Redes**.
+
+Cada ejercicio contiene tanto la demostración matemática formal como la implementación de código en Python correspondiente para verificar las soluciones de manera numérica.
