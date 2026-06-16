@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: soluciones_html
+  output-dir: soluciones_pdf
 
 book:
   title: "Laboratorios Resueltos de Optimización y Análisis de Redes"

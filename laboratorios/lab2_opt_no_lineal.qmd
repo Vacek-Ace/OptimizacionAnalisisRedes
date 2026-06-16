@@ -9,6 +9,9 @@ format:
     toc: true
     number-sections: true
     css: ../estilos_html.css
+  pdf:
+    toc: true
+    number-sections: true
 ---
 
 # Introducción
@@ -34,6 +37,7 @@ el algoritmo genera una secuencia de puntos $\{x^{(k)}\}$ partiendo de una estim
 $$ x^{(k+1)} = x^{(k)} - \alpha \nabla f(x^{(k)}) $$
 
 donde:
+
 * **$x^{(k)}$** es el punto en la iteración $k$.
 * **$\alpha > 0$** es la **tasa de aprendizaje** (*learning rate*) o tamaño de paso.
   * Si $\alpha$ es demasiado pequeño, la convergencia será extremadamente lenta.
@@ -42,8 +46,8 @@ donde:
 
 ### Criterio de parada
 En una implementación real, la iteración se detiene cuando se cumple alguna de las siguientes condiciones:
-1. Se alcanza un número máximo de iteraciones ($k \ge K_{\max}$).
-2. El gradiente es prácticamente cero, lo que indica que estamos en un punto estacionario: $\|\nabla f(x^{(k)})\|_2 < \epsilon$, donde $\epsilon > 0$ es una tolerancia (por ejemplo, $10^{-6}$).
+  1. Se alcanza un número máximo de iteraciones ($k \ge K_{\max}$).
+  2. El gradiente es prácticamente cero, lo que indica que estamos en un punto estacionario: $\|\nabla f(x^{(k)})\|_2 < \epsilon$, donde $\epsilon > 0$ es una tolerancia (por ejemplo, $10^{-6}$).
 
 ---
 
@@ -62,6 +66,7 @@ res = minimize(fun, x0, method='BFGS', jac=grad_fun)
 ```
 
 Donde:
+
 * `fun`: Función objetivo que recibe un array de NumPy y devuelve un escalar.
 * `x0`: Punto inicial (vector o lista de Python).
 * `method='BFGS'`: Especifica que usaremos el algoritmo Quasi-Newton BFGS.
@@ -69,6 +74,7 @@ Donde:
   * **Importante**: Si `jac=None` (o no se proporciona), `minimize` estimará el gradiente numéricamente mediante **diferencias finitas**. Esto requiere evaluar la función objetivo múltiples veces por cada paso (al menos $n+1$ evaluaciones, donde $n$ es la dimensión), lo que incrementa el coste computacional y puede introducir imprecisiones numéricas.
 
 El resultado devuelto (`res`) es un objeto `OptimizeResult` con los siguientes campos clave:
+
 * `res.x`: El punto óptimo encontrado.
 * `res.fun`: El valor de la función en el óptimo.
 * `res.success`: Booleano que indica si el solver convergió con éxito.
@@ -86,6 +92,7 @@ Para definir restricciones en SciPy se utilizan diccionarios dentro de una lista
 2. **Ecuaciones**: Restricciones de igualdad de la forma $e(x) = 0$.
 
 Ejemplo de sintaxis:
+
 ```python
 # Restricción: x1 + 2*x2 >= 4  ==>  x1 + 2*x2 - 4 >= 0
 def restriccion_lineal(x):
@@ -110,6 +117,7 @@ res = minimize(fun, x0, method='SLSQP', bounds=cotas, constraints=restricciones)
 
 ### Reglas DCP Básicas
 Para que CVXPY acepte y resuelva un problema, este debe cumplir una serie de reglas de composición geométrica que aseguran que el problema es verdaderamente convexo:
+
 * **Función Objetivo**: Si minimizamos, el objetivo debe ser convexo (p. ej., $x^2$, $\|x\|_2$, $\sum x^2$). Si maximizamos, debe ser cóncavo (p. ej., $\sqrt{x}$, $\log x$).
 * **Restricciones de desigualdad**: Deben tener la forma `convexo <= concavo` o `concavo >= convexo`.
 * **Restricciones de igualdad**: Deben ser afines (lineales) de la forma `lineal == lineal`.

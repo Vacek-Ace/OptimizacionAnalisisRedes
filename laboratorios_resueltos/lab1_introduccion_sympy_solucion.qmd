@@ -149,6 +149,7 @@ print("\nGradiente sustituyendo parámetros:", res_grad)
 # Estudio de curvatura y convexidad
 
 Para evaluar si una función es convexa, cóncava o indefinida en un dominio, se estudia la definición de su matriz hessiana:
+
 - **Convexa**: La matriz hessiana es semidefinida positiva ($\mathbf{H}_f(\mathbf{x}) \succeq 0$) para todo $\mathbf{x}$. Sus autovalores son no negativos ($\lambda_i \ge 0$).
 
 - **Estrictamente convexa**: La matriz hessiana es definida positiva ($\mathbf{H}_f(\mathbf{x}) \succ 0$) para todo $\mathbf{x}$. Sus autovalores son estrictamente positivos ($\lambda_i > 0$).

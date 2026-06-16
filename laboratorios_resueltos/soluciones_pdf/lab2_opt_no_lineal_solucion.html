@@ -299,7 +299,16 @@ window.Quarto = {
 <h2 data-number="4.1" class="anchored" data-anchor-id="algoritmo-del-descenso-de-gradiente-manual"><span class="header-section-number">4.1</span> Algoritmo del descenso de gradiente manual</h2>
 <p>El método del <strong>descenso de gradiente</strong> (o <em>gradient descent</em>) es el algoritmo de búsqueda local de primer orden más elemental. Para resolver el problema de minimización sin restricciones: <span class="math display">\[ \min_{x \in \mathbb{R}^n} f(x) \]</span></p>
 <p>el algoritmo genera una secuencia de puntos <span class="math inline">\(\{x^{(k)}\}\)</span> partiendo de una estimación inicial <span class="math inline">\(x^{(0)}\)</span>. Dado que el gradiente <span class="math inline">\(\nabla f(x)\)</span> apunta en la dirección de máximo crecimiento local, nos movemos en la dirección opuesta <span class="math inline">\(-\nabla f(x)\)</span> para disminuir el valor de la función: <span class="math display">\[ x^{(k+1)} = x^{(k)} - \alpha \nabla f(x^{(k)}) \]</span></p>
-<p>donde: * <strong><span class="math inline">\(x^{(k)}\)</span></strong> es el punto en la iteración <span class="math inline">\(k\)</span>. * <strong><span class="math inline">\(\alpha &gt; 0\)</span></strong> es la <strong>tasa de aprendizaje</strong> (<em>learning rate</em>) o tamaño de paso. * Si <span class="math inline">\(\alpha\)</span> es demasiado pequeño, la convergencia será extremadamente lenta. * Si <span class="math inline">\(\alpha\)</span> es demasiado grande, el algoritmo puede oscilar e incluso divergir. * <strong><span class="math inline">\(\nabla f(x^{(k)})\)</span></strong> es el gradiente de la función en el punto actual.</p>
+<p>donde:</p>
+<ul>
+<li><strong><span class="math inline">\(x^{(k)}\)</span></strong> es el punto en la iteración <span class="math inline">\(k\)</span>.</li>
+<li><strong><span class="math inline">\(\alpha &gt; 0\)</span></strong> es la <strong>tasa de aprendizaje</strong> (<em>learning rate</em>) o tamaño de paso.
+<ul>
+<li>Si <span class="math inline">\(\alpha\)</span> es demasiado pequeño, la convergencia será extremadamente lenta.</li>
+<li>Si <span class="math inline">\(\alpha\)</span> es demasiado grande, el algoritmo puede oscilar e incluso divergir.</li>
+</ul></li>
+<li><strong><span class="math inline">\(\nabla f(x^{(k)})\)</span></strong> es el gradiente de la función en el punto actual.</li>
+</ul>
 <section id="criterio-de-parada" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="criterio-de-parada"><span class="header-section-number">4.1.1</span> Criterio de parada</h3>
 <p>En una implementación real, la iteración se detiene cuando se cumple alguna de las siguientes condiciones: 1. Se alcanza un número máximo de iteraciones (<span class="math inline">\(k \ge K_{\max}\)</span>). 2. El gradiente es prácticamente cero, lo que indica que estamos en un punto estacionario: <span class="math inline">\(\|\nabla f(x^{(k)})\|_2 &lt; \epsilon\)</span>, donde <span class="math inline">\(\epsilon &gt; 0\)</span> es una tolerancia (por ejemplo, <span class="math inline">\(10^{-6}\)</span>).</p>
@@ -316,8 +325,25 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> minimize(fun, x0, method<span class="op">=</span><span class="st">'BFGS'</span>, jac<span class="op">=</span>grad_fun)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Donde: * <code>fun</code>: Función objetivo que recibe un array de NumPy y devuelve un escalar. * <code>x0</code>: Punto inicial (vector o lista de Python). * <code>method='BFGS'</code>: Especifica que usaremos el algoritmo Quasi-Newton BFGS. * <code>jac</code>: Función que calcula el gradiente (Jacobiano). * <strong>Importante</strong>: Si <code>jac=None</code> (o no se proporciona), <code>minimize</code> estimará el gradiente numérmicamente mediante <strong>diferencias finitas</strong>. Esto requiere evaluar la función objetivo múltiples veces por cada paso (al menos <span class="math inline">\(n+1\)</span> evaluaciones, donde <span class="math inline">\(n\)</span> es la dimensión), lo que incrementa el coste computacional y puede introducir imprecisiones numéricas.</p>
-<p>El resultado devuelto (<code>res</code>) es un objeto <code>OptimizeResult</code> con los siguientes campos clave: * <code>res.x</code>: El punto óptimo encontrado. * <code>res.fun</code>: El valor de la función en el óptimo. * <code>res.success</code>: Booleano que indica si el solver convergió con éxito. * <code>res.message</code>: Mensaje descriptivo de la terminación. * <code>res.nfev</code>: Número de evaluaciones de la función objetivo. * <code>res.njev</code>: Número de evaluaciones del gradiente (Jacobiano).</p>
+<p>Donde:</p>
+<ul>
+<li><code>fun</code>: Función objetivo que recibe un array de NumPy y devuelve un escalar.</li>
+<li><code>x0</code>: Punto inicial (vector o lista de Python).</li>
+<li><code>method='BFGS'</code>: Especifica que usaremos el algoritmo Quasi-Newton BFGS.</li>
+<li><code>jac</code>: Función que calcula el gradiente (Jacobiano).
+<ul>
+<li><strong>Importante</strong>: Si <code>jac=None</code> (o no se proporciona), <code>minimize</code> estimará el gradiente numérmicamente mediante <strong>diferencias finitas</strong>. Esto requiere evaluar la función objetivo múltiples veces por cada paso (al menos <span class="math inline">\(n+1\)</span> evaluaciones, donde <span class="math inline">\(n\)</span> es la dimensión), lo que incrementa el coste computacional y puede introducir imprecisiones numéricas.</li>
+</ul></li>
+</ul>
+<p>El resultado devuelto (<code>res</code>) es un objeto <code>OptimizeResult</code> con los siguientes campos clave:</p>
+<ul>
+<li><code>res.x</code>: El punto óptimo encontrado.</li>
+<li><code>res.fun</code>: El valor de la función en el óptimo.</li>
+<li><code>res.success</code>: Booleano que indica si el solver convergió con éxito.</li>
+<li><code>res.message</code>: Mensaje descriptivo de la terminación.</li>
+<li><code>res.nfev</code>: Número de evaluaciones de la función objetivo.</li>
+<li><code>res.njev</code>: Número de evaluaciones del gradiente (Jacobiano).</li>
+</ul>
 <hr>
 </section>
 <section id="optimización-con-restricciones-el-método-slsqp" class="level3" data-number="4.2.2">
@@ -346,7 +372,13 @@ window.Quarto = {
 <p><strong>CVXPY</strong> es una biblioteca de modelado declarativo en Python diseñada específicamente para <strong>optimización convexa</strong>. A diferencia de SciPy (que trata el problema como una “caja negra” numérica), CVXPY analiza la estructura matemática del problema y comprueba si cumple las reglas de la <strong>Programación Convexa Disciplinada (DCP)</strong>.</p>
 <section id="reglas-dcp-básicas" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="reglas-dcp-básicas"><span class="header-section-number">4.3.1</span> Reglas DCP Básicas</h3>
-<p>Para que CVXPY acepte y resuelva un problema, este debe cumplir una serie de reglas de composición geométrica que aseguran que el problema es verdaderamente convexo: * <strong>Función Objetivo</strong>: Si minimizamos, el objetivo debe ser convexo (p.&nbsp;ej., <span class="math inline">\(x^2\)</span>, <span class="math inline">\(\|x\|_2\)</span>, <span class="math inline">\(\sum x^2\)</span>). Si maximizamos, debe ser cóncavo (p.&nbsp;ej., <span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\log x\)</span>). * <strong>Restricciones de desigualdad</strong>: Deben tener la forma <code>convexo &lt;= concavo</code> o <code>concavo &gt;= convexo</code>. * <strong>Restricciones de igualdad</strong>: Deben ser afines (lineales) de la forma <code>lineal == lineal</code>. * <strong>Operaciones prohibidas</strong>: No se permite multiplicar variables entre sí (p.&nbsp;ej. <code>x * y</code> o <code>x[0] * x[1]</code>), ya que esto rompe las reglas de convexidad generalizadas de DCP. Para representar términos cuadráticos como <span class="math inline">\(x^T P x\)</span>, se deben usar funciones específicas como <code>cp.quad_form(x, P)</code> o <code>cp.sum_squares(x)</code>.</p>
+<p>Para que CVXPY acepte y resuelva un problema, este debe cumplir una serie de reglas de composición geométrica que aseguran que el problema es verdaderamente convexo:</p>
+<ul>
+<li><strong>Función Objetivo</strong>: Si minimizamos, el objetivo debe ser convexo (p.&nbsp;ej., <span class="math inline">\(x^2\)</span>, <span class="math inline">\(\|x\|_2\)</span>, <span class="math inline">\(\sum x^2\)</span>). Si maximizamos, debe ser cóncavo (p.&nbsp;ej., <span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\log x\)</span>).</li>
+<li><strong>Restricciones de desigualdad</strong>: Deben tener la forma <code>convexo &lt;= concavo</code> o <code>concavo &gt;= convexo</code>.</li>
+<li><strong>Restricciones de igualdad</strong>: Deben ser afines (lineales) de la forma <code>lineal == lineal</code>.</li>
+<li><strong>Operaciones prohibidas</strong>: No se permite multiplicar variables entre sí (p.&nbsp;ej. <code>x * y</code> o <code>x[0] * x[1]</code>), ya que esto rompe las reglas de convexidad generalizadas de DCP. Para representar términos cuadráticos como <span class="math inline">\(x^T P x\)</span>, se deben usar funciones específicas como <code>cp.quad_form(x, P)</code> o <code>cp.sum_squares(x)</code>.</li>
+</ul>
 </section>
 <section id="obtención-de-soluciones-duales-multiplicadores-de-lagrange" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="obtención-de-soluciones-duales-multiplicadores-de-lagrange"><span class="header-section-number">4.3.2</span> Obtención de Soluciones Duales (Multiplicadores de Lagrange)</h3>
