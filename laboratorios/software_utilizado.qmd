@@ -1,0 +1,31 @@
+---
+lang: es
+format:
+  pdf:
+    pdf-engine: weasyprint
+    title-block-banner: false 
+    toc: true
+    toc-title: "Índice programas de ordenador"
+    include-before-body: portada.html
+    css: ../estilos.css
+---
+
+# Software utilizado en la asignatura
+
+Los materiales prácticos de esta asignatura consisten en una serie de laboratorios desarrollados en Python y presentados en formato de cuaderno interactivo (`.qmd` de Quarto). Estos laboratorios son fundamentales para aplicar los conceptos teóricos vistos en clase, permitiendo al estudiante no solo ejecutar el código, sino también entender el razonamiento detrás de cada paso del análisis.
+
+El código fuente completo de los laboratorios se encuentra disponible en el repositorio de la asignatura para garantizar el acceso abierto y la reproducibilidad de los resultados.
+
+A continuación, se detalla el contenido de cada uno de los laboratorios incluidos en este repositorio.
+
+
+## Laboratorio 1: Introducción al Modelado y Cálculo Simbólico con SymPy
+
+* **Descripción:** Este laboratorio introduce al estudiante en el uso del cálculo simbólico en Python mediante la biblioteca `SymPy` para obtener gradientes y matrices hessianas analíticas de forma exacta. Asimismo, se enseña el uso de `Autograd` para diferenciación automática numérica de funciones definidas por código. Por último, se aborda el estudio de la curvatura y la convexidad local y global en diversas dimensiones mediante el cálculo numérico de autovalores con `NumPy`.
+* **Fichero Fuente:** `lab1_introduccion_sympy.qmd`
+
+
+## Laboratorio 2: Optimización No Lineal con Python
+
+* **Descripción:** Esta sesión práctica se centra en la implementación y resolución de algoritmos de optimización continua sin y con restricciones. El alumno implementa manualmente el bucle del algoritmo de descenso de gradiente (búsqueda local de primer orden) para analizar su tasa de convergencia lineal. Posteriormente, se enseña a utilizar la biblioteca científica estándar `scipy.optimize` (en concreto, el método Quasi-Newton BFGS y el método de programación cuadrática sucesiva SLSQP). Finalmente, se introduce el modelado con `CVXPY` para optimización convexa disciplinada (DCP), destacando la facilidad de planteamiento y la obtención directa de las variables duales (multiplicadores de Lagrange) para verificar las condiciones de optimalidad de Karush-Kuhn-Tucker (KKT).
+* **Fichero Fuente:** `lab2_opt_no_lineal.qmd`

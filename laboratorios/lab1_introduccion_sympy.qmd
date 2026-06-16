@@ -9,9 +9,6 @@ format:
     toc: true
     number-sections: true
     css: ../estilos_html.css
-  pdf:
-    toc: true
-    number-sections: true
 ---
 
 # Introducción
