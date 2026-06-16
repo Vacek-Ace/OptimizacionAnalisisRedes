@@ -17,10 +17,10 @@ format:
     toc: true
     number-sections: true
     css: ../estilos_html.css
+    include-before-body: portada.html
   pdf:
     documentclass: scrreprt
     title-block-banner: false 
     toc: true
     toc-title: "Índice de Soluciones"
     number-sections: true
-    include-before-body: portada.html

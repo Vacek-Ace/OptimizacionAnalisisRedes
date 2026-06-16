@@ -102,7 +102,12 @@ def unir_pdfs(nombre_salida="ApuntesOptimizacionAnalisisRedes.pdf"):
         
     book_pdf_name = pdf_files[0]
     book_pdf_path = os.path.join(output_dir, book_pdf_name)
-    final_pdf_path = os.path.join(output_dir, nombre_salida)
+    
+    # El PDF global del libro debe ir en la carpeta 'libro' en la raiz del proyecto
+    libro_dir = os.path.join("..", "libro")
+    if not os.path.exists(libro_dir):
+        os.makedirs(libro_dir)
+    final_pdf_path = os.path.join(libro_dir, nombre_salida)
     
     try:
         from pypdf import PdfReader, PdfWriter
