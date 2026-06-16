@@ -65,15 +65,62 @@ Un **modelo** es una representación simplificada de la realidad diseñada para 
 
 El proceso de modelización matemática es iterativo:
 
-```mermaid
-flowchart LR
-    A[Problema Real] --> B[Formulación]
-    B --> C[Modelo Matemático]
-    C --> D[Resolución/Solver]
-    D --> E[Validación]
-    E -->|No válido| B
-    E -->|Válido| F[Implementación]
-```
+<svg viewBox="0 0 1000 145" width="100%" height="auto" style="display: block; margin: 25px auto; font-family: 'Plus Jakarta Sans', sans-serif;">
+  <defs>
+    <!-- Blue Arrow Head -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#0284c7" />
+    </marker>
+    <!-- Green Arrow Head -->
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#10b981" />
+    </marker>
+    <!-- Red Arrow Head -->
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#ef4444" />
+    </marker>
+  </defs>
+
+  <!-- Connections -->
+  <line x1="120" y1="50" x2="172" y2="50" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <line x1="290" y1="50" x2="342" y2="50" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <line x1="480" y1="50" x2="522" y2="50" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <line x1="660" y1="50" x2="702" y2="50" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <line x1="820" y1="50" x2="872" y2="50" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+
+  <!-- Feedback Loop (No válido) -->
+  <path d="M 765,75 L 765,115 L 235,115 L 235,83" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="4" marker-end="url(#arrow-red)" />
+
+  <!-- Labels -->
+  <text x="846" y="42" fill="#10b981" font-size="11px" font-weight="700" text-anchor="middle">Válido</text>
+  <text x="500" y="110" fill="#ef4444" font-size="11px" font-weight="700" text-anchor="middle">No válido</text>
+
+  <!-- Nodes -->
+  <!-- A: Problema Real -->
+  <rect x="10" y="25" width="110" height="50" rx="0" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+  <text x="65" y="50" fill="#0f172a" font-size="12px" font-weight="600" text-anchor="middle" dominant-baseline="middle">Problema real</text>
+
+  <!-- B: Formulación -->
+  <rect x="180" y="25" width="110" height="50" rx="0" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+  <text x="235" y="50" fill="#0f172a" font-size="12px" font-weight="600" text-anchor="middle" dominant-baseline="middle">Formulación</text>
+
+  <!-- C: Modelo Matemático -->
+  <rect x="350" y="25" width="130" height="50" rx="0" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+  <text x="415" y="50" fill="#0f172a" font-size="12px" font-weight="600" text-anchor="middle" dominant-baseline="middle">Modelo matemático</text>
+
+  <!-- D: Resolución/Solver -->
+  <rect x="530" y="25" width="130" height="50" rx="0" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+  <text x="595" y="50" fill="#0f172a" font-size="12px" font-weight="600" text-anchor="middle" dominant-baseline="middle">Resolución/Solver</text>
+
+  <!-- E: Validación -->
+  <rect x="710" y="25" width="110" height="50" rx="0" fill="#f0f9ff" stroke="#0284c7" stroke-width="2" />
+  <text x="765" y="50" fill="#0f172a" font-size="12px" font-weight="600" text-anchor="middle" dominant-baseline="middle">Validación</text>
+
+  <!-- F: Implementación -->
+  <rect x="880" y="25" width="110" height="50" rx="0" fill="#ecfdf5" stroke="#10b981" stroke-width="2" />
+  <text x="935" y="50" fill="#065f46" font-size="12px" font-weight="600" text-anchor="middle" dominant-baseline="middle">Implementación</text>
+</svg>
+
 
 1.  **Formulación**: Traducir la realidad a variables y ecuaciones.
 2.  **Resolución**: Aplicar algoritmos para hallar el óptimo.
