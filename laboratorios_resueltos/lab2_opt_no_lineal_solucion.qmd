@@ -127,7 +127,8 @@ Para que CVXPY acepte y resuelva un problema, este debe cumplir una serie de reg
 En la teoría de la optimización, las **variables duales** (o multiplicadores de Lagrange/KKT asociados a las restricciones) nos indican la sensibilidad del valor óptimo de la función objetivo ante pequeñas variaciones en los límites de las restricciones (también llamados *precios sombra*).
 
 CVXPY recupera de forma nativa e inmediata estas variables duales:
-```python
+
+```{python}
 import cvxpy as cp
 
 # 1. Definir variables

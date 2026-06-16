@@ -1,0 +1,122 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ejercicios de Optimización y Análisis de Redes",
+    "section": "",
+    "text": "Escuela Técnica Superior de\n                Ingeniería Informática\n            \n        \n        \n        \n        \n            \n                Optimización y Análisis de Redes\n            \n            \n            \n                Ejercicios Propuestos\n            \n            \n            \n                Grado en Matemáticas\n            \n            \n            \n                Autores\n                Víctor Aceña Gil\n                Antonio Alonso Ayuso\n            \n            \n            2026-2027\n\n        \n        \n        \n        \n            \n            \n            \n                Copyright © 2026 Víctor Aceña Gil, Antonio Alonso Ayuso. Esta obra está licenciada bajo CC BY-SA 4.0, Creative Commons Atribución-Compartir Igual 4.0 Internacional.\n            \n        \n        \n        \n        \n            \n            \n            \n        \n        \n        \n            MATERIAL DOCENTE EN ABIERTO · UNIVERSIDAD REY JUAN CARLOS · JUNIO 2026\n        \n    \n\n\n\n\n\n\nIntroducción\nEste cuaderno recopila los enunciados de los ejercicios propuestos para la asignatura Optimización y Análisis de Redes para el Grado en Matemáticas.\nEl objetivo es que los alumnos trabajen en la formulación matemática y resolución manual o algorítmica de los distintos problemas antes de revisar el cuaderno de soluciones.",
+    "crumbs": [
+      "Introducción"
+    ]
+  },
+  {
+    "objectID": "tema1_intro_ejercicios.html",
+    "href": "tema1_intro_ejercicios.html",
+    "title": "1  Ejercicios del Tema 1: Introducción a la investigación operativa",
+    "section": "",
+    "text": "1.1 Ejercicio 1: modelado, ciclo de vida e historia",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ejercicios del Tema 1: Introducción a la investigación operativa</span>"
+    ]
+  },
+  {
+    "objectID": "tema1_intro_ejercicios.html#ejercicio-1-modelado-ciclo-de-vida-e-historia",
+    "href": "tema1_intro_ejercicios.html#ejercicio-1-modelado-ciclo-de-vida-e-historia",
+    "title": "1  Ejercicios del Tema 1: Introducción a la investigación operativa",
+    "section": "",
+    "text": "El circo de Blackett: Durante la Segunda Guerra Mundial, el grupo de investigación operativa liderado por Patrick Blackett analizó el tamaño óptimo de los convoyes de barcos mercantes escoltados que cruzaban el Atlántico. Explique el razonamiento matemático y operativo detrás de este problema: ¿por qué los convoyes más grandes resultaban ser más seguros frente a los ataques de submarinos enemigos (U-Boote)? Justifique la relación entre el perímetro del convoy (zona expuesta a ataques) y su área (capacidad de transporte).\nPropósitos de modelización: En el contexto del diseño y gestión de una red de distribución eléctrica nacional:\n\nDé un ejemplo de modelo físico/icónico.\nDé un ejemplo de modelo descriptivo.\nDé un ejemplo de modelo predictivo.\nDé un ejemplo de modelo prescriptivo.\n\nCiclo de vida en logística: Una gran cadena de supermercados desea optimizar las rutas de reparto de su flota de camiones para minimizar el consumo de combustible. Describa brevemente qué acciones específicas se llevarían a cabo en cada una de las 4 fases del ciclo de vida del modelado matemático (Observación, Formulación, Validación e Implementación).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ejercicios del Tema 1: Introducción a la investigación operativa</span>"
+    ]
+  },
+  {
+    "objectID": "tema1_intro_ejercicios.html#ejercicio-2-formulación-matemática-y-clasificación-de-modelos",
+    "href": "tema1_intro_ejercicios.html#ejercicio-2-formulación-matemática-y-clasificación-de-modelos",
+    "title": "1  Ejercicios del Tema 1: Introducción a la investigación operativa",
+    "section": "1.2 Ejercicio 2: formulación matemática y clasificación de modelos",
+    "text": "1.2 Ejercicio 2: formulación matemática y clasificación de modelos\nUna microcervecería artesanal produce dos tipos de cerveza: una IPA (India Pale Ale) y una Stout. Para la elaboración de cada hectolitro (hl) se consumen recursos limitados según la siguiente tabla:\n\n\n\nCerveza\nMalta (kg)\nLúpulo (kg)\nTiempo fermentación (días)\n\n\n\n\nIPA\n15\n4\n2\n\n\nStout\n20\n2\n3\n\n\nDisponibilidad\n300 kg\n50 kg\n45 días-fermentador\n\n\n\nEl beneficio neto de la venta de un hectolitro de IPA es de \\(150\\) € y el de Stout es de \\(120\\) €.\nSe pide:\n\nFormulación lineal: Plantear el modelo de optimización matemática para maximizar el beneficio neto de la microcervecería. Defina con precisión las variables de decisión, la función objetivo y todas las restricciones operativas. Clasifique este modelo según los criterios tradicionales de optimización.\nFormulación no lineal con descuento por volumen: Suponga ahora que el mercado es sensible a la cantidad producida, de modo que el precio unitario del hectolitro disminuye linealmente según la producción total debido a promociones y descuentos. La función de beneficio total pasa a ser no lineal:\n\nIPA: el beneficio unitario es \\(150 - 2x_1\\) € por hectolitro, donde \\(x_1\\) es la cantidad de IPA producida.\nStout: el beneficio unitario es \\(120 - 3x_2\\) € por hectolitro, donde \\(x_2\\) es la cantidad de Stout producida.\n\nFormule el nuevo problema de optimización para maximizar el beneficio total y clasifíquelo nuevamente según su linealidad.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ejercicios del Tema 1: Introducción a la investigación operativa</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html",
+    "href": "tema2_opt_no_lineal_ejercicios.html",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "",
+    "text": "2.1 Ejercicio 1: duopolio de Cournot con costes cuadráticos\nDos empresas competidoras, Empresa 1 y Empresa 2, producen un bien de consumo homogéneo. La función de demanda inversa de mercado viene dada por: \\[ P(Q) = 20 - Q \\] donde \\(Q = Q_1 + Q_2\\) es la producción total acumulada en el mercado. Las funciones de coste total de cada empresa son cuadráticas y se definen como: \\[ C_1(Q_1) = 2Q_1 + \\frac{1}{2}Q_1^2 \\qquad \\text{y} \\qquad C_2(Q_2) = 3Q_2 + Q_2^2 \\] Las producciones están limitadas físicamente por capacidades máximas: \\(Q_1 \\le 8\\) y \\(Q_2 \\le 6\\), y no pueden ser negativas.\nSe pide:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html#ejercicio-1-duopolio-de-cournot-con-costes-cuadráticos",
+    "href": "tema2_opt_no_lineal_ejercicios.html#ejercicio-1-duopolio-de-cournot-con-costes-cuadráticos",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "",
+    "text": "Formular el problema de optimización individual de cada empresa para maximizar sus beneficios, determinando sus funciones de reacción o mejor respuesta \\(Q_1^*(Q_2)\\) y \\(Q_2^*(Q_1)\\).\nCalcular analíticamente el equilibrio de Cournot-Nash del mercado (el punto donde ambas decisiones son óptimas simultáneamente).\nAnalizar la convexidad de las funciones de beneficio de cada empresa y discutir si el problema de optimización resultante es convexo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html#ejercicio-2-caracterización-de-curvatura-y-convexidad",
+    "href": "tema2_opt_no_lineal_ejercicios.html#ejercicio-2-caracterización-de-curvatura-y-convexidad",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "2.2 Ejercicio 2: caracterización de curvatura y convexidad",
+    "text": "2.2 Ejercicio 2: caracterización de curvatura y convexidad\nAnalizar la convexidad de las siguientes funciones en sus respectivos dominios utilizando el análisis de la matriz hessiana, calculando sus menores principales o sus autovalores:\n\n\\(f(x, y) = e^{x^2 + y^2}\\) definida en \\(\\mathbb{R}^2\\).\n\\(f(x, y) = 2x^2 - 4xy + y^4\\) definida en \\(\\mathbb{R}^2\\).\n\\(f(x, y) = -\\ln(x) - \\ln(y)\\) definida en el dominio de valores estrictamente positivos \\(\\mathbb{R}^2_{++} = \\{(x, y) \\in \\mathbb{R}^2 \\mid x &gt; 0, y &gt; 0\\}\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html#ejercicio-3-clasificación-de-puntos-estacionarios",
+    "href": "tema2_opt_no_lineal_ejercicios.html#ejercicio-3-clasificación-de-puntos-estacionarios",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "2.3 Ejercicio 3: clasificación de puntos estacionarios",
+    "text": "2.3 Ejercicio 3: clasificación de puntos estacionarios\nConsiderar la siguiente función real de dos variables: \\[ f(x, y) = x^3 + y^3 - 3x - 12y + 20 \\]\nSe pide:\n\nEncontrar todos los puntos críticos o estacionarios de la función aplicando las condiciones de primer orden (FONC).\nClasificar cada uno de los puntos estacionarios hallados utilizando el criterio de la matriz hessiana y las condiciones de segundo orden (SOSC).\nDeterminar razonadamente si la función posee algún mínimo global o máximo global sobre todo el dominio \\(\\mathbb{R}^2\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html#ejercicio-4-trazado-de-búsqueda-áurea-y-newton-1d",
+    "href": "tema2_opt_no_lineal_ejercicios.html#ejercicio-4-trazado-de-búsqueda-áurea-y-newton-1d",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "2.4 Ejercicio 4: trazado de búsqueda áurea y Newton 1D",
+    "text": "2.4 Ejercicio 4: trazado de búsqueda áurea y Newton 1D\nSe desea encontrar el mínimo global de la función real: \\[ f(x) = x \\ln(x) - 1.5x \\] en el intervalo acotado \\([1, 3]\\). Se sabe que el mínimo analítico exacto se encuentra en \\(x^* = e^{0.5} \\approx 1.6487\\).\nSe pide:\n\nRealizar de forma manual el Paso 1 del método de la Sección Áurea para una tolerancia \\(\\epsilon = 0.5\\) (utilizar \\(\\alpha \\approx 1.61803\\)). Detallar la amplitud inicial, la posición de los puntos de evaluación \\(\\lambda_0, \\mu_0\\), sus correspondientes valores de función y el descarte de intervalo.\nRealizar de forma manual el Paso 1 del Método de Newton 1D partiendo de la aproximación inicial \\(x_0 = 1.0\\). Mostrar detalladamente las ecuaciones de la primera y segunda derivada de la función, su evaluación en \\(x_0\\) y el cálculo del siguiente punto \\(x_1\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html#ejercicio-5-coordenadas-cíclicas-optimización-por-direcciones-ortogonales",
+    "href": "tema2_opt_no_lineal_ejercicios.html#ejercicio-5-coordenadas-cíclicas-optimización-por-direcciones-ortogonales",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "2.5 Ejercicio 5: coordenadas cíclicas: optimización por direcciones ortogonales",
+    "text": "2.5 Ejercicio 5: coordenadas cíclicas: optimización por direcciones ortogonales\nDada la función cuadrática de dos variables con acoplamiento: \\[ f(x, y) = 3x^2 + 2xy + y^2 - 4x - 2y \\]\nSe pide realizar la optimización local libre partiendo de la solución inicial \\(x_0 = (0, 0)^T\\) aplicando el Método de coordenadas cíclicas:\n\nOptimizar respecto a la variable \\(x\\) (fijando \\(y = 0\\)) mediante una búsqueda unidimensional exacta para hallar el punto intermedio \\(x_1\\).\nOptimizar respecto a la variable \\(y\\) (fijando \\(x = x_1\\)) mediante una búsqueda lineal exacta para determinar el siguiente iterado \\(x_2\\).\nAnalizar si la convergencia en este método es directa (en un solo ciclo) o dibuja una trayectoria en escalera, justificándolo según el acoplamiento de la matriz hessiana.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html#ejercicio-6-máximo-descenso-invarianza-ortogonal-y-trazado",
+    "href": "tema2_opt_no_lineal_ejercicios.html#ejercicio-6-máximo-descenso-invarianza-ortogonal-y-trazado",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "2.6 Ejercicio 6: máximo descenso: invarianza ortogonal y trazado",
+    "text": "2.6 Ejercicio 6: máximo descenso: invarianza ortogonal y trazado\nMinimizar la misma función cuadrática: \\[ f(x, y) = 3x^2 + 2xy + y^2 - 4x - 2y \\] partiendo desde \\(x_0 = (0, 0)^T\\) utilizando el método del Máximo descenso con búsqueda de tamaño de paso exacta.\nSe pide:\n\nCalcular el gradiente analítico de la función y determinar la dirección inicial de búsqueda \\(d_0\\).\nPlantear la función unidimensional de paso \\(\\phi(\\alpha) = f(x_0 + \\alpha d_0)\\) y resolver analíticamente la optimización del tamaño de paso \\(\\alpha_0 = \\arg\\min_{\\alpha &gt; 0} \\phi(\\alpha)\\). Calcular el siguiente punto iterado \\(x_1 = x_0 + \\alpha_0 d_0\\).\nCalcular la dirección de búsqueda en el siguiente paso (\\(d_1 = -\\nabla f(x_1)\\)) y demostrar analíticamente que \\(d_0\\) y \\(d_1\\) son ortogonales (\\(d_0^T d_1 = 0\\)), verificando el Teorema de Ortogonalidad Sucesiva.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  },
+  {
+    "objectID": "tema2_opt_no_lineal_ejercicios.html#ejercicio-7-newton-multivariante-convergencia-cuadrática",
+    "href": "tema2_opt_no_lineal_ejercicios.html#ejercicio-7-newton-multivariante-convergencia-cuadrática",
+    "title": "2  Ejercicios del Tema 2: optimización no lineal y métodos numéricos",
+    "section": "2.7 Ejercicio 7: Newton multivariante: convergencia cuadrática",
+    "text": "2.7 Ejercicio 7: Newton multivariante: convergencia cuadrática\nDada la función cuadrática: \\[ f(x, y) = 3x^2 + 2xy + y^2 - 4x - 2y \\]\nSe pide aplicar el método de Newton multivariante libre partiendo del punto de búsqueda inicial \\(x_0 = (0, 0)^T\\):\n\nCalcular el vector gradiente \\(\\nabla f(x_0)\\) y la matriz hessiana \\(H = \\nabla^2 f(x_0)\\).\nCalcular analíticamente la matriz inversa de la hessiana \\(H^{-1}\\).\nRealizar la actualización de Newton \\(x_1 = x_0 - H^{-1} \\nabla f(x_0)\\). Comprobar que se alcanza el mínimo analítico exacto de la función en una única iteración y explicar razonadamente por qué se da este fenómeno.\nConsidere ahora una función no cuadrática dada por: \\[ g(x, y) = e^x - x + y^2 \\] Partiendo del punto inicial \\(x_0 = (1, 1)^T\\), calcule la primera iteración de Newton multivariante \\(x_1\\). Determine si \\(x_1\\) es el óptimo analítico de la función y discuta cómo difiere la convergencia del método en funciones no cuadráticas.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Ejercicios del Tema 2: optimización no lineal y métodos numéricos</span>"
+    ]
+  }
+]

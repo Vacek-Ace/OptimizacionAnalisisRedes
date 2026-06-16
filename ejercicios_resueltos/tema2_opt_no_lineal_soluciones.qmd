@@ -65,6 +65,7 @@ El precio de mercado resultante es:
 $$ P^* = 20 - (5 + 3) = 12 \text{ u.m.} $$
 
 Los beneficios en el equilibrio de Nash de cada empresa son:
+
 *   Empresa 1: $B_1^* = 12 \cdot 5 - 2 \cdot 5 - 0.5 \cdot 5^2 = 60 - 10 - 12.5 = 37.5$ u.m.
 *   Empresa 2: $B_2^* = 12 \cdot 3 - 3 \cdot 3 - 3^2 = 36 - 9 - 9 = 18$ u.m.
 
@@ -278,8 +279,9 @@ Determinar razonadamente si la función posee algún mínimo global o máximo gl
 **Resolución matemática:**
 
 La función **no posee óptimos globales** sobre $\mathbb{R}^2$ por falta de acotación:
-*   Si fijamos $y = 0$ y hacemos tender $x \to +\infty$: $\lim_{x\to+\infty} f(x, 0) = \lim_{x\to+\infty} (x^3 - 3x + 20) = +\infty$.
-*   Si fijamos $y = 0$ y hacemos tender $x \to -\infty$: $\lim_{x\to-\infty} f(x, 0) = \lim_{x\to-\infty} (x^3 - 3x + 20) = -\infty$.
+
+-   Si fijamos $y = 0$ y hacemos tender $x \to +\infty$: $\lim_{x\to+\infty} f(x, 0) = \lim_{x\to+\infty} (x^3 - 3x + 20) = +\infty$.
+-   Si fijamos $y = 0$ y hacemos tender $x \to -\infty$: $\lim_{x\to-\infty} f(x, 0) = \lim_{x\to-\infty} (x^3 - 3x + 20) = -\infty$.
 
 Dado que la función no está acotada superior ni inferiormente en $\mathbb{R}^2$, los mínimos y máximos locales hallados no pueden extender su validez de manera global.
 

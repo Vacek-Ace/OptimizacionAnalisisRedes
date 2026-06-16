@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Ejercicios Resueltos del Tema 2: optimización no lineal y métodos numéricos – Ejercicios Resueltos de Optimización y Análisis de Redes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./tema1_intro_soluciones.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../estilos_html.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tema2_opt_no_lineal_soluciones.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ejercicios Resueltos del Tema 2: optimización no lineal y métodos numéricos</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Ejercicios Resueltos de Optimización y Análisis de Redes</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tema1_intro_soluciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Soluciones del Tema 1: Introducción a la investigación operativa</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tema2_opt_no_lineal_soluciones.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ejercicios Resueltos del Tema 2: optimización no lineal y métodos numéricos</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#ejercicio-1-duopolio-de-cournot-con-costes-cuadráticos" id="toc-ejercicio-1-duopolio-de-cournot-con-costes-cuadráticos" class="nav-link active" data-scroll-target="#ejercicio-1-duopolio-de-cournot-con-costes-cuadráticos"><span class="header-section-number">2.1</span> Ejercicio 1: duopolio de Cournot con costes cuadráticos</a>
+  <ul class="collapse">
+  <li><a href="#apartado-1-formulación-del-problema-y-funciones-de-reacción" id="toc-apartado-1-formulación-del-problema-y-funciones-de-reacción" class="nav-link" data-scroll-target="#apartado-1-formulación-del-problema-y-funciones-de-reacción"><span class="header-section-number">2.1.1</span> Apartado 1: Formulación del problema y funciones de reacción</a></li>
+  <li><a href="#apartado-2-equilibrio-de-cournot-nash" id="toc-apartado-2-equilibrio-de-cournot-nash" class="nav-link" data-scroll-target="#apartado-2-equilibrio-de-cournot-nash"><span class="header-section-number">2.1.2</span> Apartado 2: Equilibrio de Cournot-Nash</a></li>
+  <li><a href="#apartado-3-análisis-de-la-convexidad-del-beneficio" id="toc-apartado-3-análisis-de-la-convexidad-del-beneficio" class="nav-link" data-scroll-target="#apartado-3-análisis-de-la-convexidad-del-beneficio"><span class="header-section-number">2.1.3</span> Apartado 3: Análisis de la convexidad del beneficio</a></li>
+  </ul></li>
+  <li><a href="#ejercicio-2-caracterización-de-curvatura-y-convexidad" id="toc-ejercicio-2-caracterización-de-curvatura-y-convexidad" class="nav-link" data-scroll-target="#ejercicio-2-caracterización-de-curvatura-y-convexidad"><span class="header-section-number">2.2</span> Ejercicio 2: caracterización de curvatura y convexidad</a>
+  <ul class="collapse">
+  <li><a href="#apartado-1-convexidad-de-fx-y-ex2-y2" id="toc-apartado-1-convexidad-de-fx-y-ex2-y2" class="nav-link" data-scroll-target="#apartado-1-convexidad-de-fx-y-ex2-y2"><span class="header-section-number">2.2.1</span> Apartado 1: Convexidad de <span class="math inline">\(f(x, y) = e^{x^2 + y^2}\)</span></a></li>
+  <li><a href="#apartado-2-convexidad-de-fx-y-2x2---4xy-y4" id="toc-apartado-2-convexidad-de-fx-y-2x2---4xy-y4" class="nav-link" data-scroll-target="#apartado-2-convexidad-de-fx-y-2x2---4xy-y4"><span class="header-section-number">2.2.2</span> Apartado 2: Convexidad de <span class="math inline">\(f(x, y) = 2x^2 - 4xy + y^4\)</span></a></li>
+  <li><a href="#apartado-3-convexidad-de-fx-y--lnx---lny" id="toc-apartado-3-convexidad-de-fx-y--lnx---lny" class="nav-link" data-scroll-target="#apartado-3-convexidad-de-fx-y--lnx---lny"><span class="header-section-number">2.2.3</span> Apartado 3: Convexidad de <span class="math inline">\(f(x, y) = -\ln(x) - \ln(y)\)</span></a></li>
+  </ul></li>
+  <li><a href="#ejercicio-3-clasificación-de-puntos-estacionarios" id="toc-ejercicio-3-clasificación-de-puntos-estacionarios" class="nav-link" data-scroll-target="#ejercicio-3-clasificación-de-puntos-estacionarios"><span class="header-section-number">2.3</span> Ejercicio 3: clasificación de puntos estacionarios</a>
+  <ul class="collapse">
+  <li><a href="#apartado-1-localización-de-puntos-críticos" id="toc-apartado-1-localización-de-puntos-críticos" class="nav-link" data-scroll-target="#apartado-1-localización-de-puntos-críticos"><span class="header-section-number">2.3.1</span> Apartado 1: Localización de puntos críticos</a></li>
+  <li><a href="#apartado-2-clasificación-de-puntos-críticos" id="toc-apartado-2-clasificación-de-puntos-críticos" class="nav-link" data-scroll-target="#apartado-2-clasificación-de-puntos-críticos"><span class="header-section-number">2.3.2</span> Apartado 2: Clasificación de puntos críticos</a></li>
+  <li><a href="#apartado-3-análisis-de-óptimos-globales" id="toc-apartado-3-análisis-de-óptimos-globales" class="nav-link" data-scroll-target="#apartado-3-análisis-de-óptimos-globales"><span class="header-section-number">2.3.3</span> Apartado 3: Análisis de óptimos globales</a></li>
+  </ul></li>
+  <li><a href="#ejercicio-4-trazado-de-búsqueda-áurea-y-newton-1d" id="toc-ejercicio-4-trazado-de-búsqueda-áurea-y-newton-1d" class="nav-link" data-scroll-target="#ejercicio-4-trazado-de-búsqueda-áurea-y-newton-1d"><span class="header-section-number">2.4</span> Ejercicio 4: trazado de búsqueda áurea y Newton 1D</a>
+  <ul class="collapse">
+  <li><a href="#apartado-1-paso-1-del-método-de-la-sección-áurea" id="toc-apartado-1-paso-1-del-método-de-la-sección-áurea" class="nav-link" data-scroll-target="#apartado-1-paso-1-del-método-de-la-sección-áurea"><span class="header-section-number">2.4.1</span> Apartado 1: Paso 1 del método de la sección áurea</a></li>
+  <li><a href="#apartado-2-paso-1-del-método-de-newton-1d" id="toc-apartado-2-paso-1-del-método-de-newton-1d" class="nav-link" data-scroll-target="#apartado-2-paso-1-del-método-de-newton-1d"><span class="header-section-number">2.4.2</span> Apartado 2: Paso 1 del método de Newton 1D</a></li>
+  </ul></li>
+  <li><a href="#ejercicio-5-coordenadas-cíclicas-optimización-por-direcciones-ortogonales" id="toc-ejercicio-5-coordenadas-cíclicas-optimización-por-direcciones-ortogonales" class="nav-link" data-scroll-target="#ejercicio-5-coordenadas-cíclicas-optimización-por-direcciones-ortogonales"><span class="header-section-number">2.5</span> Ejercicio 5: coordenadas cíclicas: optimización por direcciones ortogonales</a>
+  <ul class="collapse">
+  <li><a href="#apartado-1-búsqueda-lineal-en-la-variable-x" id="toc-apartado-1-búsqueda-lineal-en-la-variable-x" class="nav-link" data-scroll-target="#apartado-1-búsqueda-lineal-en-la-variable-x"><span class="header-section-number">2.5.1</span> Apartado 1: Búsqueda lineal en la variable <span class="math inline">\(x\)</span></a></li>
+  <li><a href="#apartado-2-búsqueda-lineal-en-la-variable-y" id="toc-apartado-2-búsqueda-lineal-en-la-variable-y" class="nav-link" data-scroll-target="#apartado-2-búsqueda-lineal-en-la-variable-y"><span class="header-section-number">2.5.2</span> Apartado 2: Búsqueda lineal en la variable <span class="math inline">\(y\)</span></a></li>
+  <li><a href="#apartado-3-análisis-de-convergencia-y-acoplamiento" id="toc-apartado-3-análisis-de-convergencia-y-acoplamiento" class="nav-link" data-scroll-target="#apartado-3-análisis-de-convergencia-y-acoplamiento"><span class="header-section-number">2.5.3</span> Apartado 3: Análisis de convergencia y acoplamiento</a></li>
+  </ul></li>
+  <li><a href="#ejercicio-6-máximo-descenso-invarianza-ortogonal-y-trazado" id="toc-ejercicio-6-máximo-descenso-invarianza-ortogonal-y-trazado" class="nav-link" data-scroll-target="#ejercicio-6-máximo-descenso-invarianza-ortogonal-y-trazado"><span class="header-section-number">2.6</span> Ejercicio 6: máximo descenso: invarianza ortogonal y trazado</a>
+  <ul class="collapse">
+  <li><a href="#apartado-1-gradiente-y-dirección-de-búsqueda-inicial" id="toc-apartado-1-gradiente-y-dirección-de-búsqueda-inicial" class="nav-link" data-scroll-target="#apartado-1-gradiente-y-dirección-de-búsqueda-inicial"><span class="header-section-number">2.6.1</span> Apartado 1: Gradiente y dirección de búsqueda inicial</a></li>
+  <li><a href="#apartado-2-búsqueda-lineal-exacta-y-actualización-de-puntos" id="toc-apartado-2-búsqueda-lineal-exacta-y-actualización-de-puntos" class="nav-link" data-scroll-target="#apartado-2-búsqueda-lineal-exacta-y-actualización-de-puntos"><span class="header-section-number">2.6.2</span> Apartado 2: Búsqueda lineal exacta y actualización de puntos</a></li>
+  <li><a href="#apartado-3-verificación-del-teorema-de-ortogonalidad" id="toc-apartado-3-verificación-del-teorema-de-ortogonalidad" class="nav-link" data-scroll-target="#apartado-3-verificación-del-teorema-de-ortogonalidad"><span class="header-section-number">2.6.3</span> Apartado 3: Verificación del Teorema de Ortogonalidad</a></li>
+  </ul></li>
+  <li><a href="#ejercicio-7-newton-multivariante-convergencia-cuadrática" id="toc-ejercicio-7-newton-multivariante-convergencia-cuadrática" class="nav-link" data-scroll-target="#ejercicio-7-newton-multivariante-convergencia-cuadrática"><span class="header-section-number">2.7</span> Ejercicio 7: Newton multivariante: convergencia cuadrática</a>
+  <ul class="collapse">
+  <li><a href="#apartado-1-gradiente-y-hessiana-iniciales" id="toc-apartado-1-gradiente-y-hessiana-iniciales" class="nav-link" data-scroll-target="#apartado-1-gradiente-y-hessiana-iniciales"><span class="header-section-number">2.7.1</span> Apartado 1: Gradiente y Hessiana iniciales</a></li>
+  <li><a href="#apartado-2-cálculo-de-la-inversa-de-la-hessiana" id="toc-apartado-2-cálculo-de-la-inversa-de-la-hessiana" class="nav-link" data-scroll-target="#apartado-2-cálculo-de-la-inversa-de-la-hessiana"><span class="header-section-number">2.7.2</span> Apartado 2: Cálculo de la inversa de la Hessiana</a></li>
+  <li><a href="#apartado-3-actualización-e-interpretación-física-de-la-convergencia" id="toc-apartado-3-actualización-e-interpretación-física-de-la-convergencia" class="nav-link" data-scroll-target="#apartado-3-actualización-e-interpretación-física-de-la-convergencia"><span class="header-section-number">2.7.3</span> Apartado 3: Actualización e interpretación física de la convergencia</a></li>
+  <li><a href="#apartado-4-newton-multivariante-en-funciones-no-cuadráticas" id="toc-apartado-4-newton-multivariante-en-funciones-no-cuadráticas" class="nav-link" data-scroll-target="#apartado-4-newton-multivariante-en-funciones-no-cuadráticas"><span class="header-section-number">2.7.4</span> Apartado 4: Newton multivariante en funciones no cuadráticas</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<div class="portada">
+    <div class="portada-container">
+        <!-- Header -->
+        <div class="portada-header">
+            <img src="../images/URJClogo.png" alt="Logo URJC" class="portada-logo">
+            
+            <div class="portada-escuela">
+                Escuela Técnica Superior de<br>
+                Ingeniería Informática
+            </div>
+        </div>
+        
+        <!-- Contenido principal -->
+        <div class="portada-main">
+            <h1 class="portada-titulo">
+                Optimización y Análisis de Redes
+            </h1>
+            
+            <h2 class="portada-subtitulo anchored">
+                Ejercicios Resueltos
+            </h2>
+            
+            <div class="portada-grado">
+                Grado en Matemáticas
+            </div>
+            
+            <div class="portada-autores-section">
+                <div class="portada-autores-titulo">Autores</div>
+                <div class="portada-autor">Víctor Aceña Gil</div>
+                <div class="portada-autor">Antonio Alonso Ayuso</div>
+            </div>
+            
+            <div class="portada-fecha">2026-2027</div>
+
+        </div>
+        
+        <!-- Footer -->
+        <div class="portada-footer">
+            <img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Licencia Creative Commons" class="portada-licencia-logo">
+            
+            <div class="portada-licencia-texto">
+                Copyright © 2026 Víctor Aceña Gil, Antonio Alonso Ayuso. Esta obra está licenciada bajo CC BY-SA 4.0, Creative Commons Atribución-Compartir Igual 4.0 Internacional.
+            </div>
+        </div>
+        
+        <!-- Elementos decorativos -->
+        <div class="portada-deco-lines">
+            <div class="portada-deco-line"></div>
+            <div class="portada-deco-line"></div>
+            <div class="portada-deco-line"></div>
+        </div>
+        <!-- TEXTO VERTICAL LATERAL -->
+        <div class="portada-info-lateral">
+            <span>MATERIAL DOCENTE EN ABIERTO · UNIVERSIDAD REY JUAN CARLOS · JUNIO 2026</span>
+        </div>
+    </div>
+</div>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ejercicios Resueltos del Tema 2: optimización no lineal y métodos numéricos</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="ejercicio-1-duopolio-de-cournot-con-costes-cuadráticos" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="ejercicio-1-duopolio-de-cournot-con-costes-cuadráticos"><span class="header-section-number">2.1</span> Ejercicio 1: duopolio de Cournot con costes cuadráticos</h2>
+<p>Dos empresas competidoras, Empresa 1 y Empresa 2, producen un bien de consumo homogéneo. La función de demanda inversa de mercado viene dada por: <span class="math display">\[ P(Q) = 20 - Q \]</span> donde <span class="math inline">\(Q = Q_1 + Q_2\)</span> es la producción total acumulada en el mercado. Las funciones de coste total de cada empresa son cuadráticas y se definen como: <span class="math display">\[ C_1(Q_1) = 2Q_1 + \frac{1}{2}Q_1^2 \qquad \text{y} \qquad C_2(Q_2) = 3Q_2 + Q_2^2 \]</span> Las producciones están limitadas físicamente por capacidades máximas: <span class="math inline">\(Q_1 \le 8\)</span> y <span class="math inline">\(Q_2 \le 6\)</span>, y no pueden ser negativas.</p>
+<section id="apartado-1-formulación-del-problema-y-funciones-de-reacción" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="apartado-1-formulación-del-problema-y-funciones-de-reacción"><span class="header-section-number">2.1.1</span> Apartado 1: Formulación del problema y funciones de reacción</h3>
+<p>Formular el problema de optimización individual de cada empresa para maximizar sus beneficios, determinando sus funciones de reacción o mejor respuesta <span class="math inline">\(Q_1^*(Q_2)\)</span> y <span class="math inline">\(Q_2^*(Q_1)\)</span>.</p>
+<details>
+<summary>
+Ver solución del Apartado 1
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Empresa 1</strong>: El beneficio <span class="math inline">\(B_1\)</span> se define como la diferencia entre los ingresos y el coste total: <span class="math display">\[ B_1(Q_1, Q_2) = P(Q_1+Q_2) \cdot Q_1 - C_1(Q_1) \]</span> <span class="math display">\[ B_1(Q_1, Q_2) = (20 - Q_1 - Q_2)Q_1 - \left(2Q_1 + \frac{1}{2}Q_1^2\right) = 18Q_1 - \frac{3}{2}Q_1^2 - Q_1 Q_2 \]</span> Para maximizar, derivamos respecto a <span class="math inline">\(Q_1\)</span> e igualamos a cero (FONC): <span class="math display">\[ \frac{\partial B_1}{\partial Q_1} = 18 - 3Q_1 - Q_2 = 0 \implies 3Q_1 = 18 - Q_2 \implies Q_1^*(Q_2) = 6 - \frac{Q_2}{3} \]</span> Como <span class="math inline">\(Q_2 \ge 0\)</span>, la función de mejor respuesta de la Empresa 1 satisface <span class="math inline">\(Q_1^*(Q_2) \le 6 \le 8\)</span>, por lo que la restricción de capacidad máxima <span class="math inline">\(Q_1 \le 8\)</span> no se satura y se cumple de forma inactiva.</p></li>
+<li><p><strong>Empresa 2</strong>: Su beneficio <span class="math inline">\(B_2\)</span> viene dado por: <span class="math display">\[ B_2(Q_1, Q_2) = P(Q_1+Q_2) \cdot Q_2 - C_2(Q_2) \]</span> <span class="math display">\[ B_2(Q_1, Q_2) = (20 - Q_1 - Q_2)Q_2 - (3Q_2 + Q_2^2) = 17Q_2 - 2Q_2^2 - Q_1 Q_2 \]</span> Derivando respecto a <span class="math inline">\(Q_2\)</span> e igualando a cero (FONC): <span class="math display">\[ \frac{\partial B_2}{\partial Q_2} = 17 - 4Q_2 - Q_1 = 0 \implies 4Q_2 = 17 - Q_1 \implies Q_2^*(Q_1) = 4.25 - \frac{Q_1}{4} \]</span> De nuevo, dado que <span class="math inline">\(Q_1 \ge 0\)</span>, se cumple que <span class="math inline">\(Q_2^*(Q_1) \le 4.25 \le 6\)</span>, por lo que la restricción <span class="math inline">\(Q_2 \le 6\)</span> tampoco se satura.</p></li>
+</ol>
+</details>
+</section>
+<section id="apartado-2-equilibrio-de-cournot-nash" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="apartado-2-equilibrio-de-cournot-nash"><span class="header-section-number">2.1.2</span> Apartado 2: Equilibrio de Cournot-Nash</h3>
+<p>Calcular analíticamente el equilibrio de Cournot-Nash del mercado (el punto donde ambas decisiones son óptimas simultáneamente).</p>
+<details>
+<summary>
+Ver solución del Apartado 2
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>El equilibrio de Cournot-Nash se encuentra resolviendo el sistema lineal de ecuaciones formado por las dos funciones de reacción: <span class="math display">\[
+\begin{cases}
+3Q_1 + Q_2 = 18 \\
+Q_1 + 4Q_2 = 17
+\end{cases}
+\]</span></p>
+<p>Despejando y resolviendo el sistema:</p>
+<ul>
+<li>De la segunda ecuación: <span class="math inline">\(Q_1 = 17 - 4Q_2\)</span>.</li>
+<li>Sustituyendo en la primera: <span class="math display">\[ 3(17 - 4Q_2) + Q_2 = 18 \implies 51 - 12Q_2 + Q_2 = 18 \implies 11Q_2 = 33 \implies Q_2^* = 3 \]</span></li>
+<li>Calculando <span class="math inline">\(Q_1\)</span>: <span class="math display">\[ Q_1^* = 17 - 4(3) = 5 \]</span></li>
+</ul>
+<p>El <strong>equilibrio de Cournot-Nash</strong> es: <span class="math display">\[ (Q_1^*, Q_2^*) = (5, 3) \]</span></p>
+<p>El precio de mercado resultante es: <span class="math display">\[ P^* = 20 - (5 + 3) = 12 \text{ u.m.} \]</span></p>
+<p>Los beneficios en el equilibrio de Nash de cada empresa son:</p>
+<ul>
+<li>Empresa 1: <span class="math inline">\(B_1^* = 12 \cdot 5 - 2 \cdot 5 - 0.5 \cdot 5^2 = 60 - 10 - 12.5 = 37.5\)</span> u.m.</li>
+<li>Empresa 2: <span class="math inline">\(B_2^* = 12 \cdot 3 - 3 \cdot 3 - 3^2 = 36 - 9 - 9 = 18\)</span> u.m.</li>
+</ul>
+</details>
+</section>
+<section id="apartado-3-análisis-de-la-convexidad-del-beneficio" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="apartado-3-análisis-de-la-convexidad-del-beneficio"><span class="header-section-number">2.1.3</span> Apartado 3: Análisis de la convexidad del beneficio</h3>
+<p>Analizar la convexidad de las funciones de beneficio de cada empresa y discutir si el problema de optimización resultante es convexo.</p>
+<details>
+<summary>
+Ver solución del Apartado 3
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Convexidad del problema individual</strong>: El problema de cada empresa es un problema de maximización de beneficios. En el contexto de optimización, un problema de maximización es convexo si la función objetivo es cóncava y el conjunto factible es convexo (lo cual se cumple ya que los intervalos de producción <span class="math inline">\([0, 8]\)</span> y <span class="math inline">\([0, 6]\)</span> son conjuntos convexos). Analicemos la segunda derivada de las funciones de beneficio individuales:</p>
+<ul>
+<li>Empresa 1: <span class="math inline">\(\frac{\partial^2 B_1}{\partial Q_1^2} = -3 &lt; 0\)</span>. Al ser la segunda derivada estrictamente negativa para cualquier punto, <span class="math inline">\(B_1\)</span> es estrictamente cóncava respecto a <span class="math inline">\(Q_1\)</span>.</li>
+<li>Empresa 2: <span class="math inline">\(\frac{\partial^2 B_2}{\partial Q_2^2} = -4 &lt; 0\)</span>. Por tanto, <span class="math inline">\(B_2\)</span> es estrictamente cóncava respecto a <span class="math inline">\(Q_2\)</span>.</li>
+<li><strong>Conclusión</strong>: Ambos problemas de optimización individuales son estrictamente convexos.</li>
+</ul></li>
+<li><p><strong>Verificación del equilibrio en Python</strong>: Podemos validar el cálculo y la concavidad de forma simbólica usando el siguiente script en Python:</p></li>
+</ol>
+<div id="71e28672" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Q1, Q2 <span class="op">=</span> sp.symbols(<span class="st">'Q1 Q2'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>B1 <span class="op">=</span> (<span class="dv">20</span> <span class="op">-</span> Q1 <span class="op">-</span> Q2)<span class="op">*</span>Q1 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>Q1 <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>Q1<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>B2 <span class="op">=</span> (<span class="dv">20</span> <span class="op">-</span> Q1 <span class="op">-</span> Q2)<span class="op">*</span>Q2 <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>Q2 <span class="op">-</span> Q2<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Derivadas parciales de primer orden (FONC)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>dB1 <span class="op">=</span> sp.diff(B1, Q1)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dB2 <span class="op">=</span> sp.diff(B2, Q2)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolver sistema para el equilibrio de Nash</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>eq <span class="op">=</span> sp.solve([dB1, dB2], (Q1, Q2))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Equilibrio de Nash (Q1, Q2):"</span>, eq)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar segundas derivadas (Concavidad)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>d2B1 <span class="op">=</span> sp.diff(B1, Q1, <span class="dv">2</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>d2B2 <span class="op">=</span> sp.diff(B2, Q2, <span class="dv">2</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Segunda derivada B1:"</span>, d2B1)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Segunda derivada B2:"</span>, d2B2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Equilibrio de Nash (Q1, Q2): {Q1: 5.00000000000000, Q2: 3.00000000000000}
+Segunda derivada B1: -3.00000000000000
+Segunda derivada B2: -4</code></pre>
+</div>
+</div>
+</details>
+<hr>
+</section>
+</section>
+<section id="ejercicio-2-caracterización-de-curvatura-y-convexidad" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="ejercicio-2-caracterización-de-curvatura-y-convexidad"><span class="header-section-number">2.2</span> Ejercicio 2: caracterización de curvatura y convexidad</h2>
+<p>Analizar la convexidad de las siguientes funciones en sus respectivos dominios utilizando el análisis de la matriz hessiana, calculando sus menores principales o sus autovalores:</p>
+<section id="apartado-1-convexidad-de-fx-y-ex2-y2" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="apartado-1-convexidad-de-fx-y-ex2-y2"><span class="header-section-number">2.2.1</span> Apartado 1: Convexidad de <span class="math inline">\(f(x, y) = e^{x^2 + y^2}\)</span></h3>
+<details>
+<summary>
+Ver solución del Apartado 1
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Gradiente de primer orden</strong>: <span class="math display">\[ \frac{\partial f}{\partial x} = 2x e^{x^2 + y^2} \qquad \text{y} \qquad \frac{\partial f}{\partial y} = 2y e^{x^2 + y^2} \]</span></p></li>
+<li><p><strong>Matriz hessiana (<span class="math inline">\(H\)</span>)</strong>: Calculando las segundas derivadas: <span class="math display">\[ \frac{\partial^2 f}{\partial x^2} = (2 + 4x^2) e^{x^2 + y^2} \qquad \frac{\partial^2 f}{\partial y^2} = (2 + 4y^2) e^{x^2 + y^2} \]</span> <span class="math display">\[ \frac{\partial^2 f}{\partial x \partial y} = 4xy e^{x^2 + y^2} \]</span> Por lo tanto: <span class="math display">\[ H(x, y) = e^{x^2 + y^2} \begin{pmatrix} 2 + 4x^2 &amp; 4xy \\ 4xy &amp; 2 + 4y^2 \end{pmatrix} \]</span></p></li>
+<li><p><strong>Menores principales</strong>:</p>
+<ul>
+<li><span class="math inline">\(M_1 = e^{x^2 + y^2}(2 + 4x^2) &gt; 0\)</span> (ya que la función exponencial es siempre estrictamente positiva y <span class="math inline">\(2 + 4x^2 \ge 2\)</span>).</li>
+<li><span class="math inline">\(M_2 = \det(H) = e^{2(x^2 + y^2)} \left[ (2 + 4x^2)(2 + 4y^2) - 16x^2y^2 \right]\)</span> <span class="math display">\[ M_2 = e^{2(x^2 + y^2)} \left[ 4 + 8x^2 + 8y^2 + 16x^2y^2 - 16x^2y^2 \right] = e^{2(x^2 + y^2)} \left[ 4 + 8x^2 + 8y^2 \right] &gt; 0 \]</span></li>
+<li><strong>Conclusión</strong>: Dado que todos los menores principales son estrictamente positivos para cualquier <span class="math inline">\((x, y) \in \mathbb{R}^2\)</span>, la matriz hessiana es definida positiva (<span class="math inline">\(H \succ 0\)</span>). Por tanto, la función es <strong>estrictamente convexa</strong> en todo su dominio <span class="math inline">\(\mathbb{R}^2\)</span>.</li>
+</ul></li>
+</ol>
+</details>
+</section>
+<section id="apartado-2-convexidad-de-fx-y-2x2---4xy-y4" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="apartado-2-convexidad-de-fx-y-2x2---4xy-y4"><span class="header-section-number">2.2.2</span> Apartado 2: Convexidad de <span class="math inline">\(f(x, y) = 2x^2 - 4xy + y^4\)</span></h3>
+<details>
+<summary>
+Ver solución del Apartado 2
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Gradiente</strong>: <span class="math display">\[ \frac{\partial f}{\partial x} = 4x - 4y \qquad \text{y} \qquad \frac{\partial f}{\partial y} = -4x + 4y^3 \]</span></p></li>
+<li><p><strong>Matriz hessiana (<span class="math inline">\(H\)</span>)</strong>: <span class="math display">\[ H(x, y) = \begin{pmatrix} 4 &amp; -4 \\ -4 &amp; 12y^2 \end{pmatrix} \]</span></p></li>
+<li><p><strong>Menores principales</strong>:</p>
+<ul>
+<li><p><span class="math inline">\(M_1 = 4 &gt; 0\)</span>.</p></li>
+<li><p><span class="math inline">\(M_2 = \det(H) = 48y^2 - 16 = 16(3y^2 - 1)\)</span>.</p></li>
+<li><p><strong>Análisis</strong>: Para que la función sea convexa en su dominio, la hessiana debe ser semidefinida positiva para todo <span class="math inline">\((x,y) \in \mathbb{R}^2\)</span>. Sin embargo, vemos que <span class="math inline">\(M_2\)</span> depende del valor de la variable <span class="math inline">\(y\)</span>:</p></li>
+<li><p>Si <span class="math inline">\(3y^2 - 1 &lt; 0 \implies |y| &lt; \frac{1}{\sqrt{3}}\)</span>, entonces <span class="math inline">\(M_2 &lt; 0\)</span>. Al ser el determinante negativo, la matriz es indefinida.</p></li>
+<li><p><strong>Conclusión</strong>: La función <strong>no es convexa en todo el dominio <span class="math inline">\(\mathbb{R}^2\)</span></strong> (únicamente exhibe convexidad local en el espacio donde se satisface <span class="math inline">\(|y| \ge \frac{1}{\sqrt{3}}\)</span>).</p></li>
+</ul></li>
+</ol>
+</details>
+</section>
+<section id="apartado-3-convexidad-de-fx-y--lnx---lny" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="apartado-3-convexidad-de-fx-y--lnx---lny"><span class="header-section-number">2.2.3</span> Apartado 3: Convexidad de <span class="math inline">\(f(x, y) = -\ln(x) - \ln(y)\)</span></h3>
+<details>
+<summary>
+Ver solución del Apartado 3
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><strong>Gradiente</strong>: <span class="math display">\[ \frac{\partial f}{\partial x} = -\frac{1}{x} \qquad \text{y} \qquad \frac{\partial f}{\partial y} = -\frac{1}{y} \]</span></li>
+<li><strong>Matriz hessiana (<span class="math inline">\(H\)</span>)</strong>: <span class="math display">\[ H(x, y) = \begin{pmatrix} 1/x^2 &amp; 0 \\ 0 &amp; 1/y^2 \end{pmatrix} \]</span></li>
+<li><strong>Menores principales</strong>: En el dominio <span class="math inline">\(\mathbb{R}^2_{++}\)</span> se tiene que:
+<ul>
+<li><span class="math inline">\(M_1 = \frac{1}{x^2} &gt; 0\)</span> (ya que <span class="math inline">\(x &gt; 0\)</span>).</li>
+<li><span class="math inline">\(M_2 = \det(H) = \frac{1}{x^2 y^2} &gt; 0\)</span> (ya que <span class="math inline">\(x, y &gt; 0\)</span>).</li>
+<li><strong>Conclusión</strong>: Al ser los menores principales estrictamente positivos en todo el dominio de definición de la función, la hessiana es definida positiva (<span class="math inline">\(H \succ 0\)</span>) y la función es <strong>estrictamente convexa</strong> en <span class="math inline">\(\mathbb{R}^2_{++}\)</span>.</li>
+</ul></li>
+<li><strong>Validación en Python (SymPy)</strong>:</li>
+</ol>
+<div id="199200e3" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> sp.symbols(<span class="st">'x y'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Caso 2: f(x, y) = 2x^2 - 4xy + y^4</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>x<span class="op">*</span>y <span class="op">+</span> y<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>H2 <span class="op">=</span> sp.hessian(f2, (x, y))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hessiana de f2:</span><span class="ch">\n</span><span class="st">"</span>, H2)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Determinante de H2:"</span>, H2.det())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hessiana de f2:
+ Matrix([[4, -4], [-4, 12*y**2]])
+Determinante de H2: 48*y**2 - 16</code></pre>
+</div>
+</div>
+</details>
+<hr>
+</section>
+</section>
+<section id="ejercicio-3-clasificación-de-puntos-estacionarios" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="ejercicio-3-clasificación-de-puntos-estacionarios"><span class="header-section-number">2.3</span> Ejercicio 3: clasificación de puntos estacionarios</h2>
+<p>Considerar la siguiente función real de dos variables: <span class="math display">\[ f(x, y) = x^3 + y^3 - 3x - 12y + 20 \]</span></p>
+<section id="apartado-1-localización-de-puntos-críticos" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="apartado-1-localización-de-puntos-críticos"><span class="header-section-number">2.3.1</span> Apartado 1: Localización de puntos críticos</h3>
+<p>Encontrar todos los puntos críticos o estacionarios de la función aplicando las condiciones de primer orden (FONC).</p>
+<details>
+<summary>
+Ver solución del Apartado 1
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>Las condiciones necesarias de primer orden (FONC) exigen que el vector gradiente sea nulo: <span class="math display">\[ \nabla f(x, y) = \begin{pmatrix} 3x^2 - 3 \\ 3y^2 - 12 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \]</span></p>
+<p>Esto genera un sistema de dos ecuaciones independientes:</p>
+<ol type="1">
+<li><span class="math inline">\(3x^2 - 3 = 0 \implies x^2 = 1 \implies x = \pm 1\)</span>.</li>
+<li><span class="math inline">\(3y^2 - 12 = 0 \implies y^2 = 4 \implies y = \pm 2\)</span>.</li>
+</ol>
+<p>Combinando todas las soluciones posibles, obtenemos <strong>cuatro puntos críticos</strong>:</p>
+<ul>
+<li><span class="math inline">\(P_1 = (1, 2)\)</span></li>
+<li><span class="math inline">\(P_2 = (1, -2)\)</span></li>
+<li><span class="math inline">\(P_3 = (-1, 2)\)</span></li>
+<li><span class="math inline">\(P_4 = (-1, -2)\)</span></li>
+</ul>
+</details>
+</section>
+<section id="apartado-2-clasificación-de-puntos-críticos" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="apartado-2-clasificación-de-puntos-críticos"><span class="header-section-number">2.3.2</span> Apartado 2: Clasificación de puntos críticos</h3>
+<p>Clasificar cada uno de los puntos estacionarios hallados utilizando el criterio de la matriz hessiana y las condiciones de segundo orden (SOSC).</p>
+<details>
+<summary>
+Ver solución del Apartado 2
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>Calculamos la matriz hessiana general para la función: <span class="math display">\[ H(x, y) = \begin{pmatrix} 6x &amp; 0 \\ 0 &amp; 6y \end{pmatrix} \]</span></p>
+<p>Al ser una matriz diagonal, sus autovalores son directamente los elementos de la diagonal principal: <span class="math inline">\(\lambda_1 = 6x\)</span> y <span class="math inline">\(\lambda_2 = 6y\)</span>. Evaluamos cada uno de los cuatro puntos:</p>
+<ol type="1">
+<li><p><strong>Punto <span class="math inline">\(P_1 = (1, 2)\)</span></strong>: <span class="math display">\[ H(1, 2) = \begin{pmatrix} 6 &amp; 0 \\ 0 &amp; 12 \end{pmatrix} \implies \lambda_1 = 6 &gt; 0, \quad \lambda_2 = 12 &gt; 0 \]</span> Hessiana definida positiva (<span class="math inline">\(H \succ 0\)</span>). Por tanto, <span class="math inline">\(P_1\)</span> es un <strong>mínimo local estricto</strong>. Valor de la función: <span class="math inline">\(f(1, 2) = 1^3 + 2^3 - 3(1) - 12(2) + 20 = 2\)</span>.</p></li>
+<li><p><strong>Punto <span class="math inline">\(P_2 = (1, -2)\)</span></strong>: <span class="math display">\[ H(1, -2) = \begin{pmatrix} 6 &amp; 0 \\ 0 &amp; -12 \end{pmatrix} \implies \lambda_1 = 6 &gt; 0, \quad \lambda_2 = -12 &lt; 0 \]</span> Hessiana indefinida (autovalores de distinto signo). Por tanto, <span class="math inline">\(P_2\)</span> es un <strong>punto de silla</strong>. Valor de la función: <span class="math inline">\(f(1, -2) = 1^3 + (-2)^3 - 3(1) - 12(-2) + 20 = 34\)</span>.</p></li>
+<li><p><strong>Punto <span class="math inline">\(P_3 = (-1, 2)\)</span></strong>: <span class="math display">\[ H(-1, 2) = \begin{pmatrix} -6 &amp; 0 \\ 0 &amp; 12 \end{pmatrix} \implies \lambda_1 = -6 &lt; 0, \quad \lambda_2 = 12 &gt; 0 \]</span> Hessiana indefinida. Por tanto, <span class="math inline">\(P_3\)</span> es un <strong>punto de silla</strong>. Valor de la función: <span class="math inline">\(f(-1, 2) = (-1)^3 + 2^3 - 3(-1) - 12(2) + 20 = 6\)</span>.</p></li>
+<li><p><strong>Punto <span class="math inline">\(P_4 = (-1, -2)\)</span></strong>: <span class="math display">\[ H(-1, -2) = \begin{pmatrix} -6 &amp; 0 \\ 0 &amp; -12 \end{pmatrix} \implies \lambda_1 = -6 &lt; 0, \quad \lambda_2 = -12 &lt; 0 \]</span> Hessiana definida negativa (<span class="math inline">\(H \prec 0\)</span>). Por tanto, <span class="math inline">\(P_4\)</span> es un <strong>máximo local estricto</strong>. Valor de la función: <span class="math inline">\(f(-1, -2) = (-1)^3 + (-2)^3 - 3(-1) - 12(-2) + 20 = 38\)</span>.</p></li>
+</ol>
+</details>
+</section>
+<section id="apartado-3-análisis-de-óptimos-globales" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="apartado-3-análisis-de-óptimos-globales"><span class="header-section-number">2.3.3</span> Apartado 3: Análisis de óptimos globales</h3>
+<p>Determinar razonadamente si la función posee algún mínimo global o máximo global sobre todo el dominio <span class="math inline">\(\mathbb{R}^2\)</span>.</p>
+<details>
+<summary>
+Ver solución del Apartado 3
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>La función <strong>no posee óptimos globales</strong> sobre <span class="math inline">\(\mathbb{R}^2\)</span> por falta de acotación:</p>
+<ul>
+<li>Si fijamos <span class="math inline">\(y = 0\)</span> y hacemos tender <span class="math inline">\(x \to +\infty\)</span>: <span class="math inline">\(\lim_{x\to+\infty} f(x, 0) = \lim_{x\to+\infty} (x^3 - 3x + 20) = +\infty\)</span>.</li>
+<li>Si fijamos <span class="math inline">\(y = 0\)</span> y hacemos tender <span class="math inline">\(x \to -\infty\)</span>: <span class="math inline">\(\lim_{x\to-\infty} f(x, 0) = \lim_{x\to-\infty} (x^3 - 3x + 20) = -\infty\)</span>.</li>
+</ul>
+<p>Dado que la función no está acotada superior ni inferiormente en <span class="math inline">\(\mathbb{R}^2\)</span>, los mínimos y máximos locales hallados no pueden extender su validez de manera global.</p>
+</details>
+<hr>
+</section>
+</section>
+<section id="ejercicio-4-trazado-de-búsqueda-áurea-y-newton-1d" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="ejercicio-4-trazado-de-búsqueda-áurea-y-newton-1d"><span class="header-section-number">2.4</span> Ejercicio 4: trazado de búsqueda áurea y Newton 1D</h2>
+<p>Se desea encontrar el mínimo global de la función real: <span class="math display">\[ f(x) = x \ln(x) - 1.5x \]</span> en el intervalo acotado <span class="math inline">\([1, 3]\)</span>. Se sabe que el mínimo analítico exacto se encuentra en <span class="math inline">\(x^* = e^{0.5} \approx 1.6487\)</span>.</p>
+<section id="apartado-1-paso-1-del-método-de-la-sección-áurea" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="apartado-1-paso-1-del-método-de-la-sección-áurea"><span class="header-section-number">2.4.1</span> Apartado 1: Paso 1 del método de la sección áurea</h3>
+<details>
+<summary>
+Ver solución del Apartado 1
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Amplitud de búsqueda inicial</strong>: El intervalo inicial es <span class="math inline">\([a_0, b_0] = [1, 3]\)</span>. Su amplitud es <span class="math inline">\(b_0 - a_0 = 2.0\)</span>.</p></li>
+<li><p><strong>Amplitud de reducción <span class="math inline">\(I_1\)</span></strong>: Utilizando la razón áurea <span class="math inline">\(\alpha \approx 1.61803\)</span>: <span class="math display">\[ I_1 = \frac{b_0 - a_0}{\alpha} = \frac{2.0}{1.61803} \approx 1.2361 \]</span></p></li>
+<li><p><strong>Puntos de evaluación iniciales</strong>: <span class="math display">\[ \lambda_0 = b_0 - I_1 = 3 - 1.2361 = 1.7639 \]</span> <span class="math display">\[ \mu_0 = a_0 + I_1 = 1 + 1.2361 = 2.2361 \]</span></p></li>
+<li><p><strong>Evaluación de la función</strong>:</p>
+<ul>
+<li><span class="math inline">\(f(\lambda_0) = f(1.7639) = 1.7639 \ln(1.7639) - 1.5(1.7639) \approx -1.6449\)</span></li>
+<li><span class="math inline">\(f(\mu_0) = f(2.2361) = 2.2361 \ln(2.2361) - 1.5(2.2361) \approx -1.5548\)</span></li>
+</ul></li>
+<li><p><strong>Descarte de intervalos</strong>: Como <span class="math inline">\(f(\lambda_0) &lt; f(\mu_0)\)</span> (es decir, <span class="math inline">\(-1.6449 &lt; -1.5548\)</span>), el mínimo no puede encontrarse en el subintervalo <span class="math inline">\([\mu_0, b_0]\)</span>. Por lo tanto, descartamos la porción derecha del dominio. El <strong>nuevo intervalo</strong> para la siguiente iteración es: <span class="math display">\[ [a_1, b_1] = [a_0, \mu_0] = [1.0, 2.2361] \]</span> Su amplitud es <span class="math inline">\(1.2361\)</span>, que resulta mayor que la tolerancia <span class="math inline">\(\epsilon = 0.5\)</span>, por lo que el algoritmo continuaría.</p></li>
+</ol>
+</details>
+</section>
+<section id="apartado-2-paso-1-del-método-de-newton-1d" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="apartado-2-paso-1-del-método-de-newton-1d"><span class="header-section-number">2.4.2</span> Apartado 2: Paso 1 del método de Newton 1D</h3>
+<details>
+<summary>
+Ver solución del Apartado 2
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Ecuaciones de las derivadas</strong>:</p>
+<ul>
+<li>Función: <span class="math inline">\(f(x) = x \ln(x) - 1.5x\)</span></li>
+<li>Primera derivada: <span class="math inline">\(f'(x) = \ln(x) + x \left(\frac{1}{x}\right) - 1.5 = \ln(x) - 0.5\)</span></li>
+<li>Segunda derivada: <span class="math inline">\(f''(x) = \frac{1}{x}\)</span></li>
+</ul></li>
+<li><p><strong>Evaluación en el punto inicial <span class="math inline">\(x_0 = 1.0\)</span></strong>:</p>
+<ul>
+<li><span class="math inline">\(f'(1.0) = \ln(1.0) - 0.5 = -0.5\)</span></li>
+<li><span class="math inline">\(f''(1.0) = \frac{1}{1.0} = 1.0\)</span></li>
+</ul></li>
+<li><p><strong>Actualización de Newton</strong>: <span class="math display">\[ x_1 = x_0 - \frac{f'(x_0)}{f''(x_0)} = 1.0 - \frac{-0.5}{1.0} = 1.5 \]</span></p></li>
+</ol>
+<p>La aproximación <span class="math inline">\(x_1 = 1.5\)</span> se sitúa notablemente cerca del óptimo analítico exacto <span class="math inline">\(x^* \approx 1.6487\)</span> en un único paso debido a que la función objetivo presenta una curvatura muy bien aproximada cuadráticamente en el entorno de <span class="math inline">\(x_0\)</span>.</p>
+</details>
+<hr>
+</section>
+</section>
+<section id="ejercicio-5-coordenadas-cíclicas-optimización-por-direcciones-ortogonales" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="ejercicio-5-coordenadas-cíclicas-optimización-por-direcciones-ortogonales"><span class="header-section-number">2.5</span> Ejercicio 5: coordenadas cíclicas: optimización por direcciones ortogonales</h2>
+<p>Dada la función cuadrática de dos variables con acoplamiento: <span class="math display">\[ f(x, y) = 3x^2 + 2xy + y^2 - 4x - 2y \]</span></p>
+<section id="apartado-1-búsqueda-lineal-en-la-variable-x" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="apartado-1-búsqueda-lineal-en-la-variable-x"><span class="header-section-number">2.5.1</span> Apartado 1: Búsqueda lineal en la variable <span class="math inline">\(x\)</span></h3>
+<details>
+<summary>
+Ver solución del Apartado 1
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>Partimos de <span class="math inline">\(x_0 = (0, 0)^T\)</span>. Optimizamos respecto a la primera dirección coordenada <span class="math inline">\(e_1 = (1, 0)^T\)</span> fijando la variable <span class="math inline">\(y = 0\)</span>: <span class="math display">\[ f(x, 0) = 3x^2 + 2x(0) + (0)^2 - 4x - 2(0) = 3x^2 - 4x \]</span></p>
+<p>Minimizamos esta función de una sola variable derivando e igualando a cero: <span class="math display">\[ \frac{df(x,0)}{dx} = 6x - 4 = 0 \implies x = \frac{4}{6} = \frac{2}{3} \approx 0.6667 \]</span></p>
+<p>El punto resultante al término de la primera búsqueda lineal es: <span class="math display">\[ x_1 = \left(\frac{2}{3}, 0\right)^T \]</span></p>
+</details>
+</section>
+<section id="apartado-2-búsqueda-lineal-en-la-variable-y" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="apartado-2-búsqueda-lineal-en-la-variable-y"><span class="header-section-number">2.5.2</span> Apartado 2: Búsqueda lineal en la variable <span class="math inline">\(y\)</span></h3>
+<details>
+<summary>
+Ver solución del Apartado 2
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>Fijando <span class="math inline">\(x = x_1 = 2/3\)</span>, optimizamos ahora respecto a la segunda dirección coordenada <span class="math inline">\(e_2 = (0, 1)^T\)</span>: <span class="math display">\[ f(2/3, y) = 3\left(\frac{2}{3}\right)^2 + 2\left(\frac{2}{3}\right)y + y^2 - 4\left(\frac{2}{3}\right) - 2y \]</span> <span class="math display">\[ f(2/3, y) = \frac{4}{3} + \frac{4}{3}y + y^2 - \frac{8}{3} - 2y = y^2 - \frac{2}{3}y - \frac{4}{3} \]</span></p>
+<p>Minimizamos derivando respecto a <span class="math inline">\(y\)</span> e igualando a cero: <span class="math display">\[ \frac{df(2/3,y)}{dy} = 2y - \frac{2}{3} = 0 \implies y = \frac{1}{3} \approx 0.3333 \]</span></p>
+<p>El punto resultante al final de la iteración (el primer ciclo de variables) es: <span class="math display">\[ x_2 = \left(\frac{2}{3}, \frac{1}{3}\right)^T \]</span></p>
+</details>
+</section>
+<section id="apartado-3-análisis-de-convergencia-y-acoplamiento" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="apartado-3-análisis-de-convergencia-y-acoplamiento"><span class="header-section-number">2.5.3</span> Apartado 3: Análisis de convergencia y acoplamiento</h3>
+<details>
+<summary>
+Ver solución del Apartado 3
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>Calculemos el óptimo analítico global de la función cuadrática igualando su gradiente a cero: <span class="math display">\[ \nabla f(x, y) = \begin{pmatrix} 6x + 2y - 4 \\ 2x + 2y - 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \]</span></p>
+<p>Resolviendo el sistema:</p>
+<ul>
+<li>De la segunda ecuación: <span class="math inline">\(2x + 2y = 2 \implies x + y = 1 \implies y = 1 - x\)</span>.</li>
+<li>Sustituyendo en la primera: <span class="math display">\[ 6x + 2(1 - x) - 4 = 0 \implies 4x - 2 = 0 \implies x^* = 0.5 \]</span></li>
+<li>Sustituyendo: <span class="math inline">\(y^* = 0.5\)</span>.</li>
+</ul>
+<p>El mínimo analítico es <span class="math inline">\(x^* = (0.5, 0.5)^T\)</span>. Dado que el punto tras un ciclo completo es <span class="math inline">\(x_2 = (2/3, 1/3)^T \neq x^*\)</span>, el método de coordenadas cíclicas <strong>no converge al óptimo de forma directa</strong>.</p>
+<p>Esto se debe a que la matriz hessiana: <span class="math display">\[ H = \begin{pmatrix} 6 &amp; 2 \\ 2 &amp; 2 \end{pmatrix} \]</span> no es una matriz diagonal. El término de acoplamiento cruzado (<span class="math inline">\(2xy\)</span> con coeficiente diferente de cero) deforma las elipses de las curvas de nivel inclinándolas respecto a los ejes de coordenadas. Como el algoritmo solo avanza en direcciones estrictamente paralelas a los ejes coordenados de forma secuencial, se ve obligado a dibujar un camino de “escalones”, ralentizando significativamente la convergencia hacia el óptimo.</p>
+</details>
+<hr>
+</section>
+</section>
+<section id="ejercicio-6-máximo-descenso-invarianza-ortogonal-y-trazado" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="ejercicio-6-máximo-descenso-invarianza-ortogonal-y-trazado"><span class="header-section-number">2.6</span> Ejercicio 6: máximo descenso: invarianza ortogonal y trazado</h2>
+<p>Minimizar la misma función cuadrática: <span class="math display">\[ f(x, y) = 3x^2 + 2xy + y^2 - 4x - 2y \]</span> partiendo desde <span class="math inline">\(x_0 = (0, 0)^T\)</span> utilizando el método del <strong>Máximo descenso</strong> con búsqueda de tamaño de paso exacta.</p>
+<section id="apartado-1-gradiente-y-dirección-de-búsqueda-inicial" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="apartado-1-gradiente-y-dirección-de-búsqueda-inicial"><span class="header-section-number">2.6.1</span> Apartado 1: Gradiente y dirección de búsqueda inicial</h3>
+<details>
+<summary>
+Ver solución del Apartado 1
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><strong>Vector gradiente analítico</strong>: <span class="math display">\[ \nabla f(x, y) = \begin{pmatrix} 6x + 2y - 4 \\ 2x + 2y - 2 \end{pmatrix} \]</span></li>
+<li><strong>Evaluación en la solución inicial <span class="math inline">\(x_0 = (0, 0)^T\)</span></strong>: <span class="math display">\[ \nabla f(x_0) = \begin{pmatrix} -4 \\ -2 \end{pmatrix} \]</span></li>
+<li><strong>Dirección de máxima bajada <span class="math inline">\(d_0\)</span></strong>: La dirección es el gradiente negativo: <span class="math display">\[ d_0 = -\nabla f(x_0) = \begin{pmatrix} 4 \\ 2 \end{pmatrix} \]</span></li>
+</ol>
+</details>
+</section>
+<section id="apartado-2-búsqueda-lineal-exacta-y-actualización-de-puntos" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="apartado-2-búsqueda-lineal-exacta-y-actualización-de-puntos"><span class="header-section-number">2.6.2</span> Apartado 2: Búsqueda lineal exacta y actualización de puntos</h3>
+<details>
+<summary>
+Ver solución del Apartado 2
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><strong>Trayectoria lineal parametrizada</strong>: <span class="math display">\[ x(\alpha) = x_0 + \alpha d_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix} + \alpha \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 4\alpha \\ 2\alpha \end{pmatrix} \]</span></li>
+<li><strong>Planteamiento de la función unidimensional <span class="math inline">\(\phi(\alpha)\)</span></strong>: Sustituyendo las variables en la función objetivo: <span class="math display">\[ \phi(\alpha) = f(4\alpha, 2\alpha) = 3(4\alpha)^2 + 2(4\alpha)(2\alpha) + (2\alpha)^2 - 4(4\alpha) - 2(2\alpha) \]</span> <span class="math display">\[ \phi(\alpha) = 48\alpha^2 + 16\alpha^2 + 4\alpha^2 - 16\alpha - 4\alpha = 68\alpha^2 - 20\alpha \]</span></li>
+<li><strong>Optimización del tamaño de paso</strong>: Minimizamos derivando respecto a <span class="math inline">\(\alpha\)</span> e igualando a cero: <span class="math display">\[ \phi'(\alpha) = 136\alpha - 20 = 0 \implies \alpha_0 = \frac{20}{136} = \frac{5}{34} \approx 0.1471 \]</span></li>
+<li><strong>Actualización del punto</strong>: <span class="math display">\[ x_1 = x_0 + \alpha_0 d_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix} + \frac{5}{34} \begin{pmatrix} 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 10/17 \\ 5/17 \end{pmatrix} \approx \begin{pmatrix} 0.5882 \\ 0.2941 \end{pmatrix} \]</span></li>
+</ol>
+</details>
+</section>
+<section id="apartado-3-verificación-del-teorema-de-ortogonalidad" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="apartado-3-verificación-del-teorema-de-ortogonalidad"><span class="header-section-number">2.6.3</span> Apartado 3: Verificación del Teorema de Ortogonalidad</h3>
+<details>
+<summary>
+Ver solución del Apartado 3
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><strong>Evaluación del gradiente en <span class="math inline">\(x_1\)</span></strong>: <span class="math display">\[ \nabla f(x_1) = \begin{pmatrix} 6(10/17) + 2(5/17) - 4 \\ 2(10/17) + 2(5/17) - 2 \end{pmatrix} = \begin{pmatrix} \frac{70}{17} - \frac{68}{17} \\ \frac{30}{17} - \frac{34}{17} \end{pmatrix} = \begin{pmatrix} 2/17 \\ -4/17 \end{pmatrix} \]</span></li>
+<li><strong>Siguiente dirección de búsqueda <span class="math inline">\(d_1\)</span></strong>: <span class="math display">\[ d_1 = -\nabla f(x_1) = \begin{pmatrix} -2/17 \\ 4/17 \end{pmatrix} \]</span></li>
+<li><strong>Cálculo del producto escalar</strong>: <span class="math display">\[ d_0^T d_1 = \begin{pmatrix} 4 &amp; 2 \end{pmatrix} \begin{pmatrix} -2/17 \\ 4/17 \end{pmatrix} = 4\left(-\frac{2}{17}\right) + 2\left(\frac{4}{17}\right) = -\frac{8}{17} + \frac{8}{17} = 0 \]</span></li>
+</ol>
+<p>El resultado demuestra de forma exacta que las direcciones de búsqueda consecutivas son ortogonales, validando experimentalmente el Teorema de la Ortogonalidad Sucesiva de los algoritmos de gradiente con búsqueda exacta.</p>
+</details>
+<hr>
+</section>
+</section>
+<section id="ejercicio-7-newton-multivariante-convergencia-cuadrática" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="ejercicio-7-newton-multivariante-convergencia-cuadrática"><span class="header-section-number">2.7</span> Ejercicio 7: Newton multivariante: convergencia cuadrática</h2>
+<p>Dada la función cuadrática: <span class="math display">\[ f(x, y) = 3x^2 + 2xy + y^2 - 4x - 2y \]</span></p>
+<p>Se pide aplicar el método de <strong>Newton multivariante</strong> libre partiendo del punto de búsqueda inicial <span class="math inline">\(x_0 = (0, 0)^T\)</span>:</p>
+<section id="apartado-1-gradiente-y-hessiana-iniciales" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="apartado-1-gradiente-y-hessiana-iniciales"><span class="header-section-number">2.7.1</span> Apartado 1: Gradiente y Hessiana iniciales</h3>
+<details>
+<summary>
+Ver solución del Apartado 1
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><strong>Gradiente evaluado en <span class="math inline">\(x_0\)</span></strong>: <span class="math display">\[ \nabla f(x_0) = \begin{pmatrix} -4 \\ -2 \end{pmatrix} \]</span></li>
+<li><strong>Matriz hessiana (<span class="math inline">\(H\)</span>)</strong>: Al tratarse de una función cuadrática, las segundas derivadas parciales son constantes en todo el espacio: <span class="math display">\[ H = \nabla^2 f(x) = \begin{pmatrix} 6 &amp; 2 \\ 2 &amp; 2 \end{pmatrix} \]</span></li>
+</ol>
+</details>
+</section>
+<section id="apartado-2-cálculo-de-la-inversa-de-la-hessiana" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="apartado-2-cálculo-de-la-inversa-de-la-hessiana"><span class="header-section-number">2.7.2</span> Apartado 2: Cálculo de la inversa de la Hessiana</h3>
+<details>
+<summary>
+Ver solución del Apartado 2
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<p>Para calcular la inversa de la matriz de segundo orden:</p>
+<ol type="1">
+<li><strong>Determinante</strong>: <span class="math display">\[ \det(H) = 6(2) - 2(2) = 12 - 4 = 8 \]</span></li>
+<li><strong>Matriz adjunta transpuesta</strong>: La matriz es simétrica, por lo que: <span class="math display">\[ H^{-1} = \frac{1}{\det(H)} \begin{pmatrix} H_{22} &amp; -H_{12} \\ -H_{21} &amp; H_{11} \end{pmatrix} = \frac{1}{8} \begin{pmatrix} 2 &amp; -2 \\ -2 &amp; 6 \end{pmatrix} = \begin{pmatrix} 0.25 &amp; -0.25 \\ -0.25 &amp; 0.75 \end{pmatrix} \]</span></li>
+</ol>
+</details>
+</section>
+<section id="apartado-3-actualización-e-interpretación-física-de-la-convergencia" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="apartado-3-actualización-e-interpretación-física-de-la-convergencia"><span class="header-section-number">2.7.3</span> Apartado 3: Actualización e interpretación física de la convergencia</h3>
+<details>
+<summary>
+Ver solución del Apartado 3
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Actualización de Newton</strong>: <span class="math display">\[ x_1 = x_0 - H^{-1} \nabla f(x_0) \]</span> <span class="math display">\[ x_1 = \begin{pmatrix} 0 \\ 0 \end{pmatrix} - \begin{pmatrix} 0.25 &amp; -0.25 \\ -0.25 &amp; 0.75 \end{pmatrix} \begin{pmatrix} -4 \\ -2 \end{pmatrix} \]</span> <span class="math display">\[ x_1 = \begin{pmatrix} 0 \\ 0 \end{pmatrix} - \begin{pmatrix} 0.25(-4) - 0.25(-2) \\ -0.25(-4) + 0.75(-2) \end{pmatrix} = - \begin{pmatrix} -1 + 0.5 \\ 1 - 1.5 \end{pmatrix} = - \begin{pmatrix} -0.5 \\ -0.5 \end{pmatrix} = \begin{pmatrix} 0.5 \\ 0.5 \end{pmatrix} \]</span></p></li>
+<li><p><strong>Explicación teórica</strong>: El método de Newton multivariante calcula el siguiente iterado optimizando la aproximación cuadrática de segundo orden (Taylor) de la función en el punto actual. Para cualquier función estrictamente cuadrática, esta aproximación de segundo orden es <strong>exacta</strong> en todo el dominio de definición de la función. Como consecuencia directa de esto, la aproximación cuadrática no comete ningún error y el método de Newton localiza el mínimo global exacto en <strong>exactamente una iteración</strong> desde cualquier punto inicial arbitrario.</p></li>
+<li><p><strong>Verificación de Newton Multivariante en Python (SciPy)</strong>:</p></li>
+</ol>
+<div id="559e33ad" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(x):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>x[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x[<span class="dv">0</span>]<span class="op">*</span>x[<span class="dv">1</span>] <span class="op">+</span> x[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">*</span>x[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x[<span class="dv">1</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejecutar el solver</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> minimize(objective, x0<span class="op">=</span>[<span class="fl">0.0</span>, <span class="fl">0.0</span>], method<span class="op">=</span><span class="st">'Newton-CG'</span>, jac<span class="op">=</span><span class="kw">lambda</span> x: np.array([<span class="dv">6</span><span class="op">*</span>x[<span class="dv">0</span>]<span class="op">+</span><span class="dv">2</span><span class="op">*</span>x[<span class="dv">1</span>]<span class="op">-</span><span class="dv">4</span>, <span class="dv">2</span><span class="op">*</span>x[<span class="dv">0</span>]<span class="op">+</span><span class="dv">2</span><span class="op">*</span>x[<span class="dv">1</span>]<span class="op">-</span><span class="dv">2</span>]))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mínimo numérico alcanzado por Newton:"</span>, res.x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mínimo numérico alcanzado por Newton: [0.5 0.5]</code></pre>
+</div>
+</div>
+</details>
+<hr>
+</section>
+<section id="apartado-4-newton-multivariante-en-funciones-no-cuadráticas" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="apartado-4-newton-multivariante-en-funciones-no-cuadráticas"><span class="header-section-number">2.7.4</span> Apartado 4: Newton multivariante en funciones no cuadráticas</h3>
+<p>Considere ahora una función no cuadrática dada por: <span class="math display">\[ g(x, y) = e^x - x + y^2 \]</span> Partiendo del punto inicial <span class="math inline">\(x_0 = (1, 1)^T\)</span>, calcule la primera iteración de Newton multivariante <span class="math inline">\(x_1\)</span>. Determine si <span class="math inline">\(x_1\)</span> es el óptimo analítico de la función y discuta cómo difiere la convergencia del método en funciones no cuadráticas.</p>
+<details>
+<summary>
+Ver solución del Apartado 4
+</summary>
+<p><strong>Resolución matemática:</strong></p>
+<ol type="1">
+<li><p><strong>Cálculo del gradiente de <span class="math inline">\(g(x, y)\)</span></strong>: <span class="math display">\[ \nabla g(x, y) = \begin{pmatrix} e^x - 1 \\ 2y \end{pmatrix} \]</span> Evaluando en <span class="math inline">\(x_0 = (1, 1)^T\)</span>: <span class="math display">\[ \nabla g(1, 1) = \begin{pmatrix} e^1 - 1 \\ 2(1) \end{pmatrix} = \begin{pmatrix} e-1 \\ 2 \end{pmatrix} \approx \begin{pmatrix} 1.7183 \\ 2 \end{pmatrix} \]</span></p></li>
+<li><p><strong>Cálculo de la matriz hessiana de <span class="math inline">\(g(x, y)\)</span></strong>: <span class="math display">\[ H(x, y) = \nabla^2 g(x, y) = \begin{pmatrix} e^x &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \]</span> Evaluando en <span class="math inline">\(x_0 = (1, 1)^T\)</span>: <span class="math display">\[ H(1, 1) = \begin{pmatrix} e &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \approx \begin{pmatrix} 2.7183 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \]</span></p></li>
+<li><p><strong>Cálculo de la matriz inversa de la hessiana</strong>: Al ser una matriz diagonal, su inversa se obtiene directamente invirtiendo los elementos de la diagonal principal: <span class="math display">\[ H^{-1}(1, 1) = \begin{pmatrix} e^{-1} &amp; 0 \\ 0 &amp; 0.5 \end{pmatrix} \approx \begin{pmatrix} 0.3679 &amp; 0 \\ 0 &amp; 0.5 \end{pmatrix} \]</span></p></li>
+<li><p><strong>Actualización de Newton</strong>: <span class="math display">\[ x_1 = x_0 - H^{-1} \nabla g(x_0) \]</span> <span class="math display">\[ x_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix} - \begin{pmatrix} e^{-1} &amp; 0 \\ 0 &amp; 0.5 \end{pmatrix} \begin{pmatrix} e-1 \\ 2 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} - \begin{pmatrix} e^{-1}(e-1) \\ 0.5(2) \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} - \begin{pmatrix} 1 - e^{-1} \\ 1 \end{pmatrix} = \begin{pmatrix} e^{-1} \\ 0 \end{pmatrix} \approx \begin{pmatrix} 0.3679 \\ 0 \end{pmatrix} \]</span></p></li>
+<li><p><strong>Análisis del óptimo analítico</strong>: El gradiente de <span class="math inline">\(g(x, y)\)</span> es nulo si: <span class="math display">\[ \nabla g(x, y) = \begin{pmatrix} e^x - 1 \\ 2y \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies e^x = 1 \implies x^* = 0, \quad 2y = 0 \implies y^* = 0 \]</span> El mínimo analítico global exacto se encuentra en <span class="math inline">\(x^* = (0, 0)^T\)</span>. Dado que <span class="math inline">\(x_1 = (e^{-1}, 0)^T \approx (0.3679, 0)^T \neq (0, 0)^T\)</span>, el método <strong>no ha convergido al óptimo en una sola iteración</strong>.</p></li>
+<li><p><strong>Discusión de la convergencia</strong>: En funciones no cuadráticas, la aproximación polinómica de segundo orden dada por el desarrollo de Taylor no es exacta en todo el espacio (debido a la presencia de derivadas de orden superior, como las de la exponencial <span class="math inline">\(e^x\)</span>). Por tanto, la dirección y longitud de paso de Newton cometen un error de truncamiento. El método no alcanza el óptimo en una sola iteración, sino que requiere un proceso iterativo. Su principal ventaja es que goza de <strong>convergencia cuadrática local</strong> (es decir, el número de dígitos significativos correctos se duplica aproximadamente en cada iteración una vez que el algoritmo se encuentra lo suficientemente cerca del óptimo <span class="math inline">\(x^*\)</span>).</p></li>
+</ol>
+</details>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./tema1_intro_soluciones.html" class="pagination-link" aria-label="Soluciones del Tema 1: Introducción a la investigación operativa">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Soluciones del Tema 1: Introducción a la investigación operativa</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
