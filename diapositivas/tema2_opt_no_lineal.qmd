@@ -13,11 +13,9 @@ format:
     width: 1280
     height: 720
     margin: 0.05
-title-slide-attributes:
-  data-background-gradient: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #0369a1 100%)"
 ---
 
-# Introducción y formulación {background-gradient="linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #0369a1 100%)"}
+# Introducción y formulación
 
 ## ¿De qué trata este tema?
 
@@ -131,7 +129,7 @@ Donde:
 *   $\beta > 0$: Coeficiente de aversión al riesgo.
 *   Es un problema **cuadrático convexo (QP)**.
 
-# Óptimos y análisis diferencial {background-gradient="linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #0369a1 100%)"}
+# Óptimos y análisis diferencial
 
 ## Óptimos locales, globales y puntos de silla
 
@@ -204,7 +202,7 @@ Caracterización diferencial de extremos locales sin restricciones:
     $$ \nabla f(x^*) = 0 \qquad \text{y} \qquad \nabla^2 f(x^*) \succ 0 $$
     Entonces $x^*$ es un **mínimo local estricto**.
 
-# Métodos de búsqueda unidimensional {background-gradient="linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #0369a1 100%)"}
+# Métodos de búsqueda unidimensional
 
 ## Métodos de búsqueda unidimensional
 
@@ -392,7 +390,7 @@ Minimizamos la misma función partiendo de $x_0 = 1.0$:
     *   Convergencia superlineal con orden $\approx 1.618$.
     *   Exige disponer de dos puntos iniciales $x_0$ y $x_{-1}$.
 
-# Métodos multivariables {background-gradient="linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #0369a1 100%)"}
+# Métodos multivariables
 
 ## Métodos multivariables de optimización sin restricciones
 
