@@ -1,0 +1,119 @@
+/*-- scss:defaults --*/
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+$font-family-sans-serif: "Plus Jakarta Sans", sans-serif;
+$presentation-heading-font: "Outfit", sans-serif;
+
+// Colors matching Cerulean/Light Blue Madrid theme
+$body-bg: #f8fafc; // Light, soft gray-blue background
+$body-color: #1e293b; // Slate dark gray text
+$link-color: #0284c7; // Cerulean sky blue
+$heading-color: #0f172a; // Deep slate dark blue
+
+// Heading styles
+$presentation-heading-font-weight: 700;
+$presentation-title-slide-text-align: left;
+
+// Code block styles
+$code-block-bg: #0f172a;
+$code-block-color: #f8fafc;
+
+/*-- scss:rules --*/
+
+.reveal {
+  .slides {
+    font-size: 1.8rem;
+    
+    section {
+      padding: 20px 40px;
+    }
+  }
+  
+  // Title slide styling
+  .title-slide {
+    text-align: left;
+    border-left: 10px solid #0284c7;
+    padding-left: 40px;
+    
+    h1 {
+      font-size: 2.8em;
+      color: #0f172a;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.2em;
+    }
+    
+    h2.subtitle {
+      font-size: 1.5em;
+      color: #64748b;
+      margin-top: 0.1em;
+      margin-bottom: 1.5em;
+    }
+    
+    .author, .date, .institute {
+      font-size: 0.9em;
+      color: #334155;
+    }
+  }
+
+  // Slide headings
+  h2 {
+    font-size: 1.8em;
+    color: #0284c7; // Cerulean blue for slide titles
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+  }
+
+  // Lists
+  ul, ol {
+    margin-left: 1.5em;
+    li {
+      margin-bottom: 12px;
+      line-height: 1.4;
+      &::marker {
+        color: #0284c7; // Blue bullet points
+      }
+    }
+  }
+
+  // Callouts/Blocks
+  .callout {
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 15px 20px;
+    border-left: 6px solid #e2e8f0;
+    background-color: #f1f5f9;
+    
+    &.callout-note {
+      background-color: #f0f9ff;
+      border-left-color: #0284c7;
+      color: #0369a1;
+      
+      .callout-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+    }
+    
+    &.callout-important {
+      background-color: #fef2f2;
+      border-left-color: #ef4444;
+      color: #991b1b;
+    }
+    
+    &.callout-warning {
+      background-color: #fffbeb;
+      border-left-color: #f59e0b;
+      color: #92400e;
+    }
+  }
+
+  // Footer/slide number
+  .slide-number {
+    color: #64748b;
+    background-color: transparent;
+  }
+}
