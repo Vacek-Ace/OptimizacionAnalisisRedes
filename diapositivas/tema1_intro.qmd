@@ -179,7 +179,7 @@ Se estudian problemas continuos donde la curvatura juega un papel crítico:
 *   **Convexidad**: Si el problema es convexo, se garantiza la globalidad de los óptimos.
 *   **Algoritmos**:
     *   *Búsqueda 1D*: Bisección, Newton, Sección Áurea.
-    *   *Multivariables*: Máximo Descenso, Newton, BFGS.
+    *   *Multivariantes*: Máximo Descenso, Newton, BFGS.
     *   *Con restricciones*: Condiciones de Karush-Kuhn-Tucker (KKT).
 
 ---

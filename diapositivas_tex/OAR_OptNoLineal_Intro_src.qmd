@@ -2268,7 +2268,7 @@ $f(x,y)=8x^2 +3xy+7y^2 -25x+31y-29$
 
 \begin{frame}{Método de Newton}\small
 \begin{itemize}\itemsep 2mm
-	\item El método de Newton se puede utilizar para encontrar mínimos de funciones multivariables.
+	\item El método de Newton se puede utilizar para encontrar mínimos de funciones multivariantes.
 	\item En cada iteración, la función $f(\vx)$ se aproxima por la función cuadrática mediante la aproximación de Taylor de segundo orden en el punto $\vx_k$.
 		$$
 		f(\vx) = f(\vx_k)+\nabla f(\vx_k)^T (\vx-\vx_k) + \frac{1}{2}(\vx-\vx_k)^T\nabla^2f(\vx_k)(\vx-\vx_k)

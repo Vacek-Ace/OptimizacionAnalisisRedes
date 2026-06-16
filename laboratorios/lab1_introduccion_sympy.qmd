@@ -16,7 +16,7 @@ format:
 
 El modelado y la resolución de problemas de optimización matemática requiere una sólida comprensión de las propiedades analíticas de las funciones, en especial de su **curvatura** y **convexidad**. 
 
-En este laboratorio práctico aprenderemos a utilizar Python para automatizar el análisis matemático local y global de funciones univariables y multivariables. Trabajaremos con dos herramientas fundamentales y complementarias:
+En este laboratorio práctico aprenderemos a utilizar Python para automatizar el análisis matemático local y global de funciones univariables y multivariantes. Trabajaremos con dos herramientas fundamentales y complementarias:
 
 1. **SymPy**: Una biblioteca de computación simbólica que nos permite realizar cálculos exactos (analíticos) de derivadas, gradientes, matrices hessianas y resolver sistemas de ecuaciones algebraicas de forma exacta.
 
@@ -84,9 +84,9 @@ derivada_en_x0 = derivada_sym.subs(x, x0_val)
 print("El gradiente simbólico evaluado en x0 es:", derivada_en_x0)
 ```
 
-## Funciones multivariables
+## Funciones multivariantes
 
-Analicemos ahora una función lineal multivariable (un plano en $\mathbb{R}^2$):
+Analicemos ahora una función lineal multivariante (un plano en $\mathbb{R}^2$):
 $$ f(x_1, x_2) = 5x_1 + 10x_2 + 4 $$
 
 Deseamos evaluar en el punto $\mathbf{x}_0 = (1, 2)^T$:
@@ -195,7 +195,7 @@ Calcula su vector gradiente y su matriz hessiana en el punto de origen $\mathbf{
 # ...
 ```
 
-## Ejercicio 2: estudio de convexidad multivariable constante
+## Ejercicio 2: estudio de convexidad multivariante constante
 Estudia analíticamente la convexidad de la siguiente función cuadrática en todo su dominio:
 $$ f(\mathbf{x}) = x_1x_2 + 2x_1^2 + x_2^2 - 6x_1x_3 $$
 

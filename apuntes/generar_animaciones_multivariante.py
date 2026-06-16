@@ -290,7 +290,7 @@ def gen_steepest_descent_animation():
 
 
 if __name__ == '__main__':
-    print("=== Generando animaciones de metodos multivariables ===")
+    print("=== Generando animaciones de metodos multivariantes ===")
     gen_coord_ciclicas_ej1_animation()
     gen_coord_ciclicas_ej2_animation()
     gen_steepest_descent_animation()

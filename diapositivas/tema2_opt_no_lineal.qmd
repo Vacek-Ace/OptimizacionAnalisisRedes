@@ -34,7 +34,7 @@ La optimización no lineal (NLP) aborda problemas reales donde las relaciones ma
 *   **Análisis local de curvatura**: Utilizar el gradiente y la matriz hessiana para caracterizar geométricamente las funciones.
 *   **Condiciones de optimalidad**: Aplicar las condiciones diferenciales necesarias y suficientes para identificar máximos, mínimos y puntos de silla.
 *   **Algoritmos de búsqueda 1D**: Programar y analizar la convergencia de solvers de una variable sin y con derivadas.
-*   **Algoritmos multivariables**: Implementar y comparar los principales métodos de búsqueda local sin restricciones (coordenadas cíclicas, máximo descenso, Newton y Cuasi-Newton BFGS).
+*   **Algoritmos multivariantes**: Implementar y comparar los principales métodos de búsqueda local sin restricciones (coordenadas cíclicas, máximo descenso, Newton y Cuasi-Newton BFGS).
 
 ---
 
@@ -163,7 +163,7 @@ Asumiendo funciones con derivadas segundas continuas (de clase $\mathcal{C}^2$):
 
 ---
 
-## Desarrollo de Taylor multivariable
+## Desarrollo de Taylor multivariante
 
 Aproximación cuadrática local de $f(x)$ alrededor de un punto de referencia $\bar{x}$:
 
@@ -512,9 +512,9 @@ El algoritmo aproxima de manera local mediante parábolas sucesivas y converge m
     *   Convergencia superlineal con orden $\approx 1.618$.
     *   Exige disponer de dos puntos iniciales $x_0$ y $x_{-1}$.
 
-# Métodos multivariables
+# Métodos multivariantes
 
-## Métodos multivariables de optimización sin restricciones
+## Métodos multivariantes de optimización sin restricciones
 
 Buscan minimizar $f: \mathbb{R}^n \to \mathbb{R}$ mediante la sucesión iterativa:
 
@@ -531,7 +531,7 @@ Donde:
 
 ## Método de coordenadas cíclicas
 
-*   Es un método de optimización multivariable de búsqueda directa (no requiere derivadas).
+*   Es un método de optimización multivariante de búsqueda directa (no requiere derivadas).
 *   Avanza de forma iterativa minimizando respecto a una sola variable de decisión a la vez de forma cíclica (direcciones de búsqueda ortogonales $d_k = e_i$):
     $$ x_{k+1} = x_k + \alpha_k e_i $$
 *   El tamaño de paso exacto $\alpha_k$ se calcula mediante una búsqueda lineal unidimensional exacta en la dirección $e_i$.
@@ -652,9 +652,9 @@ La ortogonalidad obligada entre direcciones consecutivas debido a la búsqueda l
 
 ---
 
-## Método de Newton multivariable
+## Método de Newton multivariante
 
-Aproxima la función objetivo mediante una parábola multivariable en el punto actual $x_k$:
+Aproxima la función objetivo mediante una parábola multivariante en el punto actual $x_k$:
 
 $$ x_{k+1} = x_k - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) $$
 
@@ -667,7 +667,7 @@ $$ x_{k+1} = x_k - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) $$
 
 ---
 
-## Newton multivariable: paso a paso numérico (pasos 1-2)
+## Newton multivariante: paso a paso numérico (pasos 1-2)
 
 Minimizamos $f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29$ desde $x_0 = (0, 0)^T$:
 
@@ -681,7 +681,7 @@ Minimizamos $f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29$ desde $x_0 = (0, 0)^T
 
 ---
 
-## Newton multivariable: paso a paso numérico (paso 3)
+## Newton multivariante: paso a paso numérico (paso 3)
 
 *   **Paso 3**: Aplicamos la actualización iterativa del método de Newton:
     $$ x_1 = x_0 - H^{-1} \nabla f(x_0) $$

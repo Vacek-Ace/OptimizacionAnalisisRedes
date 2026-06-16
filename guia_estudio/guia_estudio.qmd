@@ -42,7 +42,7 @@ La asignatura se imparte a lo largo de 15 semanas. Cada semana se estructura en 
   guía docente, metodología y evaluación.
 - Introducción al modelado matemático de optimización (variables, restricciones, objetivo).
 - Preparación del entorno de trabajo en Python (Anaconda, Jupyter Notebooks, VS Code).
-- Repaso de álgebra lineal y cálculo multivariable con NumPy.
+- Repaso de álgebra lineal y cálculo multivariante con NumPy.
 
 **Objetivos de aprendizaje**:
 
@@ -61,7 +61,7 @@ La asignatura se imparte a lo largo de 15 semanas. Cada semana se estructura en 
 
 **Objetivos de aprendizaje**:
 
-- Caracterizar analíticamente los puntos críticos de una función multivariable.
+- Caracterizar analíticamente los puntos críticos de una función multivariante.
 - Programar desde cero el algoritmo de descenso de gradiente y visualizar su convergencia.
 
 ---
@@ -105,7 +105,7 @@ La asignatura se imparte a lo largo de 15 semanas. Cada semana se estructura en 
 
 **Objetivos de aprendizaje**:
 
-- Analizar la convexidad de funciones multivariables mediante su matriz Hessiana.
+- Analizar la convexidad de funciones multivariantes mediante su matriz Hessiana.
 - Entender el teorema fundamental:
   en optimización convexa, todo óptimo local es óptimo global.
 

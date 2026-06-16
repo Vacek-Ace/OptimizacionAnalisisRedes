@@ -27,11 +27,11 @@ Al completar este volumen, habrás desarrollado habilidades clave para:
 
 
 ::: {.callout-important title="Grado en Matemáticas"}
-Este libro presenta el material teórico y práctico de la asignatura de Optimización y Análisis de Redes del Grado en Matemáticas de la Universidad Rey Juan Carlos. Su contenido está estrechamente vinculado con las asignaturas de Álgebra Lineal, Cálculo Multivariable, Programación y Optimización Lineal.
+Este libro presenta el material teórico y práctico de la asignatura de Optimización y Análisis de Redes del Grado en Matemáticas de la Universidad Rey Juan Carlos. Su contenido está estrechamente vinculado con las asignaturas de Álgebra Lineal, Cálculo Multivariante, Programación y Optimización Lineal.
 :::
 
 ::: {.callout-important title="Conocimientos previos"}
-Es altamente recomendable que los alumnos dominen los conceptos básicos de espacios vectoriales, matrices totalmente unimodulares, derivabilidad multivariable (gradientes, jacobianos y hessianas) y los fundamentos de la programación lineal (método Símplex y dualidad clásica).
+Es altamente recomendable que los alumnos dominen los conceptos básicos de espacios vectoriales, matrices totalmente unimodulares, derivabilidad multivariante (gradientes, jacobianos y hessianas) y los fundamentos de la programación lineal (método Símplex y dualidad clásica).
 :::
 
 ::: {.callout-note title="Sobre los autores"}

@@ -1,18 +1,18 @@
 # Optimización no lineal y métodos numéricos
 
-La **optimización no lineal** (Nonlinear Programming, NLP) estudia problemas de decisión donde la función objetivo o alguna de las restricciones presentan comportamientos no lineales. A diferencia de la programación lineal, donde las soluciones óptimas se encuentran siempre en la frontera del conjunto factible (específicamente en sus puntos extremos o vértices), en optimización no lineal el óptimo puede situarse en el interior del espacio factible o en cualquier punto de su frontera. La presencia de curvatura en la función objetivo y en las restricciones exige herramientas avanzadas de análisis diferencial multivariable y algoritmos iterativos complejos.
+La **optimización no lineal** (Nonlinear Programming, NLP) estudia problemas de decisión donde la función objetivo o alguna de las restricciones presentan comportamientos no lineales. A diferencia de la programación lineal, donde las soluciones óptimas se encuentran siempre en la frontera del conjunto factible (específicamente en sus puntos extremos o vértices), en optimización no lineal el óptimo puede situarse en el interior del espacio factible o en cualquier punto de su frontera. La presencia de curvatura en la función objetivo y en las restricciones exige herramientas avanzadas de análisis diferencial multivariante y algoritmos iterativos complejos.
 
-En este tema estudiaremos la formulación y clasificación de los problemas de optimización no lineal y sus casos más relevantes. Desarrollaremos las herramientas de análisis diferencial necesarias (gradiente, hessiana y condiciones de optimalidad) para caracterizar la curvatura local e identificar mínimos, máximos y puntos de silla. Finalmente, abordaremos los principales métodos numéricos de búsqueda unidimensional (sin y con derivadas) y los métodos multivariables sin restricciones, desde el sencillo descenso por coordenadas hasta los métodos de Newton y la técnica Quasi-Newton BFGS.
+En este tema estudiaremos la formulación y clasificación de los problemas de optimización no lineal y sus casos más relevantes. Desarrollaremos las herramientas de análisis diferencial necesarias (gradiente, hessiana y condiciones de optimalidad) para caracterizar la curvatura local e identificar mínimos, máximos y puntos de silla. Finalmente, abordaremos los principales métodos numéricos de búsqueda unidimensional (sin y con derivadas) y los métodos multivariantes sin restricciones, desde el sencillo descenso por coordenadas hasta los métodos de Newton y la técnica Quasi-Newton BFGS.
 
 ::: {.callout-important title="Objetivos de aprendizaje"}
 Al finalizar este capítulo, serás capaz de:
 
 1.  **Formular y clasificar** problemas de optimización no lineal en sus distintas familias estructurales.
 2.  **Visualizar e interpretar geométricamente** la diferencia entre la optimización lineal y la no lineal a través del análisis de conjuntos factibles convexos y curvas de nivel no lineales.
-3.  **Caracterizar la curvatura** de una función multivariable mediante el análisis del gradiente y de la matriz hessiana empleando el criterio de los menores principales.
+3.  **Caracterizar la curvatura** de una función multivariante mediante el análisis del gradiente y de la matriz hessiana empleando el criterio de los menores principales.
 4.  **Clasificar puntos estacionarios** aplicando las condiciones de optimalidad de primer y segundo orden (FONC, SONC, SOSC).
 5.  **Implementar y trazar numéricamente** algoritmos de búsqueda lineal en una dimensión, tanto sin derivadas como con derivadas.
-6.  **Comprender y programar** algoritmos de optimización multivariable sin restricciones, analizando el comportamiento de las coordenadas cíclicas, el fenómeno de zigzag del máximo descenso y las ventajas de los métodos de Newton y Cuasi-Newton (BFGS).
+6.  **Comprender y programar** algoritmos de optimización multivariante sin restricciones, analizando el comportamiento de las coordenadas cíclicas, el fenómeno de zigzag del máximo descenso y las ventajas de los métodos de Newton y Cuasi-Newton (BFGS).
 :::
 
 
@@ -127,7 +127,7 @@ $$ \nabla f(x) = \begin{pmatrix} \frac{\partial f(x)}{\partial x_1} \\ \frac{\pa
 Por su parte, la **matriz hessiana** modela la curvatura local de la función (análoga a la segunda derivada en una dimensión) y se define como la matriz simétrica de segundas derivadas parciales:
 $$ [\nabla^2 f(x)]_{ij} = \frac{\partial^2 f(x)}{\partial x_i \partial x_j} $$
 
-### Desarrollo de Taylor multivariable
+### Desarrollo de Taylor multivariante
 
 El comportamiento local de una función no lineal alrededor de un punto de referencia $\bar{x}$ se aproxima mediante su desarrollo cuadrático de Taylor:
 
@@ -353,16 +353,16 @@ El **Método de la Secante** evita el cálculo de la segunda derivada del métod
 
 
 
-## Métodos multivariables de optimización sin restricciones
+## Métodos multivariantes de optimización sin restricciones
 
-Para minimizar funciones multivariables $f: \mathbb{R}^n \to \mathbb{R}$ sin restricciones, construimos una sucesión iterativa a partir de una dirección de búsqueda $d_k$ y un tamaño de paso $\alpha_k > 0$:
+Para minimizar funciones multivariantes $f: \mathbb{R}^n \to \mathbb{R}$ sin restricciones, construimos una sucesión iterativa a partir de una dirección de búsqueda $d_k$ y un tamaño de paso $\alpha_k > 0$:
 $$x_{k+1} = x_k + \alpha_k d_k$$
 Para garantizar que el algoritmo avance reduciendo la función en cada paso, la dirección $d_k$ debe ser de descenso, lo que exige matemáticamente que forme un ángulo obtuso con el gradiente de la función en el punto actual:
 $$\nabla f(x_k)^T d_k < 0$$
 
 ### Método de las coordenadas cíclicas
 
-Es uno de los algoritmos de optimización multivariable más sencillos. Evita por completo el cálculo de derivadas y gradientes. En su lugar, avanza secuencialmente minimizando la función respecto a una única variable de decisión a la vez, manteniendo constantes las restantes $n-1$ variables. Las direcciones de búsqueda coinciden cíclicamente con los vectores de la base canónica de $\mathbb{R}^n$:
+Es uno de los algoritmos de optimización multivariante más sencillos. Evita por completo el cálculo de derivadas y gradientes. En su lugar, avanza secuencialmente minimizando la función respecto a una única variable de decisión a la vez, manteniendo constantes las restantes $n-1$ variables. Las direcciones de búsqueda coinciden cíclicamente con los vectores de la base canónica de $\mathbb{R}^n$:
 $$d_k = e_{(k \bmod n) + 1}$$
 donde $e_i$ es el $i$-ésimo vector unitario. En cada paso, se resuelve un subproblema de optimización lineal 1D.
 
@@ -459,9 +459,9 @@ Minimizamos $f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29$ partiendo de $x_0 = (
 :::
 
 
-### Métodos de Newton multivariable y BFGS
+### Métodos de Newton multivariante y BFGS
 
-El **Método de Newton Multivariable** incorpora información de segundo orden utilizando la aproximación de Taylor cuadrática en el punto $x_k$, calculando el nuevo punto mediante la expresión:
+El **Método de Newton Multivariante** incorpora información de segundo orden utilizando la aproximación de Taylor cuadrática en el punto $x_k$, calculando el nuevo punto mediante la expresión:
 $$x_{k+1} = x_k - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k)$$
 Si la función objetivo es cuadrática, el método de Newton localiza el mínimo global del sistema en una sola iteración desde cualquier punto inicial. Si la función es no lineal general, presenta una convergencia cuadrática local de orden 2.
 

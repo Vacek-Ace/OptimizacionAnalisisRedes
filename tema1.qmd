@@ -140,7 +140,7 @@ Atendiendo a las propiedades algebraicas y analíticas de sus componentes, los p
     -   *Programación Lineal (LP)*:
         Tanto la función objetivo $f(x)$ como todas las funciones de restricciones $g_i(x)$ e $h_j(x)$ son funciones afines (de primer grado). Permiten la aplicación del algoritmo del Símplex y métodos de punto interior. Su resolución numérica es sumamente rápida, pudiendo manejar millones de variables y restricciones.
     -   *Programación No Lineal (NLP)*:
-        Al menos una de las funciones involucradas ($f$, $g_i$ o $h_j$) presenta curvatura o componentes no lineales (como potencias, exponenciales, logaritmos o funciones trigonométricas). La búsqueda del óptimo requiere herramientas de cálculo multivariable y análisis de curvatura.
+        Al menos una de las funciones involucradas ($f$, $g_i$ o $h_j$) presenta curvatura o componentes no lineales (como potencias, exponenciales, logaritmos o funciones trigonométricas). La búsqueda del óptimo requiere herramientas de cálculo multivariante y análisis de curvatura.
 -   **Según el dominio de definición**:
 
     -   *Optimización Continua*:
@@ -168,7 +168,7 @@ Este volumen se organiza en dos bloques metodológicos bien diferenciados por su
 Cuando abandonamos la hipótesis de linealidad, la optimización matemática gana sustancialmente en realismo, pero incrementa de manera drástica su complejidad teórica y computacional.
 
 -   **Optimización no lineal y métodos numéricos (Tema 2)**:
-    Estudiaremos las herramientas fundamentales de la optimización continua sin restricciones, tanto en una como en múltiples variables. En el caso unidimensional, analizaremos métodos sin derivadas (búsqueda uniforme, dicotómica, sección áurea y Fibonacci) y métodos con derivadas (bisección y Newton). En el caso multivariable, veremos el método de coordenadas cíclicas, el método del máximo descenso y los métodos de segundo orden (Newton multivariable y la técnica Quasi-Newton BFGS).
+    Estudiaremos las herramientas fundamentales de la optimización continua sin restricciones, tanto en una como en múltiples variables. En el caso unidimensional, analizaremos métodos sin derivadas (búsqueda uniforme, dicotómica, sección áurea y Fibonacci) y métodos con derivadas (bisección y Newton). En el caso multivariante, veremos el método de coordenadas cíclicas, el método del máximo descenso y los métodos de segundo orden (Newton multivariante y la técnica Quasi-Newton BFGS).
 -   **Análisis convexo (Tema 3)**:
     Estableceremos las propiedades de los conjuntos y funciones convexas. En este marco matemático se formula el resultado cardinal de la optimización: cualquier mínimo local es de forma garantizada un mínimo global, dotando a los algoritmos numéricos de una gran estabilidad. Introduciremos el concepto de subgradiente para manejar funciones no diferenciables.
 -   **Condiciones de optimalidad y KKT (Tema 4)**:

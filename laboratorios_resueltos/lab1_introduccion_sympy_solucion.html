@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Víctor Aceña Gil / Antonio Alonso Ayuso">
+<meta name="author" content="Víctor Aceña Gil - Antonio Alonso Ayuso">
 <meta name="dcterms.date" content="2026-06-16">
 
 <title>Laboratorio 1: introducción al modelado y cálculo simbólico con SymPy</title>
@@ -2430,7 +2430,7 @@ line-height: normal;
   <li><a href="#enfoque-numérico-con-autograd" id="toc-enfoque-numérico-con-autograd" class="nav-link" data-scroll-target="#enfoque-numérico-con-autograd"><span class="header-section-number">3.1.1</span> Enfoque numérico con Autograd</a></li>
   <li><a href="#enfoque-simbólico-con-sympy" id="toc-enfoque-simbólico-con-sympy" class="nav-link" data-scroll-target="#enfoque-simbólico-con-sympy"><span class="header-section-number">3.1.2</span> Enfoque simbólico con SymPy</a></li>
   </ul></li>
-  <li><a href="#funciones-multivariables" id="toc-funciones-multivariables" class="nav-link" data-scroll-target="#funciones-multivariables"><span class="header-section-number">3.2</span> Funciones multivariables</a>
+  <li><a href="#funciones-multivariantes" id="toc-funciones-multivariantes" class="nav-link" data-scroll-target="#funciones-multivariantes"><span class="header-section-number">3.2</span> Funciones multivariantes</a>
   <ul class="collapse">
   <li><a href="#implementación-con-autograd" id="toc-implementación-con-autograd" class="nav-link" data-scroll-target="#implementación-con-autograd"><span class="header-section-number">3.2.1</span> Implementación con Autograd</a></li>
   <li><a href="#implementación-con-sympy" id="toc-implementación-con-sympy" class="nav-link" data-scroll-target="#implementación-con-sympy"><span class="header-section-number">3.2.2</span> Implementación con SymPy</a></li>
@@ -2445,7 +2445,7 @@ line-height: normal;
   <li><a href="#enfoque-con-autograd" id="toc-enfoque-con-autograd" class="nav-link" data-scroll-target="#enfoque-con-autograd"><span class="header-section-number">5.1.1</span> 1. Enfoque con Autograd</a></li>
   <li><a href="#enfoque-con-sympy" id="toc-enfoque-con-sympy" class="nav-link" data-scroll-target="#enfoque-con-sympy"><span class="header-section-number">5.1.2</span> 2. Enfoque con SymPy</a></li>
   </ul></li>
-  <li><a href="#ejercicio-2-estudio-de-convexidad-multivariable-constante" id="toc-ejercicio-2-estudio-de-convexidad-multivariable-constante" class="nav-link" data-scroll-target="#ejercicio-2-estudio-de-convexidad-multivariable-constante"><span class="header-section-number">5.2</span> Ejercicio 2: estudio de convexidad multivariable constante</a></li>
+  <li><a href="#ejercicio-2-estudio-de-convexidad-multivariante-constante" id="toc-ejercicio-2-estudio-de-convexidad-multivariante-constante" class="nav-link" data-scroll-target="#ejercicio-2-estudio-de-convexidad-multivariante-constante"><span class="header-section-number">5.2</span> Ejercicio 2: estudio de convexidad multivariante constante</a></li>
   <li><a href="#ejercicio-3-convexidad-de-funciones-no-cuadráticas-dominio-factible" id="toc-ejercicio-3-convexidad-de-funciones-no-cuadráticas-dominio-factible" class="nav-link" data-scroll-target="#ejercicio-3-convexidad-de-funciones-no-cuadráticas-dominio-factible"><span class="header-section-number">5.3</span> Ejercicio 3: convexidad de funciones no cuadráticas (dominio factible)</a></li>
   <li><a href="#ejercicio-4-convexidad-constante-en-3d" id="toc-ejercicio-4-convexidad-constante-en-3d" class="nav-link" data-scroll-target="#ejercicio-4-convexidad-constante-en-3d"><span class="header-section-number">5.4</span> Ejercicio 4: convexidad constante en 3D</a></li>
   </ul></li>
@@ -2467,7 +2467,7 @@ line-height: normal;
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Víctor Aceña Gil / Antonio Alonso Ayuso </p>
+             <p>Víctor Aceña Gil - Antonio Alonso Ayuso </p>
           </div>
   </div>
     
@@ -2489,7 +2489,7 @@ line-height: normal;
 <section id="introducción" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
 <p>El modelado y la resolución de problemas de optimización matemática requiere una sólida comprensión de las propiedades analíticas de las funciones, en especial de su <strong>curvatura</strong> y <strong>convexidad</strong>.</p>
-<p>En este laboratorio práctico aprenderemos a utilizar Python para automatizar el análisis matemático local y global de funciones univariables y multivariables. Trabajaremos con dos herramientas fundamentales y complementarias:</p>
+<p>En este laboratorio práctico aprenderemos a utilizar Python para automatizar el análisis matemático local y global de funciones univariables y multivariantes. Trabajaremos con dos herramientas fundamentales y complementarias:</p>
 <ol type="1">
 <li><p><strong>SymPy</strong>: Una biblioteca de computación simbólica que nos permite realizar cálculos exactos (analíticos) de derivadas, gradientes, matrices hessianas y resolver sistemas de ecuaciones algebraicas de forma exacta.</p></li>
 <li><p><strong>Autograd</strong>: Una biblioteca de diferenciación automática que calcula de manera eficiente y con precisión de máquina las derivadas de funciones definidas mediante código de Python ordinario (cálculo numérico).</p></li>
@@ -2544,9 +2544,9 @@ line-height: normal;
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;El gradiente simbólico evaluado en x0 es:&quot;</span>, derivada_en_x0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="funciones-multivariables" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="funciones-multivariables"><span class="header-section-number">3.2</span> Funciones multivariables</h2>
-<p>Analicemos ahora una función lineal multivariable (un plano en <span class="math inline">\(\mathbb{R}^2\)</span>): <span class="math display">\[ f(x_1, x_2) = 5x_1 + 10x_2 + 4 \]</span></p>
+<section id="funciones-multivariantes" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="funciones-multivariantes"><span class="header-section-number">3.2</span> Funciones multivariantes</h2>
+<p>Analicemos ahora una función lineal multivariante (un plano en <span class="math inline">\(\mathbb{R}^2\)</span>): <span class="math display">\[ f(x_1, x_2) = 5x_1 + 10x_2 + 4 \]</span></p>
 <p>Deseamos evaluar en el punto <span class="math inline">\(\mathbf{x}_0 = (1, 2)^T\)</span>: - El vector gradiente: <span class="math inline">\(\nabla f(\mathbf{x}_0)\)</span> - La matriz hessiana: <span class="math inline">\(\mathbf{H}_f(\mathbf{x}_0)\)</span></p>
 <section id="implementación-con-autograd" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="implementación-con-autograd"><span class="header-section-number">3.2.1</span> Implementación con Autograd</h3>
@@ -2679,8 +2679,8 @@ Pincha aquí para ver la solución
 </section></details>
 </section>
 </section>
-<section id="ejercicio-2-estudio-de-convexidad-multivariable-constante" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="ejercicio-2-estudio-de-convexidad-multivariable-constante"><span class="header-section-number">5.2</span> Ejercicio 2: estudio de convexidad multivariable constante</h2>
+<section id="ejercicio-2-estudio-de-convexidad-multivariante-constante" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="ejercicio-2-estudio-de-convexidad-multivariante-constante"><span class="header-section-number">5.2</span> Ejercicio 2: estudio de convexidad multivariante constante</h2>
 <p>Estudia analíticamente la convexidad de la siguiente función cuadrática en todo su dominio: <span class="math display">\[ f(\mathbf{x}) = x_1x_2 + 2x_1^2 + x_2^2 - 6x_1x_3 \]</span></p>
 <p>Para ello:</p>
 <ol type="1">
