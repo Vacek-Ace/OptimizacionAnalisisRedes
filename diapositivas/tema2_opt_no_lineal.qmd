@@ -1,0 +1,243 @@
+---
+title: "Tema 2: Optimización no lineal y métodos numéricos"
+subtitle: "Optimización y Análisis de Redes"
+author: "Víctor Aceña Gil / Antonio Alonso Ayuso"
+date: "2026-06-16"
+format:
+  revealjs:
+    theme: league
+    transition: slide
+    slide-number: true
+    code-line-numbers: true
+    embed-resources: true
+---
+
+# Introducción y Formulación
+
+## ¿Qué es la Optimización No Lineal?
+
+La **optimización no lineal** (Nonlinear Programming, NLP) estudia problemas de decisión donde la función objetivo o alguna de las restricciones presentan comportamientos no lineales.
+
+*   **En el mundo real**, la linealidad es una excepción matemática (economías de escala, elasticidad de la demanda, volatilidad financiera, etc.).
+*   **Geometría**: A diferencia de la programación lineal (LP) donde el óptimo siempre está en un vértice, en PNL el óptimo puede estar en el interior o en cualquier punto de la frontera.
+
+---
+
+## Formulación Matemática General
+
+Un **problema de optimización no lineal (PNL)** se formula como:
+
+$$
+\begin{aligned}
+\min_{x \in \mathbb{R}^n} \quad & f(x) \\
+\text{sujeto a} \quad & g_i(x) \le 0, \quad i = 1, \dots, m \\
+& h_j(x) = 0, \quad j = 1, \dots, p
+\end{aligned}
+$$
+
+Donde:
+*   $f(x)$ es la **función objetivo**.
+*   $g_i(x)$ son las restricciones de **desigualdad**.
+*   $h_j(x)$ son las restricciones de **igualdad**.
+*   Al menos una de las funciones anteriores es no lineal.
+
+---
+
+## Casos Particulares de la PNL
+
+Para facilitar su resolución, se clasifican estructuralmente:
+
+*   **Programación Cuadrática (QP)**: Objetivo cuadrático y restricciones afines (lineales).
+*   **Programación Convexa**: Objetivo y restricciones de desigualdad convexas, igualdades afines. ¡Todo mínimo local es global!
+*   **Programación Separable**: Funciones descomponibles en suma de funciones de una sola variable: $f(x) = \sum f_j(x_j)$.
+*   **Programación Geométrica**: Formulada con posinomios, transformable en convexa mediante $y_j = \ln(x_j)$.
+*   **Programación Fraccionaria**: Objetivo como cociente de dos funciones.
+
+---
+
+## Ejemplo 1: El Monopolio de Cournot (1838)
+
+*   **Precio según demanda**: $P(Q) = 10 - Q$.
+*   **Coste total**: $C(Q) = 1 + 3Q$.
+*   **Modelo de maximización de beneficio**:
+    $$ \max_{Q} \quad B(Q) = (10 - Q)Q - 3Q - 1 = -Q^2 + 7Q - 1 $$
+    $$ \text{sujeto a} \quad 2 \le Q \le 9 $$
+*   **Resolución**: $B'(Q) = -2Q + 7 = 0 \implies Q^* = 3.5$.
+*   **Resultado**: El óptimo $Q^* = 3.5$ es un punto interior tangente a la curva de demanda activa, no un vértice del polígono.
+
+---
+
+## Ejemplo 2: Selección de Cartera de Valores
+
+Modelo clásico de Markowitz (1952) para invertir capital $C$ en $n$ activos:
+
+$$
+\begin{aligned}
+\max_{x \in \mathbb{R}^n} \quad & \sum_{i=1}^n \mu_i x_i - \beta \sum_{i=1}^n \sum_{j=1}^n \sigma_{ij} x_i x_j \\
+\text{sujeto a} \quad & \sum_{i=1}^n x_i \le C \\
+& x_i \ge 0, \quad i = 1, \dots, n
+\end{aligned}
+$$
+
+*   $\mu_i$: Rendimiento esperado del activo $i$.
+*   $\sigma_{ij}$: Covarianza del rendimiento entre activos (riesgo cuadrático).
+*   $\beta$: Coeficiente de aversión al riesgo.
+*   Es un problema **cuadrático convexo (QP)**.
+
+# Óptimos y Análisis Diferencial
+
+## Tipos de Óptimos
+
+Sea $f: \mathbb{R}^n \to \mathbb{R}$ definida sobre un conjunto factible $\mathcal{X} \subseteq \mathbb{R}^n$:
+
+*   **Mínimo global**: $f(x) \ge f(x^*)$ para todo $x \in \mathcal{X}$.
+*   **Mínimo local**: $f(x) \ge f(x^*)$ para todo $x$ en un entorno local $\|x - x^*\| \le \epsilon$.
+*   **Óptimo estricto**: Si la desigualdad se cumple de forma estricta ($>$) para todo $x \neq x^*$.
+*   **Punto de silla**: Punto crítico que es de subida en unas direcciones y de bajada en otras.
+
+---
+
+## Herramientas de Análisis Diferencial
+
+Para caracterizar los óptimos analíticamente usamos:
+
+*   **Vector gradiente**: Dirección de máxima pendiente de subida local.
+    $$ \nabla f(x) = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right)^T $$
+*   **Matriz hessiana**: Representa la curvatura local (segunda derivada).
+    $$ [\nabla^2 f(x)]_{ij} = \frac{\partial^2 f(x)}{\partial x_i \partial x_j} $$
+
+---
+
+## Desarrollo de Taylor Multivariable
+
+El comportamiento local de la función no lineal alrededor de un punto de referencia $\bar{x}$ se aproxima cuadráticamente mediante:
+
+$$
+f(x) \approx f(\bar{x}) + \nabla f(\bar{x})^T (x - \bar{x}) + \frac{1}{2} (x - \bar{x})^T \nabla^2 f(\bar{x}) (x - \bar{x})
+$$
+
+*   Si la función es cuadrática, esta aproximación es exacta en todo el dominio.
+
+---
+
+## Clasificación de la Hessiana $H = \nabla^2 f(x)$
+
+La curvatura está definida por la forma cuadrática $z^T H z$:
+
+*   **Definida positiva ($H \succ 0$)**: Autovalores $> 0$, menores principales $> 0$. (Curva hacia arriba).
+*   **Semidefinida positiva ($H \succeq 0$)**: Autovalores $\ge 0$.
+*   **Definida negativa ($H \prec 0$)**: Autovalores $< 0$, menores principales alternan de signo. (Curva hacia abajo).
+*   **Semidefinida negativa ($H \preceq 0$)**: Autovalores $\le 0$.
+*   **Indefinida**: Autovalores positivos y negativos. (Punto de silla).
+
+---
+
+## Condiciones de Optimalidad
+
+Teorema clave para la búsqueda de extremos locales sin restricciones:
+
+1.  **Condición Necesaria de Primer Orden (FONC)**:
+    Si $x^*$ es un mínimo local, entonces el gradiente se anula:
+    $$ \nabla f(x^*) = 0 $$
+    (El punto $x^*$ es un **punto crítico** o estacionario).
+2.  **Condición Necesaria de Segundo Orden (SONC)**:
+    $$ \nabla^2 f(x^*) \succeq 0 $$
+3.  **Condición Suficiente de Segundo Orden (SOSC)**:
+    Si $\nabla f(x^*) = 0$ y $\nabla^2 f(x^*) \succ 0$, entonces $x^*$ es un **mínimo local estricto**.
+
+# Métodos de Búsqueda Unidimensional (1D)
+
+## Búsqueda Unidimensional (1D)
+
+Consiste en minimizar una función real de una variable $f: \mathbb{R} \to \mathbb{R}$ en un intervalo acotado $[a, b]$.
+
+*   Es el bloque constructor básico de los algoritmos multivariables: en cada paso se realiza una búsqueda lineal en la dirección de descenso:
+    $$ \min_{\alpha > 0} f(x_k + \alpha d_k) $$
+*   Se clasifican en **métodos sin derivadas** y **métodos con derivadas**.
+
+---
+
+## Métodos 1D sin Derivadas
+
+Exigen que la función sea **unimodal** (un único mínimo en el intervalo).
+
+*   **Búsqueda Uniforme**: Divide el intervalo en rejillas equidistantes. Muy robusto pero ineficiente.
+*   **Búsqueda Dicotómica**: Compara dos puntos simétricos próximos al centro. Reduce la incertidumbre a la mitad en cada paso.
+*   **Sección Áurea**: Distribuye los puntos según la razón áurea $\alpha \approx 1.618$. A partir del segundo paso, solo evalúa un único punto nuevo.
+*   **Fibonacci**: Utiliza la serie de Fibonacci. Es el método más eficiente para un número fijo de evaluaciones prefijado.
+
+---
+
+## Métodos 1D con Derivadas
+
+*   **Bisección (Bolzano)**: Busca el cero de la derivada ($f'(x) = 0$). Evalúa el punto medio y reduce el intervalo a la mitad según el signo de la derivada.
+*   **Método de Newton 1D**: Aproxima por una parábola en el punto actual y salta directamente a su vértice:
+    $$ x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)} $$
+    Tiene convergencia cuadrática local. Exige calcular $f''(x) > 0$.
+*   **Método de la Secante**: Aproxima la segunda derivada mediante diferencias finitas usando las primeras derivadas de los pasos anteriores.
+
+# Métodos Multivariables Sin Restricciones
+
+## Esquema Iterativo General
+
+Para minimizar funciones $f: \mathbb{R}^n \to \mathbb{R}$ avanzamos de la forma:
+
+$$ x_{k+1} = x_k + \alpha_k d_k $$
+
+Donde:
+*   $d_k$ es la **dirección de búsqueda**, que debe ser de descenso:
+    $$ \nabla f(x_k)^T d_k < 0 $$
+    (forma ángulo obtuso con el gradiente).
+*   $\alpha_k > 0$ es el **tamaño de paso** (determinado mediante búsqueda lineal).
+
+---
+
+## Método de Coordenadas Cíclicas
+
+Algoritmo sencillo libre de derivadas.
+
+*   Avanza secuencialmente minimizando respecto a una sola variable, manteniendo fijas las demás.
+*   Las direcciones de búsqueda son las de la base canónica:
+    $$ d_k = e_{(k \bmod n) + 1} $$
+*   **Comportamiento**:
+    *   Si las variables están desacopladas (Hessiana diagonal): converge en exactamente $n$ pasos.
+    *   Si están acopladas: dibuja un patrón de "escalera", enlenteciendo mucho la convergencia.
+
+---
+
+## Método del Máximo Descenso
+
+La dirección de búsqueda es el opuesto del gradiente (dirección de máximo descenso local):
+
+$$ d_k = -\nabla f(x_k) $$
+
+*   Con búsqueda de línea exacta, las direcciones sucesivas son estrictamente ortogonales:
+    $$ d_k^T d_{k+1} = 0 $$
+*   **Inconveniente**: Si las curvas de nivel son elipses muy alargadas (mal acondicionamiento), se produce un patrón en **zigzag** que ralentiza gravemente el avance.
+
+---
+
+## Método de Newton Multivariable
+
+Aproxima la función objetivo mediante una parábola multidimensional en el punto actual:
+
+$$ x_{k+1} = x_k - [\nabla^2 f(x_k)]^{-1} \nabla f(x_k) $$
+
+*   **Ventajas**: Localiza el mínimo en un solo paso si la función es cuadrática. Convergencia cuadrática local de orden 2.
+*   **Inconvenientes**:
+    *   Alto coste computacional ($O(n^3)$ para invertir la Hessiana).
+    *   Exige que la Hessiana sea definida positiva.
+    *   Convergencia estrictamente local (puede divergir si se empieza lejos).
+
+---
+
+## Métodos Cuasi-Newton (BFGS)
+
+Eliminan los inconvenientes del método de Newton estimando la Hessiana de forma iterativa:
+
+*   Mantienen una aproximación $H_k \approx [\nabla^2 f(x_k)]^{-1}$ simétrica y definida positiva usando únicamente información de los gradientes.
+*   Fuerzan la **ecuación de la secante**: $H_{k+1} y_k = s_k$.
+*   **Ventajas**:
+    *   Convergencia superlineal.
+    *   Coste computacional reducido por iteración ($O(n^2)$).
+    *   No requiere segundas derivadas.

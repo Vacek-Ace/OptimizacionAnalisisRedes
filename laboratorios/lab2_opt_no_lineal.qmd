@@ -44,8 +44,9 @@ donde:
 
 ### Criterio de parada
 En una implementación real, la iteración se detiene cuando se cumple alguna de las siguientes condiciones:
-  1. Se alcanza un número máximo de iteraciones ($k \ge K_{\max}$).
-  2. El gradiente es prácticamente cero, lo que indica que estamos en un punto estacionario: $\|\nabla f(x^{(k)})\|_2 < \epsilon$, donde $\epsilon > 0$ es una tolerancia (por ejemplo, $10^{-6}$).
+
+1. Se alcanza un número máximo de iteraciones ($k \ge K_{\max}$).
+2. El gradiente es prácticamente cero, lo que indica que estamos en un punto estacionario: $\|\nabla f(x^{(k)})\|_2 < \epsilon$, donde $\epsilon > 0$ es una tolerancia (por ejemplo, $10^{-6}$).
 
 ---
 
@@ -86,6 +87,7 @@ El resultado devuelto (`res`) es un objeto `OptimizeResult` con los siguientes c
 Cuando existen restricciones analíticas, el método por defecto de SciPy es **SLSQP** (Sequential Least Squares Programming). SLSQP formula y resuelve aproximaciones cuadráticas del problema original sujeto a la linealización de las restricciones en cada paso.
 
 Para definir restricciones en SciPy se utilizan diccionarios dentro de una lista:
+
 1. **Inecuaciones**: En SciPy se asume que las restricciones de desigualdad están formuladas como **$g(x) \ge 0$**. Si tu problema teórico tiene la forma estándar $h(x) \le c$, debes reescribirla como $c - h(x) \ge 0$.
 2. **Ecuaciones**: Restricciones de igualdad de la forma $e(x) = 0$.
 
@@ -168,7 +170,7 @@ print("Multiplicador de Lagrange de la restricción:", valor_dual)
 Implementa un script en Python para resolver mediante descenso de gradiente manual la minimización de la función cuadrática:
 $$ f(x, y) = x^2 + 2y^2 $$
 
-### Tareas:
+### Tareas
 1. Define la función objetivo $f(x, y)$ y su gradiente analítico $\nabla f(x, y) = (2x, 4y)^T$ en Python.
 2. Implementa el bucle iterativo partiendo de $x^{(0)} = (2, 2)^T$ con una tasa de aprendizaje constante $\alpha = 0.1$ durante un total de $K = 10$ iteraciones.
 3. Imprime en cada iteración: el número de iteración, el punto $(x^{(k)}, y^{(k)})$ y el valor de la función objetivo $f(x^{(k)}, y^{(k)})$.
@@ -203,7 +205,7 @@ $$ \min \quad f(x, y) = x^2 + 2y^2 $$
 
 utilizando la función `minimize` de `scipy.optimize`.
 
-### Tareas:
+### Tareas
 1. Realiza la optimización de dos maneras distintas:
    * **Caso A**: Sin proporcionar el gradiente (dejando que SciPy calcule las diferencias finitas).
    * **Caso B**: Proporcionando el gradiente analítico a través del parámetro `jac`.
@@ -234,12 +236,12 @@ $$
 \end{aligned}
 $$
 
-### Tareas teóricas:
+### Tareas teóricas
 1. Escribe el Lagrangiano del problema utilizando los multiplicadores de Lagrange $\mu$ (para la restricción principal) y $\lambda_1, \lambda_2$ (para las de no negatividad).
 2. Plantea las condiciones de optimalidad de Karush-Kuhn-Tucker (KKT).
 3. Resuelve analíticamente el sistema KKT para obtener la solución óptima primal $(x_1^*, x_2^*)$ y el multiplicador de Lagrange óptimo de la restricción principal ($\mu^*$).
 
-### Tareas de código:
+### Tareas de código
 1. Resuelve el problema utilizando **CVXPY**. Recupera el punto óptimo primal, el valor objetivo y el multiplicador de Lagrange asociado a la restricción $x_1 + 2x_2 \ge 4$ empleando su propiedad `.dual_value`.
 2. Resuelve el problema utilizando **`scipy.optimize.minimize`** con el método `'SLSQP'`. Define correctamente las cotas de no negatividad (`bounds`) y la restricción principal como un diccionario (recuerda que SciPy asume que las restricciones de desigualdad son de la forma $g(x) \ge 0$).
 3. Compara los resultados de ambos códigos con tu cálculo analítico. ¿Coinciden el punto óptimo y el multiplicador de Lagrange obtenido? Explica los resultados.

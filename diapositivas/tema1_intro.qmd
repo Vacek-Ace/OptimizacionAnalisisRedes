@@ -8,8 +8,8 @@ format:
     theme: league
     transition: slide
     slide-number: true
-    chalkboard: true
     code-line-numbers: true
+    embed-resources: true
 ---
 
 # Introducción a la Optimización
