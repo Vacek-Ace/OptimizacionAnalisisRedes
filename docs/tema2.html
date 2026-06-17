@@ -506,19 +506,66 @@ Figura&nbsp;2.2: Ilustración de los distintos tipos de óptimos locales y globa
 </div>
 </div>
 </div>
+<div id="fig-superficies-3d-ejemplos" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-superficies-3d-ejemplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-superficies-3d-ejemplos" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-superficies-3d-silla" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-superficies-3d-silla-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/punto_silla_3d.png" class="lightbox" data-gallery="fig-superficies-3d-ejemplos" title="Figura&nbsp;2.3&nbsp;(a): Representación 3D y curvas de nivel de un punto de silla (Hessiana indefinida)"><img src="images/punto_silla_3d.png" class="img-fluid figure-img" data-ref-parent="fig-superficies-3d-ejemplos"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-superficies-3d-silla-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Representación 3D y curvas de nivel de un punto de silla (Hessiana indefinida)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-superficies-3d-ejemplos" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-superficies-3d-circular" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-superficies-3d-circular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/funcion_distancia_3d.png" class="lightbox" data-gallery="fig-superficies-3d-ejemplos" title="Figura&nbsp;2.3&nbsp;(b): Representación 3D y curvas de nivel de un mínimo circular (Hessiana definida positiva)"><img src="images/funcion_distancia_3d.png" class="img-fluid figure-img" data-ref-parent="fig-superficies-3d-ejemplos"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-superficies-3d-circular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Representación 3D y curvas de nivel de un mínimo circular (Hessiana definida positiva)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-superficies-3d-ejemplos" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-superficies-3d-eliptica" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-superficies-3d-eliptica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/funcion_cuadratica_3d.png" class="lightbox" data-gallery="fig-superficies-3d-ejemplos" title="Figura&nbsp;2.3&nbsp;(c): Representación 3D y curvas de nivel de un mínimo elíptico (Hessiana definida positiva)"><img src="images/funcion_cuadratica_3d.png" class="img-fluid figure-img" data-ref-parent="fig-superficies-3d-ejemplos"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-superficies-3d-eliptica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Representación 3D y curvas de nivel de un mínimo elíptico (Hessiana definida positiva)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-superficies-3d-ejemplos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2.3: Visualización geométrica en 3D y curvas de nivel para el análisis local de curvatura y clasificación de puntos estacionarios
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="métodos-de-búsqueda-unidimensional" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="métodos-de-búsqueda-unidimensional"><span class="header-section-number">2.4</span> Métodos de búsqueda unidimensional</h2>
 <p>Los métodos de búsqueda unidimensional buscan minimizar una función real de una variable <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> en un intervalo acotado <span class="math inline">\([a, b]\)</span>. Son fundamentales porque resolver problemas multidimensionales complejos suele requerir resolver una sucesión de problemas unidimensionales a lo largo de direcciones de descenso: <span class="math inline">\(\min_{\alpha &gt; 0} f(x_k + \alpha d_k)\)</span>.</p>
-<p>A modo de ilustración de las trazas numéricas de los algoritmos 1D, utilizaremos como caso de prueba la minimización en el intervalo <span class="math inline">\([1, 4]\)</span> de la función de cuarto grado: <span class="math display">\[ f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1 \]</span> cuyo gráfico y mínimo global en <span class="math inline">\(x^* = 3.0\)</span> se muestran en la <a href="#fig-opt-1d-ejemplo" class="quarto-xref">Figura&nbsp;<span>2.3</span></a>.</p>
+<p>A modo de ilustración de las trazas numéricas de los algoritmos 1D, utilizaremos como caso de prueba la minimización en el intervalo <span class="math inline">\([1, 4]\)</span> de la función de cuarto grado: <span class="math display">\[ f(x) = \frac{1}{4}x^4 - \frac{13}{3}x^3 + 27x^2 - 72x + 1 \]</span> cuyo gráfico y mínimo global en <span class="math inline">\(x^* = 3.0\)</span> se muestran en la <a href="#fig-opt-1d-ejemplo" class="quarto-xref">Figura&nbsp;<span>2.4</span></a>.</p>
 <div id="fig-opt-1d-ejemplo" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-opt-1d-ejemplo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/opt_1d_ejemplo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figura&nbsp;2.3: Caso de prueba para métodos de búsqueda 1D: función de cuarto grado y su mínimo global"><img src="images/opt_1d_ejemplo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a>
+<a href="images/opt_1d_ejemplo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figura&nbsp;2.4: Caso de prueba para métodos de búsqueda 1D: función de cuarto grado y su mínimo global"><img src="images/opt_1d_ejemplo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-opt-1d-ejemplo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.3: Caso de prueba para métodos de búsqueda 1D: función de cuarto grado y su mínimo global
+Figura&nbsp;2.4: Caso de prueba para métodos de búsqueda 1D: función de cuarto grado y su mínimo global
 </figcaption>
 </figure>
 </div>
@@ -526,25 +573,25 @@ Figura&nbsp;2.3: Caso de prueba para métodos de búsqueda 1D: función de cuart
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="métodos-sin-derivadas"><span class="header-section-number">2.4.1</span> Métodos sin derivadas</h3>
 <p>Estos métodos solo requieren evaluar el valor de la función objetivo. Exigen que la función sea <strong>unimodal</strong> en el intervalo <span class="math inline">\([a, b]\)</span>, es decir, que posea un único mínimo local en dicho intervalo, decreciendo de forma monótona a la izquierda del mínimo y creciendo a su derecha.</p>
 <p>La <strong>Búsqueda Uniforme (Rejilla)</strong> consiste en dividir el intervalo inicial <span class="math inline">\([a, b]\)</span> en <span class="math inline">\(n\)</span> subintervalos de igual anchura mediante una rejilla equidistante de puntos.</p>
-<p>Formalmente, los puntos se definen como: <span class="math display">\[x_k = a + k \cdot \frac{b-a}{n}, \quad k = 0, 1, \dots, n\]</span> Evaluamos la función en todos los puntos de la rejilla para identificar el punto mínimo: <span class="math display">\[k^* = \arg\min_{k \in \{0, \dots, n\}} f(x_k)\]</span> y reducimos el intervalo de incertidumbre al subintervalo adyacente que rodea al óptimo muestreado: <span class="math display">\[[a', b'] = [x_{k^*-1}, x_{k^*+1}]\]</span> Aunque es un método muy robusto, resulta poco eficiente debido a que no aprovecha la información de las evaluaciones previas (ver la <a href="#fig-busqueda-uniforme-concepto" class="quarto-xref">Figura&nbsp;<span>2.4</span></a>).</p>
+<p>Formalmente, los puntos se definen como: <span class="math display">\[x_k = a + k \cdot \frac{b-a}{n}, \quad k = 0, 1, \dots, n\]</span> Evaluamos la función en todos los puntos de la rejilla para identificar el punto mínimo: <span class="math display">\[k^* = \arg\min_{k \in \{0, \dots, n\}} f(x_k)\]</span> y reducimos el intervalo de incertidumbre al subintervalo adyacente que rodea al óptimo muestreado: <span class="math display">\[[a', b'] = [x_{k^*-1}, x_{k^*+1}]\]</span> Aunque es un método muy robusto, resulta poco eficiente debido a que no aprovecha la información de las evaluaciones previas (ver la <a href="#fig-busqueda-uniforme-concepto" class="quarto-xref">Figura&nbsp;<span>2.5</span></a>).</p>
 <div id="fig-busqueda-uniforme-concepto" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-busqueda-uniforme-concepto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/busqueda_uniforme.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figura&nbsp;2.4: Concepto de la Búsqueda Uniforme en rejilla: subdivisión equidistante del intervalo y reducción basada en el punto mínimo de la muestra"><img src="images/busqueda_uniforme.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="images/busqueda_uniforme.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figura&nbsp;2.5: Concepto de la Búsqueda Uniforme en rejilla: subdivisión equidistante del intervalo y reducción basada en el punto mínimo de la muestra"><img src="images/busqueda_uniforme.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-busqueda-uniforme-concepto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.4: Concepto de la Búsqueda Uniforme en rejilla: subdivisión equidistante del intervalo y reducción basada en el punto mínimo de la muestra
+Figura&nbsp;2.5: Concepto de la Búsqueda Uniforme en rejilla: subdivisión equidistante del intervalo y reducción basada en el punto mínimo de la muestra
 </figcaption>
 </figure>
 </div>
-<p>La <strong>Búsqueda Dicotómica</strong> evalúa la función en el entorno del punto medio del intervalo actual. Bajo la hipótesis de unimodalidad, si únicamente evaluásemos la función en el punto medio exacto <span class="math inline">\(c\)</span>, no tendríamos suficiente información para comparar y deducir si el mínimo está a la izquierda o a la derecha (ver <a href="#fig-busqueda-dicotomica-insuficiente" class="quarto-xref">Figura&nbsp;<span>2.5</span></a>).</p>
+<p>La <strong>Búsqueda Dicotómica</strong> evalúa la función en el entorno del punto medio del intervalo actual. Bajo la hipótesis de unimodalidad, si únicamente evaluásemos la función en el punto medio exacto <span class="math inline">\(c\)</span>, no tendríamos suficiente información para comparar y deducir si el mínimo está a la izquierda o a la derecha (ver <a href="#fig-busqueda-dicotomica-insuficiente" class="quarto-xref">Figura&nbsp;<span>2.6</span></a>).</p>
 <div id="fig-busqueda-dicotomica-insuficiente" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-busqueda-dicotomica-insuficiente-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/busqueda_dicotomica_insuficiente.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figura&nbsp;2.5: Insuficiencia de evaluar un único punto medio: dos funciones unimodales diferentes pueden tener idéntico valor en c teniendo sus mínimos globales en lados opuestos"><img src="images/busqueda_dicotomica_insuficiente.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></a>
+<a href="images/busqueda_dicotomica_insuficiente.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figura&nbsp;2.6: Insuficiencia de evaluar un único punto medio: dos funciones unimodales diferentes pueden tener idéntico valor en c teniendo sus mínimos globales en lados opuestos"><img src="images/busqueda_dicotomica_insuficiente.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-busqueda-dicotomica-insuficiente-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.5: Insuficiencia de evaluar un único punto medio: dos funciones unimodales diferentes pueden tener idéntico valor en <span class="math inline">\(c\)</span> teniendo sus mínimos globales en lados opuestos
+Figura&nbsp;2.6: Insuficiencia de evaluar un único punto medio: dos funciones unimodales diferentes pueden tener idéntico valor en <span class="math inline">\(c\)</span> teniendo sus mínimos globales en lados opuestos
 </figcaption>
 </figure>
 </div>
@@ -557,10 +604,10 @@ Figura&nbsp;2.5: Insuficiencia de evaluar un único punto medio: dos funciones u
 <div id="fig-busqueda-dicotomica-concepto" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-busqueda-dicotomica-concepto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/busqueda_dicotomica_concepto.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figura&nbsp;2.6: Concepto de la Búsqueda Dicotómica: la comparación de \lambda_k y \mu_k descarta con certeza una de las mitades del intervalo"><img src="images/busqueda_dicotomica_concepto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a>
+<a href="images/busqueda_dicotomica_concepto.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figura&nbsp;2.7: Concepto de la Búsqueda Dicotómica: la comparación de \lambda_k y \mu_k descarta con certeza una de las mitades del intervalo"><img src="images/busqueda_dicotomica_concepto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-busqueda-dicotomica-concepto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.6: Concepto de la Búsqueda Dicotómica: la comparación de <span class="math inline">\(\lambda_k\)</span> y <span class="math inline">\(\mu_k\)</span> descarta con certeza una de las mitades del intervalo
+Figura&nbsp;2.7: Concepto de la Búsqueda Dicotómica: la comparación de <span class="math inline">\(\lambda_k\)</span> y <span class="math inline">\(\mu_k\)</span> descarta con certeza una de las mitades del intervalo
 </figcaption>
 </figure>
 </div>
@@ -601,10 +648,10 @@ Figura&nbsp;2.6: Concepto de la Búsqueda Dicotómica: la comparación de <span 
 <div id="fig-dicotomica" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dicotomica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/dicotomica.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figura&nbsp;2.7: Animación de la Búsqueda Dicotómica (5 iteraciones)"><img src="images/dicotomica.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="images/dicotomica.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figura&nbsp;2.8: Animación de la Búsqueda Dicotómica (5 iteraciones)"><img src="images/dicotomica.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dicotomica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.7: Animación de la Búsqueda Dicotómica (5 iteraciones)
+Figura&nbsp;2.8: Animación de la Búsqueda Dicotómica (5 iteraciones)
 </figcaption>
 </figure>
 </div>
@@ -650,10 +697,10 @@ Figura&nbsp;2.7: Animación de la Búsqueda Dicotómica (5 iteraciones)
 <div id="fig-seccion-aurea" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-seccion-aurea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/seccion_aurea.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figura&nbsp;2.8: Animación de la búsqueda por Sección Áurea (7 iteraciones)"><img src="images/seccion_aurea.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="images/seccion_aurea.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figura&nbsp;2.9: Animación de la búsqueda por Sección Áurea (7 iteraciones)"><img src="images/seccion_aurea.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seccion-aurea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.8: Animación de la búsqueda por Sección Áurea (7 iteraciones)
+Figura&nbsp;2.9: Animación de la búsqueda por Sección Áurea (7 iteraciones)
 </figcaption>
 </figure>
 </div>
@@ -744,10 +791,10 @@ Figura&nbsp;2.8: Animación de la búsqueda por Sección Áurea (7 iteraciones)
 <div id="fig-biseccion" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-biseccion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/biseccion.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figura&nbsp;2.9: Animación de la búsqueda por Bisección (Bolzano)"><img src="images/biseccion.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="images/biseccion.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figura&nbsp;2.10: Animación de la búsqueda por Bisección (Bolzano)"><img src="images/biseccion.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-biseccion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.9: Animación de la búsqueda por Bisección (Bolzano)
+Figura&nbsp;2.10: Animación de la búsqueda por Bisección (Bolzano)
 </figcaption>
 </figure>
 </div>
@@ -789,10 +836,10 @@ Figura&nbsp;2.9: Animación de la búsqueda por Bisección (Bolzano)
 <div id="fig-newton-1d" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-newton-1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/newton_1d.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figura&nbsp;2.10: Animación del método de Newton 1D"><img src="images/newton_1d.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="images/newton_1d.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figura&nbsp;2.11: Animación del método de Newton 1D"><img src="images/newton_1d.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-newton-1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.10: Animación del método de Newton 1D
+Figura&nbsp;2.11: Animación del método de Newton 1D
 </figcaption>
 </figure>
 </div>
@@ -836,8 +883,8 @@ Figura&nbsp;2.10: Animación del método de Newton 1D
 <p>Para minimizar funciones multivariantes <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> sin restricciones, construimos una sucesión iterativa a partir de una dirección de búsqueda <span class="math inline">\(d_k\)</span> y un tamaño de paso <span class="math inline">\(\alpha_k &gt; 0\)</span>: <span class="math display">\[x_{k+1} = x_k + \alpha_k d_k\]</span> Para garantizar que el algoritmo avance reduciendo la función en cada paso, la dirección <span class="math inline">\(d_k\)</span> debe ser de descenso, lo que exige matemáticamente que forme un ángulo obtuso con el gradiente de la función en el punto actual: <span class="math display">\[\nabla f(x_k)^T d_k &lt; 0\]</span></p>
 <p>Para ilustrar el funcionamiento de los algoritmos multivariantes, utilizaremos a lo largo del capítulo dos funciones de prueba representativas en <span class="math inline">\(\mathbb{R}^2\)</span>:</p>
 <ol type="1">
-<li><strong>Función de distancia circular (desacoplada)</strong>: <span class="math display">\[f(x, y) = (x-2)^2 + (y-1)^2\]</span> Su forma geométrica es la de un cuenco circular (paraboloide de revolución) con curvas de nivel perfectamente redondas, lo que facilita el comportamiento de los métodos por no existir acoplamiento cruzado (ver <a href="#fig-funciones-3d-1" class="quarto-xref">Figura&nbsp;<span>2.11 (a)</span></a>).</li>
-<li><strong>Función cuadrática mal acondicionada (acoplada)</strong>: <span class="math display">\[f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29\]</span> Presenta curvas de nivel elípticas muy alargadas y un término cruzado <span class="math inline">\(3xy\)</span> que acopla las variables, simulando un problema de optimización realista de curvatura desigual (ver <a href="#fig-funciones-3d-2" class="quarto-xref">Figura&nbsp;<span>2.11 (b)</span></a>).</li>
+<li><strong>Función de distancia circular (desacoplada)</strong>: <span class="math display">\[f(x, y) = (x-2)^2 + (y-1)^2\]</span> Su forma geométrica es la de un cuenco circular (paraboloide de revolución) con curvas de nivel perfectamente redondas, lo que facilita el comportamiento de los métodos por no existir acoplamiento cruzado (ver <a href="#fig-funciones-3d-1" class="quarto-xref">Figura&nbsp;<span>2.12 (a)</span></a>).</li>
+<li><strong>Función cuadrática mal acondicionada (acoplada)</strong>: <span class="math display">\[f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29\]</span> Presenta curvas de nivel elípticas muy alargadas y un término cruzado <span class="math inline">\(3xy\)</span> que acopla las variables, simulando un problema de optimización realista de curvatura desigual (ver <a href="#fig-funciones-3d-2" class="quarto-xref">Figura&nbsp;<span>2.12 (b)</span></a>).</li>
 </ol>
 <div id="fig-funciones-3d" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
@@ -847,7 +894,7 @@ Figura&nbsp;2.10: Animación del método de Newton 1D
 <div id="fig-funciones-3d-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-funciones-3d-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/funcion_distancia_3d.png" class="lightbox" data-gallery="fig-funciones-3d" title="Figura&nbsp;2.11&nbsp;(a): Superficie 3D de la función de distancia circular desacoplada"><img src="images/funcion_distancia_3d.png" class="img-fluid figure-img" data-ref-parent="fig-funciones-3d"></a>
+<a href="images/funcion_distancia_3d.png" class="lightbox" data-gallery="fig-funciones-3d" title="Figura&nbsp;2.12&nbsp;(a): Superficie 3D de la función de distancia circular desacoplada"><img src="images/funcion_distancia_3d.png" class="img-fluid figure-img" data-ref-parent="fig-funciones-3d"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-funciones-3d-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Superficie 3D de la función de distancia circular desacoplada
@@ -859,7 +906,7 @@ Figura&nbsp;2.10: Animación del método de Newton 1D
 <div id="fig-funciones-3d-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-funciones-3d-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/funcion_cuadratica_3d.png" class="lightbox" data-gallery="fig-funciones-3d" title="Figura&nbsp;2.11&nbsp;(b): Superficie 3D de la función cuadrática acoplada"><img src="images/funcion_cuadratica_3d.png" class="img-fluid figure-img" data-ref-parent="fig-funciones-3d"></a>
+<a href="images/funcion_cuadratica_3d.png" class="lightbox" data-gallery="fig-funciones-3d" title="Figura&nbsp;2.12&nbsp;(b): Superficie 3D de la función cuadrática acoplada"><img src="images/funcion_cuadratica_3d.png" class="img-fluid figure-img" data-ref-parent="fig-funciones-3d"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-funciones-3d-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Superficie 3D de la función cuadrática acoplada
@@ -870,7 +917,7 @@ Figura&nbsp;2.10: Animación del método de Newton 1D
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-funciones-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.11: Superficies tridimensionales de las funciones de prueba en varias variables
+Figura&nbsp;2.12: Superficies tridimensionales de las funciones de prueba en varias variables
 </figcaption>
 </figure>
 </div>
@@ -890,7 +937,7 @@ Figura&nbsp;2.11: Superficies tridimensionales de las funciones de prueba en var
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li><p><strong>Variables Desacopladas</strong>: Minimizamos la función de distancia <span class="math inline">\(f(x, y) = (x-2)^2 + (y-1)^2\)</span> (ver <a href="#fig-coord-ciclicas-1" class="quarto-xref">Figura&nbsp;<span>2.12</span></a>) partiendo de <span class="math inline">\(x_0 = (0, 0)^T\)</span>.</p>
+<li><p><strong>Variables Desacopladas</strong>: Minimizamos la función de distancia <span class="math inline">\(f(x, y) = (x-2)^2 + (y-1)^2\)</span> (ver <a href="#fig-coord-ciclicas-1" class="quarto-xref">Figura&nbsp;<span>2.13</span></a>) partiendo de <span class="math inline">\(x_0 = (0, 0)^T\)</span>.</p>
 <ul>
 <li><em>Paso 1</em>: Minimizamos respecto a <span class="math inline">\(x\)</span>: <span class="math display">\[ \min_{x} \quad f(x, 0) = (x-2)^2 + 1 \implies x_1 = (2, 0)^T \]</span></li>
 <li><em>Paso 2</em>: Minimizamos respecto a <span class="math inline">\(y\)</span>: <span class="math display">\[ \min_{y} \quad f(2, y) = (y-1)^2 \implies x_2 = (2, 1)^T \]</span></li>
@@ -900,15 +947,15 @@ Figura&nbsp;2.11: Superficies tridimensionales de las funciones de prueba en var
 <div id="fig-coord-ciclicas-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-coord-ciclicas-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/coordenadas_ciclicas_ej1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figura&nbsp;2.12: Descenso por coordenadas cíclicas: trayectoria paso a paso sobre curvas de nivel circulares (animación)"><img src="images/coordenadas_ciclicas_ej1.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a>
+<a href="images/coordenadas_ciclicas_ej1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Figura&nbsp;2.13: Descenso por coordenadas cíclicas: trayectoria paso a paso sobre curvas de nivel circulares (animación)"><img src="images/coordenadas_ciclicas_ej1.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coord-ciclicas-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.12: Descenso por coordenadas cíclicas: trayectoria paso a paso sobre curvas de nivel circulares (animación)
+Figura&nbsp;2.13: Descenso por coordenadas cíclicas: trayectoria paso a paso sobre curvas de nivel circulares (animación)
 </figcaption>
 </figure>
 </div>
 <ul>
-<li><p><strong>Variables Acopladas</strong>: Minimizamos <span class="math inline">\(f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29\)</span> (ver <a href="#fig-coord-ciclicas-2" class="quarto-xref">Figura&nbsp;<span>2.13</span></a>) partiendo de <span class="math inline">\(x_0 = (0, 0)^T\)</span>.</p>
+<li><p><strong>Variables Acopladas</strong>: Minimizamos <span class="math inline">\(f(x, y) = 8x^2 + 3xy + 7y^2 - 25x + 31y - 29\)</span> (ver <a href="#fig-coord-ciclicas-2" class="quarto-xref">Figura&nbsp;<span>2.14</span></a>) partiendo de <span class="math inline">\(x_0 = (0, 0)^T\)</span>.</p>
 <ul>
 <li><em>Paso 1</em>: Minimizamos respecto a <span class="math inline">\(x\)</span>: <span class="math display">\[ \min_{x} \quad f(x, 0) = 8x^2 - 25x - 29 \implies 16x - 25 = 0 \implies x_1 = (1.5625, 0)^T \]</span></li>
 <li><em>Paso 2</em>: Minimizamos respecto a <span class="math inline">\(y\)</span> manteniendo <span class="math inline">\(x = 1.5625\)</span>: <span class="math display">\[ \min_{y} \quad f(1.5625, y) = 7y^2 + 35.6875y + \text{ct} \implies 14y + 35.6875 = 0 \implies \]</span> <span class="math display">\[y = -\frac{571}{224} \approx -2.5491 \]</span> Lo que resulta en el punto <span class="math inline">\(x_2 = (1.5625, -2.5491)^T\)</span>.</li>
@@ -919,10 +966,10 @@ Figura&nbsp;2.12: Descenso por coordenadas cíclicas: trayectoria paso a paso so
 <div id="fig-coord-ciclicas-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-coord-ciclicas-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/coordenadas_ciclicas_ej2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figura&nbsp;2.13: Trayectoria en escalera del descenso por coordenadas cíclicas sobre una función cuadrática acoplada (animación)"><img src="images/coordenadas_ciclicas_ej2.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a>
+<a href="images/coordenadas_ciclicas_ej2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="Figura&nbsp;2.14: Trayectoria en escalera del descenso por coordenadas cíclicas sobre una función cuadrática acoplada (animación)"><img src="images/coordenadas_ciclicas_ej2.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coord-ciclicas-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.13: Trayectoria en escalera del descenso por coordenadas cíclicas sobre una función cuadrática acoplada (animación)
+Figura&nbsp;2.14: Trayectoria en escalera del descenso por coordenadas cíclicas sobre una función cuadrática acoplada (animación)
 </figcaption>
 </figure>
 </div>
@@ -935,7 +982,7 @@ Figura&nbsp;2.13: Trayectoria en escalera del descenso por coordenadas cíclicas
 <p>La dirección de búsqueda en el método de máximo descenso se define como la dirección en la que la función decrece más rápidamente a nivel local, dada por el opuesto del vector gradiente: <span class="math display">\[d_k = -\nabla f(x_k)\]</span> El tamaño de paso óptimo <span class="math inline">\(\alpha_k\)</span> se calcula mediante búsqueda de línea exacta: <span class="math display">\[\alpha_k = \arg\min_{\alpha &gt; 0} f(x_k - \alpha \nabla f(x_k))\]</span></p>
 <p>Una propiedad matemática de la búsqueda lineal exacta en el método de máximo descenso es que las direcciones de búsqueda en iteraciones consecutivas son estrictamente ortogonales entre sí: <span class="math display">\[d_k^T d_{k+1} = 0\]</span></p>
 <p>Para demostrarlo, definimos la función unidimensional <span class="math inline">\(\phi(\alpha) = f(x_k + \alpha d_k)\)</span> que se minimiza para hallar <span class="math inline">\(\alpha_k\)</span>. La condición de óptimo exige que su derivada con respecto al tamaño de paso sea nula en <span class="math inline">\(\alpha_k\)</span>: <span class="math display">\[\phi'(\alpha_k) = \nabla f(x_k + \alpha_k d_k)^T d_k = 0\]</span> Dado que el nuevo punto es <span class="math inline">\(x_{k+1} = x_k + \alpha_k d_k\)</span>, se tiene que <span class="math inline">\(\nabla f(x_{k+1})^T d_k = 0\)</span>. Puesto que las direcciones consecutivas son proporcionales a los gradientes (<span class="math inline">\(d_{k+1} = -\nabla f(x_{k+1})\)</span> y <span class="math inline">\(d_k = -\nabla f(x_k)\)</span>), se concluye de forma directa la ortogonalidad: <span class="math display">\[d_{k+1}^T d_k = 0\]</span></p>
-<p>Esta ortogonalidad geométrica provoca que, si la función presenta curvas de nivel elípticas muy alargadas (problemas mal acondicionados), el algoritmo realice continuos giros de 90°, generando un patrón en <strong>zigzag</strong> que ralentiza la convergencia, tal y como se observa en la <a href="#fig-steepest-descent" class="quarto-xref">Figura&nbsp;<span>2.14</span></a>.</p>
+<p>Esta ortogonalidad geométrica provoca que, si la función presenta curvas de nivel elípticas muy alargadas (problemas mal acondicionados), el algoritmo realice continuos giros de 90°, generando un patrón en <strong>zigzag</strong> que ralentiza la convergencia, tal y como se observa en la <a href="#fig-steepest-descent" class="quarto-xref">Figura&nbsp;<span>2.15</span></a>.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Ejemplo: Máximo Descenso">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -957,10 +1004,10 @@ Figura&nbsp;2.13: Trayectoria en escalera del descenso por coordenadas cíclicas
 <div id="fig-steepest-descent" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-steepest-descent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/steepest_descent.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figura&nbsp;2.14: Máximo descenso: trayectoria iterativa con gradiente y ortogonalidad entre pasos consecutivos (animación)"><img src="images/steepest_descent.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
+<a href="images/steepest_descent.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Figura&nbsp;2.15: Máximo descenso: trayectoria iterativa con gradiente y ortogonalidad entre pasos consecutivos (animación)"><img src="images/steepest_descent.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-steepest-descent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;2.14: Máximo descenso: trayectoria iterativa con gradiente y ortogonalidad entre pasos consecutivos (animación)
+Figura&nbsp;2.15: Máximo descenso: trayectoria iterativa con gradiente y ortogonalidad entre pasos consecutivos (animación)
 </figcaption>
 </figure>
 </div>
